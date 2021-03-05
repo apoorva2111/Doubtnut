@@ -1,0 +1,6 @@
+framework module Pods_DoubtNut_DoubtNutUITests {
+  umbrella header "Pods-DoubtNut-DoubtNutUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

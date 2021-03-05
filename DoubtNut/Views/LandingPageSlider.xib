@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hIO-6R-KhY" customClass="LandingPageSlider" customModule="doubtnut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-zd-UOw">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="OBT-Gc-4E9"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Xqc-zd-UOw" firstAttribute="leading" secondItem="OBT-Gc-4E9" secondAttribute="leading" id="T3U-ob-UKs"/>
+                <constraint firstItem="Xqc-zd-UOw" firstAttribute="bottom" secondItem="hIO-6R-KhY" secondAttribute="bottom" id="fCR-ep-HpG"/>
+                <constraint firstItem="Xqc-zd-UOw" firstAttribute="trailing" secondItem="OBT-Gc-4E9" secondAttribute="trailing" id="hcc-Py-onv"/>
+                <constraint firstItem="Xqc-zd-UOw" firstAttribute="top" secondItem="hIO-6R-KhY" secondAttribute="top" id="kzw-FA-Hp5"/>
+            </constraints>
+            <connections>
+                <outlet property="imgView" destination="Xqc-zd-UOw" id="Gl9-0q-9vx"/>
+            </connections>
+            <point key="canvasLocation" x="133.33333333333334" y="153.2608695652174"/>
+        </view>
+    </objects>
+</document>
