@@ -12,19 +12,101 @@ import FBSDKLoginKit
 
 
 class SignUpVC: UIViewController {
-
-
+    @IBOutlet weak var viewEmail: RCustomView!
+    @IBOutlet weak var tctEmailId: RCustomTextField!
+    @IBOutlet weak var viewPhoneNumber: RCustomView!
+    @IBOutlet weak var txtPhoneNumber: RCustomTextField!
+    
+    @IBOutlet weak var btnOutletGetVarCode: RCustomButton!
+   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        
         // Do any additional setup after loading the view.
+        txtPhoneNumber.delegate = self
+        tctEmailId.delegate = self
+        
     }
     
+    
+    
+}
+//MARK:- Custom Classes
+extension SignUpVC{
+    func validation(){
+        if tctEmailId.text == "" && txtPhoneNumber.text == ""{
+            txtPhoneNumber.shake()
+            tctEmailId.shake()
+            self.showToast(message: "Please Enter Email id or Phone number")
+            self.view.endEditing(true)
+        }else if tctEmailId.text != ""{
+            if !(tctEmailId.text!.isValidEmail()) {
+                tctEmailId.shake()
+                self.view.endEditing(true)
+            }else{
+                let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else if txtPhoneNumber.text != ""{
+            
+            if !(txtPhoneNumber.text!.isPhoneNumber){
+                txtPhoneNumber.shake()
+                self.view.endEditing(true)
+            }else{
+                let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
+        }
+    }
+}
+
+extension SignUpVC : UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if tctEmailId.text!.isValidEmail() {
+            viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+        }else{
+            viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+
+        }
+        if txtPhoneNumber.text!.isPhoneNumber{
+            viewPhoneNumber.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+
+        }else{
+            viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+
+        }
+        return true
+        
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == tctEmailId{
+            viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            txtPhoneNumber.text = ""
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+        }else{
+            viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            tctEmailId.text = ""
+            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+            btnOutletGetVarCode.layer.masksToBounds = true
+
+        }
+    }
+}
+//MARK:- UIButton Action
+extension SignUpVC {
     @IBAction func clickOnSocialMediaLogin(_ sender: UIButton)
     {
         if(sender.tag == 10){
@@ -42,9 +124,15 @@ class SignUpVC: UIViewController {
             authorizationController.performRequests()
         }
     }
+    @IBAction func btnGetVarificationCodeAction(_ sender: UIButton) {
+        validation()
+    }
     
+    @IBAction func btnBackAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
-
+//MARK:- Gmail Login
 
 extension SignUpVC : GIDSignInDelegate {
     
@@ -173,6 +261,7 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
     }
 }
 
+//MARK:- Facebook Login
 extension SignUpVC {
     
     func facebookSignup()

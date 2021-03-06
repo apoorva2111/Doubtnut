@@ -8,6 +8,7 @@
 import UIKit
 import GoogleSignIn
 import FBSDKCoreKit
+import IQKeyboardManagerSwift
 
 var userDef = UserDefaults.standard
 
@@ -22,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         GIDSignIn.sharedInstance().clientID = Endpoints.Environment.googleClientId
-        
-        self.callRootView()
+        IQKeyboardManager.shared.enable = true
+
+       // self.callRootView()
         return true
     }
 

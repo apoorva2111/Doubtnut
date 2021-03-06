@@ -19,6 +19,8 @@ class LandingpageVC: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnLoginAction(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "LoginwithPincode", storyBoard: "Main")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBOutlet weak var pageControl: UIPageControl!

