@@ -630,7 +630,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemGreenColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="jgg-DX-aKf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Gzv-9m-Zgg"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jgg-DX-aKf" secondAttribute="trailing" id="Q55-h0-oad"/>
@@ -657,9 +657,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -51,7 +51,7 @@
                                                     <color key="textColor" red="0.91764705879999997" green="0.32549019610000002" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLb-0Y-szU">
+                                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLb-0Y-szU">
                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="45"/>
                                                     <connections>
                                                         <action selector="btnFooterSelectAction:" destination="-1" eventType="touchUpInside" id="Q9M-Xu-cSP"/>
@@ -80,7 +80,7 @@
                                                         <constraint firstAttribute="width" constant="65" id="nbM-E2-rKo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fau-Gs-BB5">
+                                                <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fau-Gs-BB5">
                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="45"/>
                                                     <connections>
                                                         <action selector="btnFooterSelectAction:" destination="-1" eventType="touchUpInside" id="ODG-va-gFD"/>
@@ -114,7 +114,7 @@
                                                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-rI-QHo">
+                                                <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTj-rI-QHo">
                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="45"/>
                                                     <connections>
                                                         <action selector="btnFooterSelectAction:" destination="-1" eventType="touchUpInside" id="OQk-AO-gb5"/>

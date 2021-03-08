@@ -9,11 +9,13 @@ import UIKit
 
 class DashboardVC: UIViewController {
 
+    @IBOutlet weak var viewFooterview: Footerview!
     @IBOutlet weak var collectionMaths: UICollectionView!
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewFooterview.footerDelegate = self
         // Do any additional setup after loading the view.
         registerXib()
     }
@@ -38,6 +40,29 @@ extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UIC
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionMaths.frame.width - 50, height: collectionMaths.frame.height)
+    }
+    
+}
+extension DashboardVC{
+    @IBAction func btnSATAction(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func btnACTAction(_ sender: Any) {
+        let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+extension DashboardVC : FooterviewDelegate{
+    func didPressFooterButton(getType: String) {
+        if getType == "Home"{
+            print(getType)
+        }else if getType == "Doubt"{
+            print(getType)
+        }else{
+            print(getType)
+        }
     }
     
 }
