@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>CameraManager will use your microphone to record audio for videos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>CameraManager will access your photo library to save pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>CameraManager will use your location to save EXIF data.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>CameraManager will use your camera to take pictures</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -74,8 +82,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

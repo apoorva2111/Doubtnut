@@ -60,6 +60,9 @@ extension DashboardVC : FooterviewDelegate{
             print(getType)
         }else if getType == "Doubt"{
             print(getType)
+            
+            let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
+            self.navigationController?.pushViewController(vc, animated: true)
         }else{
             print(getType)
         }

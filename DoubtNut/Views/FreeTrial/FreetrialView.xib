@@ -49,19 +49,19 @@
                                                             <state key="normal" image="Close"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give us another chance!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6H-ZA-jZw">
-                                                            <rect key="frame" x="16" y="52" width="154" height="38"/>
+                                                            <rect key="frame" x="16" y="52" width="141" height="47"/>
                                                             <fontDescription key="fontDescription" name="BentonSans-Bold" family="BentonSans Bold" pointSize="20"/>
                                                             <color key="textColor" red="0.15294117647058825" green="0.23921568627450979" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us what went wrong &amp; get a free 7 day extension on us." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ER-rg-jFn">
-                                                            <rect key="frame" x="16" y="94" width="321" height="36"/>
+                                                            <rect key="frame" x="16" y="103" width="321" height="35"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ffn-GQ-KqY">
-                                                            <rect key="frame" x="16" y="170" width="320" height="218"/>
+                                                            <rect key="frame" x="16" y="178" width="320" height="218"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shR-C8-php" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
@@ -74,7 +74,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I’m not giving SAT/ACT right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qn8-W7-6e6">
-                                                                            <rect key="frame" x="34" y="10" width="280" height="16"/>
+                                                                            <rect key="frame" x="34" y="10" width="280" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It is too expensive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uO-lM-u8z">
-                                                                            <rect key="frame" x="34" y="10" width="280" height="16"/>
+                                                                            <rect key="frame" x="34" y="10" width="280" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -162,7 +162,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I didn’t find the videos for SAT/ACT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-1d-ivu">
-                                                                            <rect key="frame" x="34" y="10" width="280" height="16"/>
+                                                                            <rect key="frame" x="34" y="10" width="280" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -205,7 +205,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I can’t understand the videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIb-px-a6D">
-                                                                            <rect key="frame" x="34" y="10" width="280" height="16"/>
+                                                                            <rect key="frame" x="34" y="10" width="280" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -254,7 +254,7 @@
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TK-XG-uyp">
-                                                                                            <rect key="frame" x="34" y="8.5" width="280" height="16"/>
+                                                                                            <rect key="frame" x="34" y="8.5" width="280" height="15.5"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
@@ -365,7 +365,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbF-vh-eQI" customClass="RCustomButton" customModule="DoubtNut" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="400" width="320" height="36"/>
+                                                            <rect key="frame" x="16" y="408" width="320" height="36"/>
                                                             <color key="backgroundColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="vgY-Sq-SLp"/>
@@ -381,7 +381,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mR-32-WB3">
-                                                            <rect key="frame" x="120" y="452" width="112" height="29"/>
+                                                            <rect key="frame" x="120" y="460" width="112" height="29"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                             <state key="normal" title="No, I don’t want it">
                                                                 <color key="titleColor" red="0.32941176470588235" green="0.074509803921568626" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
@@ -445,13 +445,13 @@
                                     <state key="normal" image="Close"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By cancelling you will  lose access to" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9E-xD-kPr">
-                                    <rect key="frame" x="16" y="52" width="215" height="38"/>
+                                    <rect key="frame" x="16" y="52" width="197.5" height="47"/>
                                     <fontDescription key="fontDescription" name="BentonSans-Bold" family="BentonSans Bold" pointSize="20"/>
                                     <color key="textColor" red="0.1529411765" green="0.23921568630000001" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tyl-AU-Y04">
-                                    <rect key="frame" x="16" y="122" width="320" height="96"/>
+                                    <rect key="frame" x="16" y="131" width="320" height="96"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 21" translatesAutoresizingMaskIntoConstraints="NO" id="tkk-oB-p7w">
                                             <rect key="frame" x="5" y="10" width="8" height="8"/>
@@ -461,7 +461,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6000+ Video Solutions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1O-GF-SdL">
-                                            <rect key="frame" x="21" y="4" width="291" height="19.5"/>
+                                            <rect key="frame" x="21" y="4.5" width="291" height="19"/>
                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -474,7 +474,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask Unlimited Doubts " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5S-1U-DEw">
-                                            <rect key="frame" x="21" y="32" width="160.5" height="19.5"/>
+                                            <rect key="frame" x="21" y="32.5" width="160" height="19"/>
                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -487,7 +487,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT &amp; ACT Study Material" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LV-by-ARg">
-                                            <rect key="frame" x="21" y="60" width="185" height="19.5"/>
+                                            <rect key="frame" x="21" y="60.5" width="186.5" height="19"/>
                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -572,13 +572,13 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jk9-Ed-ksj">
-                                    <rect key="frame" x="0.0" y="174" width="352" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="174" width="352" height="19"/>
                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your trial has been successfully activated. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lo-QL-2cI">
-                                    <rect key="frame" x="0.0" y="198.5" width="352" height="17"/>
+                                    <rect key="frame" x="0.0" y="198" width="352" height="16.5"/>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -643,7 +643,7 @@
     </objects>
     <designables>
         <designable name="mbF-vh-eQI">
-            <size key="intrinsicContentSize" width="163" height="29"/>
+            <size key="intrinsicContentSize" width="164" height="29"/>
         </designable>
     </designables>
     <resources>
