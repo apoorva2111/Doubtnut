@@ -10,6 +10,8 @@ target 'DoubtNut' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'IQKeyboardManagerSwift'
+  pod 'SideMenu'
+  pod 'CameraManager'
 
   # Pods for DoubtNut
 

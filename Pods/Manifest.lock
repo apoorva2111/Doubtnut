@@ -4,6 +4,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - CameraManager (5.1.3)
   - FBSDKCoreKit (9.0.0):
     - FBSDKCoreKit/Basics (= 9.0.0)
     - FBSDKCoreKit/Core (= 9.0.0)
@@ -31,17 +32,21 @@ PODS:
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
   - IQKeyboardManagerSwift (6.5.6)
+  - SideMenu (6.5.0)
 
 DEPENDENCIES:
+  - CameraManager
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - GoogleSignIn (~> 5.0.2)
   - IQKeyboardManagerSwift
+  - SideMenu
 
 SPEC REPOS:
   trunk:
     - AppAuth
+    - CameraManager
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -49,9 +54,11 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - SideMenu
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  CameraManager: 73936a52093081ba5e44914e8120ab511360f5d4
   FBSDKCoreKit: ac6cc500b8e104bb9a4dd20b1527b5d199123c2e
   FBSDKLoginKit: e9b6542fdee322333502ab497f628b011dce7d78
   FBSDKShareKit: e9a5d805d0831489a09dd14fa6fc8ba20d6355f3
@@ -59,7 +66,8 @@ SPEC CHECKSUMS:
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: b8a1c30b54909f0a7b8d4b00e184dbb77eb40bf5
+PODFILE CHECKSUM: 9961df2d8a8c4000a6d36c0e221cfc366a28eb3a
 
 COCOAPODS: 1.10.1

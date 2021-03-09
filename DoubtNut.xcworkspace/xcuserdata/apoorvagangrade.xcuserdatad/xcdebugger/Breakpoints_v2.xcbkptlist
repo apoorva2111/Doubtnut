@@ -7,86 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BBFF9F98-9051-4D1F-AE30-FA323C3DB333"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "btnImgClickAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3BD6436A-5725-4CC4-AA7E-3E4222DCF873"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "btnImgClickAction(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3BD6436A-5725-4CC4-AA7E-3E4222DCF873 - 7f93f48246ab697a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DoubtNut.CustomCameraVC.btnImgClickAction(__C.UIButton) -&gt; ()"
-                  moduleName = "DoubtNut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/CustomCameraVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "3BD6436A-5725-4CC4-AA7E-3E4222DCF873 - 3b087bd52f7c75b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (DoubtNut.CaptureResult) -&gt; () in DoubtNut.CustomCameraVC.btnImgClickAction(__C.UIButton) -&gt; ()"
-                  moduleName = "DoubtNut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/CustomCameraVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "140">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E28036EB-EA14-4C3B-90B5-E8805C63F7AE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8E3FEAF2-7382-4277-9D7D-DD408B35E659"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -98,38 +18,70 @@
             endingLineNumber = "531"
             landmarkName = "capturePictureWithCompletion(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8E3FEAF2-7382-4277-9D7D-DD408B35E659 - cd29cd1251671edf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DoubtNut.CameraManager.capturePictureWithCompletion((DoubtNut.CaptureResult) -&gt; ()) -&gt; ()"
-                  moduleName = "DoubtNut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/Helper/CameraManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "531"
-                  endingLineNumber = "531"
-                  offsetFromSymbolStart = "144">
-               </Location>
-               <Location
-                  uuid = "8E3FEAF2-7382-4277-9D7D-DD408B35E659 - 1d65144e19d4b2ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (DoubtNut.CaptureResult) -&gt; () in DoubtNut.CameraManager.capturePictureWithCompletion((DoubtNut.CaptureResult) -&gt; ()) -&gt; ()"
-                  moduleName = "DoubtNut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/Helper/CameraManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "533"
-                  endingLineNumber = "533"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A117818C-7836-4EFF-BE6A-C8483752E4DB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/Helper/CameraManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
+            landmarkName = "capturePictureDataWithCompletion(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F2D25FF-FC9D-45D9-9708-0A8F360930C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "btnImgClickAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB639E85-E7EF-4AB0-A003-5411FA82370F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "btnImgClickAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1008DCF-1D30-4018-B8F7-01BD2137CE1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "btnImgClickAction(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -6,18 +6,20 @@
 //
 
 import UIKit
-
+import SideMenu
 class DashboardVC: UIViewController {
 
     @IBOutlet weak var viewFooterview: Footerview!
     @IBOutlet weak var collectionMaths: UICollectionView!
+    @IBOutlet weak var viewFreeTrial: FreetrialView!
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         viewFooterview.footerDelegate = self
         // Do any additional setup after loading the view.
         registerXib()
+        viewFreeTrial.isHidden = true
+        viewFreeTrial.freetrialViewDelegate = self
     }
     func registerXib() {
         self.collectionMaths.register(UINib(nibName: "MathCVCell", bundle: nil), forCellWithReuseIdentifier: "MathCVCell")
@@ -25,7 +27,12 @@ class DashboardVC: UIViewController {
     }
 
   
+    @IBAction func onClickProfileButton(_ sender: UIButton) {
+        let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as! SideMenuNavigationController
+        
+        present(menu,animated: true, completion: nil)
 
+    }
 }
 extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
@@ -40,6 +47,9 @@ extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UIC
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionMaths.frame.width - 50, height: collectionMaths.frame.height)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewFreeTrial.isHidden = false
     }
     
 }
@@ -67,5 +77,42 @@ extension DashboardVC : FooterviewDelegate{
             print(getType)
         }
     }
+    
+}
+extension DashboardVC : FreetrialViewDelegate{
+    func didPressCrossButton(Tag: Int) {
+        viewFreeTrial.isHidden = true
+
+    }
+    
+    func didStartStudingAction() {
+        viewFreeTrial.viewMembership.isHidden = false
+        viewFreeTrial.viewStartStudying.isHidden = true
+        viewFreeTrial.viewGiveAnotherChange.isHidden = true
+    }
+    
+    func didKeepMyMembershipAction() {
+        viewFreeTrial.viewMembership.isHidden = true
+        viewFreeTrial.viewStartStudying.isHidden = true
+        viewFreeTrial.viewGiveAnotherChange.isHidden = false
+       // viewFreeTrial.lblGiveAnotherChance.text = "Give us another chance!"
+       // viewFreeTrial.lblTellUsWhatWent.text = "Tell us what went wrong & get a free 7 day extension on us."
+    }
+    
+    func didCancelMembershipAction() {
+        viewFreeTrial.viewMembership.isHidden = true
+        viewFreeTrial.viewStartStudying.isHidden = true
+        viewFreeTrial.viewGiveAnotherChange.isHidden = false
+    }
+    
+    func didDayExtendAction() {
+        let vc = FlowController().instantiateViewController(identifier: "DayTrialViewController", storyBoard: "Main")
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func didDontWontItAction() {
+        
+    }
+    
     
 }
