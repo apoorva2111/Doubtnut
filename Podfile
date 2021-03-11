@@ -11,7 +11,8 @@ target 'DoubtNut' do
   pod 'FBSDKShareKit'
   pod 'IQKeyboardManagerSwift'
   pod 'SideMenu'
-  pod 'CameraManager'
+  pod 'AKImageCropperView'
+  pod 'lottie-ios'
 
   # Pods for DoubtNut
 

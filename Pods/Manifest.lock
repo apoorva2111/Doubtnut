@@ -1,10 +1,10 @@
 PODS:
+  - AKImageCropperView (2.0.0)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
-  - CameraManager (5.1.3)
   - FBSDKCoreKit (9.0.0):
     - FBSDKCoreKit/Basics (= 9.0.0)
     - FBSDKCoreKit/Core (= 9.0.0)
@@ -32,21 +32,23 @@ PODS:
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
   - IQKeyboardManagerSwift (6.5.6)
+  - lottie-ios (3.2.1)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
-  - CameraManager
+  - AKImageCropperView
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - GoogleSignIn (~> 5.0.2)
   - IQKeyboardManagerSwift
+  - lottie-ios
   - SideMenu
 
 SPEC REPOS:
   trunk:
+    - AKImageCropperView
     - AppAuth
-    - CameraManager
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -54,11 +56,12 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - lottie-ios
     - SideMenu
 
 SPEC CHECKSUMS:
+  AKImageCropperView: 9c80fd45512daa69426161ad51c248655c1b5182
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
-  CameraManager: 73936a52093081ba5e44914e8120ab511360f5d4
   FBSDKCoreKit: ac6cc500b8e104bb9a4dd20b1527b5d199123c2e
   FBSDKLoginKit: e9b6542fdee322333502ab497f628b011dce7d78
   FBSDKShareKit: e9a5d805d0831489a09dd14fa6fc8ba20d6355f3
@@ -66,8 +69,9 @@ SPEC CHECKSUMS:
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 9961df2d8a8c4000a6d36c0e221cfc366a28eb3a
+PODFILE CHECKSUM: cae4034bc94d15e3883cf0a071f84738e6919845
 
 COCOAPODS: 1.10.1
