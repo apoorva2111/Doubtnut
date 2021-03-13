@@ -23,6 +23,15 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnLearnHowAction(_ sender: UIButton) {
+        if sender.tag == 10 {
+            
+        }else{
+            let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home")
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     //  MARK: - Properties
    
     var captureSession: AVCaptureSession!
@@ -107,7 +116,7 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
 //        imgView.image = image
         cropView.delegate = self
         cropView.image = image
-        cropView.contentMode = .scaleToFill
+        cropView.contentMode = .scaleAspectFit
         
         viewImgCrop.isHidden = false
         viewCropOneQues.isHidden = false
@@ -223,6 +232,9 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         request.recognitionLevel = VNRequestTextRecognitionLevel.fast
 
         try? requestHandler.perform([request])
+        
+        let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home")
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     func toggleTorch(on: Bool) {

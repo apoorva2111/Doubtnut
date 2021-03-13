@@ -23,6 +23,9 @@ class LoginwithPincode: UIViewController {
         // Do any additional setup after loading the view.
         txtEmail.delegate = self
         txtEnterPin.delegate = self
+        
+        
+        self.callLoginApi()
     }
 }
 
@@ -44,6 +47,46 @@ extension LoginwithPincode{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    
+    func callLoginApi(){
+        let params:[String: Any] = ["phone_number":"apoorvagangrade65@gmail.com","login_method":"email_id"]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            print(response!)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
+    }
+    
+//    {
+//
+//        let param = ["phone_number":"sandeepcse130@gmail.com","pin":"1234"]
+//
+//        let url = "https://api.doubtnut.app/v1/student/login-with-pin"
+//        BaseApi.onResponsePostWithToken(url: url, controller: self, parms: param) { (dict, error) in
+//
+//           // if(error == ""){}
+//
+//
+//            print(dict)
+//        }
+//    }
 }
 
 //MARK:- Textfeild Delegate
