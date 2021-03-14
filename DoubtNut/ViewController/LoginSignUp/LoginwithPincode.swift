@@ -25,7 +25,7 @@ class LoginwithPincode: UIViewController {
         txtEnterPin.delegate = self
         
         
-        self.callLoginApi()
+        //self.callLoginApi()
     }
 }
 
@@ -49,30 +49,7 @@ extension LoginwithPincode{
     }
     
     
-    func callLoginApi(){
-        let params:[String: Any] = ["phone_number":"apoorvagangrade65@gmail.com","login_method":"email_id"]
 
-        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("847", forHTTPHeaderField: "version_code")
-        request.addValue("", forHTTPHeaderField: "x-auth-token")
-        request.addValue("US", forHTTPHeaderField: "country")
-
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            print(response!)
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                print(json)
-            } catch {
-                print("error")
-            }
-        })
-
-        task.resume()
-    }
     
 //    {
 //

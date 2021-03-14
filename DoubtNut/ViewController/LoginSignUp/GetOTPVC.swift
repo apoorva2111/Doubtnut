@@ -27,15 +27,46 @@ class GetOTPVC: UIViewController {
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         validation()
     }
-    
+    var session_id = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         // Do any additional setup after loading the view.
+        print(session_id)
     }
     
 
+}
+//MARK:- Webservice Call
+extension GetOTPVC{
+    func webserviceCallVerifyOTP(strOtp: String){
+        let params:[String: Any] = ["otp":strOtp,"session_id":session_id]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/verify")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+      //  request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+      //  request.addValue("847", forHTTPHeaderField: "version_code")
+      //  request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            print(response!)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+                    // self.navigationController?.pushViewController(vc, animated: true)
+
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
+    }
 }
 //MARK:- Custom Classes
 extension GetOTPVC{
@@ -72,6 +103,13 @@ extension GetOTPVC{
             txtReenterPin.shake()
             self.showToast(message: "Please Enter Validation Code or Set Your 4 Digit PIN")
         
+        }else if txtOtp1.text == "" || txtOtp2.text == "" || txtOtp3.text == "" || txtOtp4.text == "" {
+            txtOtp1.shake()
+            txtOtp2.shake()
+            txtOtp3.shake()
+            txtOtp4.shake()
+            self.showToast(message: "Please Enter 4 Digit Validation Code or Set Your 4 Digit PIN")
+
         }else if txtSetPin.text != "" && txtReenterPin.text != ""{
             if txtSetPin.text!.count > 4 || txtReenterPin.text!.count > 4 {
                // txtSetPin.shake()
@@ -82,10 +120,12 @@ extension GetOTPVC{
                 txtReenterPin.shake()
                 self.showToast(message: "Set PIN and Reset PIN is Not Match")
 
+            }else{
+                //Apicall
             }
         }else{
-            let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-            self.navigationController?.pushViewController(vc, animated: true)
+            let strOTP = txtOtp1.text! + txtOtp2.text! + txtOtp3.text! + txtOtp4.text!
+            webserviceCallVerifyOTP(strOtp:strOTP)
         }
         
     }
@@ -149,7 +189,7 @@ extension GetOTPVC : UITextFieldDelegate{
             case txtOtp4:
                 txtOtp4.resignFirstResponder()
                 lblOtpLine4.backgroundColor=#colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-
+                btnOutletSubmit.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                
             default:
                 break
@@ -159,6 +199,8 @@ extension GetOTPVC : UITextFieldDelegate{
             case txtOtp4:
                 txtOtp3.becomeFirstResponder()
                 lblOtpLine4.backgroundColor=#colorLiteral(red: 0.7642175555, green: 0.7642356753, blue: 0.7642259598, alpha: 1)
+                btnOutletSubmit.backgroundColor = #colorLiteral(red: 0.7642175555, green: 0.7642356753, blue: 0.7642259598, alpha: 1)
+
             case txtOtp3:
                 txtOtp2.becomeFirstResponder()
                 lblOtpLine3.backgroundColor=#colorLiteral(red: 0.7642175555, green: 0.7642356753, blue: 0.7642259598, alpha: 1)

@@ -17,8 +17,8 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var viewPhoneNumber: RCustomView!
     @IBOutlet weak var txtPhoneNumber: RCustomTextField!
     
-    @IBOutlet weak var btnOutletGetVarCode: RCustomButton!
-   
+    @IBOutlet weak var btnOutletGetVarCode: UIButton!
+    var session_id = ""
     
     
     override func viewDidLoad() {
@@ -47,8 +47,7 @@ extension SignUpVC{
                 tctEmailId.shake()
                 self.view.endEditing(true)
             }else{
-                let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
-                self.navigationController?.pushViewController(vc, animated: true)
+                callApiGetOtpUsingEmail()
             }
         }else if txtPhoneNumber.text != ""{
             
@@ -66,26 +65,30 @@ extension SignUpVC{
 
 extension SignUpVC : UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if tctEmailId.text!.isValidEmail() {
-            viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
-            btnOutletGetVarCode.layer.masksToBounds = true
+        
+        if tctEmailId.text == ""{
+            
+            if txtPhoneNumber.text!.isPhoneNumber{
+                viewPhoneNumber.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+                
+            }else{
+                viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }
+            
         }else{
-            viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-            btnOutletGetVarCode.layer.masksToBounds = true
-
-        }
-        if txtPhoneNumber.text!.isPhoneNumber{
-            viewPhoneNumber.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
-            btnOutletGetVarCode.layer.masksToBounds = true
-
-        }else{
-            viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-            btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-            btnOutletGetVarCode.layer.masksToBounds = true
-
+            if tctEmailId.text!.isValidEmail() {
+                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }else{
+                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }
         }
         return true
         
@@ -132,6 +135,59 @@ extension SignUpVC {
         self.navigationController?.popViewController(animated: true)
     }
 }
+//MARK:- Call Webservice
+extension SignUpVC {
+   
+    func callApiGetOtpUsingEmail(){
+        let params:[String: Any] = ["phone_number":tctEmailId.text!,"login_method":"email_id"]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            print(response!)
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                /*["meta": {
+                 code = 200;
+                 message = "Otp is sent, Please verify";
+                 success = 1;
+             }, "data": {
+                 "expires_in" = 300;
+                 "otp_over_call" = 0;
+                 "pin_exists" = 1;
+                 "session_id" = "apoorvagangrade65@gmail.com:2a1db4e3-8e15-47dd-a5fb-210aecf91c17";
+                 status = Success;
+             }]*/
+                if let data = json["data"] as? [String:AnyObject]{
+                    self.session_id = data["session_id"]as! String
+                }
+                if let meta = json["meta"] as? [String:AnyObject]{
+                    let code = meta["code"] as! Int
+                    if code == 200 {
+                        let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
+                        vc.session_id = self.session_id
+                        DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
+    }
+}
+
 //MARK:- Gmail Login
 
 extension SignUpVC : GIDSignInDelegate {

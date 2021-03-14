@@ -62,8 +62,8 @@
             filePath = "DoubtNut/ViewController/LoginSignUp/LoginwithPincode.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "LoginwithPincode"
             landmarkType = "21">
          </BreakpointContent>
@@ -71,48 +71,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FB544EB3-3298-4666-B70A-924D5E6EE074"
+            uuid = "EAFB6D01-727F-415C-8BD1-DAC12B712779"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/LoginwithPincode.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "callLoginApi()"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "callApiGetOtpUsingEmail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6412417A-3B25-4137-898B-6DE272BC0B35"
+            uuid = "825EDF3F-39F0-4E0E-A096-DE562E826DA7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/LoginwithPincode.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/GetOTPVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "callLoginApi()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0D69F62E-7967-4159-B7C1-6378D340D746"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/LoginwithPincode.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "callLoginApi()"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "verifyOTP()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
