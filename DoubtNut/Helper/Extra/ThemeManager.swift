@@ -38,6 +38,14 @@ enum Theme: Int {
             return .default
         }
     }
+    var watermelon: UIColor {
+        switch self {
+        case .light:
+            return #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1) //UIColor.colorFromHex(rgbValue: 0xce0e2d)
+        case .dark:
+            return #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1) //UIColor.colorFromHex(rgbValue: 0xff1140)
+        }
+    }//
 }
 // Enum declaration
 let SelectedThemeKey = "SelectedTheme"

@@ -58,6 +58,8 @@ func showToast(message : String) {
     toastLabel.text = message
     toastLabel.alpha = 1.0
     toastLabel.layer.cornerRadius = 10;
+    toastLabel.numberOfLines = 0
+    toastLabel.lineBreakMode = .byWordWrapping
     toastLabel.clipsToBounds  =  true
     self.view.addSubview(toastLabel)
     UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {

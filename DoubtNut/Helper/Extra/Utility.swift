@@ -11,8 +11,6 @@ import UIKit
 class UtilesSwift :NSObject {
     
     static let  shared = UtilesSwift()
-    let defaults = UserDefaults.standard
-
     
     func showAlert(text:String, icon:String){
         

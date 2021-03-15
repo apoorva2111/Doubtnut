@@ -41,30 +41,86 @@ class GetOTPVC: UIViewController {
 //MARK:- Webservice Call
 extension GetOTPVC{
     func webserviceCallVerifyOTP(strOtp: String){
-        let params:[String: Any] = ["otp":strOtp,"session_id":session_id]
+        
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+       let parameters = ["otp":strOtp,"session_id":session_id]
+        
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.app/v4/student/verify")! //change the url
 
-        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/verify")!)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-      //  request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-      //  request.addValue("847", forHTTPHeaderField: "version_code")
-      //  request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
-        request.addValue("US", forHTTPHeaderField: "country")
-
+        //create the session object
         let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            print(response!)
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                print(json)
-                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-                    // self.navigationController?.pushViewController(vc, animated: true)
 
-            } catch {
-                print("error")
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        self.showToast(message: meta["message"]as! String)
+                        if code == 200 {
+                            BaseApi.hideActivirtIndicator()
+                            let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                            
+                            //DispatchQueue.main.async {
+                            self.navigationController?.pushViewController(vc, animated: true)
+                          //  }
+                        }
+                    }
+                    /*["meta": {
+                     code = 200;
+                     message = "User registered";
+                     success = 1;
+                 }, "data": {
+                     intro =     (
+                                 {
+                             "question_id" = 2116599;
+                             type = intro;
+                             video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
+                         },
+                                 {
+                             "question_id" = 2200030;
+                             type = community;
+                             video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial03-720p-02.mp4";
+                         }
+                     );
+                     "is_new_user" = 1;
+                     "onboarding_video" = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
+                     "student_id" = 76944998;
+                     "student_username" = hen1497hrs;
+                     token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzY5NDQ5OTgsImlhdCI6MTYxNTgyNzM2NCwiZXhwIjoxNjc4ODk5MzY0fQ.yEIxBZm1COQNBC8f0pD2H7u_163QV-MGHmaRYNZnrhg";
+                 }]*/
+                    BaseApi.hideActivirtIndicator()
+                    // handle json...
+                }
+            } catch let error {
+                print(error.localizedDescription)
             }
         })
-
         task.resume()
     }
 }
@@ -94,6 +150,7 @@ extension GetOTPVC{
     }
     
     func validation(){
+        self.view.endEditing(true)
         if txtOtp1.text == "" && txtOtp2.text == "" && txtOtp3.text == "" && txtOtp4.text == "" && txtSetPin.text == "" && txtReenterPin.text == ""{
             txtOtp1.shake()
             txtOtp2.shake()
@@ -125,7 +182,8 @@ extension GetOTPVC{
             }
         }else{
             let strOTP = txtOtp1.text! + txtOtp2.text! + txtOtp3.text! + txtOtp4.text!
-            webserviceCallVerifyOTP(strOtp:strOTP)
+           webserviceCallVerifyOTP(strOtp:strOTP)
+            
         }
         
     }

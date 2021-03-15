@@ -21,7 +21,7 @@ class DashboardVC: UIViewController {
         viewFreeTrial.isHidden = true
         viewFreeTrial.freetrialViewDelegate = self
         
-        viewFooterview.imgProfile.image = #imageLiteral(resourceName: "Profile_selected")
+        viewFooterview.imgProfile.image = #imageLiteral(resourceName: "Profile")
         viewFooterview.lblProfile.textColor = #colorLiteral(red: 0.5741485357, green: 0.5741624236, blue: 0.574154973, alpha: 1)
         viewFooterview.imgHome.image = #imageLiteral(resourceName: "Home_Selectd")
         viewFooterview.lblProfile.textColor = #colorLiteral(red: 1, green: 0.4183522463, blue: 0.2224330306, alpha: 1)
@@ -80,7 +80,6 @@ extension DashboardVC : FooterviewDelegate{
             print(getType)
             
             let vc = FlowController().instantiateViewController(identifier: "navProfile", storyBoard: "Profile") as! UINavigationController
-//            self.navigationController?.pushViewController(vc, animated: true)
             vc.modalPresentationStyle = .fullScreen
 present(vc, animated: false, completion: nil)
         }

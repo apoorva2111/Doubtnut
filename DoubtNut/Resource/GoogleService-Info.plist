@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1055061992526-uunv4eiokpo1gnlugvrunbc222qb1336.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1055061992526-uunv4eiokpo1gnlugvrunbc222qb1336</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1055061992526-738al4almjbaebnlhmehhutqi0viu5f2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB-RHB4M_Y9pWMv-yZNJvFwP_Us75aa0dc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1055061992526</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths</string>
+	<key>PROJECT_ID</key>
+	<string>doubtnut-act-sat</string>
+	<key>STORAGE_BUCKET</key>
+	<string>doubtnut-act-sat.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1055061992526:ios:3806c94ec3b35e22accf1f</string>
+</dict>
+</plist>

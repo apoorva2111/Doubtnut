@@ -37,6 +37,7 @@ class SignUpVC: UIViewController {
 //MARK:- Custom Classes
 extension SignUpVC{
     func validation(){
+        self.view.endEditing(true)
         if tctEmailId.text == "" && txtPhoneNumber.text == ""{
             txtPhoneNumber.shake()
             tctEmailId.shake()
@@ -55,9 +56,9 @@ extension SignUpVC{
                 txtPhoneNumber.shake()
                 self.view.endEditing(true)
             }else{
-                let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
-                self.navigationController?.pushViewController(vc, animated: true)
-
+               // let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
+               // self.navigationController?.pushViewController(vc, animated: true)
+                callApiGetOtpUsingPhoneNumber()
             }
         }
     }
@@ -139,6 +140,8 @@ extension SignUpVC {
 extension SignUpVC {
    
     func callApiGetOtpUsingEmail(){
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+
         let params:[String: Any] = ["phone_number":tctEmailId.text!,"login_method":"email_id"]
 
         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
@@ -146,7 +149,7 @@ extension SignUpVC {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("847", forHTTPHeaderField: "version_code")
-        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
+       // request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
 
         let session = URLSession.shared
@@ -155,17 +158,7 @@ extension SignUpVC {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
-                /*["meta": {
-                 code = 200;
-                 message = "Otp is sent, Please verify";
-                 success = 1;
-             }, "data": {
-                 "expires_in" = 300;
-                 "otp_over_call" = 0;
-                 "pin_exists" = 1;
-                 "session_id" = "apoorvagangrade65@gmail.com:2a1db4e3-8e15-47dd-a5fb-210aecf91c17";
-                 status = Success;
-             }]*/
+                
                 if let data = json["data"] as? [String:AnyObject]{
                     self.session_id = data["session_id"]as! String
                 }
@@ -175,6 +168,7 @@ extension SignUpVC {
                         let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
                         vc.session_id = self.session_id
                         DispatchQueue.main.async {
+                            BaseApi.hideActivirtIndicator()
                         self.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
@@ -186,6 +180,48 @@ extension SignUpVC {
 
         task.resume()
     }
+    
+     func callApiGetOtpUsingPhoneNumber(){
+         BaseApi.showActivityIndicator(icon: nil, text: "")
+
+         let params:[String: Any] = ["phone_number":txtPhoneNumber.text!]
+
+         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+         request.httpMethod = "POST"
+         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+         request.addValue("847", forHTTPHeaderField: "version_code")
+        // request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
+         request.addValue("US", forHTTPHeaderField: "country")
+
+         let session = URLSession.shared
+         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+             print(response!)
+             do {
+                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                 print(json)
+                 
+                 if let data = json["data"] as? [String:AnyObject]{
+                     self.session_id = data["session_id"]as! String
+                 }
+                 if let meta = json["meta"] as? [String:AnyObject]{
+                     let code = meta["code"] as! Int
+                     if code == 200 {
+                         let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
+                         vc.session_id = self.session_id
+                         DispatchQueue.main.async {
+                             BaseApi.hideActivirtIndicator()
+                         self.navigationController?.pushViewController(vc, animated: true)
+                         }
+                     }
+                 }
+             } catch {
+                 print("error")
+             }
+         })
+
+         task.resume()
+     }
 }
 
 //MARK:- Gmail Login

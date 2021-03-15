@@ -12,7 +12,28 @@ import UIKit
 class BaseApi {
     
     static var VC = UIViewController()
+  
+    static var customLoaderView:CustomLoaderView!
+    static let window = (UIApplication.shared.delegate as! AppDelegate).window
+    static var isLoaderShowing = false
     
+    static func showActivityIndicator(icon:UIImage?, text:String){
+        
+        if !isLoaderShowing{
+            customLoaderView = CustomLoaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), icon: icon, loaderText: text)
+            window?.addSubview(customLoaderView)
+        }
+    }
+    static func hideActivirtIndicator(){
+        if((customLoaderView) != nil){
+            customLoaderView.hide()
+            
+            customLoaderView.removeFromSuperview()
+            
+        }
+        isLoaderShowing = false
+    }
+
     
     
     static func callApiRequestForGet(url : String, completionHandler: @escaping (_ result: Any, _ error: String) -> Void){

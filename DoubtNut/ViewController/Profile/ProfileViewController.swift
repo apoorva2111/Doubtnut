@@ -113,9 +113,13 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func onClickWatchHistory(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "WatchHistoryViewController", storyBoard: "Profile")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onClickMyDoubts(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "QuestionAskedViewController", storyBoard: "Profile")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onClickPaymentHistory(_ sender: UIButton) {

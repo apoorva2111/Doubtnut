@@ -26,7 +26,7 @@
         <!--LandingpageVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LandingpageVC" id="BYZ-38-t0r" customClass="LandingpageVC" customModule="DoubtNut" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingpageVC" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LandingpageVC" customModule="DoubtNut" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2882,6 +2882,77 @@
             <point key="canvasLocation" x="6134.7826086956529" y="81.696428571428569"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2e5-uC-GQF">
+            <size key="intrinsicContentSize" width="203.5" height="18"/>
+        </designable>
+        <designable name="6UJ-ze-MDv">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="BAP-3a-uuq">
+            <size key="intrinsicContentSize" width="53" height="29"/>
+        </designable>
+        <designable name="F7B-64-9MM">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="FI7-wE-8xw">
+            <size key="intrinsicContentSize" width="113" height="17"/>
+        </designable>
+        <designable name="IgR-at-BIf">
+            <size key="intrinsicContentSize" width="43" height="29"/>
+        </designable>
+        <designable name="Kfp-ZJ-9qf">
+            <size key="intrinsicContentSize" width="56" height="32"/>
+        </designable>
+        <designable name="QKP-bJ-Eok">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="THP-qx-YSC">
+            <size key="intrinsicContentSize" width="167" height="29"/>
+        </designable>
+        <designable name="TeI-3h-8NK">
+            <size key="intrinsicContentSize" width="133.5" height="18"/>
+        </designable>
+        <designable name="Ulz-vP-lPF">
+            <size key="intrinsicContentSize" width="88.5" height="18"/>
+        </designable>
+        <designable name="bqu-Le-N9w">
+            <size key="intrinsicContentSize" width="53" height="29"/>
+        </designable>
+        <designable name="fLH-X7-ccC">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="gmo-tn-wBk">
+            <size key="intrinsicContentSize" width="203.5" height="18"/>
+        </designable>
+        <designable name="j13-gL-b4V">
+            <size key="intrinsicContentSize" width="132" height="29"/>
+        </designable>
+        <designable name="lIf-eG-znS">
+            <size key="intrinsicContentSize" width="45" height="32"/>
+        </designable>
+        <designable name="m9M-Sd-Yv6">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="o6V-ko-vSG">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="rle-QQ-VQQ">
+            <size key="intrinsicContentSize" width="110.5" height="17"/>
+        </designable>
+        <designable name="szz-hN-AZe">
+            <size key="intrinsicContentSize" width="167" height="29"/>
+        </designable>
+        <designable name="ySz-0p-ftp">
+            <size key="intrinsicContentSize" width="91.5" height="17"/>
+        </designable>
+        <designable name="ymN-JP-8Am">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+        <designable name="zjk-E9-WTv">
+            <size key="intrinsicContentSize" width="9" height="20.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="Apple" width="24" height="24"/>
         <image name="ApplePay" width="64" height="64"/>

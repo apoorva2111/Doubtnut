@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
-import IQKeyboardManagerSwift
 
 var userDef = UserDefaults.standard
 
@@ -21,26 +22,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         GIDSignIn.sharedInstance().clientID = Endpoints.Environment.googleClientId
         IQKeyboardManager.shared.enable = true
+        FirebaseApp.configure()
+      
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
        // self.callRootView()
         return true
     }
 
-   
-
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if (url.scheme == "fb232113201864910")
-        {
-            return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-        }
-        else
-        {
-            return (GIDSignIn.sharedInstance()?.handle(url))!
-        }
+    func application(_ app: UIApplication, open url: URL, options:[UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled: Bool = ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[.sourceApplication] as? String, annotation: options[.annotation])
+        return handled
     }
+
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        if (url.scheme == "fb232113201864910")
+//        {
+//            return ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+//        }
+//        else
+//        {
+//            return (GIDSignIn.sharedInstance()?.handle(url))!
+//        }
+//    }
 
 }
 
