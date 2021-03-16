@@ -43,29 +43,88 @@ extension LoginwithPincode{
             self.showToast(message: "Please Enter Your 4 Digit PIN")
             txtEnterPin.shake()
         }else{
-            let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-            self.navigationController?.pushViewController(vc, animated: true)
+            WenserviceCallForLogin()
         }
     }
-    
-    
 
-    
-//    {
-//
-//        let param = ["phone_number":"sandeepcse130@gmail.com","pin":"1234"]
-//
-//        let url = "https://api.doubtnut.app/v1/student/login-with-pin"
-//        BaseApi.onResponsePostWithToken(url: url, controller: self, parms: param) { (dict, error) in
-//
-//           // if(error == ""){}
-//
-//
-//            print(dict)
-//        }
-//    }
 }
+//MARK:- API Call
+extension LoginwithPincode{
+    func WenserviceCallForLogin() {
+        
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        let parameters = ["identifier":txtEmail.text,"pin":txtEnterPin.text]
+        
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.app/v1/student/login-with-pin")! //change the url
 
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+
+                    if let data = json["data"] as? [String:AnyObject]{
+//                        let token = data["token"] as! String
+                     //   userDef.set(token, forKey: "Auth_token")
+                       // userDef.synchronize()
+                    }
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        if code == 200 {
+                           /**/
+                            // create the alert
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+                                self.navigationController?.pushViewController(vc, animated: true)
+
+                                
+                            }
+                          //  }
+                        }else{
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                            }
+                        }
+                    }
+            
+                    // handle json..
+                        
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }
+}
 //MARK:- Textfeild Delegate
 extension LoginwithPincode : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

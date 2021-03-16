@@ -154,13 +154,18 @@ extension SignUpVC {
 
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            print(response!)
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
                 
                 if let data = json["data"] as? [String:AnyObject]{
-                    self.session_id = data["session_id"]as! String
+                    let status = data["status"] as? String
+                    if status == "FAILURE"{
+                        self.showToast(message: "Something Went Wrong")
+                    }else{
+                        self.session_id = data["session_id"]as! String
+
+                    }
                 }
                 if let meta = json["meta"] as? [String:AnyObject]{
                     let code = meta["code"] as! Int
@@ -202,17 +207,22 @@ extension SignUpVC {
                  print(json)
                  
                  if let data = json["data"] as? [String:AnyObject]{
-                     self.session_id = data["session_id"]as! String
+                     self.session_id = data["session_id"] as! String
                  }
                  if let meta = json["meta"] as? [String:AnyObject]{
                      let code = meta["code"] as! Int
                      if code == 200 {
-                         let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
-                         vc.session_id = self.session_id
-                         DispatchQueue.main.async {
-                             BaseApi.hideActivirtIndicator()
-                         self.navigationController?.pushViewController(vc, animated: true)
-                         }
+                        
+                        OperationQueue.main.addOperation {
+                            let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
+                            vc.session_id = self.session_id
+                            //   DispatchQueue.main.async {
+                            BaseApi.hideActivirtIndicator()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            //    }
+                        }
+                        
+                       
                      }
                  }
              } catch {

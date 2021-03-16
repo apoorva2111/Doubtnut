@@ -7,79 +7,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86502D84-0D04-4F59-9DF8-A03816A47A92"
+            uuid = "C9BB7BC2-D505-45E6-A9B3-DF9ED472B9FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/LoginSignUp/GetOTPVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "validation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08965AEA-C313-4132-8B03-8B093C689735"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/LoginSignUp/GetOTPVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "webserviceCallVerifyOTP(strOtp:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EED67C49-09FD-451A-9ED6-877298CA55D7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Profile/ProfileViewController.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/LoginWithCodeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CEFF345E-33CC-4FB3-B6D2-4D1E601C91E6"
+            uuid = "AC8D2C1D-A4E1-4732-9EE0-B5C636A582AF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/LoginWithCodeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "btnLearnHowAction(_:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "callApiGetOtpUsingEmail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3746F535-33BC-4C4B-B31C-2414DA65EFAD"
+            uuid = "AC4A3738-70F8-43A9-988F-D0A0BF2B86FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/Helper/BaseApi.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/LoginWithCodeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "onResponsePostWithToken(url:controller:parms:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "07F2B17E-B753-4CA1-9DC4-0C24ECB939E0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "onClickDismissVC(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50139696-2921-4E7B-9865-E0D7E4947CBC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/SignUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "callApiGetOtpUsingPhoneNumber()"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,32 +87,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EEF8D776-6C0E-4E4C-B0CC-A3525C5B2801"
+            uuid = "F9651BD4-2AF0-420E-BA8F-AB9F4CF08CCF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/GetOTPVC.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/LoginWithCodeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "webserviceCallVerifyOTP(strOtp:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "callApiGetOtpUsingPhoneNumber()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "992DE0BC-6162-46BB-B1B2-64ADDEA3C310"
+            uuid = "A7017B1E-8A46-4A57-9523-410E88705626"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/LoginSignUp/GetOTPVC.swift"
+            filePath = "DoubtNut/ViewController/LoginSignUp/LoginWithCodeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "webserviceCallVerifyOTP(strOtp:)"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "callApiGetOtpUsingPhoneNumber()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

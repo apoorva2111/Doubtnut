@@ -15,44 +15,157 @@ class LoginWithCodeVC: UIViewController {
        @IBOutlet weak var btnOutletGetOTP: RCustomButton!
     
     @IBOutlet weak var txtEmail: RCustomTextField!
+    
+    var session_id = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         txtEmail.delegate = self
         // Do any additional setup after loading the view.
+
     }
 }
 extension LoginWithCodeVC:UITextFieldDelegate{
   
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if txtEmail.text!.isValidEmail() {
-            viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-        }else{
-            viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-            btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-
-           
-        if txtEmail.text!.isPhoneNumber {
+        let decimalCharacters = CharacterSet.decimalDigits
+        
+        let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            if txtEmail.text!.isPhoneNumber {
                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            
+                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                
             }else{
                 viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
                 btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-
+                
+            }
+        }else{
+            if txtEmail.text!.isValidEmail() {
+                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+            }else{
+                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
             }
         }
+       
             return true
     }
 }
+//MARK:- Call Webservice
+extension LoginWithCodeVC {
+   
+    func callApiGetOtpUsingEmail(){
+        BaseApi.showActivityIndicator(icon: nil, text: "")
 
+        let params:[String: Any] = ["phone_number":txtEmail.text!,"login_method":"email_id"]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+       // request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                
+                if let data = json["data"] as? [String:AnyObject]{
+                    let status = data["status"] as? String
+                    if status == "FAILURE"{
+                        self.showToast(message: "Something Went Wrong")
+                    }else{
+                        self.session_id = data["session_id"]as! String
+
+                    }
+                }
+                if let meta = json["meta"] as? [String:AnyObject]{
+                    let code = meta["code"] as! Int
+                    if code == 200 {
+                        let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
+                        vc.session_id = self.session_id
+                            BaseApi.hideActivirtIndicator()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
+    }
+    
+     func callApiGetOtpUsingPhoneNumber(){
+         BaseApi.showActivityIndicator(icon: nil, text: "")
+
+         let params:[String: Any] = ["phone_number":txtEmail.text!]
+
+         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+         request.httpMethod = "POST"
+         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+         request.addValue("847", forHTTPHeaderField: "version_code")
+         request.addValue("US", forHTTPHeaderField: "country")
+
+         let session = URLSession.shared
+         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+             print(response!)
+             do {
+                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                 print(json)
+                 
+                 if let data = json["data"] as? [String:AnyObject]{
+                     self.session_id = data["session_id"] as! String
+                 }
+                 if let meta = json["meta"] as? [String:AnyObject]{
+                     let code = meta["code"] as! Int
+                     if code == 200 {
+                        
+                        OperationQueue.main.addOperation {
+                            BaseApi.hideActivirtIndicator()
+
+                            let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
+                            vc.session_id = self.session_id
+                            //   DispatchQueue.main.async {
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            //    }
+                        }
+                        
+                       
+                     }
+                 }
+             } catch {
+                 print("error")
+             }
+         })
+
+         task.resume()
+     }
+}
 extension LoginWithCodeVC{
     @IBAction func btnBackAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnGetOtpAction(_ sender: Any) {
-        let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-        self.navigationController?.pushViewController(vc, animated: true)
+        //let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+       // self.navigationController?.pushViewController(vc, animated: true)
+        let decimalCharacters = CharacterSet.decimalDigits
+        
+        let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)
+        if decimalRange != nil {
+            callApiGetOtpUsingPhoneNumber()
+        }else{
+            callApiGetOtpUsingEmail()
+        }
     }
 
 }
