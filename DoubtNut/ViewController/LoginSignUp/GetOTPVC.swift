@@ -85,78 +85,57 @@ extension GetOTPVC{
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
                     OperationQueue.main.addOperation {
-                    if let data = json["data"] as? [String:AnyObject]{
-                        if let status = data["status"]{
-                            if status as! String == "FAILURE"{
-                                BaseApi.hideActivirtIndicator()
-                                self.showToast(message: "Please Enter Correct Verification Code")
-                                return
-                            }
-                        }
-              let token = data["token"] as! String
-                            userDef.set(token, forKey: "Auth_token")
-                            userDef.synchronize()
-        
-                        
-                       
-                    }
+
 print(json)
                     if let meta = json["meta"] as? [String:AnyObject]{
                         let code = meta["code"] as! Int
                         if code == 200 {
-                           /*["meta": {
-                             code = 200;
-                             message = "User registered";
-                             success = 1;
-                         }, "data": {
-                             intro =     (
-                                         {
-                                     "question_id" = 2116599;
-                                     type = intro;
-                                     video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
-                                 },
-                                         {
-                                     "question_id" = 2200030;
-                                     type = community;
-                                     video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial03-720p-02.mp4";
-                                 }
-                             );
-                             "is_new_user" = 0;
-                             "onboarding_video" = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
-                             "student_id" = 38666646;
-                             "student_username" = amy1973akk;
-                             token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg2NjY2NDYsImlhdCI6MTYxNTg3OTk5MywiZXhwIjoxNjc4OTUxOTkzfQ.uZ3hClH4V1Dj0ZBxylr-MXdL6u55dr4BgZG2IjvI4V4";
-                         }]*/
-                            // create the alert
-                                BaseApi.hideActivirtIndicator()
+                            /**/
+                            BaseApi.hideActivirtIndicator()
+                            
+                            if let data = json["data"] as? [String:AnyObject]{
+                                if let status = data["status"]{
+                                    if status as! String == "FAILURE"{
+                                        self.showToast(message: "Please Enter Correct Verification Code")
+                                        return
+                                    }
+                                }
+                                let token = data["token"] as! String
+                                userDef.set(token, forKey: "Auth_token")
+                                userDef.synchronize()
                                 
-                                let alert = UIAlertController(title: "doubtnut", message: "Do You Want to Set Your 4 Digit Password", preferredStyle: .alert)
-                                
-                                // add an action (button)
-                                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {(Cancel) in
-                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)
-
-                                }))
-                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (Ok) in
-                                    print("Set Print")
-                                    self.txtOtp1.text = ""
-                                    self.txtOtp2.text = ""
-                                    self.txtOtp3.text = ""
-                                    self.txtOtp4.text = ""
-                                    self.lblOtpLine1.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                    self.lblOtpLine2.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                    self.lblOtpLine3.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                    self.lblOtpLine4.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                    self.btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                    self.btnOutletSubmit.layer.masksToBounds = true
-
-                                    self.isSetPin = true
-                                }))
-                                // show the alert
-                                self.present(alert, animated: true, completion: nil)
                             }
+                            
+                            let alert = UIAlertController(title: "doubtnut", message: "Do You Want to Set Your 4 Digit Password", preferredStyle: .alert)
+                            
+                            // add an action (button)
+                            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {(Cancel) in
+                                let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: false, completion: nil)
+                                
+                            }))
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (Ok) in
+                                print("Set Print")
+                                self.txtOtp1.text = ""
+                                self.txtOtp2.text = ""
+                                self.txtOtp3.text = ""
+                                self.txtOtp4.text = ""
+                                self.lblOtpLine1.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                                self.lblOtpLine2.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                                self.lblOtpLine3.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                                self.lblOtpLine4.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                                self.btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                                self.btnOutletSubmit.layer.masksToBounds = true
+                                
+                                self.isSetPin = true
+                            }))
+                            // show the alert
+                            self.present(alert, animated: true, completion: nil)
+                        }else{
+                            BaseApi.hideActivirtIndicator()
+                            self.showToast(message: "Something Went Wrong")
+                        }
                           //  }
                         }
                     }
@@ -208,26 +187,31 @@ print(json)
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    OperationQueue.main.addOperation {
+
                     if let meta = json["meta"] as? [String:AnyObject]{
                         let code = meta["code"] as! Int
                         if code == 200 {
-                            OperationQueue.main.addOperation {
                                 self.showToast(message: "Pin Inserted")
 
                             BaseApi.hideActivirtIndicator()
                             let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: false, completion: nil)
-                         }
+                         
                         }else{
-                            BaseApi.hideActivirtIndicator()
+                            self.showToast(message: "Try With Another Number")
 
+                            BaseApi.hideActivirtIndicator()
+                        }
                         }
                     }
                     /**/
                     // handle json...
                 }
             } catch let error {
+                self.showToast(message: "Something Went Wrong")
+
                 BaseApi.hideActivirtIndicator()
 
                 print(error.localizedDescription)

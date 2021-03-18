@@ -1690,7 +1690,7 @@ Get Solution.</string>
                                             <constraint firstAttribute="height" constant="22" id="J90-Yw-PgE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Logout">
                                             <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>

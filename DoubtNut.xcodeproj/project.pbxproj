@@ -727,7 +727,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				84BFEA953D41D26F2DAAC43A /* Build Project Frameworks */,
+				24FCFE91D5753776B9AAC43A /* [CP] Build Pods Frameworks */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -938,7 +938,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	84BFEA953D41D26F2DAAC43A /* Build Project Frameworks */ = {
+	24FCFE91D5753776B9AAC43A /* [CP] Build Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -947,7 +947,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Project Frameworks";
+			name = "[CP] Build Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -958,12 +958,6 @@
 
 \"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
 		};
-	
-
-	
-
-	
-
 	
 		2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1492,16 +1486,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

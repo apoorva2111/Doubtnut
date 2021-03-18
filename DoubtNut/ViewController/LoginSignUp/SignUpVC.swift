@@ -11,7 +11,11 @@ import AuthenticationServices
 import FBSDKLoginKit
 
 
-class SignUpVC: UIViewController {
+class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+           return self.view.window!
+       }
+    
     @IBOutlet weak var viewEmail: RCustomView!
     @IBOutlet weak var tctEmailId: RCustomTextField!
     @IBOutlet weak var viewPhoneNumber: RCustomView!
@@ -149,7 +153,6 @@ extension SignUpVC {
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("847", forHTTPHeaderField: "version_code")
-       // request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
 
         let session = URLSession.shared
@@ -158,28 +161,33 @@ extension SignUpVC {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
                 
-                if let data = json["data"] as? [String:AnyObject]{
-                    let status = data["status"] as? String
-                    if status == "FAILURE"{
-                        self.showToast(message: "Something Went Wrong")
-                    }else{
-                        self.session_id = data["session_id"]as! String
+                OperationQueue.main.addOperation {
 
-                    }
-                }
                 if let meta = json["meta"] as? [String:AnyObject]{
                     let code = meta["code"] as! Int
                     if code == 200 {
+                        if let data = json["data"] as? [String:AnyObject]{
+                            let status = data["status"] as? String
+                            if status == "FAILURE"{
+                                self.showToast(message: "Something Went Wrong")
+                            }else{
+                                self.session_id = data["session_id"]as! String
+
+                            }
+                        }
                         let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
                         vc.session_id = self.session_id
-                        DispatchQueue.main.async {
                             BaseApi.hideActivirtIndicator()
                         self.navigationController?.pushViewController(vc, animated: true)
-                        }
+                        
                     }
-                }
+                }}
             } catch {
                 print("error")
+                OperationQueue.main.addOperation {
+                BaseApi.hideActivirtIndicator()
+                self.showToast(message: "Something Went Wrong")
+                }
             }
         })
 
@@ -206,14 +214,15 @@ extension SignUpVC {
                  let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                  print(json)
                  
-                 if let data = json["data"] as? [String:AnyObject]{
-                     self.session_id = data["session_id"] as! String
-                 }
+                OperationQueue.main.addOperation {
+
                  if let meta = json["meta"] as? [String:AnyObject]{
                      let code = meta["code"] as! Int
                      if code == 200 {
                         
-                        OperationQueue.main.addOperation {
+                            if let data = json["data"] as? [String:AnyObject]{
+                                self.session_id = data["session_id"] as! String
+                            }
                             let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
                             vc.session_id = self.session_id
                             //   DispatchQueue.main.async {
@@ -227,6 +236,11 @@ extension SignUpVC {
                  }
              } catch {
                  print("error")
+                OperationQueue.main.addOperation {
+                BaseApi.hideActivirtIndicator()
+                self.showToast(message: "Something Went Wrong")
+                }
+
              }
          })
 
@@ -247,6 +261,9 @@ extension SignUpVC : GIDSignInDelegate {
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
             let  email = user.profile.email
+          
+            let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+            self.navigationController?.pushViewController(vc, animated: true)
             
             print(givenName)
             print(familyName)
@@ -349,12 +366,28 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
 //                        }
 //                    }
 //                }
-            }
-            
-            else{
+                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }else{
 //                APIClient.showAlertMessage(vc: self, titleStr: "Change Sign in with Apple settings for Hayti app.", messageStr: "Go to iPhone Settings > Apple Id > Password & Security > Apple ID logins > Hayti > Stop using Apple ID.")
+             //   let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+             //   self.navigationController?.pushViewController(vc, animated: true)
+                performExistingAccountSetupFlows()
             }
         }
+    }
+   
+    func performExistingAccountSetupFlows() {
+        // Prepare requests for both Apple ID and password providers.
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(),
+                        ASAuthorizationPasswordProvider().createRequest()]
+        
+        // Create an authorization controller with the given requests.
+        let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error)
@@ -405,7 +438,8 @@ extension SignUpVC {
                 }
                 let email = resultDic.value(forKey:"email")! as! String
                 
-               
+                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+                self.navigationController?.pushViewController(vc, animated: true)
                 
 //                var tokan = ""
 //                if let fcmToken = userDef.object(forKey: "fcmToken") as? String{

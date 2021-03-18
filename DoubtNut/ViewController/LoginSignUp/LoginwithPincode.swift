@@ -90,11 +90,7 @@ extension LoginwithPincode{
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
 
-                    if let data = json["data"] as? [String:AnyObject]{
-//                        let token = data["token"] as! String
-                     //   userDef.set(token, forKey: "Auth_token")
-                       // userDef.synchronize()
-                    }
+                   
                     if let meta = json["meta"] as? [String:AnyObject]{
                         let code = meta["code"] as! Int
                         if code == 200 {
@@ -102,6 +98,11 @@ extension LoginwithPincode{
                             // create the alert
                             OperationQueue.main.addOperation {
                                 BaseApi.hideActivirtIndicator()
+                                if let data = json["data"] as? [String:AnyObject]{
+                                    let token = data["token"] as! String
+                                    userDef.set(token, forKey: "Auth_token")
+                                    userDef.synchronize()
+                                }
                                 let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
                                 self.navigationController?.pushViewController(vc, animated: true)
 
@@ -111,6 +112,7 @@ extension LoginwithPincode{
                         }else{
                             OperationQueue.main.addOperation {
                                 BaseApi.hideActivirtIndicator()
+                                self.showToast(message: "Please Enter Correct Phone Number Or Email Id and PIN")
                             }
                         }
                     }
