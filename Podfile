@@ -1,13 +1,10 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
-
-# ignore all warnings from all pods
-inhibit_all_warnings!
+# platform :ios, '9.0'
 
 target 'DoubtNut' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
+
   pod 'GoogleSignIn', '~> 5.0.2'
   pod 'FacebookCore'
   pod 'FacebookLogin'
@@ -21,6 +18,8 @@ target 'DoubtNut' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'NVActivityIndicatorView'
+  pod 'SDWebImage', '~> 5.0'
+
 
   # Pods for DoubtNut
 
@@ -34,4 +33,3 @@ target 'DoubtNut' do
   end
 
 end
-

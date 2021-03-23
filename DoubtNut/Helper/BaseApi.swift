@@ -52,7 +52,7 @@ class BaseApi {
           }
           
             var request = URLRequest(url: searchURL as URL)
-            if let authToken = userDef.value(forKey: "authToken") {
+            if let authToken = userDef.value(forKey: "Auth_token") {
             request.httpMethod = "GET"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("\(authToken)", forHTTPHeaderField: "Authorization")

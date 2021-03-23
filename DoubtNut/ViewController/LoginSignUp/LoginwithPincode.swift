@@ -94,7 +94,6 @@ extension LoginwithPincode{
                     if let meta = json["meta"] as? [String:AnyObject]{
                         let code = meta["code"] as! Int
                         if code == 200 {
-                           /**/
                             // create the alert
                             OperationQueue.main.addOperation {
                                 BaseApi.hideActivirtIndicator()

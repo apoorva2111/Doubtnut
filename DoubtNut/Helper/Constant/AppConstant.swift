@@ -11,3 +11,9 @@ struct UserDefaultKey {
 
 
 }
+
+struct BoolValue {
+    static var isFromDoyouhaveQues = false
+    
+}
+

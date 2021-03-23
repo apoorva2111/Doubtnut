@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-       // self.callRootView()
+        self.callRootView()
         return true
     }
     func application(_ app: UIApplication, open url: URL, options:[UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -54,33 +54,19 @@ extension AppDelegate {
     
     func callRootView(){
         
-        if let _ = userDef.object(forKey: "userInfo") as? Data {
-            let _ = JSONDecoder()
-//            if let userM = try? decoder.decode(User_info.self, from: userInfo) {
-//                userGlobal = userM
-//                let _window = UIWindow(frame: UIScreen.main.bounds)
-//                window = _window
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! homeViewController
-//                let rootViewController = initialViewController
-//                let navigationController = UINavigationController()
-//                navigationController.navigationBar.isHidden = true
-//                navigationController.viewControllers = [rootViewController]
-//                window?.rootViewController = navigationController
-//                window?.makeKeyAndVisible()
-//            }
-        }
-        else{
-            let _window = UIWindow(frame: UIScreen.main.bounds)
-            window = _window
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
-            let rootViewController = initialViewController
-            let navigationController = UINavigationController()
-            navigationController.navigationBar.isHidden = true
-            navigationController.viewControllers = [rootViewController]
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
+        if let _ = userDef.value(forKey: "Auth_token") {
+
+            let mainVC = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home")
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            appDel.window?.rootViewController = mainVC
+            appDel.window?.makeKeyAndVisible()
+       
+        }else{
+            
+            let mainVC = FlowController().instantiateViewController(identifier: "NavLaunch", storyBoard: "Main")
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            appDel.window?.rootViewController = mainVC
+            appDel.window?.makeKeyAndVisible()
         }
     }
 }

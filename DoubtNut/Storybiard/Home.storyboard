@@ -448,7 +448,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dhc-D7-jBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518.84057971014499" y="65.625"/>
+            <point key="canvasLocation" x="443" y="67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EpZ-vO-CrS">
@@ -634,14 +634,24 @@ Try with a Demo question</string>
                                                 <color key="textColor" red="0.9882352941176471" green="0.792156862745098" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYU-S6-3M1">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                                <connections>
+                                                    <action selector="btnDontHaveQuesAction:" destination="jvs-M6-CAQ" eventType="touchUpInside" id="Tkw-Uj-768"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.66414221938775508" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="mYU-S6-3M1" secondAttribute="trailing" id="2mH-yK-PaS"/>
                                             <constraint firstAttribute="trailing" secondItem="Sx1-lM-cgj" secondAttribute="trailing" constant="9" id="2vo-4D-UW5"/>
+                                            <constraint firstAttribute="bottom" secondItem="mYU-S6-3M1" secondAttribute="bottom" id="4jZ-Rg-I6X"/>
                                             <constraint firstItem="AOo-3a-21L" firstAttribute="leading" secondItem="4az-ci-n63" secondAttribute="leading" constant="19" id="6IY-ls-n9n"/>
                                             <constraint firstItem="AOo-3a-21L" firstAttribute="top" secondItem="4az-ci-n63" secondAttribute="top" constant="13" id="Lr0-Pu-Aqn"/>
+                                            <constraint firstItem="mYU-S6-3M1" firstAttribute="leading" secondItem="4az-ci-n63" secondAttribute="leading" id="MEQ-Wj-IrJ"/>
                                             <constraint firstItem="Sx1-lM-cgj" firstAttribute="width" secondItem="UAR-Rd-QQe" secondAttribute="width" id="On4-JM-0X9"/>
                                             <constraint firstItem="UAR-Rd-QQe" firstAttribute="top" secondItem="4az-ci-n63" secondAttribute="top" constant="9" id="QAK-KO-9XC"/>
+                                            <constraint firstItem="mYU-S6-3M1" firstAttribute="top" secondItem="4az-ci-n63" secondAttribute="top" id="Qjh-Uq-QxK"/>
                                             <constraint firstAttribute="bottom" secondItem="Sx1-lM-cgj" secondAttribute="bottom" constant="20" symbolic="YES" id="UOz-Hl-sdj"/>
                                             <constraint firstAttribute="bottom" secondItem="AOo-3a-21L" secondAttribute="bottom" constant="13" id="clg-nI-ks0"/>
                                             <constraint firstAttribute="trailing" secondItem="UAR-Rd-QQe" secondAttribute="trailing" constant="10" id="gVO-6K-nGG"/>
@@ -1008,10 +1018,13 @@ Get Solution.</string>
                     </view>
                     <connections>
                         <outlet property="imgFlash" destination="9wM-N4-Te1" id="5x9-Wc-iGJ"/>
+                        <outlet property="lblLernText" destination="OPC-dx-GIo" id="T1A-mg-QLs"/>
+                        <outlet property="lblOnlyCropOneQues" destination="cQs-Ya-JQN" id="w4q-kt-S7C"/>
                         <outlet property="viewCamera" destination="8jj-Qd-DbA" id="50z-Fk-xfK"/>
                         <outlet property="viewCropImg" destination="8Ep-2d-QDk" id="A76-oI-Pgr"/>
                         <outlet property="viewCropOneQues" destination="pf3-MC-2hy" id="dzE-Bf-xRH"/>
                         <outlet property="viewImgCrop" destination="cg5-xF-ZHP" id="xeB-GP-efk"/>
+                        <outlet property="viewLearnPopUp" destination="oB6-Bd-un1" id="2ji-bB-t2t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGM-Pm-0y0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1026,6 +1039,24 @@ Get Solution.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-Jw-Tmm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNR-sd-heC">
+                                        <rect key="frame" x="41.5" y="249.5" width="331" height="397"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.69719919217687076" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wNR-sd-heC" secondAttribute="height" multiplier="5:6" id="Xkb-Tz-tQK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wNR-sd-heC" firstAttribute="centerX" secondItem="9UO-Jw-Tmm" secondAttribute="centerX" id="1wb-49-Loi"/>
+                                    <constraint firstItem="wNR-sd-heC" firstAttribute="width" secondItem="9UO-Jw-Tmm" secondAttribute="width" multiplier="0.8" id="Mw6-8j-uOv"/>
+                                    <constraint firstItem="wNR-sd-heC" firstAttribute="centerY" secondItem="9UO-Jw-Tmm" secondAttribute="centerY" id="ouK-Q5-Mih"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ize-kR-D6x">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
@@ -1082,6 +1113,9 @@ Get Solution.</string>
                                                 <state key="normal" title="Try an Example">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnTryExampleAction:" destination="quB-ov-nYY" eventType="touchUpInside" id="VGZ-dD-waM"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pw-Yg-FDg">
                                                 <rect key="frame" x="72" y="87" width="108" height="29"/>
@@ -1139,14 +1173,18 @@ Get Solution.</string>
                         <constraints>
                             <constraint firstItem="ize-kR-D6x" firstAttribute="top" secondItem="lL9-Fb-yzf" secondAttribute="top" id="5me-cV-24f"/>
                             <constraint firstAttribute="bottom" secondItem="ize-kR-D6x" secondAttribute="bottom" id="NUW-af-UNh"/>
+                            <constraint firstItem="9UO-Jw-Tmm" firstAttribute="leading" secondItem="ize-kR-D6x" secondAttribute="leading" id="RwH-9x-DpZ"/>
+                            <constraint firstItem="9UO-Jw-Tmm" firstAttribute="top" secondItem="ize-kR-D6x" secondAttribute="top" id="X74-Ny-JgK"/>
                             <constraint firstItem="ize-kR-D6x" firstAttribute="leading" secondItem="1KK-XF-4WS" secondAttribute="leading" id="YDB-cO-MUZ"/>
+                            <constraint firstItem="9UO-Jw-Tmm" firstAttribute="bottom" secondItem="ize-kR-D6x" secondAttribute="bottom" id="b0c-Q0-p6R"/>
                             <constraint firstItem="1KK-XF-4WS" firstAttribute="trailing" secondItem="ize-kR-D6x" secondAttribute="trailing" id="oyE-Ze-t32"/>
+                            <constraint firstItem="9UO-Jw-Tmm" firstAttribute="trailing" secondItem="ize-kR-D6x" secondAttribute="trailing" id="tY6-zd-E9a"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJ3-KG-h1Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3217" y="73"/>
+            <point key="canvasLocation" x="3215.9420289855075" y="72.991071428571431"/>
         </scene>
         <!--Find New Solution GifVC-->
         <scene sceneID="abq-6S-h5w">
