@@ -40,4 +40,7 @@ class FindNewSolutionGifVC: UIViewController {
         animation.play()
     }
 
+    @IBAction func btnBackAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

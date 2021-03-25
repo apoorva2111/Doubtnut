@@ -15,6 +15,8 @@ class DashboardVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         viewFooterview.footerDelegate = self
         // Do any additional setup after loading the view.
         registerXib()

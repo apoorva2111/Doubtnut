@@ -70,8 +70,8 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = questionAskedTableview.dequeueReusableCell(withIdentifier: "WatchHistoryTableViewCell", for: indexPath) as! WatchHistoryTableViewCell
         cell.thumbnailImage.image = #imageLiteral(resourceName: "download")
         cell.bottomRightLabel.text = arrData[indexPath.row]
-        cell.durationLabel.text = "10:54"
-        cell.viewCountLabel.text = "10K"
+//        cell.durationLabel.text = "10:54"
+//        cell.viewCountLabel.text = "10K"
         cell.onClickPlay = {
             //action to play video
             print("play button is tapped")

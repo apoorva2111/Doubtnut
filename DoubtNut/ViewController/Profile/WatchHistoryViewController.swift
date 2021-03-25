@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,26 +25,17 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var watchtrendingVideosBtnRef: RCustomButton!
     @IBOutlet weak var watchHistoryView: UIView!
     @IBOutlet weak var watchHistoryTableview: UITableView!
-    let arrData = ["899999","00900000","900000000"]
+    var arrWatchHistory = [NSDictionary]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if arrData.isEmpty {
-            print("No History Found")
-            watchHistoryView.isHidden = true
-            NoVideosView.isHidden = false
-            
-        }
-        else {
-            NoVideosView.isHidden = true
-            watchHistoryView.isHidden = false
-        }
+       
         watchHistoryTableview.register(WatchHistoryTableViewCell.nib(), forCellReuseIdentifier: "WatchHistoryTableViewCell")
         watchHistoryTableview.delegate = self
         watchHistoryTableview.dataSource = self
-        
+        callWebserviceGetHistory()
 
         // Do any additional setup after loading the view.
     }
@@ -60,15 +52,25 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func onClickTrendingvideos(_ sender: RCustomButton) {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return arrWatchHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = watchHistoryTableview.dequeueReusableCell(withIdentifier: "WatchHistoryTableViewCell", for: indexPath) as! WatchHistoryTableViewCell
-        cell.thumbnailImage.image = #imageLiteral(resourceName: "download")
-        cell.bottomRightLabel.text = arrData[indexPath.row]
-        cell.durationLabel.text = "10:54"
-        cell.viewCountLabel.text = "10K"
+        //cell.thumbnailImage.image = #imageLiteral(resourceName: "download")
+        let objList = arrWatchHistory[indexPath.row]
+
+        if let imgUrl = objList["question_image"]{
+            cell.thumbnailImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+
+            cell.thumbnailImage.sd_setImage(with: URL(string: imgUrl as! String), completed: nil)
+        }
+
+        if let timestamp = objList["timestamp_formatted"]{
+            cell.bottomRightLabel.text = timestamp as? String
+        }
+//        cell.durationLabel.text = "10:54"
+//        cell.viewCountLabel.text = "10K"
         cell.onClickPlay = {
             //action to play video
             print("play button is tapped")
@@ -79,4 +81,78 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
         return 154
     }
 
+}
+
+extension WatchHistoryViewController{
+    func callWebserviceGetHistory(){
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v1/question/watch-history?page=1")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("850", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            BaseApi.hideActivirtIndicator()
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let data = json["data"] as? [String:AnyObject]{
+                                        print(data)
+                                        let list = data["list"] as! NSArray
+                                        print(list)
+                                        for objList in list{
+                                            arrWatchHistory.append(objList as! NSDictionary)
+                                        }
+//
+                                        if arrWatchHistory.isEmpty {
+                                            print("No History Found")
+                                            watchHistoryView.isHidden = true
+                                            NoVideosView.isHidden = false
+                                            
+                                        }else {
+                                            NoVideosView.isHidden = true
+                                            watchHistoryView.isHidden = false
+                                            watchHistoryTableview.reloadData()
+                                        }
+                                       
+                                    }
+                                    
+                                    //
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
+    }
 }

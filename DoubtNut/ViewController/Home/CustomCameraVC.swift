@@ -20,8 +20,16 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     @IBOutlet weak var viewCropOneQues: UIView!
     @IBOutlet weak var viewLearnPopUp: UIView!
     @IBOutlet weak var lblLernText: UILabel!
+    @IBOutlet weak var btnImogOutlet: UIButton!
+    
+    @IBOutlet weak var viewDontHave: UIView!
+    @IBOutlet weak var viewDontHaveHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var lblOnlyCropOneQues: UILabel!
+    
+  
+ 
+    
     
     //  MARK: - Properties
     
@@ -47,6 +55,7 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         viewImgCrop.isHidden = true
         viewCropOneQues.isHidden = true
         viewLearnPopUp.isHidden = true
+        btnImogOutlet.isHidden  = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -274,6 +283,8 @@ extension CustomCameraVC{
                                     if let objData = json["data"] as? [String:AnyObject] {
                                         self.viewLearnPopUp.isHidden = true
                                         self.viewCropOneQues.isHidden = false
+                                        self.viewDontHave.isHidden = true
+                                        self.viewDontHaveHeightConstraint.constant = 0
                                         self.lblOnlyCropOneQues.text = objData["demo_text1"] as? String
                                         let demoimg = objData["demo_ocr_image"] as! String
                                         
@@ -317,6 +328,7 @@ extension CustomCameraVC{
                                                         }, completion: nil)
                                                         
                                                     }
+
                                                 }
                                             }catch{
                                                 print("Unable to load data: \(error)")
@@ -365,13 +377,25 @@ extension CustomCameraVC{
 
 //MARK:- Button Action
 extension CustomCameraVC{
+    @IBAction func watchHistoryAction(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "WatchHistoryViewController", storyBoard: "Profile") as! WatchHistoryViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+   
+    @IBAction func btnImogAction(_ sender: UIButton) {
+        BoolValue.isFromImog = true
+        let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
+        vc.viewController = self
+        self.view.addSubview(vc.view)
+        self.addChild(vc)
+        vc.view.layoutIfNeeded()
+        
+        vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+    }
     @IBAction func btnBackAction(_ sender: UIButton) {
-        //let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home")
-        //self.present(vc, animated: true, completion: nil)
-        
-        
-     //   let story = UIStoryboard.init(name: "Main", bundle: nil)
-      //  let songListVC = story.instantiateViewController(withIdentifier: "DeleteAccountVC") as! DeleteAccountVC
+       
+        BoolValue.isFromImog = false
         let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
         vc.viewController = self
         self.view.addSubview(vc.view)
@@ -389,7 +413,18 @@ extension CustomCameraVC{
         if sender.tag == 10 {
             viewLearnPopUp.isHidden = true
         }else{
+            BoolValue.isFromImog = true
+            let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
+            viewLearnPopUp.isHidden = true
+            btnImogOutlet.isHidden = false
+            vc.viewController = self
+            vc.arrTitle = arrAnimationTitle
+            self.view.addSubview(vc.view)
+            self.addChild(vc)
+            vc.view.layoutIfNeeded()
             
+            vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
         }
     }
     @IBAction func btnClickImageAction(_ sender: UIButton) {
@@ -417,6 +452,11 @@ extension CustomCameraVC{
             
             present(alertController, animated: true, completion: nil)
             return
+        }
+        if !cropView.isEdited{
+            self.viewImgCrop.isHidden = true
+            self.viewCropOneQues.isHidden = true
+
         }
         
     }

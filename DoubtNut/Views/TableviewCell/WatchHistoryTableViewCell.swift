@@ -16,13 +16,7 @@ class WatchHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     
     @IBOutlet weak var bottomRightLabel: UILabel!
-    
-    @IBOutlet weak var viewIcon: UIImageView!
-
-    @IBOutlet weak var viewCountLabel: UILabel!
-    
-    @IBOutlet weak var durationLabel: UILabel!
-    
+        
     @IBOutlet weak var playBtnRef: UIButton!
     static let identifier = "WatchHistoryTableViewCell"
     var onClickPlay : (() -> ())?

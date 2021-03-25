@@ -8,12 +8,11 @@
 import Foundation
 
 struct UserDefaultKey {
-
-
+    static var firsTime = ""
 }
 
 struct BoolValue {
     static var isFromDoyouhaveQues = false
-    
+    static var isFromImog = false
 }
 

@@ -102,10 +102,17 @@ extension LoginwithPincode{
                                     userDef.set(token, forKey: "Auth_token")
                                     userDef.synchronize()
                                 }
+                                if userDef.value(forKey: UserDefaultKey.firsTime) == nil{
+                        
+                                    userDef.setValue("isFristTime", forKey: UserDefaultKey.firsTime)
+                                    userDef.synchronize()
+                                    let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
+                                    self.navigationController?.pushViewController(vc, animated: false)
+
+                                }else{
                                 let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
                                 self.navigationController?.pushViewController(vc, animated: true)
-
-                                
+                            }
                             }
                           //  }
                         }else{
