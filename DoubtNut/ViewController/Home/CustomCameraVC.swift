@@ -39,7 +39,8 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     var flash: AVCaptureDevice.FlashMode = .off
     var CountIndex = 0
     var angle: Double = 0.0
-    
+    var arrSubjectList = [NSDictionary]()
+
     // var image: UIImage!
     
     private var cropView: AKImageCropperView {
@@ -63,6 +64,13 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
             BoolValue.isFromDoyouhaveQues = false
             callWebserviceGetDemo()
         }
+        
+       
+            var count = userDef.integer(forKey: UserDefaultKey.cameraCount)
+                count += 1
+            userDef.setValue(count, forKey: UserDefaultKey.cameraCount)
+            userDef.synchronize()
+        callWebserviceGetSetting()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,16 +140,16 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         viewCropOneQues.isHidden = false
         
         
-        if cropView.isOverlayViewActive {
-            
-            cropView.hideOverlayView(animationDuration: 0.3)
-            
-            UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                //    self.overlayActionView.alpha = 0
-                
-            }, completion: nil)
-            
-        } else {
+//        if cropView.isOverlayViewActive {
+//
+//            cropView.hideOverlayView(animationDuration: 0.3)
+//
+//            UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+//                //    self.overlayActionView.alpha = 0
+//
+//            }, completion: nil)
+//
+//        } else {
             
             cropView.showOverlayView(animationDuration: 0.3)
             
@@ -150,7 +158,7 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
                 
             }, completion: nil)
             
-        }
+        //}
     }
     
     
@@ -240,6 +248,8 @@ extension CustomCameraVC{
                             }
                         }
                         
+                    }else{
+                        print("error")
                     }
                 } catch let error {
                     self.showToast(message: "Something Went Wrong")
@@ -309,16 +319,16 @@ extension CustomCameraVC{
                                                     self.viewCropOneQues.isHidden = false
                                                     
                                                     
-                                                    if self.cropView.isOverlayViewActive {
-                                                        
-                                                        self.cropView.hideOverlayView(animationDuration: 0.3)
-                                                        
-                                                        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                                                            //    self.overlayActionView.alpha = 0
-                                                            
-                                                        }, completion: nil)
-                                                        
-                                                    } else {
+//                                                    if self.cropView.isOverlayViewActive {
+//
+//                                                        self.cropView.hideOverlayView(animationDuration: 0.3)
+//
+//                                                        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+//                                                            //    self.overlayActionView.alpha = 0
+//
+//                                                        }, completion: nil)
+//
+//                                                    } else {
                                                         
                                                         self.cropView.showOverlayView(animationDuration: 0.3)
                                                         
@@ -327,7 +337,7 @@ extension CustomCameraVC{
                                                             
                                                         }, completion: nil)
                                                         
-                                                    }
+                                                 //   }
 
                                                 }
                                             }catch{
@@ -373,6 +383,158 @@ extension CustomCameraVC{
         self.CountIndex += 1
         
     }
+    
+    func callawebServiewForGenerateUrl(imagevw : UIImage) {
+        
+        let Udid = UIDevice.current.identifierForVendor?.uuidString
+
+        print(Udid!)
+        let parameters :[String : Any] = ["class":12,
+                         "subject":"physics",
+                         "chapter":"magnetism",
+                         "doubt":"maths",
+                         "udid":Udid!,
+                         "locale":"en",
+                         "content_type":"image/png",
+                         "file_ext":".png"]
+        
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.app/v1/question/generate-question-image-upload-url")! //change the url
+
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("756", forHTTPHeaderField: "version_code")
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    OperationQueue.main.addOperation {
+print(json)
+                     
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        if code == 200 {
+                            if let data = json["data"] as? [String:AnyObject]{
+                           print(data)
+                                let strUrl = data["url"] as? String
+                                let strfileName = data["file_name"] as? String
+                                let question_id = data["question_id"] as? Int
+                                let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home") as! FindNewSolutionGifVC
+                                vc.imgUpload = imagevw
+                                vc.imgUploadURL = strUrl ?? ""
+                                vc.file_name = strfileName ?? ""
+                                vc.question_id = question_id ?? 0
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                
+                            }
+
+                        }else{
+
+                            BaseApi.hideActivirtIndicator()
+                        }
+                        }
+                    }
+                    /**/
+                    // handle json...
+                }
+            } catch let error {
+                self.showToast(message: "Something Went Wrong")
+
+                BaseApi.hideActivirtIndicator()
+
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }
+    func callWebserviceGetSetting() {
+        let count = userDef.integer(forKey: UserDefaultKey.cameraCount)
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v2/camera/get-settings?openCount=\(count)&studentClass=12")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("850", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let data = json["data"] as? [String:AnyObject] {
+                                        let bottomOverlay = data["bottomOverlay"] as? [String:AnyObject]
+                                        let subjectList = bottomOverlay!["subjectList"] as! NSArray
+                                        print(subjectList)
+
+                                        for objList in subjectList {
+                                            arrSubjectList.append(objList as! NSDictionary)
+
+                                        }
+
+
+                                        
+                                       
+                                    }
+                                    
+                                    //
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
+    }
 }
 
 //MARK:- Button Action
@@ -384,8 +546,8 @@ extension CustomCameraVC{
    
     @IBAction func btnImogAction(_ sender: UIButton) {
         BoolValue.isFromImog = true
-        let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
-        vc.viewController = self
+        let vc = FlowController().instantiateViewController(identifier: "GetAnimationVC", storyBoard: "Home") as! GetAnimationVC
+       // vc.viewController = self
         self.view.addSubview(vc.view)
         self.addChild(vc)
         vc.view.layoutIfNeeded()
@@ -398,6 +560,7 @@ extension CustomCameraVC{
         BoolValue.isFromImog = false
         let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
         vc.viewController = self
+        vc.arrSubjectList = arrSubjectList
         self.view.addSubview(vc.view)
         self.addChild(vc)
         vc.view.layoutIfNeeded()
@@ -428,6 +591,8 @@ extension CustomCameraVC{
         }
     }
     @IBAction func btnClickImageAction(_ sender: UIButton) {
+        viewCropImg.isHidden = false
+        viewLearnPopUp.isHidden = true
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
@@ -445,7 +610,8 @@ extension CustomCameraVC{
                 //    _ = self.navigationController?.popViewController(animated: true)
                 self.viewImgCrop.isHidden = true
                 self.viewCropOneQues.isHidden = true
-                
+                self.viewDidAppear(true)
+
             }))
             
             alertController.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: nil))
@@ -456,6 +622,7 @@ extension CustomCameraVC{
         if !cropView.isEdited{
             self.viewImgCrop.isHidden = true
             self.viewCropOneQues.isHidden = true
+            self.viewDidAppear(true)
 
         }
         
@@ -488,41 +655,43 @@ extension CustomCameraVC{
             return
         }
         
-        let data = image.pngData()
-        let requestHandler = VNImageRequestHandler.init(data: data!, options: [:])
-        let request = VNRecognizeTextRequest { (request, error) in
-            
-            guard let observations = request.results as? [VNRecognizedTextObservation]
-            else { return }
-            
-            for observation in observations {
-                
-                let topCandidate: [VNRecognizedText] = observation.topCandidates(1000)
-                let recognizedTet1: VNRecognizedText = topCandidate[0]
-                let recognizedTet2: VNRecognizedText = topCandidate[1]
-                let recognizedTet3: VNRecognizedText = topCandidate[2]
-                let recognizedTet4: VNRecognizedText = topCandidate[3]
-                
-                print(recognizedTet1.string)
-                print(recognizedTet2.string)
-                print(recognizedTet3.string)
-                print(recognizedTet4.string)
-                
-                if let recognizedText: VNRecognizedText = topCandidate.first {
-                    print(recognizedText.string)
-                }
-            }
-        }
-        // non-realtime asynchronous but accurate text recognition
-        request.recognitionLevel = VNRequestTextRecognitionLevel.accurate
+//        let data = image.pngData()
+//        let requestHandler = VNImageRequestHandler.init(data: data!, options: [:])
+//        let request = VNRecognizeTextRequest { (request, error) in
+//
+//            guard let observations = request.results as? [VNRecognizedTextObservation]
+//            else { return }
+//
+//            for observation in observations {
+//
+//                let topCandidate: [VNRecognizedText] = observation.topCandidates(1000)
+//                let recognizedTet1: VNRecognizedText = topCandidate[0]
+//                let recognizedTet2: VNRecognizedText = topCandidate[1]
+//                let recognizedTet3: VNRecognizedText = topCandidate[2]
+//                let recognizedTet4: VNRecognizedText = topCandidate[3]
+//
+//                print(recognizedTet1.string)
+//                print(recognizedTet2.string)
+//                print(recognizedTet3.string)
+//                print(recognizedTet4.string)
+//
+//                if let recognizedText: VNRecognizedText = topCandidate.first {
+//                    print(recognizedText.string)
+//                }
+//            }
+//        }
+//        // non-realtime asynchronous but accurate text recognition
+//        request.recognitionLevel = VNRequestTextRecognitionLevel.accurate
+//
+//        // nearly realtime but not-accurate text recognition
+//        request.recognitionLevel = VNRequestTextRecognitionLevel.fast
+//
+//        try? requestHandler.perform([request])
         
-        // nearly realtime but not-accurate text recognition
-        request.recognitionLevel = VNRequestTextRecognitionLevel.fast
         
-        try? requestHandler.perform([request])
-        
-        let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home")
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+        callawebServiewForGenerateUrl(imagevw : image)
+     
     }
 }
+
+

@@ -12,39 +12,17 @@ class SideMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var sideMenuImage: UIImageView!
     @IBOutlet weak var sideMenuTitle: UILabel!
     
-    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var viewChangeLanguage: UIView!
     
-    @IBOutlet weak var loginImageView: UIImageView!
+    @IBOutlet weak var viewLoginPin: UIView!
     
-    @IBOutlet weak var loginBaseStakView: UIStackView!
+    @IBOutlet weak var viewChangeClass: UIView!
     
-    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var changePinOutlt: UIButton!
     
-    @IBOutlet weak var loginPinStackView: UIStackView!
-    
-    @IBOutlet weak var firstPinTextField: UITextField!
-    
-    @IBOutlet weak var secondPinTextField: UITextField!
-    
-    @IBOutlet weak var ThirdPinTextField: UITextField!
-    
-    @IBOutlet weak var fourthPinTextField: UITextField!
-    @IBOutlet weak var chanepinRefBtn: UIButton!
-    
-    
-    @IBOutlet weak var changeGradeView: UIView!
-    
-    @IBOutlet weak var gradeImageView: UIImageView!
-    
-    @IBOutlet weak var gradeStackView: UIStackView!
-    
-    @IBOutlet weak var gradeTitleLabel: UILabel!
-    
-    @IBOutlet weak var GradeButtonRef: UIButton!
-    
-    
-    
-    
+    @IBOutlet weak var lblClass: UIButton!
+  
+    @IBOutlet weak var lblLanguage: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -60,7 +38,6 @@ class SideMenuTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

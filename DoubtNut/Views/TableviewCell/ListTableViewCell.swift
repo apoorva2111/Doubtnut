@@ -8,6 +8,11 @@
 import UIKit
 
 class ListTableViewCell: UITableViewCell {
+    @IBOutlet weak var lblVideoID: UILabel!
+   @IBOutlet weak var lblVideoView: UILabel!
+   @IBOutlet weak var lblVideoTime: UILabel!
+    @IBOutlet weak var lblVideoLike: UILabel!
+    @IBOutlet weak var imgThumbnil: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -105,6 +105,9 @@ extension LoginwithPincode{
                                 if userDef.value(forKey: UserDefaultKey.firsTime) == nil{
                         
                                     userDef.setValue("isFristTime", forKey: UserDefaultKey.firsTime)
+                                    userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                    userDef.synchronize()
+
                                     userDef.synchronize()
                                     let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
                                     self.navigationController?.pushViewController(vc, animated: false)

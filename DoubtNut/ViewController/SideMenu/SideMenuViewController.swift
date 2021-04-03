@@ -20,10 +20,11 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     
-    var imageArray = [[UIImage(named: "Vector"),UIImage(named: "grade")],
+    var imageArray = [[UIImage(named: "Vector")],[UIImage(named: "ChangeClass"),UIImage(named: "grade")],
                       [UIImage(named: "history"),UIImage(named: "QA"),UIImage(named: "playlist")],
                       [UIImage(named: "payment"),UIImage(named: "settings")]]
-    var titleArray = [["Login PIN ____(Change Pin)","Change Grade(Grade 12)"],
+  
+    var titleArray = [["Login PIN"],["Change Grade","ChangeLanguage"],
                       ["History","Question Asked History","Watch Later"],
                       ["Payment History","Settings"]]
     
@@ -35,6 +36,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         menuTableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SideMenuTableViewCell")
         menuTableView.dataSource = self
         menuTableView.delegate = self
+        
         
     }
     func makeRounded() {
@@ -62,29 +64,64 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         
     
         if indexPath.section == 0 {
+          //  if indexPath.row == 0 {
+                cell.sideMenuImage.isHidden = false
+              cell.sideMenuTitle.isHidden = false
+                cell.viewLoginPin.isHidden = false
+            cell.viewChangeClass.isHidden = true
+            cell.viewChangeLanguage.isHidden = true
+                cell.changePinOutlt.addTarget(self, action: #selector(changePinAction(_:)), for: .touchUpInside)
+            
+            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
+
+            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
+
+        }else if indexPath.section == 1{
             if indexPath.row == 0 {
-                cell.sideMenuImage.isHidden = true
-                cell.sideMenuTitle.isHidden = true
-                cell.changeGradeView.isHidden = true
-                cell.loginImageView.image = UIImage(named: "Vector")
-                cell.loginLabel.text = "Login Pin"
-                cell.firstPinTextField.text = "1"
-                cell.secondPinTextField.text = "2"
-                cell.ThirdPinTextField.text = "3"
-                cell.fourthPinTextField.text = "4"
-            }
-            else if indexPath.row == 1 {
-                cell.sideMenuImage.isHidden = true
-                cell.sideMenuTitle.isHidden = true
-                cell.loginView.isHidden = true
-                cell.gradeImageView.image = UIImage(named: "grade")
-                cell.gradeTitleLabel.text = "Change Grade"
+                cell.sideMenuImage.isHidden = false
+              cell.sideMenuTitle.isHidden = false
+                cell.viewLoginPin.isHidden = true
+            cell.viewChangeClass.isHidden = false
+            cell.viewChangeLanguage.isHidden = true
+              
+                if SettingValue.chooseClass == ""{
+                    let chooseClass = userDef.string(forKey: UserDefaultKey.chooseClass)
+                   
+                    cell.lblLanguage.setTitle("(\(String(describing: chooseClass)))", for: .normal)
+                }else{
+                    cell.lblClass.setTitle("(\(SettingValue.chooseClass))", for: .normal)
+                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseClass)
+                }
+                
+            
+            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
+
+            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
+            }else{
+                cell.sideMenuImage.isHidden = false
+              cell.sideMenuTitle.isHidden = false
+                cell.viewLoginPin.isHidden = true
+            cell.viewChangeClass.isHidden = true
+            cell.viewChangeLanguage.isHidden = false
+                cell.changePinOutlt.addTarget(self, action: #selector(changePinAction(_:)), for: .touchUpInside)
+                if SettingValue.chooseLanguage == ""{
+                    let chooseLange = userDef.string(forKey: UserDefaultKey.chooseLang)
+                   
+                    cell.lblLanguage.setTitle("(\(String(describing: chooseLange)))", for: .normal)
+                }else{
+                    cell.lblLanguage.setTitle("(\(SettingValue.chooseLanguage))", for: .normal)
+                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseLang)
+                }
+
+            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
+
+            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
             }
         }
             else {
-                cell.loginView.isHidden = true
-                cell.changeGradeView.isHidden = true
-                
+                cell.viewLoginPin.isHidden = true
+                cell.viewChangeClass.isHidden = true
+                cell.viewChangeLanguage.isHidden = true
                 cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
                 cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
             }
@@ -93,6 +130,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
         
     }
+   
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return  1.0
     }
@@ -103,74 +141,63 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return 45
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if  indexPath.section == 1 {
+        if  indexPath.section == 0{
             if indexPath.row == 0 {
-                print(" is tapped 0 ")
-//                let vc = storyboard?.instantiateViewController(identifier: "SATVC") as! SATVC
-//                vc.modalPresentationStyle = .fullScreen
-//                present(vc, animated: true)
-                let story = UIStoryboard(name: "Profile", bundle:nil)
-                let vc = story.instantiateViewController(withIdentifier: "WatchHistoryViewController") as! WatchHistoryViewController
+                BoolValue.isFromSideMenuSetPin = true
+
+                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+                self.navigationController?.pushViewController(vc, animated: false)
+
+            }
+            
+        }else if indexPath.section == 1{
+            if indexPath.row == 0{
+                
+//                /SettingValue.chooseClass
+                let story = UIStoryboard(name: "Home", bundle:nil)
+                let vc = story.instantiateViewController(withIdentifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
+                vc.strSelectType = "Class"
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else if indexPath.row == 1{
+                let vc = storyboard?.instantiateViewController(identifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
+                vc.strSelectType = "Language"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else if indexPath.section == 2{
+           
+            if indexPath.row == 0 {
+            let vc = FlowController().instantiateViewController(identifier:"WatchHistoryViewController", storyBoard: "Profile")
+            self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 1{
+                
+                let vc = FlowController().instantiateViewController(identifier:"QuestionAskedViewController", storyBoard: "Profile")
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let vc = FlowController().instantiateViewController(identifier:"WatchHistoryViewController", storyBoard: "Profile")
                 self.navigationController?.pushViewController(vc, animated: true)
 
             }
-            else if indexPath.row == 1 {
-                print(" is tapped 1")
-                print(" QA is tapped")
-                let story = UIStoryboard(name: "Profile", bundle:nil)
-                let vc = story.instantiateViewController(withIdentifier: "QuestionAskedViewController") as! QuestionAskedViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if indexPath.row == 2 {
-                print(" is tapped 2")
-                let story = UIStoryboard(name: "Profile", bundle:nil)
-                let vc = story.instantiateViewController(withIdentifier: "WatchHistoryViewController") as! WatchHistoryViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if indexPath.section == 3{
+            if indexPath.row == 0{
                 
-            }
-        }else if indexPath.section == 2{
-            if indexPath.row == 1{
-                let vc = storyboard?.instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
-                vc.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(vc, animated: true)
+            }else if indexPath.row == 1{
+            let mainVC = FlowController().instantiateViewController(identifier: "NavSetting", storyBoard:"Setting")
+            let appDel = UIApplication.shared.delegate as! AppDelegate
+            appDel.window?.rootViewController = mainVC
+            appDel.window?.makeKeyAndVisible()
             }
         }
-      
-        
-        
-        
-        
-//        if indexPath.row == 0 {
-//            print(" is tapped 0 ")
-//            let vc = storyboard?.instantiateViewController(identifier: "SATVC") as! SATVC
-//            vc.modalPresentationStyle = .fullScreen
-//            present(vc, animated: true)
-//        }
-//        else if indexPath.row == 1 {
-//            print(" is tapped 1")
-//            //instantiateViewController
-//        }
-//        else if indexPath.row == 2 {
-//            print(" is tapped 2")
-//            //instantiateViewController
-//        }
-//        else if indexPath.row == 3 {
-//            print(" is tapped 3")
-//            //instantiateViewController
-//        }
-//        else if indexPath.row == 4 {
-//            print(" is tapped 4")
-//            //instantiateViewController
-//        }
-//        else if indexPath.row == 5 {
-//            print(" is tapped 5")
-//            //instantiateViewController
-//        }
-//        else if indexPath.row == 6 {
-//            print(" is tapped 6")
-//            //instantiateViewController
-//        }
+
     }
     
-    
+    @objc func changePinAction(_ sender: UIButton){
+        BoolValue.isFromSideMenuSetPin = true
+
+        let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+        self.navigationController?.pushViewController(vc, animated: false)
+
+       
+    }
 }

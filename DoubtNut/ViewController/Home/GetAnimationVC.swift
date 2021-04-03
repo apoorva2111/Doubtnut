@@ -47,21 +47,24 @@ extension GetAnimationVC : UITableViewDelegate, UITableViewDataSource{
         cell.lblTitle.text = objAnimation["title"] as? String
         cell.lblFooter.text = objAnimation["footer"] as? String
        
-        if indexPath.row == 0{
-            
-            playAnimation(view: cell.viewGif, json: "data")
-        }else if indexPath.row == 1{
-            playAnimation(view: cell.viewGif, json: "data")
-
-        }else {
-            playAnimation(view: cell.viewGif, json: "data")
-
-        }
+//        if indexPath.row == 0{
+//            
+//            playAnimation(view: cell.viewGif, json: "data")
+//        }else if indexPath.row == 1{
+//            playAnimation(view: cell.viewGif, json: "data")
+//
+//        }else {
+//            playAnimation(view: cell.viewGif, json: "data")
+//
+//        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     func playAnimation(view:UIView,json:String){
         

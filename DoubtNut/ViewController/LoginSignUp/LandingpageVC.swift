@@ -38,17 +38,30 @@ class LandingpageVC: UIViewController, UIScrollViewDelegate {
         if animation != nil{
             animation.removeFromSuperview()
         }
-        animation = AnimationView.init(name: "ios onboard")
-        animation.loopMode = .loop
-        animation.contentMode = .scaleAspectFit
+        animation = AnimationView.init(name: "iosonboard")
+//        animation.loopMode = .loop
+//        animation.contentMode = .scaleToFill
+//
+//        self.viewLeadingpagGif.addSubview(animation)
+//        animation.translatesAutoresizingMaskIntoConstraints = false
+//        animation.topAnchor.constraint(equalTo: self.viewLeadingpagGif.topAnchor).isActive = true
+//        animation.bottomAnchor.constraint(equalTo: self.viewLeadingpagGif.bottomAnchor).isActive = true
+//        animation.leadingAnchor.constraint(equalTo: self.viewLeadingpagGif.leadingAnchor, constant: 0).isActive = true
+//        animation.trailingAnchor.constraint(equalTo: self.viewLeadingpagGif.trailingAnchor, constant: 0).isActive = true
+//        print(animation.frame)
+//        animation.play()
+       
+        let animationView = AnimationView()
+                let animation = Animation.named("ios onboard")
+                animationView.frame = CGRect(x: 0, y: 0, width: self.viewLeadingpagGif.frame.size.width, height: 350)
+                animationView.contentMode = .scaleAspectFit
+                animationView.animation = animation
+                animationView.loopMode = .loop
+
+        self.viewLeadingpagGif.addSubview(animationView)
+
+                animationView.play()
         
-        self.viewLeadingpagGif.addSubview(animation)
-        animation.translatesAutoresizingMaskIntoConstraints = false
-        animation.topAnchor.constraint(equalTo: self.viewLeadingpagGif.topAnchor).isActive = true
-        animation.bottomAnchor.constraint(equalTo: self.viewLeadingpagGif.bottomAnchor).isActive = true
-        animation.leadingAnchor.constraint(equalTo: self.viewLeadingpagGif.leadingAnchor, constant: 0).isActive = true
-        animation.trailingAnchor.constraint(equalTo: self.viewLeadingpagGif.trailingAnchor, constant: 0).isActive = true
-        print(animation.frame)
-        animation.play()
+        
     }
 }

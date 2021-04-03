@@ -49,15 +49,28 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClickTermAndCondition(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "TermsAndConditionVC", storyBoard: "Setting")as! TermsAndConditionVC
+        vc.strSelectedValue = "Terms And Condition"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onClickPrivacyPolicy(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "TermsAndConditionVC", storyBoard: "Setting")as! TermsAndConditionVC
+        vc.strSelectedValue = "privacy Policy"
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     
     @IBAction func onClickContactUs(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "TermsAndConditionVC", storyBoard: "Setting")as! TermsAndConditionVC
+        vc.strSelectedValue = "Contact Us"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func onClickAboutUs(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "TermsAndConditionVC", storyBoard: "Setting")as! TermsAndConditionVC
+        vc.strSelectedValue = "About Us"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

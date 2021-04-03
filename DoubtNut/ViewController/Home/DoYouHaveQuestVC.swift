@@ -49,12 +49,20 @@ class DoYouHaveQuestVC: UIViewController {
             self.collectionviewGIF.register(UINib(nibName: "PagerCVCell", bundle: nil), forCellWithReuseIdentifier: "PagerCVCell")
 
             applyConstraints()
+            
+            
 
         }else{
             viewPager.isHidden = true
             viewDoyouHaveQues.isHidden = false
-            callWebserviceGetSetting()
-        }
+            if arrSubjectList.count>0{
+                let objsubject = arrSubjectList[0]
+                let imgUrl = objsubject["imageUrl"] as? String
+                imgQues.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                
+                imgQues.sd_setImage(with: URL(string: imgUrl!), completed: nil)
+                
+            }        }
 
         // Do any additional setup after loading the view.
     }
@@ -115,76 +123,3 @@ extension DoYouHaveQuestVC:UICollectionViewDelegate, UICollectionViewDataSource,
     }
 }
 
-extension DoYouHaveQuestVC{
-    
-    func callWebserviceGetSetting() {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v2/camera/get-settings?openCount=1&studentClass=12")! as URL)
-        let session = URLSession.shared
-        request.httpMethod = "GET"
-        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let auth = userDef.value(forKey: "Auth_token") as! String
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
-        request.addValue("850", forHTTPHeaderField: "version_code")
-        request.addValue("US", forHTTPHeaderField: "country")
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-            if error != nil {
-                print("Error: \(String(describing: error))")
-            } else {
-                print("Response: \(String(describing: response))")
-                do {
-                    //create json object from data
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                        print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:AnyObject] {
-                                        let bottomOverlay = data["bottomOverlay"] as? [String:AnyObject]
-                                        let subjectList = bottomOverlay!["subjectList"] as! NSArray
-                                        print(subjectList)
-                                        
-                                        for objList in subjectList {
-                                            arrSubjectList.append(objList as! NSDictionary)
-                                           
-                                        }
-                                        if arrSubjectList.count>0{
-                                            let objsubject = arrSubjectList[0]
-                                            let imgUrl = objsubject["imageUrl"] as? String
-                                            imgQues.sd_imageIndicator = SDWebImageActivityIndicator.gray
-
-                                            imgQues.sd_setImage(with: URL(string: imgUrl!), completed: nil)
-                                            
-                                        }
-
-                                        
-                                       
-                                    }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
-                                }
-                                
-                            }
-                        }
-                        
-                    }
-                } catch let error {
-                    self.showToast(message: "Something Went Wrong")
-                    
-                    BaseApi.hideActivirtIndicator()
-                    
-                    print(error.localizedDescription)
-                }
-            }
-        })
-        
-        task.resume()
-    }
-}

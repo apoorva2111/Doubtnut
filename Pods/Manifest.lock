@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - AKImageCropperView (2.0.0)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
@@ -119,6 +134,7 @@ PODS:
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
+  - AFNetworking (~> 4.0)
   - AKImageCropperView
   - FacebookCore
   - FacebookLogin
@@ -134,6 +150,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - AKImageCropperView
     - AppAuth
     - FacebookCore
@@ -162,6 +179,7 @@ SPEC REPOS:
     - SideMenu
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   AKImageCropperView: 9c80fd45512daa69426161ad51c248655c1b5182
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
@@ -189,6 +207,6 @@ SPEC CHECKSUMS:
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: a5338d8db843f2181f31961d2f5101ddc681b0a8
+PODFILE CHECKSUM: e35350cfc874bc612afa76e0f92c97bbcf3bce84
 
 COCOAPODS: 1.10.1
