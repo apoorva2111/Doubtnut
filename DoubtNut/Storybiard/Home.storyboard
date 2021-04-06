@@ -1652,7 +1652,7 @@ Get Solution.</string>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.9 k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkM-qJ-Bdp">
-                                                                                    <rect key="frame" x="30" y="18" width="43" height="14.5"/>
+                                                                                    <rect key="frame" x="30" y="18" width="43" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                     <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -1678,7 +1678,7 @@ Get Solution.</string>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.9 k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kif-5G-L8J">
-                                                                                    <rect key="frame" x="30" y="18" width="43" height="14.5"/>
+                                                                                    <rect key="frame" x="30" y="18" width="43" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                     <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -1697,7 +1697,7 @@ Get Solution.</string>
                                                                             <rect key="frame" x="156" y="0.0" width="78" height="50"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.9 k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sr-5m-K1G" customClass="RCustomLabel" customModule="DoubtNut" customModuleProvider="target">
-                                                                                    <rect key="frame" x="21.5" y="18.5" width="35" height="13.5"/>
+                                                                                    <rect key="frame" x="21.5" y="18.5" width="35" height="13"/>
                                                                                     <color key="backgroundColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="0JD-y2-uZE"/>
@@ -2273,32 +2273,6 @@ Get Solution.</string>
             <point key="canvasLocation" x="2500" y="73"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="1qO-Qx-bIb">
-            <size key="intrinsicContentSize" width="61" height="29"/>
-        </designable>
-        <designable name="2sr-5m-K1G">
-            <size key="intrinsicContentSize" width="24" height="13.5"/>
-        </designable>
-        <designable name="9Oh-4W-7Xh">
-            <size key="intrinsicContentSize" width="8" height="21"/>
-        </designable>
-        <designable name="Mvj-AN-9SF">
-            <size key="intrinsicContentSize" width="8" height="21"/>
-        </designable>
-        <designable name="XhU-OT-Fjo">
-            <size key="intrinsicContentSize" width="113" height="32"/>
-        </designable>
-        <designable name="dlz-jR-k6u">
-            <size key="intrinsicContentSize" width="35" height="32"/>
-        </designable>
-        <designable name="eiD-w5-ZvL">
-            <size key="intrinsicContentSize" width="8" height="21"/>
-        </designable>
-        <designable name="f5O-SW-sb4">
-            <size key="intrinsicContentSize" width="8" height="21"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Back" width="24" height="24"/>
         <image name="Bitmap" width="133" height="53"/>

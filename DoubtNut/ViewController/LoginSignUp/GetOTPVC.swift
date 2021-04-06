@@ -131,7 +131,13 @@ extension GetOTPVC{
                             }))
                             // show the alert
                             self.present(alert, animated: true, completion: nil)
-                        }else{
+                        }else if code == 401{
+                            BaseApi.hideActivirtIndicator()
+                            let message = meta["message"] as! String
+                            self.showToast(message: message)
+
+                        }
+                        else{
                             BaseApi.hideActivirtIndicator()
                             self.showToast(message: "Something Went Wrong")
                         }
@@ -186,6 +192,7 @@ extension GetOTPVC{
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    
                     OperationQueue.main.addOperation {
 
                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -198,7 +205,15 @@ extension GetOTPVC{
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: false, completion: nil)
                          
-                        }else{
+                        }else if code == 403{
+                            if let data = json["data"] as? [String:AnyObject]{
+                                let msg = data["message"] as? String
+                                self.showToast(message: msg!)
+                            }
+                            BaseApi.hideActivirtIndicator()
+
+                        }
+                        else{
                             self.showToast(message: "Try With Another Number")
 
                             BaseApi.hideActivirtIndicator()

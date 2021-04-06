@@ -43,6 +43,7 @@ extension LoginwithPincode{
             self.showToast(message: "Please Enter Your 4 Digit PIN")
             txtEnterPin.shake()
         }else{
+            view.endEditing(true)
             WenserviceCallForLogin()
         }
     }
@@ -116,13 +117,24 @@ extension LoginwithPincode{
                                 let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
+                            
+}
+                        }else if code == 403{
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+
+                            if let data = json["data"] as? [String:AnyObject]{
+                                let strMsg = data["message"] as! String
+                                self.showToast(message:strMsg)
                             }
-                          //  }
+                            }
+                            
                         }else{
                             OperationQueue.main.addOperation {
                                 BaseApi.hideActivirtIndicator()
                                 self.showToast(message: "Please Enter Correct Phone Number Or Email Id and PIN")
                             }
+                            
                         }
                     }
             

@@ -49,9 +49,9 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func onClickViewProfile(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+       // let vc = storyboard?.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController//
+      //  vc.modalPresentationStyle = .fullScreen
+       // self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

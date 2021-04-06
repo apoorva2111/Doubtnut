@@ -46,6 +46,17 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClickLogin(_ sender: UIButton) {
+        let mainVC = FlowController().instantiateViewController(identifier: "NavLaunch", storyBoard: "Main")
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        userDef.removeObject(forKey: "Auth_token")
+        userDef.removeObject(forKey: UserDefaultKey.firsTime)
+        userDef.removeObject(forKey: UserDefaultKey.cameraCount)
+        userDef.removeObject(forKey: UserDefaultKey.chooseLang)
+        userDef.removeObject(forKey: UserDefaultKey.chooseClass)
+
+        appDel.window?.rootViewController = mainVC
+        appDel.window?.makeKeyAndVisible()
+
     }
     
     @IBAction func onClickTermAndCondition(_ sender: UIButton) {
