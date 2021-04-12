@@ -211,57 +211,85 @@ extension SignUpVC {
     }
     
      func callApiGetOtpUsingPhoneNumber(){
-         BaseApi.showActivityIndicator(icon: nil, text: "")
+        BaseApi.showActivityIndicator(icon: nil, text: "")
 
-         let params:[String: Any] = ["phone_number":txtPhoneNumber.text!]
+        let params:[String: Any] = ["phone_number":tctEmailId.text!]
 
-         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
-         request.httpMethod = "POST"
-         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-         request.addValue("847", forHTTPHeaderField: "version_code")
-        // request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjAyODk5ODIsImlhdCI6MTYxNTU3Mjk4NCwiZXhwIjoxNjc4NjQ0OTg0fQ._eOZrum06hEfpeGv9TXZe78xShOB3Dj9fU_V3ghdjpM", forHTTPHeaderField: "x-auth-token")
-         request.addValue("US", forHTTPHeaderField: "country")
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
 
-         let session = URLSession.shared
-         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-             print(response!)
-             do {
-                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                 print(json)
-                 
-                OperationQueue.main.addOperation {
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+               OperationQueue.main.addOperation {
 
-                 if let meta = json["meta"] as? [String:AnyObject]{
-                     let code = meta["code"] as! Int
-                     if code == 200 {
-                        
-                            if let data = json["data"] as? [String:AnyObject]{
-                                self.session_id = data["session_id"] as! String
-                            }
-                            let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
-                            vc.session_id = self.session_id
-                            //   DispatchQueue.main.async {
-                            BaseApi.hideActivirtIndicator()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            //    }
-                        }
-                        
+                if let meta = json["meta"] as? [String:AnyObject]{
+                    let code = meta["code"] as! Int
+                    if code == 200 {
                        
-                     }
+                      // OperationQueue.main.addOperation {
+                           BaseApi.hideActivirtIndicator()
+                           
+                           if let data = json["data"] as? [String:AnyObject]{
+                               let status = data["status"] as? String
+                               if status == "FAILURE"{
+                                   self.showToast(message: "Something Went Wrong")
+                               }else{
+                                   self.session_id = data["session_id"]as! String
+                                   
+                               }
+                               
+                           }
+
+                           let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
+                           vc.session_id = self.session_id
+                           //   DispatchQueue.main.async {
+                           self.navigationController?.pushViewController(vc, animated: true)
+                           //    }
+                     //  }
+                       
+                      
+                    }else if code == 401{
+                       if let msg = meta["message"] as? String{
+                       BaseApi.hideActivirtIndicator()
+                       self.showToast(message: msg)
+                       }
+                    }else{
+                        
+                        if let msg = meta["message"] as? String{
+                        BaseApi.hideActivirtIndicator()
+                        self.showToast(message: msg)
+                        }
+                        BaseApi.hideActivirtIndicator()
+
+
+                    }
+                }else{
+                    OperationQueue.main.addOperation {
+                        self.showToast(message: "Something Went Wrong")
+
+                        BaseApi.hideActivirtIndicator()
+
                  }
-             } catch {
-                 print("error")
-                OperationQueue.main.addOperation {
-                BaseApi.hideActivirtIndicator()
-                self.showToast(message: "Something Went Wrong")
                 }
+               }
+            } catch {
+               OperationQueue.main.addOperation {
+                   BaseApi.hideActivirtIndicator()
 
-             }
-         })
+            }
+                print("error")
+            }
+        })
 
-         task.resume()
-     }
+        task.resume()
+    }
 }
 
 //MARK:- Gmail Login

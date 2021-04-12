@@ -130,28 +130,47 @@ extension LoginWithCodeVC {
              do {
                  let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                  print(json)
-                 
-                 if let data = json["data"] as? [String:AnyObject]{
-                     self.session_id = data["session_id"] as! String
-                 }
+                OperationQueue.main.addOperation {
+
                  if let meta = json["meta"] as? [String:AnyObject]{
                      let code = meta["code"] as! Int
                      if code == 200 {
                         
-                        OperationQueue.main.addOperation {
+                       // OperationQueue.main.addOperation {
                             BaseApi.hideActivirtIndicator()
+                            
+                            if let data = json["data"] as? [String:AnyObject]{
+                                let status = data["status"] as? String
+                                if status == "FAILURE"{
+                                    self.showToast(message: "Something Went Wrong")
+                                }else{
+                                    self.session_id = data["session_id"]as! String
+                                    
+                                }
+                                
+                            }
 
                             let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
                             vc.session_id = self.session_id
                             //   DispatchQueue.main.async {
                             self.navigationController?.pushViewController(vc, animated: true)
                             //    }
-                        }
+                      //  }
                         
                        
+                     }else if code == 401{
+                        if let msg = meta["message"] as? String{
+                        BaseApi.hideActivirtIndicator()
+                        self.showToast(message: msg)
+                        }
                      }
                  }
+                }
              } catch {
+                OperationQueue.main.addOperation {
+                    BaseApi.hideActivirtIndicator()
+
+             }
                  print("error")
              }
          })
