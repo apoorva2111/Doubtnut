@@ -13,6 +13,7 @@ class SATVC: UIViewController {
     var  items = ["Maths","Math Practice Videos","English Practice Videos"]
     var indexArray = [Int]()
     
+    @IBOutlet weak var viewFooter: Footerview!
     
     var refreshTbl: UIRefreshControl!
     
@@ -33,7 +34,7 @@ class SATVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        
+        viewFooter.footerDelegate = self
         indexArray.append(0)
         
         refreshTbl = UIRefreshControl()
@@ -255,6 +256,23 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
 
 
 
+extension SATVC : FooterviewDelegate{
+    func didPressFooterButton(getType: String) {
+        if getType == "Home"{
+            print(getType)
+        }else if getType == "Doubt"{
+            let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            print(getType)
+            
+            let vc = FlowController().instantiateViewController(identifier: "navProfile", storyBoard: "Profile") as! UINavigationController
+            vc.modalPresentationStyle = .fullScreen
+present(vc, animated: false, completion: nil)
+        }
+    }
+    
+}
 
 
 

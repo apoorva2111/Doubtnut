@@ -675,10 +675,12 @@
                     <navigationItem key="navigationItem" id="eto-P7-kdh"/>
                     <connections>
                         <outlet property="collectionMaths" destination="pBg-lY-y63" id="oOd-25-dOA"/>
+                        <outlet property="lblACT" destination="CUj-j0-0qP" id="61Q-HZ-Knl"/>
                         <outlet property="lblOtpLine1" destination="ZNN-2t-Uh4" id="37X-dO-jmL"/>
                         <outlet property="lblOtpLine2" destination="Zeb-9A-9bT" id="y9d-ma-1dm"/>
                         <outlet property="lblOtpLine3" destination="O8z-DX-e0q" id="AAV-dZ-SfX"/>
                         <outlet property="lblOtpLine4" destination="6sv-mr-0tn" id="2vd-EX-thm"/>
+                        <outlet property="lblSAT" destination="oUF-X6-dGy" id="Y5z-GA-xKh"/>
                         <outlet property="txtSetPinFour" destination="f5O-SW-sb4" id="wo7-kb-O02"/>
                         <outlet property="txtSetPinOne" destination="Mvj-AN-9SF" id="Wvh-of-bUf"/>
                         <outlet property="txtSetPinThree" destination="9Oh-4W-7Xh" id="kx8-5d-4nZ"/>
@@ -2012,7 +2014,7 @@ Get Solution.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to get the right video solutions?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1W-7W-7Nr">
-                                                <rect key="frame" x="75.5" y="60" width="263.5" height="19"/>
+                                                <rect key="frame" x="76" y="60" width="262.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -2265,6 +2267,7 @@ Get Solution.</string>
                     <connections>
                         <outlet property="collFeatureCat" destination="vfx-92-l6I" id="lQX-Dp-5SQ"/>
                         <outlet property="satTableView" destination="lNH-bV-eE8" id="Zyg-cG-oeK"/>
+                        <outlet property="viewFooter" destination="ylW-Bj-jb1" id="qPx-Ti-uex"/>
                         <outlet property="viewSwipe" destination="6mS-LH-wu1" id="DFP-z3-boU"/>
                     </connections>
                 </viewController>

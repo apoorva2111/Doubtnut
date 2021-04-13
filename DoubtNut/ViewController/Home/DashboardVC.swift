@@ -23,6 +23,8 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var lblOtpLine3: UILabel!
     @IBOutlet weak var lblOtpLine4: UILabel!
     
+    @IBOutlet weak var lblSAT: UILabel!
+    @IBOutlet weak var lblACT: UILabel!
     
     @IBAction func btnSetPinAction(_ sender: UIButton) {
         if sender.tag == 10 {
@@ -139,6 +141,66 @@ extension DashboardVC{
     @IBAction func btnACTAction(_ sender: Any) {
         let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home")
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func callTermsNCondition()  {
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.com/v5/icons/getdata/27")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+       // let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("850", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let data = json["data"] as? [String:Any]{
+                                        
+                                        BaseApi.hideActivirtIndicator()
+
+                                    }else{
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                    
+                                    //
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
     }
 }
 extension DashboardVC : FooterviewDelegate{

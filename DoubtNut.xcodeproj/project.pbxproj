@@ -703,7 +703,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				DC5CEA3F42DCD98CA3AAC43A /* Build Project Frameworks */,
+				515FD32FDD3C3A9CECAAC43A /* Build Assets Catalog */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -880,34 +880,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-
-	DC5CEA3F42DCD98CA3AAC43A /* Build Project Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Project Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
-
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
-		};
-	
-
-	
-
-	
-
-	
 		040C01F3A6D50ADE72CC293B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -946,6 +918,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		515FD32FDD3C3A9CECAAC43A /* Build Assets Catalog */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Assets Catalog";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/xcassets.folder\" false";
 		};
 		5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1285,7 +1275,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1313,7 +1303,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
