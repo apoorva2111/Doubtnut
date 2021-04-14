@@ -153,10 +153,9 @@ extension DashboardVC{
         //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-       // let auth = userDef.value(forKey: "Auth_token") as! String
+        let auth = userDef.value(forKey: "Auth_token") as! String
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.addValue(auth, forHTTPHeaderField: "x-auth-token")
-        request.addValue("850", forHTTPHeaderField: "version_code")
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
