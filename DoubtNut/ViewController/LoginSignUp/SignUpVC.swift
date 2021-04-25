@@ -17,7 +17,7 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
             print(error.localizedDescription)
             return
           }
-        print(result)
+//        print(result)
 
     }
     
@@ -45,6 +45,7 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
         // Do any additional setup after loading the view.
         txtPhoneNumber.delegate = self
         tctEmailId.delegate = self
+        tctEmailId.becomeFirstResponder()
         
     }
     
@@ -54,27 +55,32 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
 //MARK:- Custom Classes
 extension SignUpVC{
     func validation(){
+
         self.view.endEditing(true)
         if tctEmailId.text == "" && txtPhoneNumber.text == ""{
+            btnOutletGetVarCode.isUserInteractionEnabled = false
             txtPhoneNumber.shake()
             tctEmailId.shake()
-            self.showToast(message: "Please Enter Email id or Phone number")
+            //self.showToast(message: "Please Enter Email id or Phone number")
             self.view.endEditing(true)
         }else if tctEmailId.text != ""{
-            if !(tctEmailId.text!.isValidEmail()) {
-                tctEmailId.shake()
-                self.view.endEditing(true)
-            }else{
+            //if !(tctEmailId.text!.isValidEmail()) {
+            if self.validateEmail(candidate: tctEmailId.text!){
                 callApiGetOtpUsingEmail()
+                
+            }else{
+                btnOutletGetVarCode.isUserInteractionEnabled = false
+                tctEmailId.shake()
+                
+                self.view.endEditing(true)
             }
         }else if txtPhoneNumber.text != ""{
             
             if !(txtPhoneNumber.text!.isPhoneNumber){
+                btnOutletGetVarCode.isUserInteractionEnabled = false
                 txtPhoneNumber.shake()
                 self.view.endEditing(true)
             }else{
-               // let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main")
-               // self.navigationController?.pushViewController(vc, animated: true)
                 callApiGetOtpUsingPhoneNumber()
             }
         }
@@ -87,22 +93,28 @@ extension SignUpVC : UITextFieldDelegate{
         if tctEmailId.text == ""{
             
             if txtPhoneNumber.text!.isPhoneNumber{
+                btnOutletGetVarCode.isUserInteractionEnabled = true
                 viewPhoneNumber.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                 btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
                 btnOutletGetVarCode.layer.masksToBounds = true
                 
             }else{
+                btnOutletGetVarCode.isUserInteractionEnabled = false
                 viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
                 btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
                 btnOutletGetVarCode.layer.masksToBounds = true
             }
             
         }else{
-            if tctEmailId.text!.isValidEmail() {
+//            if tctEmailId.text!.isValidEmail() {
+                if self.validateEmail(candidate: tctEmailId.text!){
+
+                btnOutletGetVarCode.isUserInteractionEnabled = true
                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                 btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
                 btnOutletGetVarCode.layer.masksToBounds = true
             }else{
+                btnOutletGetVarCode.isUserInteractionEnabled = false
                 viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
                 btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
                 btnOutletGetVarCode.layer.masksToBounds = true
@@ -153,6 +165,7 @@ extension SignUpVC {
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -193,6 +206,7 @@ extension SignUpVC {
                         }
                         let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
                         vc.session_id = self.session_id
+                        vc.emailID = self.tctEmailId.text!
                             BaseApi.hideActivirtIndicator()
                         self.navigationController?.pushViewController(vc, animated: true)
                         

@@ -27,7 +27,9 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     
     @IBOutlet weak var lblOnlyCropOneQues: UILabel!
     
-  
+   
+    
+    
  
     
     
@@ -57,6 +59,8 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         viewCropOneQues.isHidden = true
         viewLearnPopUp.isHidden = true
         btnImogOutlet.isHidden  = true
+        
+        checkCameraAccess()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -188,6 +192,41 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
 //  MARK: - AKImageCropperViewDelegate
 
 extension CustomCameraVC: AKImageCropperViewDelegate {
+    func checkCameraAccess() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied:
+            print("Denied, request permission from settings")
+            presentCameraSettings()
+        case .restricted:
+            print("Restricted, device owner must approve")
+        case .authorized:
+            print("Authorized, proceed")
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { success in
+                if success {
+                    print("Permission granted, proceed")
+                } else {
+                    print("Permission denied")
+                }
+            }
+        }
+    }
+    
+    func presentCameraSettings() {
+        let alertController = UIAlertController(title: "Error",
+                                      message: "Camera access is denied",
+                                      preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
+        alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                    // Handle
+                })
+            }
+        })
+
+        present(alertController, animated: true)
+    }
     
     func imageCropperViewDidChangeCropRect(view: AKImageCropperView, cropRect rect: CGRect) {
         print("New crop rectangle: \(rect)")
@@ -539,6 +578,19 @@ print(json)
 
 //MARK:- Button Action
 extension CustomCameraVC{
+    @IBAction func btnTypeAction(_ sender: UIButton) {
+   
+    }
+    @IBAction func btnGellaryAction(_ sender: UIButton) {
+        
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.mediaTypes = ["public.image"]
+        present(vc, animated: true)
+
+    }
     @IBAction func watchHistoryAction(_ sender: UIButton) {
         let vc = FlowController().instantiateViewController(identifier: "WatchHistoryViewController", storyBoard: "Profile") as! WatchHistoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
@@ -693,5 +745,37 @@ extension CustomCameraVC{
      
     }
 }
+extension CustomCameraVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            cropView.delegate = self
+            cropView.image = selectedImage
+            cropView.contentMode = .scaleAspectFit
+            self.viewLearnPopUp.isHidden = true
 
+            viewImgCrop.isHidden = false
+            viewCropOneQues.isHidden = false
+            cropView.showOverlayView(animationDuration: 0.3)
+            
+            UIView.animate(withDuration: 0.3, delay: 0.3, options: UIView.AnimationOptions.curveLinear, animations: {
+                //     self.overlayActionView.alpha = 1
+                
+            }, completion: nil)
 
+           
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+}

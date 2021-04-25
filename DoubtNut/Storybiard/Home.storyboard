@@ -32,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="846"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4j-6a-sDD">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="678.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="708"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gea-YV-OsJ">
                                                         <rect key="frame" x="0.0" y="-80" width="414" height="331"/>
@@ -81,6 +81,9 @@
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-e9-QAW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="86" height="86"/>
+                                                                        <connections>
+                                                                            <action selector="btnCameraAction:" destination="Se7-ye-cn6" eventType="touchUpInside" id="cfe-un-tBu"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.222124787414966" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -103,7 +106,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASK DOUBT?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8N-bZ-eht">
-                                                                <rect key="frame" x="176" y="127.5" width="62" height="12"/>
+                                                                <rect key="frame" x="176" y="127.5" width="62.5" height="12"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="10"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -140,13 +143,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Physics, Chemistry, Biology, Maths Solutions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFp-Y8-zHf">
-                                                                <rect key="frame" x="89.5" y="241.5" width="235" height="13.5"/>
+                                                                <rect key="frame" x="86" y="241.5" width="242" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-p5-wTy" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="271" width="382" height="38"/>
+                                                                <rect key="frame" x="16" y="270.5" width="382" height="38"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search" translatesAutoresizingMaskIntoConstraints="NO" id="V3B-aT-D2S">
                                                                         <rect key="frame" x="24" y="11" width="16" height="16"/>
@@ -222,7 +225,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT Prep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-X6-dGy">
-                                                                                <rect key="frame" x="0.0" y="56" width="206" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="56" width="206" height="15.5"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -261,7 +264,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACT Prep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUj-j0-0qP">
-                                                                                <rect key="frame" x="0.0" y="56" width="207" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="56" width="207" height="15.5"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -306,14 +309,14 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-X8-i7L">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-X8-i7L">
                                                         <rect key="frame" x="0.0" y="359" width="414" height="289.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5l-MR-4of">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math SAT Solutions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4F-wy-TYo">
-                                                                        <rect key="frame" x="15" y="0.0" width="131.5" height="40"/>
+                                                                        <rect key="frame" x="15" y="0.0" width="132" height="40"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -367,27 +370,37 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="ceh-X8-i7L" secondAttribute="height" multiplier="5:3.5" id="0JC-EE-cWW"/>
-                                                            <constraint firstAttribute="bottom" secondItem="pBg-lY-y63" secondAttribute="bottom" id="FQS-D3-71H"/>
                                                             <constraint firstItem="pBg-lY-y63" firstAttribute="leading" secondItem="ceh-X8-i7L" secondAttribute="leading" id="a94-93-ncv"/>
                                                             <constraint firstItem="u5l-MR-4of" firstAttribute="leading" secondItem="ceh-X8-i7L" secondAttribute="leading" id="drV-Oh-6rA"/>
                                                             <constraint firstItem="u5l-MR-4of" firstAttribute="top" secondItem="ceh-X8-i7L" secondAttribute="top" id="lBR-1h-Lgv"/>
                                                             <constraint firstItem="pBg-lY-y63" firstAttribute="top" secondItem="u5l-MR-4of" secondAttribute="bottom" id="rjh-5a-ZZj"/>
+                                                            <constraint firstAttribute="bottom" secondItem="pBg-lY-y63" secondAttribute="bottom" id="sOk-zh-2FQ"/>
                                                             <constraint firstAttribute="trailing" secondItem="u5l-MR-4of" secondAttribute="trailing" id="t7g-IZ-MaO"/>
                                                             <constraint firstAttribute="trailing" secondItem="pBg-lY-y63" secondAttribute="trailing" id="zw9-Bp-5CB"/>
                                                         </constraints>
                                                     </view>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d3B-1l-sqV">
+                                                        <rect key="frame" x="0.0" y="359" width="414" height="319"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="319" id="uOv-VW-EMF"/>
+                                                        </constraints>
+                                                    </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="d3B-1l-sqV" secondAttribute="trailing" id="5tF-dt-uBp"/>
+                                                    <constraint firstItem="d3B-1l-sqV" firstAttribute="top" secondItem="40D-iM-ctu" secondAttribute="bottom" id="60r-Jt-3tV"/>
                                                     <constraint firstItem="ceh-X8-i7L" firstAttribute="top" secondItem="40D-iM-ctu" secondAttribute="bottom" id="AIw-8A-dbL"/>
                                                     <constraint firstItem="40D-iM-ctu" firstAttribute="leading" secondItem="L4j-6a-sDD" secondAttribute="leading" id="MRb-S3-1Ve"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ceh-X8-i7L" secondAttribute="bottom" constant="30" id="Nck-kg-eUR"/>
                                                     <constraint firstAttribute="trailing" secondItem="ceh-X8-i7L" secondAttribute="trailing" id="Ok6-pF-WII"/>
                                                     <constraint firstAttribute="trailing" secondItem="40D-iM-ctu" secondAttribute="trailing" id="RGm-iW-CM8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="d3B-1l-sqV" secondAttribute="bottom" constant="30" id="T2T-tV-tbb"/>
                                                     <constraint firstItem="Gea-YV-OsJ" firstAttribute="leading" secondItem="L4j-6a-sDD" secondAttribute="leading" id="YhD-dI-lru"/>
                                                     <constraint firstItem="40D-iM-ctu" firstAttribute="top" secondItem="Gea-YV-OsJ" secondAttribute="bottom" id="bc5-wi-hE2"/>
                                                     <constraint firstItem="Gea-YV-OsJ" firstAttribute="top" secondItem="L4j-6a-sDD" secondAttribute="top" constant="-80" id="jPV-lH-AU5"/>
                                                     <constraint firstItem="ceh-X8-i7L" firstAttribute="leading" secondItem="L4j-6a-sDD" secondAttribute="leading" id="mfr-wn-L4D"/>
+                                                    <constraint firstItem="d3B-1l-sqV" firstAttribute="leading" secondItem="L4j-6a-sDD" secondAttribute="leading" id="u98-Ff-kWT"/>
                                                     <constraint firstAttribute="trailing" secondItem="Gea-YV-OsJ" secondAttribute="trailing" id="vkL-aW-CW6"/>
                                                 </constraints>
                                             </view>
@@ -406,12 +419,12 @@
                                             <constraint firstAttribute="height" constant="80" id="yA7-hm-2Rq"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oV4-Zp-YBD" customClass="FreetrialView" customModule="DoubtNut" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oV4-Zp-YBD" customClass="FreetrialView" customModule="DoubtNut" customModuleProvider="target">
+                                        <rect key="frame" x="500" y="0.0" width="414" height="896"/>
                                         <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nl2-9M-pkm">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nl2-9M-pkm">
+                                        <rect key="frame" x="500" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQZ-WY-cO8" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
                                                 <rect key="frame" x="52" y="324" width="310.5" height="248"/>
@@ -681,6 +694,8 @@
                         <outlet property="lblOtpLine3" destination="O8z-DX-e0q" id="AAV-dZ-SfX"/>
                         <outlet property="lblOtpLine4" destination="6sv-mr-0tn" id="2vd-EX-thm"/>
                         <outlet property="lblSAT" destination="oUF-X6-dGy" id="Y5z-GA-xKh"/>
+                        <outlet property="tblHeightConstraint" destination="uOv-VW-EMF" id="kdH-bI-ENB"/>
+                        <outlet property="tblList" destination="d3B-1l-sqV" id="VWZ-hH-2Ih"/>
                         <outlet property="txtSetPinFour" destination="f5O-SW-sb4" id="wo7-kb-O02"/>
                         <outlet property="txtSetPinOne" destination="Mvj-AN-9SF" id="Wvh-of-bUf"/>
                         <outlet property="txtSetPinThree" destination="9Oh-4W-7Xh" id="kx8-5d-4nZ"/>
@@ -940,6 +955,9 @@ Try with a Demo question</string>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-WW-5VV">
                                                         <rect key="frame" x="0.0" y="0.0" width="99" height="58"/>
+                                                        <connections>
+                                                            <action selector="btnGellaryAction:" destination="jvs-M6-CAQ" eventType="touchUpInside" id="2vj-sZ-Ygk"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -974,6 +992,9 @@ Try with a Demo question</string>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKW-ZM-ZfK">
                                                         <rect key="frame" x="0.0" y="0.0" width="99" height="58"/>
+                                                        <connections>
+                                                            <action selector="btnTypeAction:" destination="jvs-M6-CAQ" eventType="touchUpInside" id="8cK-pf-yhh"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2266,6 +2287,7 @@ Get Solution.</string>
                     </view>
                     <connections>
                         <outlet property="collFeatureCat" destination="vfx-92-l6I" id="lQX-Dp-5SQ"/>
+                        <outlet property="lblHeader" destination="gRl-CB-FXd" id="xht-cj-1HX"/>
                         <outlet property="satTableView" destination="lNH-bV-eE8" id="Zyg-cG-oeK"/>
                         <outlet property="viewFooter" destination="ylW-Bj-jb1" id="qPx-Ti-uex"/>
                         <outlet property="viewSwipe" destination="6mS-LH-wu1" id="DFP-z3-boU"/>

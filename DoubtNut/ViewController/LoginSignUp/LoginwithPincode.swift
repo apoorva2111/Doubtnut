@@ -23,6 +23,7 @@ class LoginwithPincode: UIViewController {
         // Do any additional setup after loading the view.
         txtEmail.delegate = self
         txtEnterPin.delegate = self
+        txtEmail.becomeFirstResponder()
         
         
         //self.callLoginApi()
@@ -151,7 +152,9 @@ extension LoginwithPincode{
 //MARK:- Textfeild Delegate
 extension LoginwithPincode : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if txtEmail.text!.isValidEmail() {
+      //  if txtEmail.text!.isValidEmail() {
+        if self.validateEmail(candidate: txtEmail.text!){
+
             viewEmailAndPhone.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
         }else{
             viewEmailAndPhone.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
@@ -197,6 +200,7 @@ extension LoginwithPincode{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnBackAction(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class MathCVCell: UICollectionViewCell {
 
+    @IBOutlet weak var lblTItle: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

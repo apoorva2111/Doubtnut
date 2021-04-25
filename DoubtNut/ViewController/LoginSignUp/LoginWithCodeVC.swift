@@ -21,6 +21,7 @@ class LoginWithCodeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtEmail.delegate = self
+        txtEmail.becomeFirstResponder()
         // Do any additional setup after loading the view.
 
     }
@@ -43,7 +44,9 @@ extension LoginWithCodeVC:UITextFieldDelegate{
                 
             }
         }else{
-            if txtEmail.text!.isValidEmail() {
+           // if txtEmail.text!.isValidEmail() {
+            if self.validateEmail(candidate: txtEmail.text!){
+
                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                 btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
             }else{
@@ -180,6 +183,7 @@ extension LoginWithCodeVC {
 }
 extension LoginWithCodeVC{
     @IBAction func btnBackAction(_ sender: Any) {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnGetOtpAction(_ sender: Any) {

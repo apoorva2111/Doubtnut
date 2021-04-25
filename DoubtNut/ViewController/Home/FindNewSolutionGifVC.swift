@@ -97,8 +97,19 @@ extension FindNewSolutionGifVC{
     
     func callWebserviceForAskQues() {
         
-       // BaseApi.showActivityIndicator(icon: nil, text: "")
-        
+/*//
+         chapter:
+         colorVersion:2
+         uploaded_image_question_id:671426442
+         question:
+         other_multiple_images_selected:false
+         subject:MATHS
+         checkExactMatch:true
+         student_id:66170691
+         source:ScreenNavigator
+         question_text:
+         clientSource:app
+         question_image:image_url*/
         let parameters = ["question_image":"image_url",
                           "uploaded_image_name":file_name,
                           "question":"IOS",

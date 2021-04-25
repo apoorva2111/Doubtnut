@@ -27,20 +27,41 @@ class GetOTPVC: UIViewController {
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         validation()
     }
-   
+    @IBOutlet weak var lblTimer: UILabel!
+    
     @IBAction func btnBackAction(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     
     var session_id = ""
+    var emailID = ""
+    var counter = 15
+
     var isSetPin = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         // Do any additional setup after loading the view.
         print(session_id)
+        lblVeriCodeEmail.text = "Verification Code has been sent to " + emailID
+        txtOtp1.becomeFirstResponder()
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
     }
     
+    @objc func updateCounter() {
+        //example functionality
+        if counter > 0 {
+            print("\(counter) seconds to the end of the world")
+            lblTimer.text =  "\(counter)" + "s Resend Code"
+            counter -= 1
+        }else{
+            print("\(counter) seconds to the end of the world")
+            lblTimer.text =  "\(counter)" + "s Resend Code"
+
+        }
+    }
 
 }
 //MARK:- Webservice Call
@@ -303,7 +324,11 @@ extension GetOTPVC{
                 
             }else{
                 let strOTP = txtOtp1.text! + txtOtp2.text! + txtOtp3.text! + txtOtp4.text!
-                webserviceCallVerifyOTP(strOtp:strOTP)
+                if counter == 0{
+                    self.showToast(message: "Please resend OTP")
+                }else{
+                    webserviceCallVerifyOTP(strOtp:strOTP)
+                }
             }
             
         }

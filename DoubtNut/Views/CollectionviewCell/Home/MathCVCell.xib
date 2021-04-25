@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,9 +28,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9b-on-TwR">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-05-RVZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="WhR-05-RVZ" firstAttribute="leading" secondItem="L9b-on-TwR" secondAttribute="leading" id="28h-SR-nKC"/>
+                                    <constraint firstAttribute="bottom" secondItem="WhR-05-RVZ" secondAttribute="bottom" id="FSd-1h-yEr"/>
                                     <constraint firstAttribute="width" secondItem="L9b-on-TwR" secondAttribute="height" multiplier="5:2.5" id="GhX-5R-Qhq"/>
+                                    <constraint firstAttribute="trailing" secondItem="WhR-05-RVZ" secondAttribute="trailing" id="LN4-9I-3PQ"/>
+                                    <constraint firstItem="WhR-05-RVZ" firstAttribute="top" secondItem="L9b-on-TwR" secondAttribute="top" id="vOh-sy-PYu"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic Name here..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3M-rP-hVI">
@@ -77,6 +87,10 @@
                 <constraint firstAttribute="bottom" secondItem="SZE-7T-vcY" secondAttribute="bottom" constant="10" id="buw-Yk-ShH"/>
                 <constraint firstItem="SZE-7T-vcY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="zBc-LB-kcQ"/>
             </constraints>
+            <connections>
+                <outlet property="imgView" destination="WhR-05-RVZ" id="hsc-HG-kFy"/>
+                <outlet property="lblTItle" destination="c3M-rP-hVI" id="2w2-U0-217"/>
+            </connections>
             <point key="canvasLocation" x="29" y="48"/>
         </collectionViewCell>
     </objects>

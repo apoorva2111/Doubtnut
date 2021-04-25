@@ -16,6 +16,7 @@ class SATVC: UIViewController {
     @IBOutlet weak var viewFooter: Footerview!
     
     var refreshTbl: UIRefreshControl!
+    @IBOutlet weak var lblHeader: UILabel!
     
     @IBOutlet weak var collFeatureCat: UICollectionView! {
         didSet {
@@ -27,7 +28,8 @@ class SATVC: UIViewController {
     @IBOutlet weak var viewSwipe: UIView!
 
     var indexSwipe = 0
-
+    var strHeader = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,7 @@ class SATVC: UIViewController {
         
         viewFooter.footerDelegate = self
         indexArray.append(0)
-        
+        lblHeader.text = strHeader
         refreshTbl = UIRefreshControl()
         refreshTbl.addTarget(self, action: #selector(onRefreshTbl), for: .valueChanged)
         satTableView.addSubview(refreshTbl)

@@ -34,6 +34,9 @@ extension String {
                 return false
             }
         }
+  
+    
+
 }
 extension UIView {
 
@@ -47,7 +50,10 @@ extension UIView {
 }
 
 extension UIViewController {
-
+    func validateEmail(candidate: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+    }
 func showToast(message : String) {
 
     let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))

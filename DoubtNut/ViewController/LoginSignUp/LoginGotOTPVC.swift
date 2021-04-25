@@ -20,6 +20,7 @@ class LoginGotOTPVC: UIViewController {
     @IBOutlet weak var btnOutletSubmit: RCustomButton!
 
     @IBAction func btnBackAction(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSubmitAction(_ sender: UIButton) {
@@ -29,6 +30,7 @@ class LoginGotOTPVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtOtp1.becomeFirstResponder()
 setView()
         // Do any additional setup after loading the view.
     }

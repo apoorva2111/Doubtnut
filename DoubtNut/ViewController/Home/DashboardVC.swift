@@ -23,8 +23,15 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var lblOtpLine3: UILabel!
     @IBOutlet weak var lblOtpLine4: UILabel!
     
+    @IBOutlet weak var tblList: UITableView!
     @IBOutlet weak var lblSAT: UILabel!
     @IBOutlet weak var lblACT: UILabel!
+   
+    @IBOutlet weak var tblHeightConstraint: NSLayoutConstraint!
+    
+    var arrFeedData = [NSDictionary]()
+    var arrGetData = [NSDictionary]()
+    
     
     @IBAction func btnSetPinAction(_ sender: UIButton) {
         if sender.tag == 10 {
@@ -56,6 +63,9 @@ class DashboardVC: UIViewController {
         viewFooterview.lblHome.textColor = #colorLiteral(red: 1, green: 0.4183522463, blue: 0.2224330306, alpha: 1)
         
    setView()
+        callWebserviceGetdata()
+
+        callWebserviceForItems()
     }
     func setView() {
         txtSetPinOne.delegate = self
@@ -77,7 +87,11 @@ class DashboardVC: UIViewController {
     }
     func registerXib() {
         self.collectionMaths.register(UINib(nibName: "MathCVCell", bundle: nil), forCellWithReuseIdentifier: "MathCVCell")
-
+        
+        self.tblList.register(HomeTVCell.nib(), forCellReuseIdentifier: "HomeTVCell")
+        
+        tblList.delegate = self
+        tblList.dataSource = self
     }
 
     func validation(){
@@ -112,6 +126,11 @@ callWebserviceForStorePin(pin: strOTP)
         present(menu,animated: true, completion: nil)
 
     }
+    @IBAction func btnCameraAction(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
 }
 extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
@@ -132,25 +151,74 @@ extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UIC
     }
     
 }
+//MARK :- Tableview Delegate
+extension DashboardVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrFeedData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tblList.dequeueReusableCell(withIdentifier: "HomeTVCell", for: indexPath) as! HomeTVCell
+        let objDict = arrFeedData[indexPath.row]
+        cell.setData(feedDict: objDict)
+
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 290
+    }
+}
+
+//MARK :- Button Action
 extension DashboardVC{
     @IBAction func btnSATAction(_ sender: UIButton) {
-        let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home")
-        self.navigationController?.pushViewController(vc, animated: true)
+        if arrGetData.count>0{
+            let obj = arrGetData[0]
+            if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
+                let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
+                vc.strHeader = "SAT"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let obj = arrGetData[1]
+                if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
+                    let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
+                    vc.strHeader = "SAT"
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        }
+        
     }
     
     @IBAction func btnACTAction(_ sender: Any) {
-        let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home")
-        self.navigationController?.pushViewController(vc, animated: true)
+        if arrGetData.count>0{
+            let obj = arrGetData[1]
+            if "ACT Prep"  == obj["title"] as! String || "ACT prep"  == obj["title"] as! String{
+                let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
+                vc.strHeader = "ACT"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let obj = arrGetData[0]
+                if "ACT Prep"  == obj["title"] as! String{
+                
+                    let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
+                    vc.strHeader = "ACT"
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        }
+        
     }
     
     
-    func callTermsNCondition()  {
-        BaseApi.showActivityIndicator(icon: nil, text: "")
+    func callWebserviceGetdata()  {
+       // BaseApi.showActivityIndicator(icon: nil, text: "")
 
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.com/v5/icons/getdata/27")! as URL)
         let session = URLSession.shared
         request.httpMethod = "GET"
-        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let auth = userDef.value(forKey: "Auth_token") as! String
@@ -171,9 +239,80 @@ extension DashboardVC{
                             if let meta = json["meta"] as? [String:AnyObject]{
                                 let code = meta["code"] as! Int
                                 if code == 200 {
-                                    if let data = json["data"] as? [String:Any]{
-                                        
+                                    if let dataJson = json["data"] as? NSArray{
+                                        print(dataJson)
+                                        for obj in dataJson{
+                                            arrGetData.append(obj as! NSDictionary)
+                                        }
                                         BaseApi.hideActivirtIndicator()
+
+                                    }else{
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                    
+                                    //
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    
+    func callWebserviceForItems()  {
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v3/tesla/feed?page=1&source=home")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+       // let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYxNzcxNjY2MCwiZXhwIjoxNjgwNzg4NjYwfQ.t-XYGLwUvy2lTbmBfN0D3Ybm_rVkXGyghrHy8EgosK8", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation {
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let dataJson = json["data"] as? [String:Any]{
+                                        BaseApi.hideActivirtIndicator()
+                                        if let feedDate = dataJson["feeddata"] as? NSArray{
+                                            print(feedDate)
+                                            for objDict in feedDate {
+                                                self.arrFeedData.append(objDict as! NSDictionary)
+                                            }
+                                            self.tblHeightConstraint.constant = CGFloat(290*self.arrFeedData.count)
+
+                                            self.tblList.reloadData()
+                                            
+                                        }
 
                                     }else{
                                         BaseApi.hideActivirtIndicator()
