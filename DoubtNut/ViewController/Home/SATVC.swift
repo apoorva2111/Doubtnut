@@ -12,6 +12,7 @@ class SATVC: UIViewController {
     @IBOutlet weak var satTableView: customTblView!
     var  items = ["Maths","Math Practice Videos","English Practice Videos"]
     var indexArray = [Int]()
+    var arrList = [NSDictionary]()
     
     @IBOutlet weak var viewFooter: Footerview!
     
@@ -29,6 +30,8 @@ class SATVC: UIViewController {
 
     var indexSwipe = 0
     var strHeader = ""
+    var id = ""
+    
     
     
     override func viewDidLoad() {
@@ -60,6 +63,7 @@ class SATVC: UIViewController {
         indexArray.append(0)
         collFeatureCat.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         collFeatureCat.reloadData()
+        callWebserviceGetdata()
 
     }
     
@@ -154,7 +158,71 @@ extension SATVC {
 
 //group call
 extension SATVC {
+    
+    func callWebserviceGetdata()  {
+       // BaseApi.showActivityIndicator(icon: nil, text: "")
 
+        let request = NSMutableURLRequest(url: NSURL(string: "https://dev7.doubtnut.com/v7/library/getplaylist?page_no=1&id=\(id)&student_class=12")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+       // let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYxNzA2OTEsImlhdCI6MTYxNDA2Nzk2NCwiZXhwIjoxNjc3MTM5OTY0fQ.szfJPzcYSvSPNQfT0EDPjGSmNlosjoWcJUP3SY1o1V8", forHTTPHeaderField: "x-auth-token")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let dataJson = json["data"] as? [String:AnyObject]{
+                                        let arr = dataJson["list"] as! NSArray
+                                        print(arr)
+                                        if arrList.count>0 {
+                                            arrList.removeAll()
+                                        }
+                                        for objDict in arr {
+                                            arrList.append(objDict as! NSDictionary)
+                                        }
+                                        satTableView.reloadData()
+                                        BaseApi.hideActivirtIndicator()
+
+                                    }else{
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                    
+                                    //
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
+    }
     func run(after wait: TimeInterval, closure: @escaping () -> Void) {
         let queue = DispatchQueue.main
         queue.asyncAfter(deadline: DispatchTime.now() + wait, execute: closure)
@@ -183,14 +251,16 @@ extension SATVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrList.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "tblCell", for: indexPath) as! tblCell
-        cell.lblTitle.text = "Algebra"
+        
+        let obj = arrList[indexPath.row]
+        cell.lblTitle.text = obj["name"] as? String
         return cell
         
     }

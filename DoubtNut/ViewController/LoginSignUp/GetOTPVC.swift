@@ -25,6 +25,7 @@ class GetOTPVC: UIViewController {
     @IBOutlet weak var txtReenterPin: RCustomTextField!
     @IBOutlet weak var btnOutletSubmit: RCustomButton!
     @IBAction func btnSubmitAction(_ sender: UIButton) {
+        self.view.endEditing(true)
         validation()
     }
     @IBOutlet weak var lblTimer: UILabel!

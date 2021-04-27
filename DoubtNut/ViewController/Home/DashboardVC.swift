@@ -177,12 +177,14 @@ extension DashboardVC{
             if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "SAT"
+                vc.id = String(obj["id"]as! Int)
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[1]
                 if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "SAT"
+                    vc.id = String(obj["id"]as! Int)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -197,6 +199,7 @@ extension DashboardVC{
             if "ACT Prep"  == obj["title"] as! String || "ACT prep"  == obj["title"] as! String{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "ACT"
+                vc.id = String(obj["id"]as! Int)
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[0]
@@ -204,6 +207,7 @@ extension DashboardVC{
                 
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "ACT"
+                    vc.id = String(obj["id"]as! Int)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

@@ -161,6 +161,7 @@ extension SignUpVC {
         }
     }
     @IBAction func btnGetVarificationCodeAction(_ sender: UIButton) {
+        view.endEditing(true)
         validation()
     }
     

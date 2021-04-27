@@ -187,8 +187,8 @@ extension LoginWithCodeVC{
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnGetOtpAction(_ sender: Any) {
-        //let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-       // self.navigationController?.pushViewController(vc, animated: true)
+        self.view.endEditing(true)
+
         let decimalCharacters = CharacterSet.decimalDigits
         
         let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)

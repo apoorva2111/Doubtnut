@@ -192,10 +192,13 @@ extension LoginwithPincode : UITextFieldDelegate {
 //MARK:- Buton Action
 extension LoginwithPincode{
     @IBAction func btnLoginAction(_ sender: Any) {
+        self.view.endEditing(true)
+
         validation()
     }
     
     @IBAction func loginViewCOdeAction(_ sender: Any) {
+        self.view.endEditing(true)
         let vc = FlowController().instantiateViewController(identifier: "LoginWithCodeVC", storyBoard: "Main")
         self.navigationController?.pushViewController(vc, animated: true)
     }

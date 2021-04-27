@@ -24,6 +24,8 @@ class LoginGotOTPVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSubmitAction(_ sender: UIButton) {
+        self.view.endEditing(true)
+
         validation()
     }
     
