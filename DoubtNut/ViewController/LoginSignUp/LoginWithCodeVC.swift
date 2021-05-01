@@ -14,6 +14,7 @@ class LoginWithCodeVC: UIViewController {
     
        @IBOutlet weak var btnOutletGetOTP: RCustomButton!
     
+    @IBOutlet weak var btnBackOutlet: UIButton!
     @IBOutlet weak var txtEmail: RCustomTextField!
     
     var session_id = ""
@@ -25,15 +26,15 @@ class LoginWithCodeVC: UIViewController {
         // Do any additional setup after loading the view.
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        txtEmail.text = ""
+    }
+    
 }
 extension LoginWithCodeVC:UITextFieldDelegate{
-  
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let decimalCharacters = CharacterSet.decimalDigits
-        
-        let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)
-        
-        if decimalRange != nil {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if txtEmail.text?.isNumeric == true{
             if txtEmail.text!.isPhoneNumber {
                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                 btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
@@ -55,8 +56,68 @@ extension LoginWithCodeVC:UITextFieldDelegate{
             }
         }
        
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if txtEmail.text?.isNumeric == true{
+            if txtEmail.text!.isPhoneNumber {
+                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                
+            }else{
+                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                
+            }
+        }else{
+            // if txtEmail.text!.isValidEmail() {
+             if self.validateEmail(candidate: txtEmail.text!){
+
+                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                 btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+             }else{
+                 viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                 btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+             }
+         }
+      
+        
+        
+       // let decimalCharacters = CharacterSet.decimalDigits
+        
+       // let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)
+        
+//        if decimalRange != nil {
+//            if txtEmail.text!.isPhoneNumber {
+//                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+//                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+//
+//            }else{
+//                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+//                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+//
+//            }
+//        }else{
+           // if txtEmail.text!.isValidEmail() {
+//            if self.validateEmail(candidate: txtEmail.text!){
+//
+//                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+//                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+//            }else{
+//                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+//                btnOutletGetOTP.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+//            }
+//        }
+    textFieldDidEndEditing(txtEmail)
             return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    btnBackOutlet.isSelected = false
+    }
+}
+extension String {
+   var isNumeric: Bool {
+     return !(self.isEmpty) && self.allSatisfy { $0.isNumber }
+   }
 }
 //MARK:- Call Webservice
 extension LoginWithCodeVC {
@@ -97,6 +158,7 @@ extension LoginWithCodeVC {
                             }
                             let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
                             vc.session_id = self.session_id
+                            vc.emailID = self.txtEmail.text!
                             BaseApi.hideActivirtIndicator()
                             self.navigationController?.pushViewController(vc, animated: true)
                             
@@ -104,10 +166,20 @@ extension LoginWithCodeVC {
                             BaseApi.hideActivirtIndicator()
                             self.showToast(message: "Too many OTP Requests")
 
+                        }else if code == 500 {
+                            self.showToast(message: "Internal Server Error")
+
+                            BaseApi.hideActivirtIndicator()
+                        }else{
+                            BaseApi.hideActivirtIndicator()
                         }
                     }
                 }
             } catch {
+                OperationQueue.main.addOperation {
+
+                BaseApi.hideActivirtIndicator()
+                }
                 print("error")
             }
         })
@@ -166,6 +238,13 @@ extension LoginWithCodeVC {
                         BaseApi.hideActivirtIndicator()
                         self.showToast(message: msg)
                         }
+                     }else if code == 500 {
+                        self.showToast(message: "Internal Server Error")
+
+                        BaseApi.hideActivirtIndicator()
+                     }else{
+                        BaseApi.hideActivirtIndicator()
+
                      }
                  }
                 }
@@ -181,22 +260,29 @@ extension LoginWithCodeVC {
          task.resume()
      }
 }
+
 extension LoginWithCodeVC{
-    @IBAction func btnBackAction(_ sender: Any) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func btnBackAction(_ sender: UIButton) {
+        if sender.isSelected{
+            sender.isSelected = false
+            self.navigationController?.popViewController(animated: true)
+
+        }else{
+            sender.isSelected =  true
+            self.view.endEditing(true)
+            }
     }
     @IBAction func btnGetOtpAction(_ sender: Any) {
         self.view.endEditing(true)
-
-        let decimalCharacters = CharacterSet.decimalDigits
-        
-        let decimalRange = txtEmail.text!.rangeOfCharacter(from: decimalCharacters)
-        if decimalRange != nil {
-            callApiGetOtpUsingPhoneNumber()
+        if txtEmail.text == "" {
+            self.txtEmail.shake()
+            self.showToast(message: "Please enter Email id or Phone Number")
         }else{
-            callApiGetOtpUsingEmail()
+            if txtEmail.text?.isNumeric == true{
+                callApiGetOtpUsingPhoneNumber()
+            }else{
+                callApiGetOtpUsingEmail()
+            }
         }
     }
-
 }

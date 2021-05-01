@@ -43,6 +43,7 @@ class DashboardVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewFooterview.footerDelegate = self
 
         // Do any additional setup after loading the view.
@@ -122,9 +123,13 @@ callWebserviceForStorePin(pin: strOTP)
     }
   
     @IBAction func onClickProfileButton(_ sender: UIButton) {
-        let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as! SideMenuNavigationController
-        present(menu,animated: true, completion: nil)
-
+//        let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as! SideMenuNavigationController
+//        present(menu,animated: true, completion: nil)
+        let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as? SideMenuNavigationController
+               menu?.presentationStyle = .menuSlideIn
+               menu?.menuWidth = 280
+               menu?.leftSide =  false
+              present(menu!,animated: true)
     }
     @IBAction func btnCameraAction(_ sender: UIButton) {
         let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")

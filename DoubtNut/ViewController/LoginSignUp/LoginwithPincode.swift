@@ -13,6 +13,7 @@ class LoginwithPincode: UIViewController {
     
     @IBOutlet weak var txtEmail: RCustomTextField!
     
+    @IBOutlet weak var btnBackOutlet: UIButton!
     @IBOutlet weak var viewPin: RCustomView!
     @IBOutlet weak var txtEnterPin: RCustomTextField!
     @IBOutlet weak var btnLoginOutlet: RCustomButton!
@@ -27,6 +28,11 @@ class LoginwithPincode: UIViewController {
         
         
         //self.callLoginApi()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        txtEmail.text = ""
+        txtEnterPin.text = ""
     }
 }
 
@@ -104,21 +110,37 @@ extension LoginwithPincode{
                                     userDef.set(token, forKey: "Auth_token")
                                     userDef.synchronize()
                                 }
-                                if userDef.value(forKey: UserDefaultKey.firsTime) == nil{
-                        
-                                    userDef.setValue("isFristTime", forKey: UserDefaultKey.firsTime)
-                                    userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
-                                    userDef.synchronize()
+//                                if userDef.value(forKey: UserDefaultKey.firsTime) == nil{
+//
+//                                    userDef.setValue("isFristTime", forKey: UserDefaultKey.firsTime)
+//                                    userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+//                                    userDef.synchronize()
+//
+//                                    userDef.synchronize()
+//                                    let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
+//                                    self.navigationController?.pushViewController(vc, animated: false)
+//
+//                                }else{
+//                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }
+//
+                                
+                                
+                                userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                SettingValue.LoginCount = userDef.integer(forKey: UserDefaultKey.cameraCount)
+                                SettingValue.LoginCount += 1
+                                userDef.setValue(SettingValue.LoginCount, forKey: UserDefaultKey.LoginCount)
+                                userDef.synchronize()
 
-                                    userDef.synchronize()
-                                    let vc = FlowController().instantiateViewController(identifier: "CustomCameraVC", storyBoard: "Home")
-                                    self.navigationController?.pushViewController(vc, animated: false)
-
-                                }else{
-                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }
-                            
+//                                if SettingValue.LoginCount >= 5{
+//                                    let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+//                                    self.navigationController?.pushViewController(vc, animated: false)
+//
+//                                }else{
+                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: false, completion: nil)                              //  }
 }
                         }else if code == 403{
                             OperationQueue.main.addOperation {
@@ -151,6 +173,8 @@ extension LoginwithPincode{
 }
 //MARK:- Textfeild Delegate
 extension LoginwithPincode : UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
       //  if txtEmail.text!.isValidEmail() {
         if self.validateEmail(candidate: txtEmail.text!){
@@ -188,6 +212,10 @@ extension LoginwithPincode : UITextFieldDelegate {
         }
             return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        btnBackOutlet.isSelected = false
+        
+    }
 }
 //MARK:- Buton Action
 extension LoginwithPincode{
@@ -203,7 +231,14 @@ extension LoginwithPincode{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        if sender.isSelected{
+            sender.isSelected = false
+            self.navigationController?.popViewController(animated: true)
+
+        }else{
+            sender.isSelected = true
+            self.view.endEditing(true)
+        }
+        
     }
 }

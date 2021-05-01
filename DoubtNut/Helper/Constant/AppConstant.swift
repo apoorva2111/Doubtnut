@@ -12,17 +12,21 @@ struct UserDefaultKey {
     static var cameraCount = ""
     static var chooseLang = ""
     static var chooseClass = ""
+    static var LoginCount = ""
+
 }
 
 struct BoolValue {
     static var isFromDoyouhaveQues = false
     static var isFromImog = false
     static var isFromSideMenuSetPin = false
+    static var isLogout = false
 }
 
 struct SettingValue {
     static var isTerm_C = ""
     static var chooseLanguage = ""
     static var chooseClass = ""
+    static var LoginCount = 0
 }
 

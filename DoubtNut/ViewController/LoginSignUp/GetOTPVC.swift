@@ -24,6 +24,19 @@ class GetOTPVC: UIViewController {
     @IBOutlet weak var txtSetPin: RCustomTextField!
     @IBOutlet weak var txtReenterPin: RCustomTextField!
     @IBOutlet weak var btnOutletSubmit: RCustomButton!
+  
+    @IBOutlet weak var btnBackOutlet: UIButton!
+    @IBAction func btnResendCodeAction(_ sender: UIButton) {
+        stopTimer()
+        view.endEditing(true)
+        if self.validateEmail(candidate: emailID){
+            callApiGetOtpUsingEmail()
+
+        }else  if !(emailID.isPhoneNumber){
+        }else{
+            callApiGetOtpUsingPhoneNumber()
+        }
+    }
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         self.view.endEditing(true)
         validation()
@@ -31,13 +44,23 @@ class GetOTPVC: UIViewController {
     @IBOutlet weak var lblTimer: UILabel!
     
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        if sender.isSelected{
+            sender.isSelected = false
+            stopTimer()
+
+            self.navigationController?.popViewController(animated: true)
+
+        }else{
+            sender.isSelected = true
+            self.view.endEditing(true)
+        }
+       
     }
-    
+    var isStopToast = false
     var session_id = ""
     var emailID = ""
-    var counter = 15
+    var counter = 30
+    var timer:DispatchSourceTimer?//Timer?
 
     var isSetPin = false
     override func viewDidLoad() {
@@ -47,12 +70,45 @@ class GetOTPVC: UIViewController {
         print(session_id)
         lblVeriCodeEmail.text = "Verification Code has been sent to " + emailID
         txtOtp1.becomeFirstResponder()
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
+        createTimer()
+        startTimer()
+        
+        if self.validateEmail(candidate: emailID){
+            counter = 300
+        }else  if !(emailID.isPhoneNumber){
+        }else{
+            counter = 60
+        }
     }
-    
-    @objc func updateCounter() {
+
+    func createTimer() {
+        timer = DispatchSource.makeTimerSource(queue: .main)
+        timer?.schedule(deadline: .now(), repeating: 1.0)
+
+        timer?.setEventHandler { [weak self] in      // assuming you're referencing `self` in here, use `weak` to avoid strong reference cycles
+            // do something
+            self?.updateCounter()
+        }
+
+        // note, timer is not yet started; you have to call `timer?.resume()`
+    }
+
+    func startTimer() {
+        timer?.resume()
+    }
+
+    func pauseTiemr() {
+        timer?.suspend()
+    }
+
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
+    }
+     func updateCounter() {
         //example functionality
+        
+        lblTimer.textColor = #colorLiteral(red: 0.6211201549, green: 0.6355717182, blue: 0.6358628273, alpha: 1)
         if counter > 0 {
             print("\(counter) seconds to the end of the world")
             lblTimer.text =  "\(counter)" + "s Resend Code"
@@ -61,6 +117,17 @@ class GetOTPVC: UIViewController {
             print("\(counter) seconds to the end of the world")
             lblTimer.text =  "\(counter)" + "s Resend Code"
 
+        }
+        if counter == 0{
+            if isStopToast{
+                
+            }else{
+                self.showToast(message: "Your OTP is Expire Please Resend")
+                self.isStopToast = true
+            }
+            lblTimer.text = "Resend Code"
+            lblTimer.textColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+            
         }
     }
 
@@ -126,33 +193,21 @@ extension GetOTPVC{
                                 userDef.synchronize()
                                 
                             }
-                            
-                            let alert = UIAlertController(title: "doubtnut", message: "Do You Want to Set Your 4 Digit Password", preferredStyle: .alert)
-                            
-                            // add an action (button)
-                            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {(Cancel) in
+                            userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                            userDef.synchronize()
+                            SettingValue.LoginCount += 1
+
+//                            if SettingValue.LoginCount >= 5{
+//                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+//                                self.navigationController?.pushViewController(vc, animated: false)
+//
+//                            }else{
                                 let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: false, completion: nil)
+                                self.navigationController?.pushViewController(vc, animated: false)
+                        //    }
+                               
                                 
-                            }))
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (Ok) in
-                                print("Set Print")
-                                self.txtOtp1.text = ""
-                                self.txtOtp2.text = ""
-                                self.txtOtp3.text = ""
-                                self.txtOtp4.text = ""
-                                self.lblOtpLine1.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                self.lblOtpLine2.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                self.lblOtpLine3.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                self.lblOtpLine4.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                self.btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-                                self.btnOutletSubmit.layer.masksToBounds = true
-                                
-                                self.isSetPin = true
-                            }))
-                            // show the alert
-                            self.present(alert, animated: true, completion: nil)
+                        
                         }else if code == 401{
                             BaseApi.hideActivirtIndicator()
                             let message = meta["message"] as! String
@@ -255,6 +310,137 @@ extension GetOTPVC{
         })
         task.resume()
     }
+       
+        func callApiGetOtpUsingEmail(){
+            BaseApi.showActivityIndicator(icon: nil, text: "")
+
+            let params:[String: Any] = ["phone_number":emailID,"login_method":"email_id"]
+
+            var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+            request.httpMethod = "POST"
+            request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+            request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.addValue("847", forHTTPHeaderField: "version_code")
+            request.addValue("US", forHTTPHeaderField: "country")
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                    print(json)
+                    
+                    OperationQueue.main.addOperation {
+
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        if code == 200 {
+                            if let data = json["data"] as? [String:AnyObject]{
+                                let status = data["status"] as? String
+                                if status == "FAILURE"{
+                                    self.showToast(message: "Something Went Wrong")
+                                }else{
+                                    self.session_id = data["session_id"]as! String
+
+                                }
+                            }
+                            BaseApi.hideActivirtIndicator()
+
+                            self.showToast(message: "OTP Successully Sent on Your Email Id")
+                            self.counter = 300
+                            self.createTimer()
+                            self.startTimer()
+
+                        }
+                    }}
+                } catch {
+                    print("error")
+                    OperationQueue.main.addOperation {
+                    BaseApi.hideActivirtIndicator()
+                    self.showToast(message: "Something Went Wrong")
+                    }
+                }
+            })
+
+            task.resume()
+        }
+        
+         func callApiGetOtpUsingPhoneNumber(){
+            BaseApi.showActivityIndicator(icon: nil, text: "")
+
+            let params:[String: Any] = ["phone_number":emailID]
+
+            var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+            request.httpMethod = "POST"
+            request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+            request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.addValue("847", forHTTPHeaderField: "version_code")
+            request.addValue("US", forHTTPHeaderField: "country")
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                    print(json)
+                   OperationQueue.main.addOperation {
+
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        if code == 200 {
+                           
+                          // OperationQueue.main.addOperation {
+                               BaseApi.hideActivirtIndicator()
+                               
+                               if let data = json["data"] as? [String:AnyObject]{
+                                   let status = data["status"] as? String
+                                   if status == "FAILURE"{
+                                       self.showToast(message: "Something Went Wrong")
+                                   }else{
+                                       self.session_id = data["session_id"]as! String
+                                       
+                                   }
+                                   
+                               }
+                            self.showToast(message: "OTP Successully Sent on Your Mobile")
+                            self.counter = 60
+                            self.createTimer()
+
+                            self.startTimer()
+                          
+                        }else if code == 401{
+                           if let msg = meta["message"] as? String{
+                           BaseApi.hideActivirtIndicator()
+                           self.showToast(message: msg)
+                           }
+                        }else{
+                            
+                            if let msg = meta["message"] as? String{
+                            BaseApi.hideActivirtIndicator()
+                            self.showToast(message: msg)
+                            }
+                            BaseApi.hideActivirtIndicator()
+
+
+                        }
+                    }else{
+                        OperationQueue.main.addOperation {
+                            self.showToast(message: "Something Went Wrong")
+
+                            BaseApi.hideActivirtIndicator()
+
+                     }
+                    }
+                   }
+                } catch {
+                   OperationQueue.main.addOperation {
+                       BaseApi.hideActivirtIndicator()
+
+                }
+                    print("error")
+                }
+            })
+
+            task.resume()
+        }
 }
 //MARK:- Custom Classes
 extension GetOTPVC{
@@ -307,26 +493,28 @@ extension GetOTPVC{
                 }
             }
         }else{
-            if txtOtp1.text == "" && txtOtp2.text == "" && txtOtp3.text == "" && txtOtp4.text == "" && txtSetPin.text == "" && txtReenterPin.text == ""{
+            if txtOtp1.text == "" && txtOtp2.text == "" && txtOtp3.text == "" && txtOtp4.text == ""{
                 txtOtp1.shake()
                 txtOtp2.shake()
                 txtOtp3.shake()
                 txtOtp4.shake()
                 txtSetPin.shake()
                 txtReenterPin.shake()
-                self.showToast(message: "Please Enter Validation Code or Set Your 4 Digit PIN")
+                self.showToast(message: "Please Enter Validation Code")
                 
             }else if txtOtp1.text == "" || txtOtp2.text == "" || txtOtp3.text == "" || txtOtp4.text == "" {
                 txtOtp1.shake()
                 txtOtp2.shake()
                 txtOtp3.shake()
                 txtOtp4.shake()
-                self.showToast(message: "Please Enter 4 Digit Validation Code or Set Your 4 Digit PIN")
+                self.showToast(message: "Please Enter 4 Digit Validation Code")
                 
             }else{
                 let strOTP = txtOtp1.text! + txtOtp2.text! + txtOtp3.text! + txtOtp4.text!
                 if counter == 0{
-                    self.showToast(message: "Please resend OTP")
+                    self.showToast(message: "Your OTP is Expire Please Resend")
+                    lblTimer.textColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+
                 }else{
                     webserviceCallVerifyOTP(strOtp:strOTP)
                 }
@@ -339,17 +527,25 @@ extension GetOTPVC{
 
 //MARK:- Textfeild Delegate
 extension GetOTPVC : UITextFieldDelegate{
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//
+//            if txtSetPin.text?.count == 4{
+//                btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+//                btnOutletSubmit.layer.masksToBounds = true
+//
+//            }
+//    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == txtReenterPin || textField == txtSetPin{
         let maxLength = 4
            let currentString: NSString = (textField.text ?? "") as NSString
            let newString: NSString =
                currentString.replacingCharacters(in: range, with: string) as NSString
-            if newString.length > 4{
-                textField.shake()
-            }else{
+            if newString.length == 4{
                 btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
                 btnOutletSubmit.layer.masksToBounds = true
+            }else{
+              //  textField.shake()
 
             }
            return newString.length <= maxLength
@@ -357,6 +553,7 @@ extension GetOTPVC : UITextFieldDelegate{
             return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        btnBackOutlet.isSelected = false
         if textField == txtOtp1 || textField == txtOtp2 || textField == txtOtp3 || textField == txtOtp4{
             viewSetPin.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
             viewReEnterPin.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)

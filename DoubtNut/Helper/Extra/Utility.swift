@@ -55,7 +55,22 @@ class UtilesSwift :NSObject {
             })
         })
     }
-    
+    //MARK:- Alert with completion handler and alert style
+    func displayAlertWithHandler(with title: String?, message: String?, buttons: [String], viewobj:UIViewController,buttonStyles: [UIAlertAction.Style] = [], handler: @escaping (String) -> Void) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            for i in 0 ..< buttons.count {
+                let style: UIAlertAction.Style = buttonStyles.indices.contains(i) ? buttonStyles[i] : .default
+                let buttonTitle = buttons[i]
+                let action = UIAlertAction(title: buttonTitle, style: style) { (_) in
+                    handler(buttonTitle)
+                }
+                alertController.addAction(action)
+            }
+            viewobj.present(alertController, animated: true)
+        }
+    }
+     
     func getTopViewController()->UIViewController{
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {

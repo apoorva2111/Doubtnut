@@ -47,13 +47,13 @@ class SATVC: UIViewController {
         satTableView.addSubview(refreshTbl)
         
         
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        self.viewSwipe.addGestureRecognizer(leftSwipe)
-        self.viewSwipe.addGestureRecognizer(rightSwipe)
-        
+     //   let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
+//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
+//        leftSwipe.direction = .left
+//        rightSwipe.direction = .right
+//        self.viewSwipe.addGestureRecognizer(leftSwipe)
+//        self.viewSwipe.addGestureRecognizer(rightSwipe)
+//
         
         
         self.collFeatureCat?.register(UINib(nibName: "SATCVCell", bundle: nil), forCellWithReuseIdentifier: "SATCVCell")
@@ -94,65 +94,65 @@ extension SATVC {
     }
     
     
-    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-        
-        let duration = animationDuration()
-       
-        
-        if (sender.direction == .left) {
-            print("Swipe Left")
-            
-            if(indexSwipe < self.items.count){
-                if(indexSwipe == self.items.count - 1){
-                }
-                else{
-                    indexSwipe += 1
-                    indexArray.removeAll()
-                    indexArray.append(indexSwipe)
-                  // let obj = self.items[indexSwipe]
-                    
-                    //                    if(indexSwipe == 0){
-                    //
-                    //                    }
-//                    //                    else{
-//                    lblTitle.text = obj
-//                    self.cat_Id = obj.cat_id!
-//                    self.belowArticleList_cat.removeAll()
-//                    self.scrollIndex_cat = 1
-//                    APIClient.showLoaderView(view: self.view)
-//                    self.setbelowArticlesApiWithCatId(strCkeck: "get", cat_id: self.cat_Id)
-                    
-                    UIView.animate(withDuration: duration, animations: {
-                        let labelPosition = CGPoint(x: self.satTableView.frame.origin.x - self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
-                        print(labelPosition)
-                        self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
-                        
-                        self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
-                        self.collFeatureCat.reloadData()
-                        
-                    })
-                }
-            }
-        }
-        
-        if (sender.direction == .right) {
-            print("Swipe Right")
-            if indexSwipe > 0 {
-                indexSwipe -= 1
-                
-                indexArray.removeAll()
-                indexArray.append(indexSwipe)
-                
-                UIView.animate(withDuration: duration, animations: {
-                    let labelPosition = CGPoint(x: self.satTableView.frame.origin.x + self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
-                    self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
-                    
-                    self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
-                    self.collFeatureCat.reloadData()
-                })
-            }
-        }
-    }
+//    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+//
+//        let duration = animationDuration()
+//
+//
+//        if (sender.direction == .left) {
+//            print("Swipe Left")
+//
+//            if(indexSwipe < self.items.count){
+//                if(indexSwipe == self.items.count - 1){
+//                }
+//                else{
+//                    indexSwipe += 1
+//                    indexArray.removeAll()
+//                    indexArray.append(indexSwipe)
+//                  // let obj = self.items[indexSwipe]
+//
+//                    //                    if(indexSwipe == 0){
+//                    //
+//                    //                    }
+////                    //                    else{
+////                    lblTitle.text = obj
+////                    self.cat_Id = obj.cat_id!
+////                    self.belowArticleList_cat.removeAll()
+////                    self.scrollIndex_cat = 1
+////                    APIClient.showLoaderView(view: self.view)
+////                    self.setbelowArticlesApiWithCatId(strCkeck: "get", cat_id: self.cat_Id)
+//
+//                    UIView.animate(withDuration: duration, animations: {
+//                        let labelPosition = CGPoint(x: self.satTableView.frame.origin.x - self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
+//                        print(labelPosition)
+//                        self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
+//
+//                        self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
+//                        self.collFeatureCat.reloadData()
+//
+//                    })
+//                }
+//            }
+//        }
+//
+//        if (sender.direction == .right) {
+//            print("Swipe Right")
+//            if indexSwipe > 0 {
+//                indexSwipe -= 1
+//
+//                indexArray.removeAll()
+//                indexArray.append(indexSwipe)
+//
+//                UIView.animate(withDuration: duration, animations: {
+//                    let labelPosition = CGPoint(x: self.satTableView.frame.origin.x + self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
+//                    self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
+//
+//                    self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
+//                    self.collFeatureCat.reloadData()
+//                })
+//            }
+//        }
+//    }
     
 }
 
@@ -161,7 +161,7 @@ extension SATVC {
     
     func callWebserviceGetdata()  {
        // BaseApi.showActivityIndicator(icon: nil, text: "")
-
+print(id)
         let request = NSMutableURLRequest(url: NSURL(string: "https://dev7.doubtnut.com/v7/library/getplaylist?page_no=1&id=\(id)&student_class=12")! as URL)
         let session = URLSession.shared
         request.httpMethod = "GET"
@@ -188,6 +188,9 @@ extension SATVC {
                                     if let dataJson = json["data"] as? [String:AnyObject]{
                                         let arr = dataJson["list"] as! NSArray
                                         print(arr)
+                                        if arr.count == 0{
+                                            self.showToast(message: "Data not Found")
+                                        }
                                         if arrList.count>0 {
                                             arrList.removeAll()
                                         }

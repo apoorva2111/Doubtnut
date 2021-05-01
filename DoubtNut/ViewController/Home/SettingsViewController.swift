@@ -46,16 +46,23 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClickLogin(_ sender: UIButton) {
-        let mainVC = FlowController().instantiateViewController(identifier: "NavLaunch", storyBoard: "Main")
-        let appDel = UIApplication.shared.delegate as! AppDelegate
-        userDef.removeObject(forKey: "Auth_token")
-        userDef.removeObject(forKey: UserDefaultKey.firsTime)
-        userDef.removeObject(forKey: UserDefaultKey.cameraCount)
-        userDef.removeObject(forKey: UserDefaultKey.chooseLang)
-        userDef.removeObject(forKey: UserDefaultKey.chooseClass)
-
-        appDel.window?.rootViewController = mainVC
-        appDel.window?.makeKeyAndVisible()
+        UtilesSwift.shared.displayAlertWithHandler(with: "", message: "Do you want to Logout from the DoubtNut?", buttons: ["YES","NO"], viewobj: self, buttonStyles: [.default, .cancel]) { (buttonType) in
+            if buttonType == "YES"{
+                let mainVC = FlowController().instantiateViewController(identifier: "NavLaunch", storyBoard: "Main")
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                userDef.removeObject(forKey: "Auth_token")
+                userDef.removeObject(forKey: UserDefaultKey.firsTime)
+                userDef.removeObject(forKey: UserDefaultKey.cameraCount)
+                userDef.removeObject(forKey: UserDefaultKey.chooseLang)
+                userDef.removeObject(forKey: UserDefaultKey.chooseClass)
+                BoolValue.isLogout = true
+                appDel.window?.rootViewController = mainVC
+                appDel.window?.makeKeyAndVisible()
+            }else{
+                
+            }
+        }
+        
 
     }
     

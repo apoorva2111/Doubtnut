@@ -705,6 +705,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tcD-Zc-0nL"/>
                     <connections>
+                        <outlet property="btnBackOutlet" destination="YVL-N3-xqP" id="Dq7-Ke-LiO"/>
                         <outlet property="btnOutletGetVarCode" destination="THP-qx-YSC" id="gdz-nL-PzN"/>
                         <outlet property="tctEmailId" destination="Ulz-vP-lPF" id="grt-Fr-BWP"/>
                         <outlet property="txtPhoneNumber" destination="TeI-3h-8NK" id="Col-p3-AT2"/>
@@ -770,20 +771,20 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7Y-WK-Pdt">
                                                                 <rect key="frame" x="0.0" y="201" width="415" height="580"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a 4 digit PIN for quicker login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-jh-9gu">
+                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a 4 digit PIN for quicker login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-jh-9gu">
                                                                         <rect key="frame" x="16" y="0.0" width="383" height="17"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yH9-RJ-Y4X">
-                                                                        <rect key="frame" x="16" y="29" width="383" height="105"/>
+                                                                        <rect key="frame" x="16" y="29" width="383" height="0.0"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewG-16-5ET" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="383" height="42.5"/>
+                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewG-16-5ET" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="383" height="0.0"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Locked" translatesAutoresizingMaskIntoConstraints="NO" id="bOf-fY-hb9">
-                                                                                        <rect key="frame" x="10" y="8.5" width="25" height="25"/>
+                                                                                        <rect key="frame" x="10" y="-12.5" width="25" height="25"/>
                                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="25" id="CSh-Zq-9Bb"/>
@@ -791,7 +792,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Set your PIN here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rle-QQ-VQQ" customClass="RCustomTextField" customModule="DoubtNut" customModuleProvider="target">
-                                                                                        <rect key="frame" x="40" y="0.0" width="343" height="42.5"/>
+                                                                                        <rect key="frame" x="40" y="0.0" width="343" height="0.0"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -822,11 +823,11 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfu-09-1Gh" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="62.5" width="383" height="42.5"/>
+                                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfu-09-1Gh" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="383" height="0.0"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Locked" translatesAutoresizingMaskIntoConstraints="NO" id="eHe-jB-wrX">
-                                                                                        <rect key="frame" x="10" y="8.5" width="25" height="25"/>
+                                                                                        <rect key="frame" x="10" y="-12.5" width="25" height="25"/>
                                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="width" constant="25" id="QUB-on-1Q3"/>
@@ -834,7 +835,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-enter your PIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FI7-wE-8xw" customClass="RCustomTextField" customModule="DoubtNut" customModuleProvider="target">
-                                                                                        <rect key="frame" x="40" y="0.0" width="343" height="42.5"/>
+                                                                                        <rect key="frame" x="40" y="0.0" width="343" height="0.0"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -867,11 +868,11 @@
                                                                             </view>
                                                                         </subviews>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="105" id="GZ2-Yc-glf"/>
+                                                                            <constraint firstAttribute="height" id="GZ2-Yc-glf"/>
                                                                         </constraints>
                                                                     </stackView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAP-3a-uuq" customClass="RCustomButton" customModule="DoubtNut" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="150" width="383" height="36"/>
+                                                                        <rect key="frame" x="16" y="45" width="383" height="36"/>
                                                                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="36" id="Re5-Wd-W8W"/>
@@ -889,22 +890,34 @@
                                                                             <action selector="btnSubmitAction:" destination="nrl-n5-leK" eventType="touchUpInside" id="upd-rD-7QN"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 15s Resend Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIP-Ot-hm0">
-                                                                        <rect key="frame" x="148.5" y="201" width="118.5" height="19.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 30s Resend Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIP-Ot-hm0">
+                                                                        <rect key="frame" x="148.5" y="96" width="118.5" height="19.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                                         <color key="textColor" red="0.55294117647058827" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q37-TY-ngF">
+                                                                        <rect key="frame" x="148.5" y="83" width="118.5" height="50"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="Tqn-Zb-eWR"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="btnResendCodeAction:" destination="nrl-n5-leK" eventType="touchUpInside" id="ier-SI-UzP"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="XdJ-jh-9gu" firstAttribute="top" secondItem="K7Y-WK-Pdt" secondAttribute="top" id="2PT-oi-jJy"/>
                                                                     <constraint firstItem="yH9-RJ-Y4X" firstAttribute="trailing" secondItem="XdJ-jh-9gu" secondAttribute="trailing" id="8vq-wh-Vfw"/>
+                                                                    <constraint firstItem="q37-TY-ngF" firstAttribute="centerX" secondItem="K7Y-WK-Pdt" secondAttribute="centerX" id="KOY-Cw-xfV"/>
+                                                                    <constraint firstItem="q37-TY-ngF" firstAttribute="top" secondItem="BAP-3a-uuq" secondAttribute="bottom" constant="2" id="PuU-74-RqG"/>
                                                                     <constraint firstItem="BAP-3a-uuq" firstAttribute="leading" secondItem="yH9-RJ-Y4X" secondAttribute="leading" id="UJe-t4-OFg"/>
                                                                     <constraint firstItem="yH9-RJ-Y4X" firstAttribute="leading" secondItem="XdJ-jh-9gu" secondAttribute="leading" id="Yog-2D-nYa"/>
                                                                     <constraint firstItem="BAP-3a-uuq" firstAttribute="top" secondItem="yH9-RJ-Y4X" secondAttribute="bottom" constant="16" id="bmC-qv-rlc"/>
                                                                     <constraint firstItem="yH9-RJ-Y4X" firstAttribute="top" secondItem="XdJ-jh-9gu" secondAttribute="bottom" constant="12" id="haS-Ad-peD"/>
+                                                                    <constraint firstItem="q37-TY-ngF" firstAttribute="width" secondItem="xIP-Ot-hm0" secondAttribute="width" id="jIH-lh-by3"/>
                                                                     <constraint firstItem="xIP-Ot-hm0" firstAttribute="top" secondItem="BAP-3a-uuq" secondAttribute="bottom" constant="15" id="jhL-61-hAY"/>
                                                                     <constraint firstItem="BAP-3a-uuq" firstAttribute="trailing" secondItem="yH9-RJ-Y4X" secondAttribute="trailing" id="jpG-Mi-SXc"/>
                                                                     <constraint firstItem="xIP-Ot-hm0" firstAttribute="centerX" secondItem="K7Y-WK-Pdt" secondAttribute="centerX" id="ppa-qb-rQC"/>
@@ -1160,6 +1173,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5cV-5I-gYG"/>
                     <connections>
+                        <outlet property="btnBackOutlet" destination="GOq-9b-0Ub" id="eD0-W3-Q1d"/>
                         <outlet property="btnOutletSubmit" destination="BAP-3a-uuq" id="aHA-M1-dC6"/>
                         <outlet property="lblOtpLine1" destination="w9h-8W-Alc" id="IJU-fz-ag0"/>
                         <outlet property="lblOtpLine2" destination="bfB-Ih-lvx" id="XQU-o7-2lt"/>
@@ -1254,18 +1268,30 @@
                                                                             <action selector="btnSubmitAction:" destination="UGc-UN-U24" eventType="touchUpInside" id="yU7-7J-j1k"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 15s Resend Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvu-x2-phH">
-                                                                        <rect key="frame" x="271.5" y="71" width="118.5" height="19.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30s Resend Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvu-x2-phH">
+                                                                        <rect key="frame" x="275.5" y="71" width="114.5" height="19.5"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                                         <color key="textColor" red="0.55294117649999996" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-fr-pVF">
+                                                                        <rect key="frame" x="277.5" y="56" width="137.5" height="50"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="Y3F-Ai-NfV"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="btnResendCodeAction:" destination="UGc-UN-U24" eventType="touchUpInside" id="u0r-FK-8z0"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="bqu-Le-N9w" firstAttribute="top" secondItem="48S-E4-9vH" secondAttribute="top" constant="20" id="02y-MS-7HU"/>
+                                                                    <constraint firstItem="iuw-fr-pVF" firstAttribute="top" secondItem="bqu-Le-N9w" secondAttribute="bottom" id="Q6F-d8-qWq"/>
                                                                     <constraint firstItem="wvu-x2-phH" firstAttribute="top" secondItem="bqu-Le-N9w" secondAttribute="bottom" constant="15" id="caI-qo-sHL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="iuw-fr-pVF" secondAttribute="trailing" id="pZ1-U3-faZ"/>
+                                                                    <constraint firstItem="iuw-fr-pVF" firstAttribute="width" secondItem="wvu-x2-phH" secondAttribute="width" multiplier="1.2" id="qol-wn-U5y"/>
                                                                 </constraints>
                                                             </view>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-zo-FJr">
@@ -1528,11 +1554,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="ahR-FQ-rha"/>
                     <connections>
+                        <outlet property="btnBackOutlet" destination="1Nl-op-H2M" id="MRj-ea-S2Z"/>
                         <outlet property="btnOutletSubmit" destination="bqu-Le-N9w" id="7zf-k5-hk8"/>
                         <outlet property="lblOtpLine1" destination="CRy-BX-rxv" id="eHV-4i-Hig"/>
                         <outlet property="lblOtpLine2" destination="m8h-Mo-o15" id="FoX-Uv-ZpJ"/>
                         <outlet property="lblOtpLine3" destination="Y9Z-xj-Uqp" id="Qrj-83-2zj"/>
                         <outlet property="lblOtpLine4" destination="aTb-q1-5B9" id="T46-04-SeL"/>
+                        <outlet property="lblTimmer" destination="wvu-x2-phH" id="FZv-Hz-F7z"/>
+                        <outlet property="lblViderification" destination="Tq0-Gg-pjY" id="Id5-Je-yjJ"/>
                         <outlet property="txtOtp1" destination="fLH-X7-ccC" id="gF5-OP-2yO"/>
                         <outlet property="txtOtp2" destination="QKP-bJ-Eok" id="wX6-Da-eGs"/>
                         <outlet property="txtOtp3" destination="m9M-Sd-Yv6" id="mzj-dl-7n1"/>
@@ -2144,7 +2173,7 @@
                                                                     <constraint firstItem="Ber-JO-6ku" firstAttribute="leading" secondItem="MuW-kO-X5a" secondAttribute="leading" constant="20" id="pcg-fY-bt5"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qG3-3l-EtR">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qG3-3l-EtR">
                                                                 <rect key="frame" x="329" y="231" width="69" height="28"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
                                                                 <state key="normal" title="Forgot PIN?">
@@ -2278,6 +2307,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Kha-30-yiL"/>
                     <connections>
+                        <outlet property="btnBackOutlet" destination="oJe-rm-0jU" id="Nro-DJ-z1y"/>
                         <outlet property="btnLoginOutlet" destination="IgR-at-BIf" id="WuS-rb-Uu4"/>
                         <outlet property="txtEmail" destination="gmo-tn-wBk" id="pBI-oB-Kle"/>
                         <outlet property="txtEnterPin" destination="ySz-0p-ftp" id="moL-17-KOn"/>
@@ -2287,7 +2317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9W-FV-w04" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2959" y="75"/>
+            <point key="canvasLocation" x="2957.971014492754" y="75"/>
         </scene>
         <!--Login With CodeVC-->
         <scene sceneID="em3-8H-wul">
@@ -2601,7 +2631,7 @@
                                                                     <constraint firstItem="se3-X4-pBx" firstAttribute="top" secondItem="V3F-cF-m59" secondAttribute="bottom" constant="16" id="jLF-nO-Fso"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKO-wg-vIG">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKO-wg-vIG">
                                                                 <rect key="frame" x="329" y="178" width="69" height="28"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
                                                                 <state key="normal" title="Forgot PIN?">
@@ -2729,6 +2759,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bOF-C2-EAQ"/>
                     <connections>
+                        <outlet property="btnBackOutlet" destination="d8n-Bg-eUs" id="eSX-gg-K53"/>
                         <outlet property="btnOutletGetOTP" destination="szz-hN-AZe" id="DYj-Gy-Nf0"/>
                         <outlet property="txtEmail" destination="2e5-uC-GQF" id="Wxb-dn-OQ6"/>
                         <outlet property="viewEmail" destination="9Bl-Kp-qhq" id="iC7-oW-WKC"/>

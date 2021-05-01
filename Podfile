@@ -20,6 +20,7 @@ target 'DoubtNut' do
   pod 'NVActivityIndicatorView'
   pod 'SDWebImage', '~> 5.0'
   pod 'AFNetworking', '~> 4.0'
+  pod 'Firebase/Crashlytics'
 
   # Pods for DoubtNut
 

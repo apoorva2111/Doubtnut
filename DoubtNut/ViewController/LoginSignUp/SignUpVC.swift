@@ -34,6 +34,7 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
     @IBOutlet weak var viewPhoneNumber: RCustomView!
     @IBOutlet weak var txtPhoneNumber: RCustomTextField!
     
+    @IBOutlet weak var btnBackOutlet: UIButton!
     @IBOutlet weak var btnOutletGetVarCode: UIButton!
     var session_id = ""
     
@@ -48,7 +49,18 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
         tctEmailId.becomeFirstResponder()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tctEmailId.text = ""
+        txtPhoneNumber.text = ""
+        btnOutletGetVarCode.isUserInteractionEnabled = false
+        viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+        btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+        btnOutletGetVarCode.layer.masksToBounds = true
+        viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+        btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+        btnOutletGetVarCode.layer.masksToBounds = true
+    }
     
     
 }
@@ -88,8 +100,8 @@ extension SignUpVC{
 }
 
 extension SignUpVC : UITextFieldDelegate{
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+  
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if tctEmailId.text == ""{
             
             if txtPhoneNumber.text!.isPhoneNumber{
@@ -106,8 +118,8 @@ extension SignUpVC : UITextFieldDelegate{
             }
             
         }else{
-//            if tctEmailId.text!.isValidEmail() {
-                if self.validateEmail(candidate: tctEmailId.text!){
+            if tctEmailId.text!.isValidEmail() {
+//                if self.validateEmail(candidate: tctEmailId.text!){
 
                 btnOutletGetVarCode.isUserInteractionEnabled = true
                 viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
@@ -120,10 +132,50 @@ extension SignUpVC : UITextFieldDelegate{
                 btnOutletGetVarCode.layer.masksToBounds = true
             }
         }
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let paste = UIPasteboard.general.string, tctEmailId.text == paste {
+//           print("paste")
+//        } else {
+//           print("normal typing")
+//        }
+
+        if tctEmailId.text == ""{
+            
+            if txtPhoneNumber.text!.isPhoneNumber{
+                btnOutletGetVarCode.isUserInteractionEnabled = true
+                viewPhoneNumber.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+                
+            }else{
+                btnOutletGetVarCode.isUserInteractionEnabled = false
+                viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }
+            
+        }else{
+            if tctEmailId.text!.isValidEmail() {
+//                if self.validateEmail(candidate: tctEmailId.text!){
+
+                btnOutletGetVarCode.isUserInteractionEnabled = true
+                viewEmail.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }else{
+                btnOutletGetVarCode.isUserInteractionEnabled = false
+                viewEmail.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
+                btnOutletGetVarCode.layer.masksToBounds = true
+            }
+        }
+        textFieldDidEndEditing(tctEmailId)
         return true
         
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        btnBackOutlet.isSelected = false
         if textField == tctEmailId{
             viewPhoneNumber.borderColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
             txtPhoneNumber.text = ""
@@ -166,8 +218,16 @@ extension SignUpVC {
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        if sender.isSelected{
+            sender.isSelected = false
+            self.navigationController?.popViewController(animated: true)
+
+
+        }else{
+            sender.isSelected = true
+            self.view.endEditing(true)
+
+        }
     }
 }
 //MARK:- Call Webservice
@@ -261,13 +321,14 @@ extension SignUpVC {
                                }
                                
                            }
+                        let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
 
-                           let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
                            vc.session_id = self.session_id
-                           //   DispatchQueue.main.async {
+                           vc.emailID = self.txtPhoneNumber.text!
+
                            self.navigationController?.pushViewController(vc, animated: true)
-                           //    }
-                     //  }
+                         
+                   
                        
                       
                     }else if code == 401{

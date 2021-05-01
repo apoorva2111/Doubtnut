@@ -27,12 +27,6 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     
     @IBOutlet weak var lblOnlyCropOneQues: UILabel!
     
-   
-    
-    
- 
-    
-    
     //  MARK: - Properties
     
     var captureSession: AVCaptureSession!
@@ -53,6 +47,10 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if userDef.integer(forKey: UserDefaultKey.cameraCount) >= 5{
+//            let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+//            self.navigationController?.pushViewController(vc, animated: false)
+//        }
         callWebserviceGetAnimation()
         // Do any additional setup after loading the view.
         viewImgCrop.isHidden = true
@@ -582,7 +580,7 @@ extension CustomCameraVC{
    
     }
     @IBAction func btnGellaryAction(_ sender: UIButton) {
-        
+        checkCameraAccess()
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
@@ -600,12 +598,14 @@ extension CustomCameraVC{
         BoolValue.isFromImog = true
         let vc = FlowController().instantiateViewController(identifier: "GetAnimationVC", storyBoard: "Home") as! GetAnimationVC
        // vc.viewController = self
-        self.view.addSubview(vc.view)
-        self.addChild(vc)
-        vc.view.layoutIfNeeded()
-        
-        vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
-        vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+//        self.view.addSubview(vc.view)
+//        self.addChild(vc)
+//        vc.view.layoutIfNeeded()
+//
+//        vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+//        vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     @IBAction func btnBackAction(_ sender: UIButton) {
        

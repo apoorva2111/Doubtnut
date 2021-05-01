@@ -31,6 +31,10 @@ class LandingpageVC: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         playAnimation()
+        if BoolValue.isLogout {
+            BoolValue.isLogout = false
+            showToast(message: "Logged Out Successfully")
+        }
     }
     //Show Lottie image
     func playAnimation(){

@@ -18,14 +18,40 @@ class LoginGotOTPVC: UIViewController {
     @IBOutlet weak var txtOtp3: RCustomTextField!
     @IBOutlet weak var txtOtp4: RCustomTextField!
     @IBOutlet weak var btnOutletSubmit: RCustomButton!
+    @IBOutlet weak var lblViderification: UILabel!
+    @IBOutlet weak var lblTimmer: UILabel!
+    @IBOutlet weak var btnBackOutlet: UIButton!
+   
+    
+    var emailID = ""
+    var counter = 30
+    var isStopToast = false
+    var timer:DispatchSourceTimer?//Timer?
+    
+    @IBAction func btnResendCodeAction(_ sender: UIButton) {
+        stopTimer()
+        view.endEditing(true)
+        if self.validateEmail(candidate: emailID){
+            callApiGetOtpUsingEmail()
 
+        }else  if !(emailID.isPhoneNumber){
+        }else{
+            callApiGetOtpUsingPhoneNumber()
+        }
+    }
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        if sender.isSelected{
+            sender.isSelected = false
+            self.navigationController?.popViewController(animated: true)
+            
+        }else{
+            sender.isSelected = true
+            self.view.endEditing(true)
+        }
     }
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         self.view.endEditing(true)
-
+        
         validation()
     }
     
@@ -33,11 +59,70 @@ class LoginGotOTPVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtOtp1.becomeFirstResponder()
-setView()
-        // Do any additional setup after loading the view.
+        lblViderification.text = "Verification Code has been sent to " + emailID
+        
+        setView()
+        createTimer()
+        startTimer()
+        if self.validateEmail(candidate: emailID){
+            counter = 300
+        }else if !(emailID.isPhoneNumber){
+        }else{
+            counter = 60
+        }
+        
+    }
+    func createTimer() {
+        timer = DispatchSource.makeTimerSource(queue: .main)
+        timer?.schedule(deadline: .now(), repeating: 1.0)
+
+        timer?.setEventHandler { [weak self] in      // assuming you're referencing `self` in here, use `weak` to avoid strong reference cycles
+            // do something
+            self?.updateCounter()
+        }
+
+        // note, timer is not yet started; you have to call `timer?.resume()`
     }
 
+    func startTimer() {
+        timer?.resume()
+    }
 
+    func pauseTiemr() {
+        timer?.suspend()
+    }
+
+    func stopTimer() {
+        timer?.cancel()
+        timer = nil
+    }
+     func updateCounter() {
+        //example functionality
+        
+        lblTimmer.textColor = #colorLiteral(red: 0.6211201549, green: 0.6355717182, blue: 0.6358628273, alpha: 1)
+        if counter > 0 {
+            print("\(counter) seconds to the end of the world")
+            lblTimmer.text =  "\(counter)" + "s Resend Code"
+            counter -= 1
+        }else{
+            print("\(counter) seconds to the end of the world")
+            lblTimmer.text =  "\(counter)" + "s Resend Code"
+
+        }
+        if counter == 0{
+            if isStopToast{
+                
+            }else{
+                self.showToast(message: "Your OTP is Expire Please Resend")
+                self.isStopToast = true
+            }
+            lblTimmer.text = "Resend Code"
+            lblTimmer.textColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
+            
+        }
+    }
+
+    
 }
 //MARK:- Custom Classes
 extension LoginGotOTPVC{
@@ -76,7 +161,11 @@ extension LoginGotOTPVC{
                 
             }else{
                 let strOTP = txtOtp1.text! + txtOtp2.text! + txtOtp3.text! + txtOtp4.text!
+                if counter == 0{
+                    self.showToast(message: "Your OTP is Expire Please Resend")
+                }else{
                 webserviceCallVerifyOTP(strOtp:strOTP)
+                }
             }
             
         }
@@ -87,6 +176,7 @@ extension LoginGotOTPVC{
 extension LoginGotOTPVC : UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        btnBackOutlet.isSelected = false
         if textField == txtOtp1 || textField == txtOtp2 || textField == txtOtp3 || textField == txtOtp4{
             btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
             btnOutletSubmit.layer.masksToBounds = true
@@ -199,56 +289,40 @@ extension LoginGotOTPVC{
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
                     OperationQueue.main.addOperation {
-                    if let data = json["data"] as? [String:AnyObject]{
-                        if let status = data["status"]{
-                            if status as! String == "FAILURE"{
-                                BaseApi.hideActivirtIndicator()
-                                self.showToast(message: "Please Enter Correct Verification Code")
-                                return
-                            }
-                        }
-              let token = data["token"] as! String
-                            userDef.set(token, forKey: "Auth_token")
-                            userDef.synchronize()
-        
-                        
-                       
-                    }
-print(json)
+
                     if let meta = json["meta"] as? [String:AnyObject]{
                         let code = meta["code"] as! Int
                         if code == 200 {
-                           /*["meta": {
-                             code = 200;
-                             message = "User registered";
-                             success = 1;
-                         }, "data": {
-                             intro =     (
-                                         {
-                                     "question_id" = 2116599;
-                                     type = intro;
-                                     video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
-                                 },
-                                         {
-                                     "question_id" = 2200030;
-                                     type = community;
-                                     video = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial03-720p-02.mp4";
-                                 }
-                             );
-                             "is_new_user" = 0;
-                             "onboarding_video" = "https://doubtnut-static.s.llnwi.net/static/intro-video/NewAppTutorial02-720p-02.mp4";
-                             "student_id" = 38666646;
-                             "student_username" = amy1973akk;
-                             token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzg2NjY2NDYsImlhdCI6MTYxNTg3OTk5MywiZXhwIjoxNjc4OTUxOTkzfQ.uZ3hClH4V1Dj0ZBxylr-MXdL6u55dr4BgZG2IjvI4V4";
-                         }]*/
-                            // create the alert
+                            if let data = json["data"] as? [String:AnyObject]{
+                                if let status = data["status"]{
+                                    if status as! String == "FAILURE"{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: "Please Enter Correct Verification Code")
+                                        return
+                                    }
+                                }
+                                
+                                
+                                let token = data["token"] as! String
+                                userDef.set(token, forKey: "Auth_token")
+                                userDef.synchronize()
+                                
+                                userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                userDef.synchronize()
+                            }
                                 BaseApi.hideActivirtIndicator()
                                 
-                                
+                            SettingValue.LoginCount += 1
+
                                 // add an action (button)
-                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)
+//                            if SettingValue.LoginCount >= 5{
+//                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+//                                self.navigationController?.pushViewController(vc, animated: false)
+//
+//                            }else{
+                                let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                self.navigationController?.pushViewController(vc, animated: false)
+                           // }
                             }
                           //  }
                         }
@@ -261,6 +335,136 @@ print(json)
                 print(error.localizedDescription)
             }
         })
+        task.resume()
+    }
+    func callApiGetOtpUsingEmail(){
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+
+        let params:[String: Any] = ["phone_number":emailID,"login_method":"email_id"]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                
+                OperationQueue.main.addOperation {
+
+                if let meta = json["meta"] as? [String:AnyObject]{
+                    let code = meta["code"] as! Int
+                    if code == 200 {
+                        if let data = json["data"] as? [String:AnyObject]{
+                            let status = data["status"] as? String
+                            if status == "FAILURE"{
+                                self.showToast(message: "Something Went Wrong")
+                            }else{
+                                self.session_id = data["session_id"]as! String
+
+                            }
+                        }
+                        BaseApi.hideActivirtIndicator()
+
+                        self.showToast(message: "OTP Successully Sent on Your Email Id")
+                        self.counter = 300
+                        self.createTimer()
+                        self.startTimer()
+
+                    }
+                }}
+            } catch {
+                print("error")
+                OperationQueue.main.addOperation {
+                BaseApi.hideActivirtIndicator()
+                self.showToast(message: "Something Went Wrong")
+                }
+            }
+        })
+
+        task.resume()
+    }
+    
+     func callApiGetOtpUsingPhoneNumber(){
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+
+        let params:[String: Any] = ["phone_number":emailID]
+
+        var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+               OperationQueue.main.addOperation {
+
+                if let meta = json["meta"] as? [String:AnyObject]{
+                    let code = meta["code"] as! Int
+                    if code == 200 {
+                       
+                      // OperationQueue.main.addOperation {
+                           BaseApi.hideActivirtIndicator()
+                           
+                           if let data = json["data"] as? [String:AnyObject]{
+                               let status = data["status"] as? String
+                               if status == "FAILURE"{
+                                   self.showToast(message: "Something Went Wrong")
+                               }else{
+                                   self.session_id = data["session_id"]as! String
+                                   
+                               }
+                               
+                           }
+                        self.showToast(message: "OTP Successully Sent on Your Mobile")
+                        self.counter = 60
+                        self.createTimer()
+
+                        self.startTimer()
+                      
+                    }else if code == 401{
+                       if let msg = meta["message"] as? String{
+                       BaseApi.hideActivirtIndicator()
+                       self.showToast(message: msg)
+                       }
+                    }else{
+                        
+                        if let msg = meta["message"] as? String{
+                        BaseApi.hideActivirtIndicator()
+                        self.showToast(message: msg)
+                        }
+                        BaseApi.hideActivirtIndicator()
+
+
+                    }
+                }else{
+                    OperationQueue.main.addOperation {
+                        self.showToast(message: "Something Went Wrong")
+
+                        BaseApi.hideActivirtIndicator()
+
+                 }
+                }
+               }
+            } catch {
+               OperationQueue.main.addOperation {
+                   BaseApi.hideActivirtIndicator()
+
+            }
+                print("error")
+            }
+        })
+
         task.resume()
     }
 }
