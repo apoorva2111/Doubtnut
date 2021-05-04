@@ -20,13 +20,13 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     
-    var imageArray = [[UIImage(named: "Vector")],[UIImage(named: "ChangeClass"),UIImage(named: "grade")],
+    var imageArray = [[UIImage(named: "Vector")],[UIImage(named: "ChangeClass")],
                       [UIImage(named: "history"),UIImage(named: "QA"),UIImage(named: "playlist")],
-                      [UIImage(named: "payment"),UIImage(named: "settings")]]
+                      [UIImage(named: "settings")]]
   
-    var titleArray = [["Login PIN"],["Change Grade","ChangeLanguage"],
+    var titleArray = [["Login PIN"],["Change Grade"],
                       ["History","Question Asked History","Watch Later"],
-                      ["Payment History","Settings"]]
+                      ["Settings"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,11 +159,12 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
                 vc.strSelectType = "Class"
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }else if indexPath.row == 1{
-                let vc = storyboard?.instantiateViewController(identifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
-                vc.strSelectType = "Language"
-                self.navigationController?.pushViewController(vc, animated: true)
             }
+//            else if indexPath.row == 1{
+//                let vc = storyboard?.instantiateViewController(identifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
+//                vc.strSelectType = "Language"
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
         }else if indexPath.section == 2{
            
             if indexPath.row == 0 {
@@ -181,8 +182,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }else if indexPath.section == 3{
             if indexPath.row == 0{
-                
-            }else if indexPath.row == 1{
             let mainVC = FlowController().instantiateViewController(identifier: "NavSetting", storyBoard:"Setting")
             let appDel = UIApplication.shared.delegate as! AppDelegate
             appDel.window?.rootViewController = mainVC

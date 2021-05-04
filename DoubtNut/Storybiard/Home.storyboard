@@ -707,7 +707,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dhc-D7-jBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1795.6521739130437" y="72.991071428571431"/>
+            <point key="canvasLocation" x="2705.7971014492755" y="72.991071428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EpZ-vO-CrS">
@@ -786,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dg6-hw-hDl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3245" y="73"/>
+            <point key="canvasLocation" x="4155.072463768116" y="72.991071428571431"/>
         </scene>
         <!--Custom CameraVC-->
         <scene sceneID="PZ6-yc-9y0">
@@ -1606,7 +1606,7 @@ Get Solution.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MsN-9Q-F98" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3931.884057971015" y="72.991071428571431"/>
+            <point key="canvasLocation" x="4842.0289855072469" y="72.991071428571431"/>
         </scene>
         <!--Ideo ListVC-->
         <scene sceneID="pdw-Zx-tFn">
@@ -1826,7 +1826,7 @@ Get Solution.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WwD-ym-3Jr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4779.7101449275369" y="66.964285714285708"/>
+            <point key="canvasLocation" x="5689.8550724637689" y="66.964285714285708"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="nD9-mQ-xos">
@@ -2295,7 +2295,24 @@ Get Solution.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kf2-Pp-a1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2500" y="73"/>
+            <point key="canvasLocation" x="3408.6956521739135" y="72.991071428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jxt-9d-htY">
+            <objects>
+                <navigationController storyboardIdentifier="navDash" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="v3v-G2-Qho" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gJD-TC-4ww">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Se7-ye-cn6" kind="relationship" relationship="rootViewController" id="YC4-cc-JBh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ojb-RE-43E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795.6521739130437" y="72.991071428571431"/>
         </scene>
     </scenes>
     <designables>

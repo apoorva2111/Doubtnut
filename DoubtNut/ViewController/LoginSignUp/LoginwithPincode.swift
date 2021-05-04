@@ -127,20 +127,35 @@ extension LoginwithPincode{
 //
                                 
                                 
-                                userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
-                                SettingValue.LoginCount = userDef.integer(forKey: UserDefaultKey.cameraCount)
-                                SettingValue.LoginCount += 1
-                                userDef.setValue(SettingValue.LoginCount, forKey: UserDefaultKey.LoginCount)
-                                userDef.synchronize()
 
-//                                if SettingValue.LoginCount >= 5{
-//                                    let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
-//                                    self.navigationController?.pushViewController(vc, animated: false)
-//
-//                                }else{
+                                userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                
+                                if var count = userDef.value(forKey: "LoginCount") as? Int{
+                                    count += 1
+                                    userDef.setValue(count, forKey: "LoginCount")
+                                    userDef.synchronize()
+                                    
+                                    if count > 5{
+                                        let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
+                                        vc.modalPresentationStyle = .fullScreen
+                                        self.present(vc, animated: false, completion: nil)                                    }else{
+                                        let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                        vc.modalPresentationStyle = .fullScreen
+                                        self.present(vc, animated: false, completion: nil)
+                                    }
+                                    
+
+                                }else{
+                                    userDef.setValue(1, forKey: "LoginCount")
+                                    userDef.synchronize()
+                                 
                                     let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: false, completion: nil)                              //  }
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: false, completion: nil)
+                                }
+                                
+
+                              
 }
                         }else if code == 403{
                             OperationQueue.main.addOperation {

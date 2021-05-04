@@ -597,28 +597,42 @@ extension CustomCameraVC{
     @IBAction func btnImogAction(_ sender: UIButton) {
         BoolValue.isFromImog = true
         let vc = FlowController().instantiateViewController(identifier: "GetAnimationVC", storyBoard: "Home") as! GetAnimationVC
-       // vc.viewController = self
-//        self.view.addSubview(vc.view)
-//        self.addChild(vc)
-//        vc.view.layoutIfNeeded()
-//
-//        vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
-//        vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func btnBackAction(_ sender: UIButton) {
        
-        BoolValue.isFromImog = false
-        let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
-        vc.viewController = self
-        vc.arrSubjectList = arrSubjectList
-        self.view.addSubview(vc.view)
-        self.addChild(vc)
-        vc.view.layoutIfNeeded()
-        
-        vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
-        vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        if let count = userDef.value(forKey: "count_camera") as? Int{
+            
+            if count > 2{
+                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
+                self.navigationController?.pushViewController(vc, animated: true)
+
+            }
+            else{
+                BoolValue.isFromImog = false
+                let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
+                vc.viewController = self
+                vc.arrSubjectList = arrSubjectList
+                self.view.addSubview(vc.view)
+                self.addChild(vc)
+                vc.view.layoutIfNeeded()
+                
+                vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+                vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            }
+        }else{
+            BoolValue.isFromImog = false
+            let vc = FlowController().instantiateViewController(identifier: "DoYouHaveQuestVC", storyBoard: "Home") as! DoYouHaveQuestVC
+            vc.viewController = self
+            vc.arrSubjectList = arrSubjectList
+            self.view.addSubview(vc.view)
+            self.addChild(vc)
+            vc.view.layoutIfNeeded()
+            
+            vc.view.frame=CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            vc.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        }
     }
     
     @IBAction func btnDontHaveQuesAction(_ sender: UIButton) {

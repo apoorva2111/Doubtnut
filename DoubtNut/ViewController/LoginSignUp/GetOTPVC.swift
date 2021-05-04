@@ -195,16 +195,30 @@ extension GetOTPVC{
                             }
                             userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
                             userDef.synchronize()
-                            SettingValue.LoginCount += 1
+                            if var count = userDef.value(forKey: "LoginCount") as? Int{
+                                count += 1
+                                userDef.setValue(count, forKey: "LoginCount")
+                                userDef.synchronize()
+                                
+                                if count > 5{
+                                    let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: false, completion: nil)                                    }else{
+                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: false, completion: nil)
+                                }
+                                
 
-//                            if SettingValue.LoginCount >= 5{
-//                                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home") as! DashboardVC
-//                                self.navigationController?.pushViewController(vc, animated: false)
-//
-//                            }else{
+                            }else{
+                                userDef.setValue(1, forKey: "LoginCount")
+                                userDef.synchronize()
+                             
                                 let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                self.navigationController?.pushViewController(vc, animated: false)
-                        //    }
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: false, completion: nil)
+                            }
+
                                
                                 
                         

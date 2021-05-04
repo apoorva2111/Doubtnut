@@ -13,6 +13,7 @@ struct UserDefaultKey {
     static var chooseLang = ""
     static var chooseClass = ""
     static var LoginCount = ""
+    static var cameraBackBtnCount = ""
 
 }
 

@@ -1193,7 +1193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YTy-7p-AVX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="70"/>
+            <point key="canvasLocation" x="2103" y="70"/>
         </scene>
         <!--Login GotOTPVC-->
         <scene sceneID="Ish-cj-O4v">
