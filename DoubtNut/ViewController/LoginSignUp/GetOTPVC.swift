@@ -110,11 +110,11 @@ class GetOTPVC: UIViewController {
         
         lblTimer.textColor = #colorLiteral(red: 0.6211201549, green: 0.6355717182, blue: 0.6358628273, alpha: 1)
         if counter > 0 {
-            print("\(counter) seconds to the end of the world")
+           // print("\(counter) seconds to the end of the world")
             lblTimer.text =  "\(counter)" + "s Resend Code"
             counter -= 1
         }else{
-            print("\(counter) seconds to the end of the world")
+           // print("\(counter) seconds to the end of the world")
             lblTimer.text =  "\(counter)" + "s Resend Code"
 
         }
@@ -203,7 +203,7 @@ extension GetOTPVC{
                                 if count > 5{
                                     let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
                                     vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)                                    }else{
+                                    self.present(vc, animated: false, completion: nil)                              }else{
                                     let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
                                     vc.modalPresentationStyle = .fullScreen
                                     self.present(vc, animated: false, completion: nil)

@@ -123,8 +123,6 @@ callWebserviceForStorePin(pin: strOTP)
     }
   
     @IBAction func onClickProfileButton(_ sender: UIButton) {
-//        let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as! SideMenuNavigationController
-//        present(menu,animated: true, completion: nil)
         let  menu = storyboard!.instantiateViewController(withIdentifier: "rightmenu") as? SideMenuNavigationController
                menu?.presentationStyle = .menuSlideIn
                menu?.menuWidth = 280

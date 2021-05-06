@@ -20,6 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window:UIWindow?
 
+    private let displayStatusChangedCallback: CFNotificationCallback = { _, cfObserver, cfName, _, _ in
+        guard let lockState = cfName?.rawValue as String? else {return}
+print(lockState)
+        if (lockState == "com.apple.springboard.lockcomplete") {
+               print("DEVICE LOCKED")
+            NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
+
+           } else {
+               print("LOCK STATUS CHANGED")
+           }
+
+       
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
@@ -27,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
 //        GIDSignIn.sharedInstance().delegate = self
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-
+        registerforDeviceLockNotification()
         self.callRootView()
         return true
     }
@@ -35,58 +49,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
     }
-    
+    func registerforDeviceLockNotification() {
+            //Screen lock notifications
+            CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),     //center
+                Unmanaged.passUnretained(self).toOpaque(),     // observer
+                displayStatusChangedCallback,     // callback
+                "com.apple.springboard.lockcomplete" as CFString,     // event name
+                nil,     // object
+                .deliverImmediately)
 
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-//      // ...
-//      if let error = error {
-//        print(error)
-//        // ...
-//        return
-//      }
-//
-//      guard let authentication = user.authentication else { return }
-//      let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-//                                                        accessToken: authentication.accessToken)
-//        print(credential)
-//      // ...
-//    }
+        }
+    func applicationWillTerminate(_ application: UIApplication){
+//        if BoolValue.isFromCustomCameraDemoQues{
+//            userDef.setValue(true, forKey: "donthaveques")
+//            userDef.synchronize()
+//        }
+        
+    }
 
-//    func sign(_ signIn: GIDSignIn!,didSignInFor user: GIDGoogleUser!,withError error: Error!) {
-//
-//        // Check for sign in error
-//        if let error = error {
-//            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-//                print("The user has not signed in before or they have since signed out.")
-//            } else {
-//                print("\(error.localizedDescription)")
-//            }
-//            return
-//        }
-//
-//        // Get credential object using Google ID token and Google access token
-//        guard let authentication = user.authentication else {
-//            return
-//        }
-//        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-//                                                       accessToken: authentication.accessToken)
-//
-//        // Authenticate with Firebase using the credential object
-//        Auth.auth().signIn(with: credential) { (authResult, error) in
-//            if let error = error {
-//                print("Error occurs when authenticate with Firebase: \(error.localizedDescription)")
-//            }
-//
-//            // Post notification after user successfully sign in
-//            print(authResult?.user.displayName)
-//            print(authResult?.user.email)
-//        }
-//
-//    }
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-//        // Perform any operations when the user disconnects from app here.
-//        // ...
-//    }
 
 }
 

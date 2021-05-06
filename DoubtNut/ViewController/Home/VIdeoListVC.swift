@@ -14,6 +14,9 @@ class VIdeoListVC: UIViewController {
    
     @IBOutlet weak var imgGif: UIImageView!
     @IBOutlet weak var tblList: UITableView!
+    @IBAction func btnBackAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     var arrAskQuestion = [String:AnyObject]()
     var arrList = [NSDictionary]()

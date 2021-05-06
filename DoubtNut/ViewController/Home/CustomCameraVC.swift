@@ -21,11 +21,16 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     @IBOutlet weak var viewLearnPopUp: UIView!
     @IBOutlet weak var lblLernText: UILabel!
     @IBOutlet weak var btnImogOutlet: UIButton!
+    @IBOutlet weak var btnCameraOutlet: UIButton!
     
     @IBOutlet weak var viewDontHave: UIView!
     @IBOutlet weak var viewDontHaveHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var lblOnlyCropOneQues: UILabel!
+    @IBOutlet weak var viewTypeTxt: UIView!
+    @IBOutlet weak var viewTypeTextTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var txtTypeText: UITextView!
     
     //  MARK: - Properties
     
@@ -36,7 +41,7 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     var CountIndex = 0
     var angle: Double = 0.0
     var arrSubjectList = [NSDictionary]()
-
+var demoQuesCount = 0
     // var image: UIImage!
     
     private var cropView: AKImageCropperView {
@@ -47,10 +52,9 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if userDef.integer(forKey: UserDefaultKey.cameraCount) >= 5{
-//            let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-//            self.navigationController?.pushViewController(vc, animated: false)
-//        }
+
+        viewTypeTextTopConstraint.constant = -200
+        txtTypeText.delegate = self
         callWebserviceGetAnimation()
         // Do any additional setup after loading the view.
         viewImgCrop.isHidden = true
@@ -58,16 +62,50 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
         viewLearnPopUp.isHidden = true
         btnImogOutlet.isHidden  = true
         
-        checkCameraAccess()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.batteryLevelChanged),
+            name: NSNotification.Name(rawValue: "NotificationIdentifier"),
+            object: nil)
+     //  if (userDef.value(forKey: "donthaveques") != nil) == false{
+        if let demoquesCount = userDef.value(forKey: "DemoQues"){
+            demoQuesCount  = demoquesCount as! Int
+            demoQuesCount += 1
+            userDef.setValue(demoQuesCount, forKey: "DemoQues")
+            userDef.synchronize()
+
+            if demoQuesCount > 3{
+                self.viewDontHave.isHidden = true
+                self.viewDontHaveHeightConstraint.constant = 0
+            }else{
+                self.viewDontHave.isHidden = false
+                self.viewDontHaveHeightConstraint.constant = 80
+            }
+        }else{
+            userDef.setValue(1, forKey: "DemoQues")
+            userDef.synchronize()
+
+            self.viewDontHave.isHidden = false
+            self.viewDontHaveHeightConstraint.constant = 80
+        }
+//        }else{
+//            self.viewDontHave.isHidden = true
+//            self.viewDontHaveHeightConstraint.constant = 0
+//        }
+    }
+    @objc private func batteryLevelChanged(notification: NSNotification){
+        //do stuff using the userInfo property of the notification object
+        viewWillAppear(true)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkCameraAccess()
+        toggleTorch(on: false)
+
         if BoolValue.isFromDoyouhaveQues{
             BoolValue.isFromDoyouhaveQues = false
             callWebserviceGetDemo()
         }
-        
-       
             var count = userDef.integer(forKey: UserDefaultKey.cameraCount)
                 count += 1
             userDef.setValue(count, forKey: UserDefaultKey.cameraCount)
@@ -194,11 +232,13 @@ extension CustomCameraVC: AKImageCropperViewDelegate {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .denied:
             print("Denied, request permission from settings")
+            btnCameraOutlet.isUserInteractionEnabled = false
             presentCameraSettings()
         case .restricted:
             print("Restricted, device owner must approve")
         case .authorized:
             print("Authorized, proceed")
+            btnCameraOutlet.isUserInteractionEnabled = true
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { success in
                 if success {
@@ -207,6 +247,7 @@ extension CustomCameraVC: AKImageCropperViewDelegate {
                     print("Permission denied")
                 }
             }
+        @unknown default: break
         }
     }
     
@@ -572,15 +613,145 @@ print(json)
         
         task.resume()
     }
+    
+    func callWebserviceForAskQues() {
+        
+//
+        let parameters = ["question_image":"image_url",
+                          "uploaded_image_name":"",
+                          "question":"IOS",
+                          "limit":"20",
+                          "uploaded_image_question_id":"",
+                          "question_text":txtTypeText.text!] as [String : Any]
+        
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.com/v10/questions/ask")! //change the url
+
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("US", forHTTPHeaderField: "country")
+        request.addValue("776", forHTTPHeaderField: "version_code")
+
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+
+                   
+                    if let meta = json["meta"] as? [String:AnyObject]{
+                        let code = meta["code"] as! Int
+                        if code == 200 {
+                            // create the alert
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                                if let data = json["data"] as? [String:AnyObject]{
+                                    let vc = FlowController().instantiateViewController(identifier: "VIdeoListVC", storyBoard: "Home") as! VIdeoListVC
+                                    vc.arrAskQuestion = data
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                            }
+                          //  }
+                        }else{
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                            }
+                        }
+                    }
+            
+                    // handle json..
+                        
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }
+}
+//MARK:- UITextview delegate
+
+extension CustomCameraVC: UITextViewDelegate{
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if txtTypeText.text == "" {
+        txtTypeText.resignFirstResponder()
+        UIView.animate(withDuration: 1.0,
+                          delay: 0.0,
+                          options: [.curveEaseIn],
+                          animations: {
+                            self.viewTypeTextTopConstraint.constant = -200
+                            self.view.layoutIfNeeded()
+                          }, completion: nil)
+        }else{
+            txtTypeText.resignFirstResponder()
+
+        }
+    }
+        
 }
 
 //MARK:- Button Action
 extension CustomCameraVC{
+    @IBAction func btnTypeTextAction(_ sender: UIButton) {
+        toggleTorch(on: false)
+        if sender.tag == 10{
+            txtTypeText.text = ""
+            //close
+            txtTypeText.resignFirstResponder()
+            UIView.animate(withDuration: 1.0,
+                              delay: 0.0,
+                              options: [.curveEaseIn],
+                              animations: {
+                                self.viewTypeTextTopConstraint.constant = -200
+                                self.view.layoutIfNeeded()
+                              }, completion: nil)
+        }else{
+            if txtTypeText.text == "" {
+                txtTypeText.resignFirstResponder()
+                self.showToast(message: "Please Type your Question")
+            }else{
+                callWebserviceForAskQues()
+            }
+        }
+    }
     @IBAction func btnTypeAction(_ sender: UIButton) {
-   
+        toggleTorch(on: false)
+        txtTypeText.becomeFirstResponder()
+        UIView.animate(withDuration: 1.0,
+                          delay: 0.0,
+                          options: [.curveEaseOut],
+                          animations: {
+                            self.viewTypeTextTopConstraint.constant = 200
+                            self.view.layoutIfNeeded()
+                          }, completion: nil)
     }
     @IBAction func btnGellaryAction(_ sender: UIButton) {
         checkCameraAccess()
+        toggleTorch(on: false)
+
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
@@ -590,18 +761,20 @@ extension CustomCameraVC{
 
     }
     @IBAction func watchHistoryAction(_ sender: UIButton) {
+        toggleTorch(on: false)
         let vc = FlowController().instantiateViewController(identifier: "WatchHistoryViewController", storyBoard: "Profile") as! WatchHistoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
    
     @IBAction func btnImogAction(_ sender: UIButton) {
+        toggleTorch(on: false)
         BoolValue.isFromImog = true
         let vc = FlowController().instantiateViewController(identifier: "GetAnimationVC", storyBoard: "Home") as! GetAnimationVC
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func btnBackAction(_ sender: UIButton) {
-       
+        toggleTorch(on: false)
         if let count = userDef.value(forKey: "count_camera") as? Int{
             
             if count > 2{
@@ -636,9 +809,12 @@ extension CustomCameraVC{
     }
     
     @IBAction func btnDontHaveQuesAction(_ sender: UIButton) {
+        toggleTorch(on: false)
+        
         callWebserviceGetDemo()
     }
     @IBAction func btnLearnHowAction(_ sender: UIButton) {
+        toggleTorch(on: false)
         if sender.tag == 10 {
             viewLearnPopUp.isHidden = true
         }else{
@@ -661,11 +837,13 @@ extension CustomCameraVC{
         viewLearnPopUp.isHidden = true
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
+        toggleTorch(on: false)
+
     }
     
     
     @IBAction func btnRetakeAction(_ sender: UIButton) {
-        
+        toggleTorch(on: false)
         guard !cropView.isEdited else {
             
             let alertController = UIAlertController(title: "Warning!", message:
@@ -695,7 +873,7 @@ extension CustomCameraVC{
     }
     
     @IBAction func btnRotateAction(_ sender: UIButton) {
-        
+        toggleTorch(on: false)
         angle += .pi/2 //M_PI_2
         cropView.rotate(angle, withDuration: 0.3, completion: { _ in
             
@@ -706,6 +884,7 @@ extension CustomCameraVC{
     }
     
     @IBAction func btnFlashAction(_ sender: UIButton) {
+        toggleTorch(on: false)
         if sender.isSelected{
             sender.isSelected = false
             toggleTorch(on: false)
@@ -716,7 +895,7 @@ extension CustomCameraVC{
         
     }
     @IBAction func btnFindSolutionAction(_ sender: UIButton) {
-        
+        toggleTorch(on: false)
         guard let image = cropView.croppedImage else {
             return
         }

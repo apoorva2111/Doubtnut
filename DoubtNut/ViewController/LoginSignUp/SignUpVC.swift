@@ -283,8 +283,25 @@ extension SignUpVC {
                             BaseApi.hideActivirtIndicator()
                         self.navigationController?.pushViewController(vc, animated: true)
                         
-                    }
-                }}
+                    }else if code == 401{
+                        if let msg = meta["message"] as? String{
+                        BaseApi.hideActivirtIndicator()
+                        self.showToast(message: msg)
+                        }
+                     }else{
+                         
+                         if let msg = meta["message"] as? String{
+                         BaseApi.hideActivirtIndicator()
+                         self.showToast(message: msg)
+                         }
+                         BaseApi.hideActivirtIndicator()
+
+
+                     }
+
+                }
+                    
+                }
             } catch {
                 print("error")
                 OperationQueue.main.addOperation {

@@ -23,9 +23,12 @@ class FindNewSolutionGifVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.batteryLevelChanged),
+            name: NSNotification.Name(rawValue: "NotificationIdentifier"),
+            object: nil)
         // Do any additional setup after loading the view.
-        playAnimation()
         
         imgForSearch.image = imgUpload
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -42,6 +45,15 @@ class FindNewSolutionGifVC: UIViewController {
                 print(error ?? "")
             }
         }
+    }
+    @objc private func batteryLevelChanged(notification: NSNotification){
+        //do stuff using the userInfo property of the notification object
+        playAnimation()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        playAnimation()
+
     }
     
     func playAnimation(){
@@ -97,19 +109,7 @@ extension FindNewSolutionGifVC{
     
     func callWebserviceForAskQues() {
         
-/*//
-         chapter:
-         colorVersion:2
-         uploaded_image_question_id:671426442
-         question:
-         other_multiple_images_selected:false
-         subject:MATHS
-         checkExactMatch:true
-         student_id:66170691
-         source:ScreenNavigator
-         question_text:
-         clientSource:app
-         question_image:image_url*/
+//question_text
         let parameters = ["question_image":"image_url",
                           "uploaded_image_name":file_name,
                           "question":"IOS",

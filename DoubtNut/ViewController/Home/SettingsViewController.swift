@@ -39,9 +39,10 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onClickDismissVC(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(identifier: "DashboardVC") as! DashboardVC
+//        let vc = storyboard?.instantiateViewController(identifier: "DashboardVC") as! DashboardVC
+        let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
         vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
         
     }
     
