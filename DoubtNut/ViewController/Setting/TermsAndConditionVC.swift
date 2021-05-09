@@ -64,25 +64,34 @@ class TermsAndConditionVC: UIViewController {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:Any]{
-                                        let dataObj = data["tnc"] as! String
-                                        print(dataObj.html2String)
-                                        BaseApi.hideActivirtIndicator()
-                                        lblDiscription.text =  dataObj.html2String
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
-                                    }
+                            let jsonString = BaseApi.showParam(json: json)
+                            UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                                if checkBtn == "OK"{
                                     
-                                    //
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:Any]{
+                                                let dataObj = data["tnc"] as! String
+                                                print(dataObj.html2String)
+                                                BaseApi.hideActivirtIndicator()
+                                                lblDiscription.text =  dataObj.html2String
+
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    }
                                 }else{
                                     BaseApi.hideActivirtIndicator()
-                                    
+
                                 }
-                                
                             }
                         }
                         
@@ -124,26 +133,35 @@ class TermsAndConditionVC: UIViewController {
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:Any]{
-                                        let dataObj = data["privacy"] as! String
-                                        print(dataObj.html2String)
-                                        lblDiscription.text =  dataObj.html2String
-                                        BaseApi.hideActivirtIndicator()
-                                      
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:Any]{
+                                                let dataObj = data["privacy"] as! String
+                                                print(dataObj.html2String)
+                                                lblDiscription.text =  dataObj.html2String
+                                                BaseApi.hideActivirtIndicator()
+                                              
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                        
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
                                     }
-                                    
-                                
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         
@@ -184,26 +202,35 @@ class TermsAndConditionVC: UIViewController {
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:Any]{
-                                        let dataObj = data["aboutus"] as! String
-                                        print(dataObj.html2String)
-                                        BaseApi.hideActivirtIndicator()
-                                        lblDiscription.text =  dataObj.html2String
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
-                                    }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
-                                }
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
                                 
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:Any]{
+                                                let dataObj = data["aboutus"] as! String
+                                                print(dataObj.html2String)
+                                                BaseApi.hideActivirtIndicator()
+                                                lblDiscription.text =  dataObj.html2String
+
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         
@@ -245,26 +272,35 @@ class TermsAndConditionVC: UIViewController {
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:Any]{
-                                        let dataObj = data["contactus"] as! String
-                                        print(dataObj.html2String)
-                                        BaseApi.hideActivirtIndicator()
-                                        lblDiscription.text =  dataObj.html2String
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
-                                    }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
-                                }
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
                                 
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:Any]{
+                                                let dataObj = data["contactus"] as! String
+                                                print(dataObj.html2String)
+                                                BaseApi.hideActivirtIndicator()
+                                                lblDiscription.text =  dataObj.html2String
+                                                
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         

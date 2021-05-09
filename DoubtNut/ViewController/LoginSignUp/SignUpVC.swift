@@ -8,22 +8,12 @@
 import UIKit
 import GoogleSignIn
 import AuthenticationServices
-import FBSDKLoginKit
 import Firebase
+import FBSDKLoginKit
 
-class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding, LoginButtonDelegate {
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-          }
-//        print(result)
+class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding {
+   
 
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-         
-    }
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
            return self.view.window!
@@ -196,26 +186,43 @@ extension SignUpVC {
     {
         if(sender.tag == 10){
             GIDSignIn.sharedInstance()?.presentingViewController = self
-             GIDSignIn.sharedInstance().signIn()
-
-//            GIDSignIn.sharedInstance()?.signOut()
-//
-//            // Sign out from Firebase
-//            do {
-//                try Auth.auth().signOut()
-//
-//                // Update screen after user successfully signed out
-//            } catch let error as NSError {
-//                print ("Error signing out from Firebase: %@", error)
-//            }
+            GIDSignIn.sharedInstance().signIn()
         }
         else if(sender.tag == 20){
-          //  facebookSignup()
-            let loginButton = FBLoginButton()
-            loginButton.delegate = self
-
-        }
-        else if(sender.tag == 30){
+            let fbLoginManager = LoginManager()
+            fbLoginManager.logIn(permissions: ["public_profile", "email", "name", "picture.type(large)"], from: self) { (result, error) in
+                if let error = error {
+                    print("Failed to login: \(error.localizedDescription)")
+                    return
+                }
+                guard let accessToken = AccessToken.current else {
+                    print("Failed to get access token")
+                    return
+                }
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+                
+                // Perform login by calling Firebase APIs
+                Auth.auth().signIn(with: credential, completion: { (user, error) in
+                    if let error = error {
+                        print("Login error: \(error.localizedDescription)")
+                        let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                        let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(okayAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                        return
+                    }
+                    print(user?.additionalUserInfo)
+                    print(user?.credential)
+                    // Present the main view
+//                    if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MainView") {
+//                        UIApplication.shared.keyWindow?.rootViewController = viewController
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
+                    
+                })
+            }
+        }else if(sender.tag == 30){
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
             request.requestedScopes = [.fullName, .email]
@@ -224,6 +231,8 @@ extension SignUpVC {
             authorizationController.performRequests()
         }
     }
+            
+    
     @IBAction func btnGetVarificationCodeAction(_ sender: UIButton) {
         view.endEditing(true)
         validation()
@@ -247,77 +256,81 @@ extension SignUpVC {
    
     func callApiGetOtpUsingEmail(){
         BaseApi.showActivityIndicator(icon: nil, text: "")
-
+        
         let params:[String: Any] = ["phone_number":tctEmailId.text!,"login_method":"email_id"]
-
+        
         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("847", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
-
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
-                
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
                 OperationQueue.main.addOperation {
-
-                if let meta = json["meta"] as? [String:AnyObject]{
-                    let code = meta["code"] as! Int
-                    if code == 200 {
-                        if let data = json["data"] as? [String:AnyObject]{
-                            let status = data["status"] as? String
-                            if status == "FAILURE"{
-                                self.showToast(message: "Something Went Wrong")
-                            }else{
-                                self.session_id = data["session_id"]as! String
-
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (btnClick) in
+                        if btnClick == "OK"{
+                            
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    if let data = json["data"] as? [String:AnyObject]{
+                                        let status = data["status"] as? String
+                                        if status == "FAILURE"{
+                                            self.showToast(message: "Something Went Wrong")
+                                        }else{
+                                            self.session_id = data["session_id"]as! String
+                                            
+                                        }
+                                    }
+                                    let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
+                                    vc.session_id = self.session_id
+                                    vc.emailID = self.tctEmailId.text!
+                                    BaseApi.hideActivirtIndicator()
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                    
+                                }else if code == 401{
+                                    if let msg = meta["message"] as? String{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: msg)
+                                    }
+                                }else{
+                                    
+                                    if let msg = meta["message"] as? String{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: msg)
+                                    }
+                                    BaseApi.hideActivirtIndicator()
+                                }
                             }
-                        }
-                        let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
-                        vc.session_id = self.session_id
-                        vc.emailID = self.tctEmailId.text!
+                        }else{
+                            
                             BaseApi.hideActivirtIndicator()
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-                    }else if code == 401{
-                        if let msg = meta["message"] as? String{
-                        BaseApi.hideActivirtIndicator()
-                        self.showToast(message: msg)
                         }
-                     }else{
-                         
-                         if let msg = meta["message"] as? String{
-                         BaseApi.hideActivirtIndicator()
-                         self.showToast(message: msg)
-                         }
-                         BaseApi.hideActivirtIndicator()
-
-
-                     }
-
-                }
-                    
+                    }
                 }
             } catch {
                 print("error")
                 OperationQueue.main.addOperation {
-                BaseApi.hideActivirtIndicator()
-                self.showToast(message: "Something Went Wrong")
+                    BaseApi.hideActivirtIndicator()
+                    self.showToast(message: "Something Went Wrong")
                 }
             }
         })
-
+        
         task.resume()
     }
     
      func callApiGetOtpUsingPhoneNumber(){
         BaseApi.showActivityIndicator(icon: nil, text: "")
 
-        let params:[String: Any] = ["phone_number":tctEmailId.text!]
+        let params:[String: Any] = ["phone_number":txtPhoneNumber.text!]
 
         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
         request.httpMethod = "POST"
@@ -331,8 +344,12 @@ extension SignUpVC {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
                OperationQueue.main.addOperation {
-
+                UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                    if clickBtn == "OK"{
+        
                 if let meta = json["meta"] as? [String:AnyObject]{
                     let code = meta["code"] as! Int
                     if code == 200 {
@@ -380,8 +397,12 @@ extension SignUpVC {
                         self.showToast(message: "Something Went Wrong")
 
                         BaseApi.hideActivirtIndicator()
+                    }
+                }
+                    }else{
+                        BaseApi.hideActivirtIndicator()
 
-                 }
+                    }
                 }
                }
             } catch {
@@ -395,21 +416,10 @@ extension SignUpVC {
 
         task.resume()
     }
-    /*login_method:google
-     firebase_token:eyJhbGciOiJSUzI1NiIsImtpZCI6ImUwOGI0NzM0YjYxNmE0MWFhZmE5MmNlZTVjYzg3Yjc2MmRmNjRmYTIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRXRoYW4gQWxmYWhoYWJhamlpYSBPa2Vsb2xhbWFuIiwicGljdHVyZSI6Imh0dHBzOi8vZ3JhcGguZmFjZWJvb2suY29tLzEwMDI2ODM1MjA0NTg3Mi9waWN0dXJlIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2RvdWJ0bnV0LW5hIiwiYXVkIjoiZG91YnRudXQtbmEiLCJhdXRoX3RpbWUiOjE2MTAxOTc5MzEsInVzZXJfaWQiOiJDcFN2RjgxSWYxWXlDbmdydTJlTVRuVDBUV3YyIiwic3ViIjoiQ3BTdkY4MUlmMVl5Q25ncnUyZU1UblQwVFd2MiIsImlhdCI6MTYxMDE5NzkzMiwiZXhwIjoxNjEwMjAxNTMyLCJlbWFpbCI6InVvdG9ic25iam5fMTYxMDE5MjM2MkB0ZmJudy5uZXQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZmFjZWJvb2suY29tIjpbIjEwMDI2ODM1MjA0NTg3MiJdLCJlbWFpbCI6WyJ1b3RvYnNuYmpuXzE2MTAxOTIzNjJAdGZibncubmV0Il19LCJzaWduX2luX3Byb3ZpZGVyIjoiZmFjZWJvb2suY29tIn19.ays7V4gH6oy4GFYUSVLCRY7QIJiCEzm_Vm_FPqsC22-gbLUSpthn2LijNmu4NZztN7QzBA1sPZeho7liGIOYyuy9WDxhVnfm_pkepG84gWzP1yNfar05pvQTpsXn9o7To4jaOcQzSm4yr3lxHMsLHKi5VuQreQfFfAA-jW95eeM-26YfKnnh_3IXeM5jkgVgszuK7v7wXTlztrXKfsMsYsa-okNYX1rU-YhS7z6aORVoeaAaiClmh2e1Vfw0TfJsGeTBJe51ku2LO0ec4sPrCFa_iseg0J-wHrTrsfJ6FLtchMEzCVyAyRZjYgAWaLaybhm5xBvyFXj3bUnD5ac1Dw
-     country_code:91
-     //country_code:us
-     //class:12
-     app_version:7.8.178
-     udid:4396330f184d6052
-     gcm_reg_id:cMCCj_yFQ8mjuWR_mi1lBm:APA91bFOY4O3cwx0yZeVQYbv4qhPfmX9sngjDgG8r-rKK8jbXyzE2Dy5gVgUEqZTl0jJE5e2XbyPgQ_ZwDSdQohBKrPy846bJTpZf6oC-ILmjZeCnGKSMkTQqt18g7W4oJcI9jIH_nhc
-     course:
-     language:
-     is_optin:true*/
     func loginWithSocialMedia(login_method:String,firebase_token:String,country_code:String,app_version: String,udid:String,gcm_reg_id:String,course:String,language:String,is_optin:Bool) {
         BaseApi.showActivityIndicator(icon: nil, text: "")
 
-        let params:[String: Any] = ["login_method":login_method,"firebase_token":firebase_token,"country_code":country_code,"app_version":app_version,"udid":udid,"gcm_reg_id":gcm_reg_id,"course":course,"language":language,"is_optin":is_optin]
+        let params:[String: Any] = ["login_method":login_method,"firebase_token":firebase_token]
 
         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v2/student/login-with-firebase")!)
         request.httpMethod = "POST"
@@ -423,30 +433,41 @@ extension SignUpVC {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
-                
+                BaseApi.hideActivirtIndicator()
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
                 OperationQueue.main.addOperation {
                     BaseApi.hideActivirtIndicator()
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                        if clickBtn == "Ok" {
+                            BaseApi.hideActivirtIndicator()
+                        }else{
+                            
+                        }
 
-                if let meta = json["meta"] as? [String:AnyObject]{
-                    let code = meta["code"] as! Int
-//                    if code == 200 {
-//                        if let data = json["data"] as? [String:AnyObject]{
-//                            let status = data["status"] as? String
-//                            if status == "FAILURE"{
-//                                self.showToast(message: "Something Went Wrong")
-//                            }else{
-//                                self.session_id = data["session_id"]as! String
-//
-//                            }
-//                        }
-//                        let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
-//                        vc.session_id = self.session_id
-//                        vc.emailID = self.tctEmailId.text!
-//                            BaseApi.hideActivirtIndicator()
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//
-//                    }
-                }}
+                    }
+//                if let meta = json["meta"] as? [String:AnyObject]{
+//                    let code = meta["code"] as! Int
+////                    if code == 200 {
+////                        if let data = json["data"] as? [String:AnyObject]{
+////                            let status = data["status"] as? String
+////                            if status == "FAILURE"{
+////                                self.showToast(message: "Something Went Wrong")
+////                            }else{
+////                                self.session_id = data["session_id"]as! String
+////
+////                            }
+////                        }
+////                        let vc = FlowController().instantiateViewController(identifier: "GetOTPVC", storyBoard: "Main") as! GetOTPVC
+////                        vc.session_id = self.session_id
+////                        vc.emailID = self.tctEmailId.text!
+////                            BaseApi.hideActivirtIndicator()
+////                        self.navigationController?.pushViewController(vc, animated: true)
+////
+////                    }
+//                }
+                    
+                }
             } catch {
                 print("error")
                 OperationQueue.main.addOperation {
@@ -596,40 +617,10 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
                 let Firstname = (fullName?.givenName)!
                 let Lastname = (fullName?.familyName)!
                 
-//                var tokan = ""
-//                if let fcmToken = userDef.object(forKey: "fcmToken") as? String{
-//                    tokan = fcmToken
-//                    //APIClient.showAlertMessage(vc: self, titleStr: "", messageStr: tokan)
-//                }
-                
-//                APIClient.callLoginapi(email: email, firstName: Firstname, lastName: Lastname, address: address, city: self.city, country: self.country, postalcode: self.postalcode, profile: "", appname: Endpoints.Environment.appName, regsource: "apple", tokens: tokan) { (loginModel) in
-//
-//                    //save user model in userdefault and navigate to home
-//
-//                    OperationQueue.main.addOperation {
-//                        let encoder = JSONEncoder()
-//                        if let encoded = try? encoder.encode(loginModel.user_info!) {
-//                            userDef.set(encoded, forKey: "userInfo")
-//                            userDef.set("apple", forKey: "socela_media")
-//                        }
-//
-//                        if let userInfo = userDef.object(forKey: "userInfo") as? Data {
-//                            let decoder = JSONDecoder()
-//                            if let userM = try? decoder.decode(User_info.self, from: userInfo) {
-//                                userGlobal = userM
-//                                let home = self.storyboard?.instantiateViewController(identifier: "homeViewController") as! homeViewController
-//                                self.navigationController?.pushViewController(home, animated: true)
-//                            }
-//                        }
-//                    }
-//                }
-                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
+//                self.navigationController?.pushViewController(vc, animated: true)
 
             }else{
-//                APIClient.showAlertMessage(vc: self, titleStr: "Change Sign in with Apple settings for Hayti app.", messageStr: "Go to iPhone Settings > Apple Id > Password & Security > Apple ID logins > Hayti > Stop using Apple ID.")
-             //   let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-             //   self.navigationController?.pushViewController(vc, animated: true)
                 performExistingAccountSetupFlows()
             }
         }
@@ -656,25 +647,7 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
 //MARK:- Facebook Login
 extension SignUpVC {
     
-    func facebookSignup()
-    {
-        let fbLoginManager : LoginManager = LoginManager()
-        
-        fbLoginManager.logIn(permissions: ["email"], from: self, handler: { (result, error) -> Void in
-            
-            if (error == nil) {
-                let fbloginresult : LoginManagerLoginResult = result!
-                if(fbloginresult.isCancelled) {
-                    //Show Cancel alert
-                } else if(fbloginresult.grantedPermissions.contains("email")) {
-                    self.returnUserData()
-                }
-                else {
-                    print("fbbbbb = \(fbloginresult)")
-                }
-            }
-        })
-    }
+    
     
     func returnUserData() {
         let graphRequest : GraphRequest = GraphRequest(graphPath: "me", parameters: ["fields":"id, name, picture.type(large), email"])

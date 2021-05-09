@@ -173,66 +173,77 @@ extension GetOTPVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
+                    let param = BaseApi.showParam(json: parameters)
+                    let jsonString = BaseApi.showParam(json: json)
                     OperationQueue.main.addOperation {
-
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            /**/
-                            BaseApi.hideActivirtIndicator()
-                            
-                            if let data = json["data"] as? [String:AnyObject]{
-                                if let status = data["status"]{
-                                    if status as! String == "FAILURE"{
-                                        self.showToast(message: "Please Enter Correct Verification Code")
-                                        return
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                            if clickBtn == "Ok" {
+                                
+                                if let meta = json["meta"] as? [String:AnyObject]{
+                                    let code = meta["code"] as! Int
+                                    if code == 200 {
+                                        /**/
+                                        BaseApi.hideActivirtIndicator()
+                                        
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            if let status = data["status"]{
+                                                if status as! String == "FAILURE"{
+                                                    self.showToast(message: "Please Enter Correct Verification Code")
+                                                    return
+                                                }
+                                            }
+                                            let token = data["token"] as! String
+                                            userDef.set(token, forKey: "Auth_token")
+                                            userDef.synchronize()
+                                            
+                                        }
+                                        userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                        userDef.synchronize()
+                                        if var count = userDef.value(forKey: "LoginCount") as? Int{
+                                            count += 1
+                                            userDef.setValue(count, forKey: "LoginCount")
+                                            userDef.synchronize()
+                                            
+                                            if count > 5{
+                                                let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
+                                                vc.modalPresentationStyle = .fullScreen
+                                                self.present(vc, animated: false, completion: nil)                              }else{
+                                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                                    vc.modalPresentationStyle = .fullScreen
+                                                    self.present(vc, animated: false, completion: nil)
+                                                }
+                                            
+                                            
+                                        }else{
+                                            userDef.setValue(1, forKey: "LoginCount")
+                                            userDef.synchronize()
+                                            
+                                            let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                            vc.modalPresentationStyle = .fullScreen
+                                            self.present(vc, animated: false, completion: nil)
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                    }else if code == 401{
+                                        BaseApi.hideActivirtIndicator()
+                                        let message = meta["message"] as! String
+                                        self.showToast(message: message)
+                                        
                                     }
-                                }
-                                let token = data["token"] as! String
-                                userDef.set(token, forKey: "Auth_token")
-                                userDef.synchronize()
-                                
-                            }
-                            userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
-                            userDef.synchronize()
-                            if var count = userDef.value(forKey: "LoginCount") as? Int{
-                                count += 1
-                                userDef.setValue(count, forKey: "LoginCount")
-                                userDef.synchronize()
-                                
-                                if count > 5{
-                                    let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)                              }else{
-                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)
+                                    else{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: "Something Went Wrong")
+                                    }
+                                    //  }
                                 }
                                 
-
                             }else{
-                                userDef.setValue(1, forKey: "LoginCount")
-                                userDef.synchronize()
-                             
-                                let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: false, completion: nil)
+                                BaseApi.hideActivirtIndicator()
+
                             }
 
-                               
-                                
-                        
-                        }else if code == 401{
-                            BaseApi.hideActivirtIndicator()
-                            let message = meta["message"] as! String
-                            self.showToast(message: message)
-
-                        }
-                        else{
-                            BaseApi.hideActivirtIndicator()
-                            self.showToast(message: "Something Went Wrong")
-                        }
-                          //  }
                         }
                     }
             
@@ -342,35 +353,41 @@ extension GetOTPVC{
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                     print(json)
-                    
+                    let param = BaseApi.showParam(json: params)
+                    let jsonString = BaseApi.checkResponse(json: json)
                     OperationQueue.main.addOperation {
-
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            if let data = json["data"] as? [String:AnyObject]{
-                                let status = data["status"] as? String
-                                if status == "FAILURE"{
-                                    self.showToast(message: "Something Went Wrong")
-                                }else{
-                                    self.session_id = data["session_id"]as! String
-
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                            if clickButton == "OK"{
+                                
+                                if let meta = json["meta"] as? [String:AnyObject]{
+                                    let code = meta["code"] as! Int
+                                    if code == 200 {
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            let status = data["status"] as? String
+                                            if status == "FAILURE"{
+                                                self.showToast(message: "Something Went Wrong")
+                                            }else{
+                                                self.session_id = data["session_id"]as! String
+                                            }
+                                        }
+                                        BaseApi.hideActivirtIndicator()
+                                        
+                                        self.showToast(message: "OTP Successully Sent on Your Email Id")
+                                        self.counter = 300
+                                        self.createTimer()
+                                        self.startTimer()
+                                    }
                                 }
+                            }else{
+                                BaseApi.hideActivirtIndicator()
                             }
-                            BaseApi.hideActivirtIndicator()
-
-                            self.showToast(message: "OTP Successully Sent on Your Email Id")
-                            self.counter = 300
-                            self.createTimer()
-                            self.startTimer()
-
                         }
-                    }}
+                    }
                 } catch {
                     print("error")
                     OperationQueue.main.addOperation {
-                    BaseApi.hideActivirtIndicator()
-                    self.showToast(message: "Something Went Wrong")
+                        BaseApi.hideActivirtIndicator()
+                        self.showToast(message: "Something Went Wrong")
                     }
                 }
             })
@@ -395,54 +412,63 @@ extension GetOTPVC{
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                     print(json)
+                    let param = BaseApi.showParam(json: params)
+                    let jsonString = BaseApi.checkResponse(json: json)
+
                    OperationQueue.main.addOperation {
-
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                           
-                          // OperationQueue.main.addOperation {
-                               BaseApi.hideActivirtIndicator()
-                               
-                               if let data = json["data"] as? [String:AnyObject]{
-                                   let status = data["status"] as? String
-                                   if status == "FAILURE"{
-                                       self.showToast(message: "Something Went Wrong")
-                                   }else{
-                                       self.session_id = data["session_id"]as! String
-                                       
-                                   }
-                                   
-                               }
-                            self.showToast(message: "OTP Successully Sent on Your Mobile")
-                            self.counter = 60
-                            self.createTimer()
-
-                            self.startTimer()
-                          
-                        }else if code == 401{
-                           if let msg = meta["message"] as? String{
-                           BaseApi.hideActivirtIndicator()
-                           self.showToast(message: msg)
-                           }
-                        }else{
-                            
-                            if let msg = meta["message"] as? String{
-                            BaseApi.hideActivirtIndicator()
-                            self.showToast(message: msg)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        if clickButton == "OK" {
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    
+                                    // OperationQueue.main.addOperation {
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                    if let data = json["data"] as? [String:AnyObject]{
+                                        let status = data["status"] as? String
+                                        if status == "FAILURE"{
+                                            self.showToast(message: "Something Went Wrong")
+                                        }else{
+                                            self.session_id = data["session_id"]as! String
+                                            
+                                        }
+                                        
+                                    }
+                                    self.showToast(message: "OTP Successully Sent on Your Mobile")
+                                    self.counter = 60
+                                    self.createTimer()
+                                    
+                                    self.startTimer()
+                                    
+                                }else if code == 401{
+                                    if let msg = meta["message"] as? String{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: msg)
+                                    }
+                                }else{
+                                    
+                                    if let msg = meta["message"] as? String{
+                                        BaseApi.hideActivirtIndicator()
+                                        self.showToast(message: msg)
+                                    }
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                    
+                                }
+                            }else{
+                                OperationQueue.main.addOperation {
+                                    self.showToast(message: "Something Went Wrong")
+                                    
+                                    BaseApi.hideActivirtIndicator()
+                                    
+                                }
                             }
+                        }else{
                             BaseApi.hideActivirtIndicator()
-
-
                         }
-                    }else{
-                        OperationQueue.main.addOperation {
-                            self.showToast(message: "Something Went Wrong")
-
-                            BaseApi.hideActivirtIndicator()
-
-                     }
                     }
+
                    }
                 } catch {
                    OperationQueue.main.addOperation {

@@ -107,38 +107,44 @@ extension WatchHistoryViewController{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            BaseApi.hideActivirtIndicator()
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:AnyObject]{
-                                        print(data)
-                                        let list = data["list"] as! NSArray
-                                        print(list)
-                                        for objList in list{
-                                            arrWatchHistory.append(objList as! NSDictionary)
-                                        }
-//
-                                        if arrWatchHistory.isEmpty {
-                                            print("No History Found")
-                                            watchHistoryView.isHidden = true
-                                            NoVideosView.isHidden = false
-                                            
-                                        }else {
-                                            NoVideosView.isHidden = true
-                                            watchHistoryView.isHidden = false
-                                            watchHistoryTableview.reloadData()
-                                        }
-                                       
-                                    }
-                                    
-                                    //
-                                }else{
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            
+                            if checkBtn == "OK"{
+                                OperationQueue.main.addOperation { [self] in
                                     BaseApi.hideActivirtIndicator()
-                                    
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:AnyObject]{
+                                                print(data)
+                                                let list = data["list"] as! NSArray
+                                                print(list)
+                                                for objList in list{
+                                                    arrWatchHistory.append(objList as! NSDictionary)
+                                                }
+        //
+                                                if arrWatchHistory.isEmpty {
+                                                    print("No History Found")
+                                                    watchHistoryView.isHidden = true
+                                                    NoVideosView.isHidden = false
+                                                    
+                                                }else {
+                                                    NoVideosView.isHidden = true
+                                                    watchHistoryView.isHidden = false
+                                                    watchHistoryTableview.reloadData()
+                                                }
+                                               
+                                            }
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                        }
+                                        
+                                    }
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         

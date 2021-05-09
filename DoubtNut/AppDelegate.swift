@@ -10,7 +10,6 @@ import IQKeyboardManagerSwift
 import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
-
 var userDef = UserDefaults.standard
 
 

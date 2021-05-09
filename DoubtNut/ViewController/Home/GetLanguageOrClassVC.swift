@@ -101,38 +101,48 @@ extension GetLanguageOrClassVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? NSArray{
-                                        for obj in data {
-                                            print(obj)
-                                            arrClassList.append(obj as! NSDictionary)
-                                        }
-                                        tblList.reloadData()
-                                        BaseApi.hideActivirtIndicator()
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? NSArray{
+                                                for obj in data {
+                                                    print(obj)
+                                                    arrClassList.append(obj as! NSDictionary)
+                                                }
+                                                tblList.reloadData()
+                                                BaseApi.hideActivirtIndicator()
 
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
                             }
                         }
+
                         
                     }
                 } catch let error {
+                    OperationQueue.main.addOperation {
                     self.showToast(message: "Something Went Wrong")
                     
                     BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
+                    }
                 }
             }
         })
@@ -164,38 +174,48 @@ extension GetLanguageOrClassVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? NSArray{
-                                        for obj in data {
-                                            print(obj)
-                                            arrClassList.append(obj as! NSDictionary)
-                                        }
-                                        tblList.reloadData()
-                                        BaseApi.hideActivirtIndicator()
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? NSArray{
+                                                for obj in data {
+                                                    print(obj)
+                                                    arrClassList.append(obj as! NSDictionary)
+                                                }
+                                                tblList.reloadData()
+                                                BaseApi.hideActivirtIndicator()
 
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         
                     }
                 } catch let error {
+                    OperationQueue.main.addOperation {
                     self.showToast(message: "Something Went Wrong")
                     
                     BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
+                    }
                 }
             }
         })
@@ -241,33 +261,41 @@ extension GetLanguageOrClassVC{
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    OperationQueue.main.addOperation {
-                     
-                        BaseApi.hideActivirtIndicator()
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
+                    let jsonString = BaseApi.showParam(json: json)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                     
+                                        self.navigationController?.popViewController(animated: true)
+                                        
+                                //  }
 
-                             
-                                self.navigationController?.popViewController(animated: true)
-                                
-                        //  }
+                                }else{
 
+                                    BaseApi.hideActivirtIndicator()
+                                }
+                                }
+                            }
                         }else{
-
                             BaseApi.hideActivirtIndicator()
-                        }
                         }
                     }
                     /**/
                     // handle json...
                 }
             } catch let error {
+                OperationQueue.main.addOperation {
                 self.showToast(message: "Something Went Wrong")
 
                 BaseApi.hideActivirtIndicator()
 
                 print(error.localizedDescription)
+                }
             }
         })
         task.resume()
@@ -312,33 +340,40 @@ extension GetLanguageOrClassVC{
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    OperationQueue.main.addOperation {
-print(json)
-                        BaseApi.hideActivirtIndicator()
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
+                    let jsonString = BaseApi.showParam(json: json)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            
+                            OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                        self.navigationController?.popViewController(animated: true)
 
-                             
-                                self.navigationController?.popViewController(animated: true)
-                                
-                        //  }
+                                }else{
 
+                                    BaseApi.hideActivirtIndicator()
+                                }
+                                }
+                            }
                         }else{
-
                             BaseApi.hideActivirtIndicator()
                         }
-                        }
+                        
                     }
+                    
                     /**/
                     // handle json...
                 }
             } catch let error {
+                OperationQueue.main.addOperation {
                 self.showToast(message: "Something Went Wrong")
 
                 BaseApi.hideActivirtIndicator()
 
                 print(error.localizedDescription)
+                }
             }
         })
         task.resume()

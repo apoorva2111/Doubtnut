@@ -109,35 +109,46 @@ extension GetAnimationVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] {
-                                        let arrTitle = data as! NSArray
-                                        for objTitle in arrTitle {
-                                            self.arrAnimationTitle.append(objTitle as! NSDictionary)
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] {
+                                                let arrTitle = data as! NSArray
+                                                for objTitle in arrTitle {
+                                                    self.arrAnimationTitle.append(objTitle as! NSDictionary)
+                                                    
+                                                }
+                                                tbleAnimation.reloadData()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
                                             
                                         }
-                                        tbleAnimation.reloadData()
+                                        
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
+
                         
                     }
                 } catch let error {
+                    OperationQueue.main.addOperation {
                     self.showToast(message: "Something Went Wrong")
                     
                     BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
+                    }
                 }
             }
         })

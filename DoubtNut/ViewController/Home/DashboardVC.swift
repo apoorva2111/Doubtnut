@@ -64,9 +64,13 @@ class DashboardVC: UIViewController {
         viewFooterview.lblHome.textColor = #colorLiteral(red: 1, green: 0.4183522463, blue: 0.2224330306, alpha: 1)
         
    setView()
-        callWebserviceGetdata()
 
         callWebserviceForItems()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            self.callWebserviceGetdata()
+        }
+      //
+
     }
     func setView() {
         txtSetPinOne.delegate = self
@@ -242,27 +246,35 @@ extension DashboardVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let dataJson = json["data"] as? NSArray{
-                                        print(dataJson)
-                                        for obj in dataJson{
-                                            arrGetData.append(obj as! NSDictionary)
-                                        }
-                                        BaseApi.hideActivirtIndicator()
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
-                                    }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
-                                }
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            
+                            if checkBtn == "OK"{
                                 
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let dataJson = json["data"] as? NSArray{
+                                                print(dataJson)
+                                                for obj in dataJson{
+                                                    arrGetData.append(obj as! NSDictionary)
+                                                }
+                                                
+                                                BaseApi.hideActivirtIndicator()
+                                                
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                        }
+                                        
+                                    }
+                                }
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         
@@ -304,33 +316,42 @@ extension DashboardVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation {
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let dataJson = json["data"] as? [String:Any]{
-                                        BaseApi.hideActivirtIndicator()
-                                        if let feedDate = dataJson["feeddata"] as? NSArray{
-                                            print(feedDate)
-                                            for objDict in feedDate {
-                                                self.arrFeedData.append(objDict as! NSDictionary)
-                                            }
-                                            self.tblHeightConstraint.constant = CGFloat(290*self.arrFeedData.count)
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                
+                                OperationQueue.main.addOperation {
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let dataJson = json["data"] as? [String:Any]{
+                                                BaseApi.hideActivirtIndicator()
+                                                if let feedDate = dataJson["feeddata"] as? NSArray{
+                                                    print(feedDate)
+                                                    for objDict in feedDate {
+                                                        self.arrFeedData.append(objDict as! NSDictionary)
+                                                    }
+                                                    self.tblHeightConstraint.constant = CGFloat(290*self.arrFeedData.count)
 
-                                            self.tblList.reloadData()
+                                                    self.tblList.reloadData()
+                                                    
+                                                }
+
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
                                             
                                         }
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
+                                        
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         
@@ -518,29 +539,36 @@ extension DashboardVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
-                    OperationQueue.main.addOperation {
+                    let jsonString = BaseApi.showParam(json: json)
+                    let param = BaseApi.showParam(json: parameters as [String : Any])
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            OperationQueue.main.addOperation {
 
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            /**/
-                            BaseApi.hideActivirtIndicator()
-                            
-                            if let data = json["data"] as? [String:AnyObject]{
-                                if let message = data["message"]{
-                                    self.viewSetPin.isHidden = true
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    /**/
+                                    BaseApi.hideActivirtIndicator()
                                     
-                                    self.showToast(message: message as! String)
+                                    if let data = json["data"] as? [String:AnyObject]{
+                                        if let message = data["message"]{
+                                            self.viewSetPin.isHidden = true
+                                            
+                                            self.showToast(message: message as! String)
+                                        }
+                                        
+                                    }
+                                    // add an action (button)}else{
+                                    BaseApi.hideActivirtIndicator()
+                                    self.showToast(message: "Something Went Wrong")
                                 }
-                                
+                                  //  }
+                                }
                             }
-                            
-                            
-                            // add an action (button)}else{
+                        }else{
                             BaseApi.hideActivirtIndicator()
-                            self.showToast(message: "Something Went Wrong")
-                        }
-                          //  }
+
                         }
                     }
             

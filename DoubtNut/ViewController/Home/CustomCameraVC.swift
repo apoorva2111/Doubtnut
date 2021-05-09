@@ -298,33 +298,42 @@ extension CustomCameraVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] {
-                                        let arrTitle = data as! NSArray
-                                        for objTitle in arrTitle {
-                                            self.arrAnimationTitle.append(objTitle as! NSDictionary)
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK" {
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] {
+                                                let arrTitle = data as! NSArray
+                                                for objTitle in arrTitle {
+                                                    self.arrAnimationTitle.append(objTitle as! NSDictionary)
+                                                    
+                                                }
+                                                viewLearnPopUp.isHidden = false
+                                                
+                                                Timer.scheduledTimer(timeInterval: 5.0,
+                                                                     target: self,
+                                                                     selector: #selector(CustomCameraVC.update),
+                                                                     userInfo: nil,
+                                                                     repeats: true)
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
                                             
                                         }
-                                        viewLearnPopUp.isHidden = false
                                         
-                                        Timer.scheduledTimer(timeInterval: 5.0,
-                                                             target: self,
-                                                             selector: #selector(CustomCameraVC.update),
-                                                             userInfo: nil,
-                                                             repeats: true)
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
+
                         
                     }else{
                         print("error")
@@ -364,84 +373,95 @@ extension CustomCameraVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation {
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let objData = json["data"] as? [String:AnyObject] {
-                                        self.viewLearnPopUp.isHidden = true
-                                        self.viewCropOneQues.isHidden = false
-                                        self.viewDontHave.isHidden = true
-                                        self.viewDontHaveHeightConstraint.constant = 0
-                                        self.lblOnlyCropOneQues.text = objData["demo_text1"] as? String
-                                        let demoimg = objData["demo_ocr_image"] as! String
-                                        
-                                        let photoURL = URL(string: demoimg)
-                                        
-                                        self.cropView.delegate = self
-                                        //                                                    self.image.sd_setImage(with: URL(string: imgDemo), completed: nil)
-                                        
-                                        DispatchQueue.global(qos: .userInitiated).async {
-                                            do{
-                                                let imageData: Data = try Data(contentsOf: photoURL!)
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                
+                                OperationQueue.main.addOperation {
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let objData = json["data"] as? [String:AnyObject] {
+                                                self.viewLearnPopUp.isHidden = true
+                                                self.viewCropOneQues.isHidden = false
+                                                self.viewDontHave.isHidden = true
+                                                self.viewDontHaveHeightConstraint.constant = 0
+                                                self.lblOnlyCropOneQues.text = objData["demo_text1"] as? String
+                                                let demoimg = objData["demo_ocr_image"] as! String
                                                 
-                                                DispatchQueue.main.async {
-                                                    let imageData = UIImage(data: imageData)
-                                                    
-                                                    
-                                                    
-                                                    self.cropView.image = imageData
-                                                    self.cropView.contentMode = .scaleAspectFit
-                                                    
-                                                    self.viewImgCrop.isHidden = false
-                                                    self.viewCropOneQues.isHidden = false
-                                                    
-                                                    
-//                                                    if self.cropView.isOverlayViewActive {
-//
-//                                                        self.cropView.hideOverlayView(animationDuration: 0.3)
-//
-//                                                        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-//                                                            //    self.overlayActionView.alpha = 0
-//
-//                                                        }, completion: nil)
-//
-//                                                    } else {
+                                                let photoURL = URL(string: demoimg)
+                                                
+                                                self.cropView.delegate = self
+                                                //                                                    self.image.sd_setImage(with: URL(string: imgDemo), completed: nil)
+                                                
+                                                DispatchQueue.global(qos: .userInitiated).async {
+                                                    do{
+                                                        let imageData: Data = try Data(contentsOf: photoURL!)
                                                         
-                                                        self.cropView.showOverlayView(animationDuration: 0.3)
-                                                        
-                                                        UIView.animate(withDuration: 0.3, delay: 0.3, options: UIView.AnimationOptions.curveLinear, animations: {
-                                                            //     self.overlayActionView.alpha = 1
+                                                        DispatchQueue.main.async {
+                                                            let imageData = UIImage(data: imageData)
                                                             
-                                                        }, completion: nil)
-                                                        
-                                                 //   }
+                                                            
+                                                            
+                                                            self.cropView.image = imageData
+                                                            self.cropView.contentMode = .scaleAspectFit
+                                                            
+                                                            self.viewImgCrop.isHidden = false
+                                                            self.viewCropOneQues.isHidden = false
+                                                            
+                                                            
+        //                                                    if self.cropView.isOverlayViewActive {
+        //
+        //                                                        self.cropView.hideOverlayView(animationDuration: 0.3)
+        //
+        //                                                        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
+        //                                                            //    self.overlayActionView.alpha = 0
+        //
+        //                                                        }, completion: nil)
+        //
+        //                                                    } else {
+                                                                
+                                                                self.cropView.showOverlayView(animationDuration: 0.3)
+                                                                
+                                                                UIView.animate(withDuration: 0.3, delay: 0.3, options: UIView.AnimationOptions.curveLinear, animations: {
+                                                                    //     self.overlayActionView.alpha = 1
+                                                                    
+                                                                }, completion: nil)
+                                                                
+                                                         //   }
 
+                                                        }
+                                                    }catch{
+                                                        print("Unable to load data: \(error)")
+                                                    }
                                                 }
-                                            }catch{
-                                                print("Unable to load data: \(error)")
                                             }
+                                            
                                         }
+                                        
+                                        //
+                                    }else{
+                                        BaseApi.hideActivirtIndicator()
+                                        
                                     }
                                     
+                                    
                                 }
-                                
-                                //
                             }else{
                                 BaseApi.hideActivirtIndicator()
-                                
                             }
-                            
-                            
                         }
                         
                     }
                 } catch let error {
+                    OperationQueue.main.addOperation {
+
                     self.showToast(message: "Something Went Wrong")
                     
                     BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
+                    }
                 }
             }
         })
@@ -509,41 +529,52 @@ extension CustomCameraVC{
             do {
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    OperationQueue.main.addOperation {
-print(json)
-                     
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            if let data = json["data"] as? [String:AnyObject]{
-                           print(data)
-                                let strUrl = data["url"] as? String
-                                let strfileName = data["file_name"] as? String
-                                let question_id = data["question_id"] as? Int
-                                let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home") as! FindNewSolutionGifVC
-                                vc.imgUpload = imagevw
-                                vc.imgUploadURL = strUrl ?? ""
-                                vc.file_name = strfileName ?? ""
-                                vc.question_id = question_id ?? 0
-                                self.navigationController?.pushViewController(vc, animated: true)
+                    let jsonString = BaseApi.showParam(json: json)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK" {
+                            OperationQueue.main.addOperation {
+                                print(json)
                                 
+                                if let meta = json["meta"] as? [String:AnyObject]{
+                                    let code = meta["code"] as! Int
+                                    if code == 200 {
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            print(data)
+                                            let strUrl = data["url"] as? String
+                                            let strfileName = data["file_name"] as? String
+                                            let question_id = data["question_id"] as? Int
+                                            let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home") as! FindNewSolutionGifVC
+                                            vc.imgUpload = imagevw
+                                            vc.imgUploadURL = strUrl ?? ""
+                                            vc.file_name = strfileName ?? ""
+                                            vc.question_id = question_id ?? 0
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        }
+                                        
+                                    }else{
+                                        
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                }
                             }
-
                         }else{
-
                             BaseApi.hideActivirtIndicator()
-                        }
+
                         }
                     }
+
                     /**/
                     // handle json...
                 }
             } catch let error {
+                OperationQueue.main.addOperation {
+
                 self.showToast(message: "Something Went Wrong")
 
                 BaseApi.hideActivirtIndicator()
 
                 print(error.localizedDescription)
+                }
             }
         })
         task.resume()
@@ -572,41 +603,49 @@ print(json)
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? [String:AnyObject] {
-                                        let bottomOverlay = data["bottomOverlay"] as? [String:AnyObject]
-                                        let subjectList = bottomOverlay!["subjectList"] as! NSArray
-                                        print(subjectList)
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:AnyObject] {
+                                                let bottomOverlay = data["bottomOverlay"] as? [String:AnyObject]
+                                                let subjectList = bottomOverlay!["subjectList"] as! NSArray
+                                                print(subjectList)
 
-                                        for objList in subjectList {
-                                            arrSubjectList.append(objList as! NSDictionary)
+                                                for objList in subjectList {
+                                                    arrSubjectList.append(objList as! NSDictionary)
 
+                                                }
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
                                         }
-
-
                                         
-                                       
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
+
                         
                     }
                 } catch let error {
+                    OperationQueue.main.addOperation {
+
                     self.showToast(message: "Something Went Wrong")
                     
                     BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
+                    }
                 }
             }
         })
@@ -617,8 +656,7 @@ print(json)
     func callWebserviceForAskQues() {
         
 //
-        let parameters = ["question_image":"image_url",
-                          "uploaded_image_name":"",
+        let parameters = [
                           "question":"IOS",
                           "limit":"20",
                           "uploaded_image_question_id":"",
@@ -660,25 +698,42 @@ print(json)
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
-
-                   
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            // create the alert
-                            OperationQueue.main.addOperation {
-                                BaseApi.hideActivirtIndicator()
-                                if let data = json["data"] as? [String:AnyObject]{
-                                    let vc = FlowController().instantiateViewController(identifier: "VIdeoListVC", storyBoard: "Home") as! VIdeoListVC
-                                    vc.arrAskQuestion = data
-                                    self.navigationController?.pushViewController(vc, animated: true)
+                    let jsonString = BaseApi.showParam(json: json)
+                    let param = BaseApi.showParam(json: parameters)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    // create the alert
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                        
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            self.txtTypeText.resignFirstResponder()
+                                            UIView.animate(withDuration: 1.0,
+                                                              delay: 0.0,
+                                                              options: [.curveEaseIn],
+                                                              animations: {
+                                                                self.viewTypeTextTopConstraint.constant = -200
+                                                                self.view.layoutIfNeeded()
+                                                              }, completion: nil)
+                                            let vc = FlowController().instantiateViewController(identifier: "VIdeoListVC", storyBoard: "Home") as! VIdeoListVC
+                                            vc.arrAskQuestion = data
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        }
+                                    }
+                                  //  }
+                                }else{
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                    }
                                 }
                             }
-                          //  }
                         }else{
-                            OperationQueue.main.addOperation {
-                                BaseApi.hideActivirtIndicator()
-                            }
+                            BaseApi.hideActivirtIndicator()
+
                         }
                     }
             
@@ -749,7 +804,7 @@ extension CustomCameraVC{
                           }, completion: nil)
     }
     @IBAction func btnGellaryAction(_ sender: UIButton) {
-        checkCameraAccess()
+//        checkCameraAccess()
         toggleTorch(on: false)
 
         let vc = UIImagePickerController()

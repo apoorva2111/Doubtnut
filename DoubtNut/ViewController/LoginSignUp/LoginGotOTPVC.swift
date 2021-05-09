@@ -288,58 +288,70 @@ extension LoginGotOTPVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
+                    let param = BaseApi.showParam(json: parameters)
+                    let jsonString = BaseApi.showParam(json: json)
+                    
                     OperationQueue.main.addOperation {
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                            
+                            if clickButton == "OK"{
+                                
+                                if let meta = json["meta"] as? [String:AnyObject]{
+                                    let code = meta["code"] as! Int
+                                    if code == 200 {
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            if let status = data["status"]{
+                                                if status as! String == "FAILURE"{
+                                                    BaseApi.hideActivirtIndicator()
+                                                    self.showToast(message: "Please Enter Correct Verification Code")
+                                                    return
+                                                }
+                                            }
+                                            
+                                            
+                                            let token = data["token"] as! String
+                                            userDef.set(token, forKey: "Auth_token")
+                                            userDef.synchronize()
+                                            
+                                            userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
+                                            userDef.synchronize()
+                                        }
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                       
 
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
-                            if let data = json["data"] as? [String:AnyObject]{
-                                if let status = data["status"]{
-                                    if status as! String == "FAILURE"{
-                                        BaseApi.hideActivirtIndicator()
-                                        self.showToast(message: "Please Enter Correct Verification Code")
-                                        return
+                                        if var count = userDef.value(forKey: "LoginCount") as? Int{
+                                            count += 1
+                                            userDef.setValue(count, forKey: "LoginCount")
+                                            userDef.synchronize()
+                                            
+                                            if count > 5{
+                                                let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
+                                                vc.modalPresentationStyle = .fullScreen
+                                                self.present(vc, animated: false, completion: nil)                                    }else{
+                                                let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                                vc.modalPresentationStyle = .fullScreen
+                                                self.present(vc, animated: false, completion: nil)
+                                            }
+                                            
+
+                                        }else{
+                                            userDef.setValue(1, forKey: "LoginCount")
+                                            userDef.synchronize()
+                                         
+                                            let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
+                                            vc.modalPresentationStyle = .fullScreen
+                                            self.present(vc, animated: false, completion: nil)
+                                        }
+                                        }
+                                      //  }
                                     }
-                                }
-                                
-                                
-                                let token = data["token"] as! String
-                                userDef.set(token, forKey: "Auth_token")
-                                userDef.synchronize()
-                                
-                                userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
-                                userDef.synchronize()
-                            }
-                                BaseApi.hideActivirtIndicator()
-                                
-                           
-
-                            if var count = userDef.value(forKey: "LoginCount") as? Int{
-                                count += 1
-                                userDef.setValue(count, forKey: "LoginCount")
-                                userDef.synchronize()
-                                
-                                if count > 5{
-                                    let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)                                    }else{
-                                    let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: false, completion: nil)
-                                }
-                                
-
                             }else{
-                                userDef.setValue(1, forKey: "LoginCount")
-                                userDef.synchronize()
-                             
-                                let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: false, completion: nil)
+                                BaseApi.hideActivirtIndicator()
+
                             }
-                            }
-                          //  }
                         }
+
                     }
             
                     // handle json..

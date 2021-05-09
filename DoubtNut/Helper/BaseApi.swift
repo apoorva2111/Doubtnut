@@ -223,6 +223,20 @@ class BaseApi {
                     }
             }
     
-    
-    
+    static func checkResponse(json:[String : AnyObject]) -> String{
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+
+        print(jsonString)
+        return jsonString
+    }
+    static func showParam(json:[String : Any]) -> String{
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+
+        print(jsonString)
+        return jsonString
+    }
 }

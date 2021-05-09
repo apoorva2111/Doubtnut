@@ -117,39 +117,48 @@ extension QuestionAskedViewController{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let data = json["data"] as? NSDictionary{
-                                        let objData = data["list"] as!NSArray
-                                        for objList in objData {
-                                            arrData.append(objList as! NSDictionary)
-                                        }
-                                        if arrData.isEmpty {
-                                            print("No History Found")
-                                            questionAskedView.isHidden = true
-                                            noVideosView.isHidden = false
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
+                                
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? NSDictionary{
+                                                let objData = data["list"] as!NSArray
+                                                for objList in objData {
+                                                    arrData.append(objList as! NSDictionary)
+                                                }
+                                                if arrData.isEmpty {
+                                                    print("No History Found")
+                                                    questionAskedView.isHidden = true
+                                                    noVideosView.isHidden = false
+                                                    
+                                                }
+                                                else {
+                                                    noVideosView.isHidden = true
+                                                    questionAskedView.isHidden = false
+                                                }
+                                                questionAskedTableview.reloadData()
+                                                
+                                                BaseApi.hideActivirtIndicator()
+                                                
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
                                             
                                         }
-                                        else {
-                                            noVideosView.isHidden = true
-                                            questionAskedView.isHidden = false
-                                        }
-                                        questionAskedTableview.reloadData()
                                         
-                                        BaseApi.hideActivirtIndicator()
-                                        
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
                                     }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
                                 }
-                                
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
                         

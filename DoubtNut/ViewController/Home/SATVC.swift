@@ -181,45 +181,58 @@ print(id)
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
-                        OperationQueue.main.addOperation { [self] in
-                            if let meta = json["meta"] as? [String:AnyObject]{
-                                let code = meta["code"] as! Int
-                                if code == 200 {
-                                    if let dataJson = json["data"] as? [String:AnyObject]{
-                                        let arr = dataJson["list"] as! NSArray
-                                        print(arr)
-                                        if arr.count == 0{
-                                            self.showToast(message: "Data not Found")
-                                        }
-                                        if arrList.count>0 {
-                                            arrList.removeAll()
-                                        }
-                                        for objDict in arr {
-                                            arrList.append(objDict as! NSDictionary)
-                                        }
-                                        satTableView.reloadData()
-                                        BaseApi.hideActivirtIndicator()
-
-                                    }else{
-                                        BaseApi.hideActivirtIndicator()
-                                    }
-                                    
-                                    //
-                                }else{
-                                    BaseApi.hideActivirtIndicator()
-                                    
-                                }
+                        let jsonString = BaseApi.showParam(json: json)
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            if checkBtn == "OK"{
                                 
+                                OperationQueue.main.addOperation { [self] in
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let dataJson = json["data"] as? [String:AnyObject]{
+                                                let arr = dataJson["list"] as! NSArray
+                                                print(arr)
+                                                if arr.count == 0{
+                                                    self.showToast(message: "Data not Found")
+                                                }
+                                                if arrList.count>0 {
+                                                    arrList.removeAll()
+                                                }
+                                                for objDict in arr {
+                                                    arrList.append(objDict as! NSDictionary)
+                                                }
+                                                satTableView.reloadData()
+                                                BaseApi.hideActivirtIndicator()
+
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                            }else{
+                                BaseApi.hideActivirtIndicator()
+
                             }
                         }
+
                         
                     }
                 } catch let error {
-                    self.showToast(message: "Something Went Wrong")
+                    OperationQueue.main.addOperation {
+                        self.showToast(message: "Something Went Wrong")
+                        
+                        BaseApi.hideActivirtIndicator()
+                        
+                        print(error.localizedDescription)
+                    }
                     
-                    BaseApi.hideActivirtIndicator()
-                    
-                    print(error.localizedDescription)
                 }
             }
         })

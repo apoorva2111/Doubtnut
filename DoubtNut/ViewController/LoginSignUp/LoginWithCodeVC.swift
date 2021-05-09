@@ -140,40 +140,58 @@ extension LoginWithCodeVC {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
+                
                 OperationQueue.main.addOperation {
-                    
-                 
-                    if let meta = json["meta"] as? [String:AnyObject]{
-                        let code = meta["code"] as! Int
-                        if code == 200 {
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        
+                        if clickButton == "OK" {
                             BaseApi.hideActivirtIndicator()
-                            if let data = json["data"] as? [String:AnyObject]{
-                                let status = data["status"] as? String
-                                if status == "FAILURE"{
-                                    self.showToast(message: "Something Went Wrong")
-                                }else{
-                                    self.session_id = data["session_id"]as! String
-                                    
-                                }
-                            }
-                            let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
-                            vc.session_id = self.session_id
-                            vc.emailID = self.txtEmail.text!
-                            BaseApi.hideActivirtIndicator()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            
-                        }else if code == 401{
-                            BaseApi.hideActivirtIndicator()
-                            self.showToast(message: "Too many OTP Requests")
 
-                        }else if code == 500 {
-                            self.showToast(message: "Internal Server Error")
+                               if let meta = json["meta"] as? [String:AnyObject]{
+                                   let code = meta["code"] as! Int
+                                BaseApi.hideActivirtIndicator()
 
-                            BaseApi.hideActivirtIndicator()
+                                   if code == 200 {
+                                       BaseApi.hideActivirtIndicator()
+                                       if let data = json["data"] as? [String:AnyObject]{
+                                           let status = data["status"] as? String
+                                           if status == "FAILURE"{
+                                            BaseApi.hideActivirtIndicator()
+                                               self.showToast(message: "Something Went Wrong")
+                                           }else{
+                                               self.session_id = data["session_id"]as! String
+                                               
+                                           }
+                                       }
+                                       let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
+                                       vc.session_id = self.session_id
+                                       vc.emailID = self.txtEmail.text!
+                                       BaseApi.hideActivirtIndicator()
+                                       self.navigationController?.pushViewController(vc, animated: true)
+                                       
+                                   }else if code == 401{
+                                       BaseApi.hideActivirtIndicator()
+                                    if let msg = meta["message"] as? String{
+                                       self.showToast(message: msg)
+                                    }
+                                   }else if code == 500 {
+                                    if let msg = meta["message"] as? String{
+                                        self.showToast(message: msg)
+                                    }
+
+                                       BaseApi.hideActivirtIndicator()
+                                   }else{
+                                       BaseApi.hideActivirtIndicator()
+                                   }
+                               }
                         }else{
                             BaseApi.hideActivirtIndicator()
+
                         }
                     }
+                 
                 }
             } catch {
                 OperationQueue.main.addOperation {
