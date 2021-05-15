@@ -23,6 +23,13 @@ class SideMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var lblClass: UIButton!
   
     @IBOutlet weak var lblLanguage: UIButton!
+  
+    @IBOutlet weak var lblPinOne: UILabel!
+    @IBOutlet weak var lblPinTwo: UILabel!
+    @IBOutlet weak var lblPinThree: UILabel!
+    @IBOutlet weak var lblPinFour: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

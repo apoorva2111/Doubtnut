@@ -144,7 +144,7 @@ extension LoginWithCodeVC {
                 let jsonString = BaseApi.checkResponse(json: json)
                 
                 OperationQueue.main.addOperation {
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                         
                         if clickButton == "OK" {
                             BaseApi.hideActivirtIndicator()
@@ -214,7 +214,7 @@ extension LoginWithCodeVC {
          request.httpMethod = "POST"
          request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
          request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-         request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("847", forHTTPHeaderField: "version_code")
          request.addValue("US", forHTTPHeaderField: "country")
 
          let session = URLSession.shared
@@ -223,48 +223,60 @@ extension LoginWithCodeVC {
              do {
                  let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                  print(json)
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
+
                 OperationQueue.main.addOperation {
 
-                 if let meta = json["meta"] as? [String:AnyObject]{
-                     let code = meta["code"] as! Int
-                     if code == 200 {
-                        
-                       // OperationQueue.main.addOperation {
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        if clickButton == "OK"{
                             BaseApi.hideActivirtIndicator()
-                            
-                            if let data = json["data"] as? [String:AnyObject]{
-                                let status = data["status"] as? String
-                                if status == "FAILURE"{
-                                    self.showToast(message: "Something Went Wrong")
+
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                   
+                                  // OperationQueue.main.addOperation {
+                                       BaseApi.hideActivirtIndicator()
+                                       
+                                       if let data = json["data"] as? [String:AnyObject]{
+                                           let status = data["status"] as? String
+                                           if status == "FAILURE"{
+                                               self.showToast(message: "Something Went Wrong")
+                                           }else{
+                                               self.session_id = data["session_id"]as! String
+                                               
+                                           }
+                                           
+                                       }
+
+                                       let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
+                                       vc.session_id = self.session_id
+                                       //   DispatchQueue.main.async {
+                                       self.navigationController?.pushViewController(vc, animated: true)
+                                       //    }
+                                 //  }
+                                   
+                                  
+                                }else if code == 401{
+                                   if let msg = meta["message"] as? String{
+                                   BaseApi.hideActivirtIndicator()
+                                   self.showToast(message: msg)
+                                   }
+                                }else if code == 500 {
+                                   self.showToast(message: "Internal Server Error")
+
+                                   BaseApi.hideActivirtIndicator()
                                 }else{
-                                    self.session_id = data["session_id"]as! String
-                                    
+                                   BaseApi.hideActivirtIndicator()
+
                                 }
-                                
                             }
-
-                            let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC
-                            vc.session_id = self.session_id
-                            //   DispatchQueue.main.async {
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            //    }
-                      //  }
-                        
-                       
-                     }else if code == 401{
-                        if let msg = meta["message"] as? String{
-                        BaseApi.hideActivirtIndicator()
-                        self.showToast(message: msg)
+                        }else{
+                            BaseApi.hideActivirtIndicator()
                         }
-                     }else if code == 500 {
-                        self.showToast(message: "Internal Server Error")
+                    }
 
-                        BaseApi.hideActivirtIndicator()
-                     }else{
-                        BaseApi.hideActivirtIndicator()
-
-                     }
-                 }
                 }
              } catch {
                 OperationQueue.main.addOperation {

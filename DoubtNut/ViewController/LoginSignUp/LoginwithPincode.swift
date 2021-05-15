@@ -61,7 +61,7 @@ extension LoginwithPincode{
     func WenserviceCallForLogin() {
         
         BaseApi.showActivityIndicator(icon: nil, text: "")
-        let parameters = ["identifier":txtEmail.text,"pin":txtEnterPin.text]
+        let parameters:[String:Any] = ["identifier":txtEmail.text!,"pin":txtEnterPin.text!]
         
         //create the url with URL
         let url = URL(string: "https://api.doubtnut.app/v1/student/login-with-pin")! //change the url
@@ -81,7 +81,8 @@ extension LoginwithPincode{
 
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("US", forHTTPHeaderField: "country")
-        
+        request.addValue("844", forHTTPHeaderField: "version_code")
+
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
 
@@ -102,7 +103,7 @@ extension LoginwithPincode{
                     
                     OperationQueue.main.addOperation {
 
-                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- \(url)", message: "Response: \(jsonString)     version_code:-844", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                             if clickButton == "OK"{
                                 
                             if let meta = json["meta"] as? [String:AnyObject]{
@@ -115,10 +116,13 @@ extension LoginwithPincode{
                                             userDef.synchronize()
                                         }
                                         userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
-                                        
+                                        userDef.setValue(true, forKey: "isFromLogin")
+                                    userDef.setValue(self.txtEnterPin.text, forKey: "Login_pin")
+
                                         if var count = userDef.value(forKey: "LoginCount") as? Int{
                                             count += 1
                                             userDef.setValue(count, forKey: "LoginCount")
+
                                             userDef.synchronize()
                                             
                                             if count > 5{

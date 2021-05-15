@@ -11,6 +11,7 @@ class SATCVCell: UICollectionViewCell {
 
     @IBOutlet weak var lblSelectedLine: UILabel!
     @IBOutlet weak var lblSubjects: UILabel!
+    @IBOutlet weak var viewBG: UIView!
     
     override func awakeFromNib() {
 

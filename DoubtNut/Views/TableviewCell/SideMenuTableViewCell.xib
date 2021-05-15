@@ -48,25 +48,25 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SkP-XS-sKC">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="39"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDo-BZ-OGT">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDo-BZ-OGT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="39"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                 <color key="textColor" red="0.31372549019607843" green="0.49803921568627452" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-h3-rnA">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJX-h3-rnA">
                                                                 <rect key="frame" x="10" y="0.0" width="10" height="39"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                 <color key="textColor" red="0.31372549020000001" green="0.49803921569999998" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdd-Qa-E5N">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdd-Qa-E5N">
                                                                 <rect key="frame" x="20" y="0.0" width="10" height="39"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                 <color key="textColor" red="0.31372549020000001" green="0.49803921569999998" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTZ-BY-7ot">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTZ-BY-7ot">
                                                                 <rect key="frame" x="30" y="0.0" width="10" height="39"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                 <color key="textColor" red="0.31372549020000001" green="0.49803921569999998" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -77,7 +77,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="7fA-rI-1cI"/>
                                                     <constraint firstItem="SkP-XS-sKC" firstAttribute="top" secondItem="sNa-fz-WIr" secondAttribute="top" id="ORr-x6-pz5"/>
                                                     <constraint firstItem="SkP-XS-sKC" firstAttribute="leading" secondItem="sNa-fz-WIr" secondAttribute="leading" id="PlC-6u-Xny"/>
                                                     <constraint firstAttribute="trailing" secondItem="SkP-XS-sKC" secondAttribute="trailing" id="cXy-Pw-0Ox"/>
@@ -101,6 +100,7 @@
                                                     <constraint firstItem="KgX-y7-47d" firstAttribute="top" secondItem="Qyd-Fe-nPK" secondAttribute="top" id="JB2-3C-eaD"/>
                                                     <constraint firstAttribute="bottom" secondItem="KgX-y7-47d" secondAttribute="bottom" id="NNB-ob-7P2"/>
                                                     <constraint firstItem="KgX-y7-47d" firstAttribute="leading" secondItem="Qyd-Fe-nPK" secondAttribute="leading" id="TwT-VR-GZe"/>
+                                                    <constraint firstAttribute="width" constant="80" id="kem-Ef-EF0"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -199,6 +199,10 @@
                 <outlet property="changePinOutlt" destination="ZpR-Cf-N1L" id="kaY-2P-INb"/>
                 <outlet property="lblClass" destination="EM1-AC-fnO" id="6RA-6i-jkj"/>
                 <outlet property="lblLanguage" destination="L9T-UN-bE4" id="c97-fo-Gd7"/>
+                <outlet property="lblPinFour" destination="fTZ-BY-7ot" id="I7p-m5-wxj"/>
+                <outlet property="lblPinOne" destination="BDo-BZ-OGT" id="BaD-YR-7Xg"/>
+                <outlet property="lblPinThree" destination="pdd-Qa-E5N" id="S08-OK-Hsc"/>
+                <outlet property="lblPinTwo" destination="XJX-h3-rnA" id="nS3-98-vUw"/>
                 <outlet property="sideMenuImage" destination="tnk-0i-VFV" id="BAf-xk-3XZ"/>
                 <outlet property="sideMenuTitle" destination="eqv-7b-PwD" id="exW-BC-dzG"/>
                 <outlet property="viewChangeClass" destination="hpt-UF-diY" id="w06-Q0-IKq"/>

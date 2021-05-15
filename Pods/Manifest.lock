@@ -141,6 +141,7 @@ PODS:
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
   - SideMenu (6.5.0)
+  - SwiftKeychainWrapper (4.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0)
@@ -157,6 +158,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - SDWebImage (~> 5.0)
   - SideMenu
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
@@ -188,6 +190,7 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - SideMenu
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -218,7 +221,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 98bc84a749f880da53ba0e0fb8c27e6855534211
+PODFILE CHECKSUM: c549f53f4c7a76ad5afa134a58ae588030e81452
 
 COCOAPODS: 1.10.1

@@ -96,6 +96,7 @@ var demoQuesCount = 0
     @objc private func batteryLevelChanged(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
         viewWillAppear(true)
+        viewDidAppear(true)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -299,7 +300,7 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api,  URL:- https://api.doubtnut.app/v1/camera/get-animation", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK" {
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -374,7 +375,7 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/config/demo", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation {
@@ -530,7 +531,7 @@ extension CustomCameraVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     let jsonString = BaseApi.showParam(json: json)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/question/generate-question-image-upload-url", message: "Response: \(jsonString)     version_code:- 756", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK" {
                             OperationQueue.main.addOperation {
                                 print(json)
@@ -604,7 +605,7 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v2/camera/get-settings?openCount=\(count)&studentClass=12", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -656,6 +657,7 @@ extension CustomCameraVC{
     func callWebserviceForAskQues() {
         
 //
+        BaseApi.showActivityIndicator(icon: nil, text: "")
         let parameters = [
                           "question":"IOS",
                           "limit":"20",
@@ -700,7 +702,7 @@ extension CustomCameraVC{
                     print(json)
                     let jsonString = BaseApi.showParam(json: json)
                     let param = BaseApi.showParam(json: parameters)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             
                             if let meta = json["meta"] as? [String:AnyObject]{
@@ -750,8 +752,9 @@ extension CustomCameraVC{
 //MARK:- UITextview delegate
 
 extension CustomCameraVC: UITextViewDelegate{
+    
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        if txtTypeText.text == "" {
         txtTypeText.resignFirstResponder()
         UIView.animate(withDuration: 1.0,
                           delay: 0.0,
@@ -760,10 +763,18 @@ extension CustomCameraVC: UITextViewDelegate{
                             self.viewTypeTextTopConstraint.constant = -200
                             self.view.layoutIfNeeded()
                           }, completion: nil)
+        if txtTypeText.text == "" {
+            self.showToast(message: "Please Enter Text Doubt")
         }else{
-            txtTypeText.resignFirstResponder()
+            callWebserviceForAskQues()
 
         }
+       
+//        }else{
+//            print(txtTypeText.text)
+//            txtTypeText.resignFirstResponder()
+//
+//        }
     }
         
 }
@@ -817,6 +828,7 @@ extension CustomCameraVC{
     }
     @IBAction func watchHistoryAction(_ sender: UIButton) {
         toggleTorch(on: false)
+        self.view.endEditing(true)
         let vc = FlowController().instantiateViewController(identifier: "WatchHistoryViewController", storyBoard: "Profile") as! WatchHistoryViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }

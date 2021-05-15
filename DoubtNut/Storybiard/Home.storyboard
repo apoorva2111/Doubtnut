@@ -1710,13 +1710,6 @@ Get Solution.</string>
                                             <constraint firstAttribute="height" constant="70" id="kUQ-DW-niB"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-qe-tR8" customClass="Footerview" customModule="DoubtNut" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="816" width="414" height="80"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="0eP-cT-fQH"/>
-                                        </constraints>
-                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WRA-Rm-DM9">
                                         <rect key="frame" x="0.0" y="169" width="414" height="647"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1877,6 +1870,13 @@ Get Solution.</string>
                                             <outlet property="delegate" destination="bDP-5q-vKe" id="cdT-dj-dOl"/>
                                         </connections>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-qe-tR8" customClass="Footerview" customModule="DoubtNut" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="816" width="414" height="80"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="0eP-cT-fQH"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -2219,11 +2219,11 @@ Get Solution.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqT-cN-BQi" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="71.5" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="71.5" width="414" height="70"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vfx-92-l6I">
-                                                <rect key="frame" x="0.0" y="30" width="414" height="60"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vfx-92-l6I">
+                                                <rect key="frame" x="0.0" y="30" width="414" height="40"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ot1-YI-sOc">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2239,15 +2239,15 @@ Get Solution.</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="0C5-Mx-mVs"/>
+                                            <constraint firstAttribute="height" constant="70" id="0C5-Mx-mVs"/>
                                             <constraint firstItem="vfx-92-l6I" firstAttribute="top" secondItem="iqT-cN-BQi" secondAttribute="top" constant="30" id="IPc-6y-qgF"/>
-                                            <constraint firstAttribute="bottom" secondItem="vfx-92-l6I" secondAttribute="bottom" id="OLn-b1-bVD"/>
                                             <constraint firstAttribute="trailing" secondItem="vfx-92-l6I" secondAttribute="trailing" id="h2u-M3-6UV"/>
                                             <constraint firstItem="vfx-92-l6I" firstAttribute="leading" secondItem="iqT-cN-BQi" secondAttribute="leading" id="hJ0-g3-hcf"/>
+                                            <constraint firstAttribute="bottom" secondItem="vfx-92-l6I" secondAttribute="bottom" id="wYa-UI-KIf"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                 <real key="value" value="0.5"/>
@@ -2260,6 +2260,24 @@ Get Solution.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uz7-p6-Fkl">
+                                        <rect key="frame" x="8" y="149.5" width="398" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="cbn-Pu-HI1"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hOT-ya-MlK">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vwH-74-XB6" id="PBj-Xb-Vjh"/>
+                                            <outlet property="delegate" destination="vwH-74-XB6" id="lxh-2S-V36"/>
+                                        </connections>
+                                    </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-fZ-WIP" userLabel="ViewHeader">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                         <subviews>
@@ -2292,13 +2310,13 @@ Get Solution.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mS-LH-wu1">
-                                        <rect key="frame" x="0.0" y="161.5" width="414" height="654.5"/>
+                                        <rect key="frame" x="0.0" y="209.5" width="414" height="606.5"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lNH-bV-eE8">
-                                                <rect key="frame" x="8" y="8" width="398" height="646.5"/>
+                                                <rect key="frame" x="8" y="8" width="398" height="598.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tblCell" rowHeight="69" id="Tbv-ni-Wyb" customClass="tblCell" customModule="DoubtNut" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tblCell" rowHeight="69" id="Tbv-ni-Wyb" customClass="tblCell" customModule="DoubtNut" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="398" height="69"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tbv-ni-Wyb" id="tPA-Mh-ocP">
@@ -2310,7 +2328,7 @@ Get Solution.</string>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="US3-bV-TrY">
                                                                             <rect key="frame" x="8" y="8" width="366" height="37"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -2366,9 +2384,12 @@ Get Solution.</string>
                                     <constraint firstItem="ylW-Bj-jb1" firstAttribute="top" secondItem="6mS-LH-wu1" secondAttribute="bottom" id="QWM-1c-mAW"/>
                                     <constraint firstAttribute="bottom" secondItem="ylW-Bj-jb1" secondAttribute="bottom" id="SkO-eK-8Mn"/>
                                     <constraint firstAttribute="trailing" secondItem="iqT-cN-BQi" secondAttribute="trailing" id="UYY-SV-lQp"/>
-                                    <constraint firstItem="6mS-LH-wu1" firstAttribute="top" secondItem="iqT-cN-BQi" secondAttribute="bottom" id="cMz-FA-aHU"/>
                                     <constraint firstItem="54Q-fZ-WIP" firstAttribute="leading" secondItem="NgJ-aU-vv2" secondAttribute="leading" id="euu-Y9-lr9"/>
+                                    <constraint firstItem="6mS-LH-wu1" firstAttribute="top" secondItem="uz7-p6-Fkl" secondAttribute="bottom" constant="10" id="h8X-za-f3j"/>
                                     <constraint firstItem="iqT-cN-BQi" firstAttribute="top" secondItem="54Q-fZ-WIP" secondAttribute="bottom" constant="-28" id="kv5-m6-rYN"/>
+                                    <constraint firstItem="uz7-p6-Fkl" firstAttribute="top" secondItem="iqT-cN-BQi" secondAttribute="bottom" constant="8" id="qZc-Yq-Okr"/>
+                                    <constraint firstAttribute="trailing" secondItem="uz7-p6-Fkl" secondAttribute="trailing" constant="8" id="rRl-0t-Def"/>
+                                    <constraint firstItem="uz7-p6-Fkl" firstAttribute="leading" secondItem="NgJ-aU-vv2" secondAttribute="leading" constant="8" id="rWP-AA-t9s"/>
                                     <constraint firstItem="54Q-fZ-WIP" firstAttribute="top" secondItem="NgJ-aU-vv2" secondAttribute="top" id="u7q-RG-TA8"/>
                                     <constraint firstItem="ylW-Bj-jb1" firstAttribute="leading" secondItem="NgJ-aU-vv2" secondAttribute="leading" id="uov-Xv-bfy"/>
                                     <constraint firstItem="6mS-LH-wu1" firstAttribute="leading" secondItem="NgJ-aU-vv2" secondAttribute="leading" id="yi3-0S-8Gh"/>
@@ -2387,8 +2408,11 @@ Get Solution.</string>
                     </view>
                     <connections>
                         <outlet property="collFeatureCat" destination="vfx-92-l6I" id="lQX-Dp-5SQ"/>
+                        <outlet property="collectionFilter" destination="uz7-p6-Fkl" id="l2f-dz-ldu"/>
+                        <outlet property="collectionFilterHeightConstraint" destination="cbn-Pu-HI1" id="EVp-2N-j8w"/>
                         <outlet property="lblHeader" destination="gRl-CB-FXd" id="xht-cj-1HX"/>
                         <outlet property="satTableView" destination="lNH-bV-eE8" id="Zyg-cG-oeK"/>
+                        <outlet property="viewCollectionHeaderHeightConstraint" destination="0C5-Mx-mVs" id="p38-oc-8lV"/>
                         <outlet property="viewFooter" destination="ylW-Bj-jb1" id="qPx-Ti-uex"/>
                         <outlet property="viewSwipe" destination="6mS-LH-wu1" id="DFP-z3-boU"/>
                     </connections>

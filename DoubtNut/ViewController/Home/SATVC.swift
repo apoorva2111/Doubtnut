@@ -10,10 +10,18 @@ import UIKit
 class SATVC: UIViewController {
     
     @IBOutlet weak var satTableView: customTblView!
-    var  items = ["Maths","Math Practice Videos","English Practice Videos"]
     var indexArray = [Int]()
+    var indexFilterArray = [Int]()
+
     var arrList = [NSDictionary]()
+    var arrHeader = [NSDictionary]()
+    var arrFilter = [NSDictionary]()
+    var isSelectedHeader = false
     
+
+    @IBOutlet weak var collectionFilterHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewCollectionHeaderHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionFilter: UICollectionView!
     @IBOutlet weak var viewFooter: Footerview!
     
     var refreshTbl: UIRefreshControl!
@@ -47,23 +55,18 @@ class SATVC: UIViewController {
         satTableView.addSubview(refreshTbl)
         
         
-     //   let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
-//        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipes(_:)))
-//        leftSwipe.direction = .left
-//        rightSwipe.direction = .right
-//        self.viewSwipe.addGestureRecognizer(leftSwipe)
-//        self.viewSwipe.addGestureRecognizer(rightSwipe)
-//
-        
-        
         self.collFeatureCat?.register(UINib(nibName: "SATCVCell", bundle: nil), forCellWithReuseIdentifier: "SATCVCell")
+        self.collectionFilter?.register(UINib(nibName: "SATCVCell", bundle: nil), forCellWithReuseIdentifier: "SATCVCell")
 
+        viewCollectionHeaderHeightConstraint.constant = 0
+        collectionFilterHeightConstraint.constant = 0
+        satTableView.isHidden = true
         let indexPath = IndexPath(row: 0, section: 0)
         self.indexArray.removeAll()
         indexArray.append(0)
         collFeatureCat.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         collFeatureCat.reloadData()
-        callWebserviceGetdata()
+        callWebserviceGetdata(id: id)
 
     }
     
@@ -92,85 +95,26 @@ extension SATVC {
     func animationDuration() -> Double {
         return 0.5
     }
-    
-    
-//    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
-//
-//        let duration = animationDuration()
-//
-//
-//        if (sender.direction == .left) {
-//            print("Swipe Left")
-//
-//            if(indexSwipe < self.items.count){
-//                if(indexSwipe == self.items.count - 1){
-//                }
-//                else{
-//                    indexSwipe += 1
-//                    indexArray.removeAll()
-//                    indexArray.append(indexSwipe)
-//                  // let obj = self.items[indexSwipe]
-//
-//                    //                    if(indexSwipe == 0){
-//                    //
-//                    //                    }
-////                    //                    else{
-////                    lblTitle.text = obj
-////                    self.cat_Id = obj.cat_id!
-////                    self.belowArticleList_cat.removeAll()
-////                    self.scrollIndex_cat = 1
-////                    APIClient.showLoaderView(view: self.view)
-////                    self.setbelowArticlesApiWithCatId(strCkeck: "get", cat_id: self.cat_Id)
-//
-//                    UIView.animate(withDuration: duration, animations: {
-//                        let labelPosition = CGPoint(x: self.satTableView.frame.origin.x - self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
-//                        print(labelPosition)
-//                        self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
-//
-//                        self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
-//                        self.collFeatureCat.reloadData()
-//
-//                    })
-//                }
-//            }
-//        }
-//
-//        if (sender.direction == .right) {
-//            print("Swipe Right")
-//            if indexSwipe > 0 {
-//                indexSwipe -= 1
-//
-//                indexArray.removeAll()
-//                indexArray.append(indexSwipe)
-//
-//                UIView.animate(withDuration: duration, animations: {
-//                    let labelPosition = CGPoint(x: self.satTableView.frame.origin.x + self.satTableView.frame.size.width, y: self.satTableView.frame.origin.y)
-//                    self.satTableView.frame = CGRect(x: labelPosition.x, y: labelPosition.y, width: self.satTableView.frame.size.width, height: self.satTableView.frame.size.height)
-//
-//                    self.collFeatureCat.scrollToItem(at: IndexPath(item: self.indexSwipe, section: 0), at: .centeredHorizontally, animated: true)
-//                    self.collFeatureCat.reloadData()
-//                })
-//            }
-//        }
-//    }
+
     
 }
 
 //group call
 extension SATVC {
-    
-    func callWebserviceGetdata()  {
-       // BaseApi.showActivityIndicator(icon: nil, text: "")
-print(id)
-        let request = NSMutableURLRequest(url: NSURL(string: "https://dev7.doubtnut.com/v7/library/getplaylist?page_no=1&id=\(id)&student_class=12")! as URL)
+ 
+    func callWebserviceGetdata(id:String)  {
+       BaseApi.showActivityIndicator(icon: nil, text: "")
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v7/library/getplaylist?page_no=1&id=\(id)&student_class=27")! as URL)
         let session = URLSession.shared
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
        // let auth = userDef.value(forKey: "Auth_token") as! String
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYxNzA2OTEsImlhdCI6MTYxNDA2Nzk2NCwiZXhwIjoxNjc3MTM5OTY0fQ.szfJPzcYSvSPNQfT0EDPjGSmNlosjoWcJUP3SY1o1V8", forHTTPHeaderField: "x-auth-token")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYyMDY0MjI5MCwiZXhwIjoxNjgzNzE0MjkwfQ.oSDqsry8VS6Q0dXcasv5sqqgZ02rTCwvtAaYcy5I7CI", forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
+        request.addValue("847", forHTTPHeaderField: "version_code")
+
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             if error != nil {
@@ -182,7 +126,7 @@ print(id)
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api,  URL:- https://api.doubtnut.app/v7/library/getplaylist?page_no=1&id=\(self.id)&student_class=27", message: "Response: \(jsonString)     version_code:-847", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in
@@ -190,6 +134,39 @@ print(id)
                                         let code = meta["code"] as! Int
                                         if code == 200 {
                                             if let dataJson = json["data"] as? [String:AnyObject]{
+                                                if let filter = dataJson["filters"] as? NSArray{
+                                                    if arrFilter.count>0 {
+                                                        arrFilter.removeAll()
+                                                    }
+                                                    for objfilter in filter {
+                                                        arrFilter.append(objfilter as! NSDictionary)
+                                                    }
+                                                    indexFilterArray.removeAll()
+                                                    indexFilterArray.append(0)
+
+                                                    
+                                                    if arrFilter.count>0{
+                                                        if arrFilter.count == 1 {
+                                                            isSelectedHeader = true
+                                                        }
+                                                        collectionFilterHeightConstraint.constant = 40
+                                                        collectionFilter.reloadData()
+                                                    }
+                                                    
+                                                    
+                                                }
+                                                if let header = dataJson["headers"] as? NSArray{
+                                                    if arrHeader.count>0 {
+                                                        arrHeader.removeAll()
+                                                    }
+                                                    for objHeader in header {
+                                                        arrHeader.append(objHeader as! NSDictionary)
+                                                    }
+                                                    if arrHeader.count>0{
+                                                        viewCollectionHeaderHeightConstraint.constant = 70
+                                                        collFeatureCat.reloadData()
+                                                    }
+                                                }
                                                 let arr = dataJson["list"] as! NSArray
                                                 print(arr)
                                                 if arr.count == 0{
@@ -201,6 +178,7 @@ print(id)
                                                 for objDict in arr {
                                                     arrList.append(objDict as! NSDictionary)
                                                 }
+                                                satTableView.isHidden = false
                                                 satTableView.reloadData()
                                                 BaseApi.hideActivirtIndicator()
 
@@ -229,7 +207,9 @@ print(id)
                         self.showToast(message: "Something Went Wrong")
                         
                         BaseApi.hideActivirtIndicator()
-                        
+                        UtilesSwift.shared.displayAlertWithHandler(with: "ERROR", message: error.localizedDescription, buttons: ["OK"], viewobj: self) { (btn) in
+                            
+                        }
                         print(error.localizedDescription)
                     }
                     
@@ -247,11 +227,7 @@ print(id)
     @objc func onRefreshTbl() {
         
         run(after: 2) {
-//            self.scrollIndex_cat = 1
-//            self.belowArticleList_cat = []
-//            APIClient.showLoaderView(view: self.view)
-//            self.setbelowArticlesApiWithCatId(strCkeck: "get", cat_id: self.cat_Id)
-            
+            self.callWebserviceGetdata(id: self.id)
             self.refreshTbl.endRefreshing()
         }
     }
@@ -294,24 +270,61 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        if collectionView == collectionFilter{
+            return arrFilter.count
+        }else{
+        return arrHeader.count
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SATCVCell", for: indexPath) as? SATCVCell else { return UICollectionViewCell() }
             
-            cell.lblSubjects.text = self.items[indexPath.row]
+        if collectionView == collectionFilter{
+            let obj = arrFilter[indexPath.row]
+            cell.lblSubjects.text = obj["name"] as? String
+            cell.viewBG.backgroundColor = .white
+//            cell.lblSubjects.textColor = .systemRed
+            cell.lblSelectedLine.backgroundColor = .clear
             
+            if(indexArray.contains(indexPath.row)){
+                cell.viewBG.backgroundColor = .systemRed
+                cell.viewBG.layer.cornerRadius = 5
+                cell.viewBG.clipsToBounds = true
+
+            }
+            else{
+                cell.viewBG.backgroundColor = .gray
+                cell.viewBG.layer.cornerRadius = 5
+                cell.viewBG.clipsToBounds = true
+            }
+            
+           if isSelectedHeader{
+            isSelectedHeader = false
+            cell.viewBG.backgroundColor = .systemRed
+            cell.viewBG.layer.cornerRadius = 5
+            cell.viewBG.clipsToBounds = true
+            }
+            
+            
+        }else{
+            let obj = arrHeader[indexPath.row]
+            cell.lblSubjects.text = obj["name"] as? String
+            cell.viewBG.backgroundColor = .white
             if(indexArray.contains(indexPath.row)){
                 cell.lblSubjects.textColor = .systemRed
                 cell.lblSelectedLine.backgroundColor = .systemRed
                 
             }
             else{
-                cell.lblSubjects.textColor = .systemGray4
+                cell.lblSubjects.textColor = .black
                 cell.lblSelectedLine.backgroundColor = UIColor.clear
             }
+        }
+        
+        
+            
             
             return cell
     }
@@ -319,26 +332,59 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-            
-            
+        if collectionView == collectionFilter{
+            let obj = arrFilter[indexPath.row]
+            let headerId = obj["id"] as? Int ?? 0
+            callWebserviceGetdata(id:String(headerId))
             indexArray.removeAll()
+            if arrHeader.count>1{
+                indexSwipe = indexPath.row
+                indexArray.append(indexPath.row)
+            }else{
+                indexSwipe = 0
+                indexArray.append(0)
+            }
+            collectionFilter.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            collectionFilter.reloadData()
+        }else{
+            let obj = arrHeader[indexPath.row]
+            let headerId = obj["id"] as? Int ?? 0
+            callWebserviceGetdata(id:String(headerId))
+            indexArray.removeAll()
+            if arrHeader.count>1{
+                indexSwipe = indexPath.row
+                indexArray.append(indexPath.row)
+            }else{
+                indexSwipe = 0
+                indexArray.append(0)
+            }
             
-            indexSwipe = indexPath.row
             
-            indexArray.append(indexPath.row)
-           // let obj = self.items[indexPath.row]
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            collectionView.reloadData()
-
+            
+            collFeatureCat.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            collFeatureCat.reloadData()
+        }
+            
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == collectionFilter{
+        
             let label = UILabel(frame: CGRect.zero)
-            let obj = self.items[indexPath.row]
-            label.text = obj
+            let obj = self.arrFilter[indexPath.row]
+            label.text = obj["name"] as? String
             label.sizeToFit()
             let itemWidth = label.frame.width + 40
-            return CGSize(width: itemWidth  , height: 55)
+            return CGSize(width: itemWidth  , height: 40)
+        }else{
+            let label = UILabel(frame: CGRect.zero)
+            let obj = self.arrHeader[indexPath.row]
+            label.text = obj["name"] as? String
+            label.sizeToFit()
+            let itemWidth = label.frame.width + 40
+            return CGSize(width: itemWidth  , height: 40)
+        }
+           
     }
 }
 

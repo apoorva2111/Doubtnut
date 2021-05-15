@@ -102,7 +102,7 @@ extension GetLanguageOrClassVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v4/class/get-list/en", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -175,7 +175,7 @@ extension GetLanguageOrClassVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v2/language/get-list", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -262,7 +262,7 @@ extension GetLanguageOrClassVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     let jsonString = BaseApi.showParam(json: json)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v4/student/update-profile", message: "Response: \(jsonString)     version_code:- 862", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             
                             OperationQueue.main.addOperation {
@@ -341,7 +341,7 @@ extension GetLanguageOrClassVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     let jsonString = BaseApi.showParam(json: json)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- \(url)", message: "Response: \(jsonString)     version_code:- 862", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             
                             OperationQueue.main.addOperation {

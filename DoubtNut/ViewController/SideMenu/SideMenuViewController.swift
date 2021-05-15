@@ -70,6 +70,26 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
                 cell.viewLoginPin.isHidden = false
             cell.viewChangeClass.isHidden = true
             cell.viewChangeLanguage.isHidden = true
+            if userDef.value(forKey: "isFromLogin") != nil{
+                let loginPin = userDef.value(forKey: "isFromLogin") as! Bool
+                if loginPin {
+                    cell.lblPinOne.isHidden = false
+                    cell.lblPinTwo.isHidden = false
+                    cell.lblPinThree.isHidden = false
+                    cell.lblPinFour.isHidden = false
+                }else{
+                    cell.lblPinOne.isHidden = true
+                    cell.lblPinTwo.isHidden = true
+                    cell.lblPinThree.isHidden = true
+                    cell.lblPinFour.isHidden = true
+                }
+                
+            }else{
+                cell.lblPinOne.isHidden = true
+                cell.lblPinTwo.isHidden = true
+                cell.lblPinThree.isHidden = true
+                cell.lblPinFour.isHidden = true
+            }
                 cell.changePinOutlt.addTarget(self, action: #selector(changePinAction(_:)), for: .touchUpInside)
             
             cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]

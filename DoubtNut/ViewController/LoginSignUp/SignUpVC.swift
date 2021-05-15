@@ -10,6 +10,7 @@ import GoogleSignIn
 import AuthenticationServices
 import Firebase
 import FBSDKLoginKit
+import SwiftKeychainWrapper
 
 class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextProviding {
    
@@ -27,6 +28,7 @@ class SignUpVC: UIViewController, ASAuthorizationControllerPresentationContextPr
     @IBOutlet weak var btnBackOutlet: UIButton!
     @IBOutlet weak var btnOutletGetVarCode: UIButton!
     var session_id = ""
+    @IBOutlet weak var appleLoginBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -184,6 +186,7 @@ extension SignUpVC : UITextFieldDelegate{
 extension SignUpVC {
     @IBAction func clickOnSocialMediaLogin(_ sender: UIButton)
     {
+        self.view.endEditing(true)
         if(sender.tag == 10){
             GIDSignIn.sharedInstance()?.presentingViewController = self
             GIDSignIn.sharedInstance().signIn()
@@ -274,7 +277,7 @@ extension SignUpVC {
                 let param = BaseApi.showParam(json: params)
                 let jsonString = BaseApi.checkResponse(json: json)
                 OperationQueue.main.addOperation {
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (btnClick) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code: 847", buttons: ["OK","DISSMISS"], viewobj: self) { (btnClick) in
                         if btnClick == "OK"{
                             
                             if let meta = json["meta"] as? [String:AnyObject]{
@@ -347,7 +350,7 @@ extension SignUpVC {
                 let param = BaseApi.showParam(json: params)
                 let jsonString = BaseApi.checkResponse(json: json)
                OperationQueue.main.addOperation {
-                UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
                     if clickBtn == "OK"{
         
                 if let meta = json["meta"] as? [String:AnyObject]{
@@ -431,14 +434,13 @@ extension SignUpVC {
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
                 print(json)
-                BaseApi.hideActivirtIndicator()
                 let param = BaseApi.showParam(json: params)
-                let jsonString = BaseApi.checkResponse(json: json)
+                let jsonString = BaseApi.showParam(json: json)
                 OperationQueue.main.addOperation {
                     BaseApi.hideActivirtIndicator()
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.app/v2/student/login-with-firebase", message: "Response: \(jsonString)     version_code:-826", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
                         if clickBtn == "Ok" {
                             BaseApi.hideActivirtIndicator()
                         }else{
@@ -604,32 +606,40 @@ extension SignUpVC : GIDSignInDelegate {
 
 extension SignUpVC : ASAuthorizationControllerDelegate {
     
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization)
-    {
-        //need to save details in firsttime
+    func createAppleLoginButton(){
         
-        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
-            let _ = appleIDCredential.user
-            
-            if let email = appleIDCredential.email {
-                
-                let fullName = appleIDCredential.fullName
-                let Firstname = (fullName?.givenName)!
-                let Lastname = (fullName?.familyName)!
-                
-//                let vc = FlowController().instantiateViewController(identifier: "DashboardVC", storyBoard: "Home")
-//                self.navigationController?.pushViewController(vc, animated: true)
+//        let authorizationButton = ASAuthorizationAppleIDButton()
+//
+//        authorizationButton.translatesAutoresizingMaskIntoConstraints = false
+//
+//        self.viewAppleLogin.addSubview(authorizationButton)
+//
+//        NSLayoutConstraint.activate([
+//            authorizationButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.viewAppleLogin.centerXAnchor, multiplier: 1),
+//            authorizationButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.viewAppleLogin.centerYAnchor, multiplier: 1),
+//            authorizationButton.heightAnchor.constraint(equalToConstant: 65),
+//            authorizationButton.widthAnchor.constraint(equalToConstant: self.viewAppleLogin.frame.width)
+//        ])
+//
+        self.appleLoginBtn.addTarget(self, action: #selector(handleLogInWithAppleIDButtonPress), for: .touchUpInside)
 
-            }else{
-                performExistingAccountSetupFlows()
-            }
-        }
     }
-   
-    func performExistingAccountSetupFlows() {
+    
+    @objc private func handleLogInWithAppleIDButtonPress() {
+        
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+    }
+        
+    
+    private func performExistingAccountSetupFlows() {
         // Prepare requests for both Apple ID and password providers.
-        let requests = [ASAuthorizationAppleIDProvider().createRequest(),
-                        ASAuthorizationPasswordProvider().createRequest()]
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(), ASAuthorizationPasswordProvider().createRequest()]
         
         // Create an authorization controller with the given requests.
         let authorizationController = ASAuthorizationController(authorizationRequests: requests)
@@ -637,11 +647,71 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+
+
     
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization)
+    {
+        //need to save details in firsttime
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let _ = appleIDCredential.user
+
+            if let email = appleIDCredential.email {
+
+                let fullName = appleIDCredential.fullName
+                let Firstname = (fullName?.givenName)!
+                let Lastname = (fullName?.familyName)!
+
+                
+                KeychainWrapper.standard.set(appleIDCredential, forKey: "appleCred")
+                
+                self.getCredentialsFomLoginAndCallApi(strFrstname: Firstname, strLastname: Lastname, strEmail: email)
+
+            }
+
+            else{
+                
+                
+                if let appleCred = KeychainWrapper.standard.object(forKey: "appleCred") as? ASAuthorizationAppleIDCredential{
+                    
+                    let email = appleCred.email
+                    let fullName = appleCred.fullName
+                    let Firstname = (fullName?.givenName)!
+                    let Lastname = (fullName?.familyName)!
+
+                    self.getCredentialsFomLoginAndCallApi(strFrstname: Firstname, strLastname: Lastname, strEmail: email)
+                }
+                       
+            }
+        }
+    }
+
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error)
     {
         // Handle error.
     }
+    
+    func getCredentialsFomLoginAndCallApi(strFrstname: String?, strLastname: String?, strEmail: String?){
+        
+
+        var tokan = ""
+        if let fcmToken = userDef.object(forKey: "fcmToken") as? String{
+            tokan = fcmToken
+            //APIClient.showAlertMessage(vc: self, titleStr: "", messageStr: tokan)
+        }
+
+        
+        var deviceID = ""
+        if let device_token = userDef.object(forKey: "device_token") as? String{
+            deviceID = device_token
+        }
+
+
+    }
+    
+    
+
+
 }
 
 //MARK:- Facebook Login

@@ -65,7 +65,7 @@ class TermsAndConditionVC: UIViewController {
                         print(json)
                         OperationQueue.main.addOperation { [self] in
                             let jsonString = BaseApi.showParam(json: json)
-                            UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                            UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v2/settings/get-tnc", message: "Response: \(jsonString)     version_code :- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                                 if checkBtn == "OK"{
                                     
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -134,7 +134,7 @@ class TermsAndConditionVC: UIViewController {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.com/v2/settings/get-privacy", message: "Response: \(jsonString)     version_code :- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in
@@ -203,7 +203,7 @@ class TermsAndConditionVC: UIViewController {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.com/v2/settings/get-about-us", message: "Response: \(jsonString)     version_code :- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in
@@ -273,7 +273,7 @@ class TermsAndConditionVC: UIViewController {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:-https://api.doubtnut.com/v2/settings/get-contact-us", message: "Response: \(jsonString)     version_code :- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in

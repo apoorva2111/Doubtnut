@@ -171,17 +171,21 @@
                                                         <rect key="frame" x="19" y="229" width="376" height="89"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CM2-GX-Kwz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="125.5" height="89"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="188" height="89"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9w-SX-Rcm">
-                                                                        <rect key="frame" x="35" y="20" width="45" height="46"/>
+                                                                        <rect key="frame" x="71.5" y="20" width="45" height="46"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="46" id="hVE-pl-gHx"/>
+                                                                            <constraint firstAttribute="width" constant="45" id="vuF-Zj-YY7"/>
+                                                                        </constraints>
                                                                         <state key="normal" image="watchHistory"/>
                                                                         <connections>
                                                                             <action selector="onClickWatchHistory:" destination="Tcq-vh-g7T" eventType="touchUpInside" id="zrW-Ta-bIp"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey8-vW-XR6">
-                                                                        <rect key="frame" x="0.0" y="73" width="125.5" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="73" width="188" height="16"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="16" id="Hdx-97-2f8"/>
                                                                         </constraints>
@@ -194,23 +198,27 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="ey8-vW-XR6" secondAttribute="bottom" id="6NR-85-VkF"/>
                                                                     <constraint firstItem="c9w-SX-Rcm" firstAttribute="top" secondItem="CM2-GX-Kwz" secondAttribute="top" constant="20" id="PIh-pQ-dBS"/>
-                                                                    <constraint firstItem="c9w-SX-Rcm" firstAttribute="leading" secondItem="CM2-GX-Kwz" secondAttribute="leading" constant="35" id="ls0-KW-6Fn"/>
+                                                                    <constraint firstItem="c9w-SX-Rcm" firstAttribute="centerX" secondItem="CM2-GX-Kwz" secondAttribute="centerX" id="lgr-Cj-oPp"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ey8-vW-XR6" secondAttribute="trailing" id="wbo-Eb-sd5"/>
                                                                     <constraint firstItem="ey8-vW-XR6" firstAttribute="leading" secondItem="CM2-GX-Kwz" secondAttribute="leading" id="zVb-LU-MBR"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHM-MS-83z">
-                                                                <rect key="frame" x="125.5" y="0.0" width="125" height="89"/>
+                                                                <rect key="frame" x="188" y="0.0" width="188" height="89"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVt-Oc-KB4">
-                                                                        <rect key="frame" x="20" y="20" width="75" height="45"/>
+                                                                        <rect key="frame" x="71.5" y="20" width="45" height="46"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="45" id="0Fw-aU-czh"/>
+                                                                            <constraint firstAttribute="height" constant="46" id="OmZ-xS-zi4"/>
+                                                                        </constraints>
                                                                         <state key="normal" image="myDoubts"/>
                                                                         <connections>
                                                                             <action selector="onClickMyDoubts:" destination="Tcq-vh-g7T" eventType="touchUpInside" id="MCc-HT-viU"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Doubts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn2-Ep-368">
-                                                                        <rect key="frame" x="0.0" y="73" width="125" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="73" width="188" height="16"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="16" id="eT4-1M-fVO"/>
                                                                         </constraints>
@@ -224,14 +232,12 @@
                                                                     <constraint firstItem="fn2-Ep-368" firstAttribute="leading" secondItem="DHM-MS-83z" secondAttribute="leading" id="9yO-Tr-gZZ"/>
                                                                     <constraint firstItem="GVt-Oc-KB4" firstAttribute="top" secondItem="DHM-MS-83z" secondAttribute="top" constant="20" id="BGt-nI-f0Y"/>
                                                                     <constraint firstAttribute="trailing" secondItem="fn2-Ep-368" secondAttribute="trailing" id="FpI-xn-XDm"/>
-                                                                    <constraint firstItem="fn2-Ep-368" firstAttribute="top" secondItem="GVt-Oc-KB4" secondAttribute="bottom" constant="8" symbolic="YES" id="Yfd-dQ-3iY"/>
-                                                                    <constraint firstItem="GVt-Oc-KB4" firstAttribute="leading" secondItem="DHM-MS-83z" secondAttribute="leading" constant="20" id="n3f-Ha-af6"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="GVt-Oc-KB4" secondAttribute="trailing" constant="30" id="pkV-od-aFO"/>
+                                                                    <constraint firstItem="GVt-Oc-KB4" firstAttribute="centerX" secondItem="DHM-MS-83z" secondAttribute="centerX" id="ZMf-4t-JWk"/>
                                                                     <constraint firstAttribute="bottom" secondItem="fn2-Ep-368" secondAttribute="bottom" id="sRJ-Gd-qss"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xmf-w6-M2l">
-                                                                <rect key="frame" x="250.5" y="0.0" width="125.5" height="89"/>
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xmf-w6-M2l">
+                                                                <rect key="frame" x="376" y="0.0" width="0.0" height="89"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYX-NO-VbH">
                                                                         <rect key="frame" x="35" y="20" width="45" height="46"/>
@@ -241,7 +247,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzh-0B-0V6">
-                                                                        <rect key="frame" x="0.0" y="73" width="125.5" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="73" width="0.0" height="16"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="16" id="9dQ-sm-elQ"/>
                                                                         </constraints>
@@ -291,7 +297,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Membership Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHJ-2m-tub">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Membership Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHJ-2m-tub">
                                                         <rect key="frame" x="19" y="519" width="195" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="X45-4N-kkl"/>
@@ -352,7 +358,7 @@
                                                             <action selector="onClickContactUs:" destination="Tcq-vh-g7T" eventType="touchUpInside" id="qJ8-Ft-tIC"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnX-o7-HL9">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnX-o7-HL9">
                                                         <rect key="frame" x="16" y="551" width="382" height="134.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QA2-BP-F6K">

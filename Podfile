@@ -21,7 +21,7 @@ target 'DoubtNut' do
   pod 'SDWebImage', '~> 5.0'
   pod 'AFNetworking', '~> 4.0'
   pod 'Firebase/Crashlytics'
-
+  pod 'SwiftKeychainWrapper'
   # Pods for DoubtNut
 
   target 'DoubtNutTests' do

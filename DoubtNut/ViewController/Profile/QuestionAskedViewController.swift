@@ -118,7 +118,7 @@ extension QuestionAskedViewController{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- \(url)", message: "Response: \(jsonString)     version_code :- 862", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in

@@ -68,7 +68,7 @@ class LoginGotOTPVC: UIViewController {
             counter = 300
         }else if !(emailID.isPhoneNumber){
         }else{
-            counter = 60
+            counter = 120
         }
         
     }
@@ -272,7 +272,8 @@ extension LoginGotOTPVC{
 
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("US", forHTTPHeaderField: "country")
-        
+        request.addValue("844", forHTTPHeaderField: "version_code")
+
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
 
@@ -292,7 +293,7 @@ extension LoginGotOTPVC{
                     let jsonString = BaseApi.showParam(json: json)
                     
                     OperationQueue.main.addOperation {
-                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- \(url)", message: "Response: \(jsonString),     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                             
                             if clickButton == "OK"{
                                 
@@ -380,30 +381,40 @@ extension LoginGotOTPVC{
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
                 
                 OperationQueue.main.addOperation {
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString),     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        
+                        if clickButton == "OK"{
+                            BaseApi.hideActivirtIndicator()
+                        if let meta = json["meta"] as? [String:AnyObject]{
+                            let code = meta["code"] as! Int
+                            if code == 200 {
+                                if let data = json["data"] as? [String:AnyObject]{
+                                    let status = data["status"] as? String
+                                    if status == "FAILURE"{
+                                        self.showToast(message: "Something Went Wrong")
+                                    }else{
+                                        self.session_id = data["session_id"]as! String
+                                    }
+                                }
+                                BaseApi.hideActivirtIndicator()
 
-                if let meta = json["meta"] as? [String:AnyObject]{
-                    let code = meta["code"] as! Int
-                    if code == 200 {
-                        if let data = json["data"] as? [String:AnyObject]{
-                            let status = data["status"] as? String
-                            if status == "FAILURE"{
-                                self.showToast(message: "Something Went Wrong")
-                            }else{
-                                self.session_id = data["session_id"]as! String
+                                self.showToast(message: "OTP Successully Sent on Your Email Id")
+                                self.counter = 300
+                                self.createTimer()
+                                self.startTimer()
 
                             }
                         }
-                        BaseApi.hideActivirtIndicator()
+                        }else{
+                            BaseApi.hideActivirtIndicator()
 
-                        self.showToast(message: "OTP Successully Sent on Your Email Id")
-                        self.counter = 300
-                        self.createTimer()
-                        self.startTimer()
-
+                        }
                     }
-                }}
+                    }
             } catch {
                 print("error")
                 OperationQueue.main.addOperation {
@@ -433,54 +444,63 @@ extension LoginGotOTPVC{
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
+                let param = BaseApi.showParam(json: params)
+                let jsonString = BaseApi.checkResponse(json: json)
+                
                OperationQueue.main.addOperation {
-
-                if let meta = json["meta"] as? [String:AnyObject]{
-                    let code = meta["code"] as! Int
-                    if code == 200 {
-                       
-                      // OperationQueue.main.addOperation {
-                           BaseApi.hideActivirtIndicator()
-                           
-                           if let data = json["data"] as? [String:AnyObject]{
-                               let status = data["status"] as? String
-                               if status == "FAILURE"{
-                                   self.showToast(message: "Something Went Wrong")
-                               }else{
-                                   self.session_id = data["session_id"]as! String
-                                   
-                               }
-                               
-                           }
-                        self.showToast(message: "OTP Successully Sent on Your Mobile")
-                        self.counter = 60
-                        self.createTimer()
-
-                        self.startTimer()
-                      
-                    }else if code == 401{
-                       if let msg = meta["message"] as? String{
-                       BaseApi.hideActivirtIndicator()
-                       self.showToast(message: msg)
-                       }
-                    }else{
-                        
-                        if let msg = meta["message"] as? String{
-                        BaseApi.hideActivirtIndicator()
-                        self.showToast(message: msg)
+                UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString),     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                    if clickButton == "OK"{
+                        if let meta = json["meta"] as? [String:AnyObject]{
+                            let code = meta["code"] as! Int
+                            if code == 200 {
+                                
+                                // OperationQueue.main.addOperation {
+                                BaseApi.hideActivirtIndicator()
+                                
+                                if let data = json["data"] as? [String:AnyObject]{
+                                    let status = data["status"] as? String
+                                    if status == "FAILURE"{
+                                        self.showToast(message: "Something Went Wrong")
+                                    }else{
+                                        self.session_id = data["session_id"]as! String
+                                        
+                                    }
+                                    
+                                }
+                                self.showToast(message: "OTP Successully Sent on Your Mobile")
+                                self.counter = 120
+                                self.createTimer()
+                                
+                                self.startTimer()
+                                
+                            }else if code == 401{
+                                if let msg = meta["message"] as? String{
+                                    BaseApi.hideActivirtIndicator()
+                                    self.showToast(message: msg)
+                                }
+                            }else{
+                                
+                                if let msg = meta["message"] as? String{
+                                    BaseApi.hideActivirtIndicator()
+                                    self.showToast(message: msg)
+                                }
+                                BaseApi.hideActivirtIndicator()
+                                
+                                
+                            }
+                        }else{
+                            OperationQueue.main.addOperation {
+                                self.showToast(message: "Something Went Wrong")
+                                
+                                BaseApi.hideActivirtIndicator()
+                                
+                            }
                         }
+                    }else{
                         BaseApi.hideActivirtIndicator()
-
-
                     }
-                }else{
-                    OperationQueue.main.addOperation {
-                        self.showToast(message: "Something Went Wrong")
-
-                        BaseApi.hideActivirtIndicator()
-
-                 }
                 }
+
                }
             } catch {
                OperationQueue.main.addOperation {

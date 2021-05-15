@@ -53,6 +53,18 @@ class DashboardVC: UIViewController {
         if BoolValue.isFromSideMenuSetPin{
             BoolValue.isFromSideMenuSetPin = false
             viewSetPin.isHidden = false
+//
+            if userDef.value(forKey: "Login_pin") != nil{
+                let pin = userDef.value(forKey: "Login_pin") as! String
+                let characters = Array(pin)
+
+                txtSetPinOne.text = String(characters[0])
+                txtSetPinTwo.text = String(characters[1])
+                txtSetPinThree.text = String(characters[2])
+                txtSetPinFour.text = String(characters[3])
+            }else{
+                
+            }
         }else{
         viewSetPin.isHidden = true
         }
@@ -184,14 +196,14 @@ extension DashboardVC{
             if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "SAT"
-                vc.id = String(obj["id"]as! Int)
+                vc.id = String(obj["playlist_id"]as! String)
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[1]
                 if "SAT prep"  == obj["title"] as! String || "SAT Prep"  == obj["title"] as! String{
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "SAT"
-                    vc.id = String(obj["id"]as! Int)
+                    vc.id = String(obj["playlist_id"]as! String)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -206,7 +218,7 @@ extension DashboardVC{
             if "ACT Prep"  == obj["title"] as! String || "ACT prep"  == obj["title"] as! String{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "ACT"
-                vc.id = String(obj["id"]as! Int)
+                vc.id = String(obj["playlist_id"]as! String)
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[0]
@@ -214,7 +226,7 @@ extension DashboardVC{
                 
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "ACT"
-                    vc.id = String(obj["id"]as! Int)
+                    vc.id = String(obj["playlist_id"]as! String)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -232,11 +244,13 @@ extension DashboardVC{
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let auth = userDef.value(forKey: "Auth_token") as! String
+        if let auth = userDef.value(forKey: "Auth_token") as? String{
+            request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
-        
+        request.addValue("844", forHTTPHeaderField: "version_code")
+
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             if error != nil {
                 print("Error: \(String(describing: error))")
@@ -247,7 +261,7 @@ extension DashboardVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v5/icons/getdata/27", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             
                             if checkBtn == "OK"{
                                 
@@ -296,7 +310,8 @@ extension DashboardVC{
     func callWebserviceForItems()  {
         BaseApi.showActivityIndicator(icon: nil, text: "")
 
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v3/tesla/feed?page=1&source=home")! as URL)
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v3/tesla/feed?page=1&source=home&with_video_type=1&offsetCursor=&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE")! as URL)
+
         let session = URLSession.shared
         request.httpMethod = "GET"
         //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -306,7 +321,8 @@ extension DashboardVC{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYxNzcxNjY2MCwiZXhwIjoxNjgwNzg4NjYwfQ.t-XYGLwUvy2lTbmBfN0D3Ybm_rVkXGyghrHy8EgosK8", forHTTPHeaderField: "x-auth-token")
         request.addValue("US", forHTTPHeaderField: "country")
-        
+        request.addValue("844", forHTTPHeaderField: "version_code")
+
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             if error != nil {
                 print("Error: \(String(describing: error))")
@@ -317,7 +333,7 @@ extension DashboardVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v3/tesla/feed?page=1&source=home", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation {
@@ -541,7 +557,7 @@ extension DashboardVC{
                     print(json)
                     let jsonString = BaseApi.showParam(json: json)
                     let param = BaseApi.showParam(json: parameters as [String : Any])
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v1/student/store-pin", message: "Response: \(jsonString)     version_code:- 862 ", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             OperationQueue.main.addOperation {
 
@@ -561,7 +577,7 @@ extension DashboardVC{
                                     }
                                     // add an action (button)}else{
                                     BaseApi.hideActivirtIndicator()
-                                    self.showToast(message: "Something Went Wrong")
+//                                    self.showToast(message: "Something Went Wrong")
                                 }
                                   //  }
                                 }
@@ -582,3 +598,11 @@ extension DashboardVC{
         task.resume()
     }
 }
+
+/*
+ "GET:  https://api.doubtnut.app/v3/tesla/feed?page=1&source=home&with_video_type=1&offsetCursor=&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE
+
+ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYyMDY0MjI5MCwiZXhwIjoxNjgzNzE0MjkwfQ.oSDqsry8VS6Q0dXcasv5sqqgZ02rTCwvtAaYcy5I7CI
+ version_code: 844
+ country: US"
+ */

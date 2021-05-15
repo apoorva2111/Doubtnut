@@ -95,7 +95,7 @@ extension WatchHistoryViewController{
         let auth = userDef.value(forKey: "Auth_token") as! String
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(auth, forHTTPHeaderField: "x-auth-token")
-        request.addValue("850", forHTTPHeaderField: "version_code")
+        request.addValue("844", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
@@ -108,7 +108,7 @@ extension WatchHistoryViewController{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/question/watch-history?page=1", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             
                             if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in

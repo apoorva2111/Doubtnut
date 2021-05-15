@@ -77,7 +77,7 @@ class GetOTPVC: UIViewController {
             counter = 300
         }else  if !(emailID.isPhoneNumber){
         }else{
-            counter = 60
+            counter = 120
         }
     }
 
@@ -154,7 +154,7 @@ extension GetOTPVC{
         } catch let error {
             print(error.localizedDescription)
         }
-
+        request.addValue("847", forHTTPHeaderField: "version_code")
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("US", forHTTPHeaderField: "country")
         
@@ -176,9 +176,9 @@ extension GetOTPVC{
                     let param = BaseApi.showParam(json: parameters)
                     let jsonString = BaseApi.showParam(json: json)
                     OperationQueue.main.addOperation {
-                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
-                            if clickBtn == "Ok" {
-                                
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- \(url)", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickBtn) in
+                            if clickBtn == "OK" {
+                                BaseApi.hideActivirtIndicator()
                                 if let meta = json["meta"] as? [String:AnyObject]{
                                     let code = meta["code"] as! Int
                                     if code == 200 {
@@ -207,7 +207,7 @@ extension GetOTPVC{
                                             if count > 5{
                                                 let vc = FlowController().instantiateViewController(identifier: "navDash", storyBoard: "Home") as! UINavigationController
                                                 vc.modalPresentationStyle = .fullScreen
-                                                self.present(vc, animated: false, completion: nil)                              }else{
+                                                self.present(vc, animated: false, completion: nil)                      }else{
                                                     let vc = FlowController().instantiateViewController(identifier: "navHome", storyBoard: "Home") as! UINavigationController
                                                     vc.modalPresentationStyle = .fullScreen
                                                     self.present(vc, animated: false, completion: nil)
@@ -356,7 +356,7 @@ extension GetOTPVC{
                     let param = BaseApi.showParam(json: params)
                     let jsonString = BaseApi.checkResponse(json: json)
                     OperationQueue.main.addOperation {
-                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                             if clickButton == "OK"{
                                 
                                 if let meta = json["meta"] as? [String:AnyObject]{
@@ -416,7 +416,7 @@ extension GetOTPVC{
                     let jsonString = BaseApi.checkResponse(json: json)
 
                    OperationQueue.main.addOperation {
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code:- 847", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                         if clickButton == "OK" {
                             if let meta = json["meta"] as? [String:AnyObject]{
                                 let code = meta["code"] as! Int
@@ -436,7 +436,7 @@ extension GetOTPVC{
                                         
                                     }
                                     self.showToast(message: "OTP Successully Sent on Your Mobile")
-                                    self.counter = 60
+                                    self.counter = 120
                                     self.createTimer()
                                     
                                     self.startTimer()

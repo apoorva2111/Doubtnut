@@ -110,7 +110,8 @@ extension FindNewSolutionGifVC{
     func callWebserviceForAskQues() {
         
 //question_text
-        let parameters = ["question_image":"image_url",
+        let parameters =
+            ["question_image":"image_url",
                           "uploaded_image_name":file_name,
                           "question":"IOS",
                           "limit":"20",
@@ -132,10 +133,10 @@ extension FindNewSolutionGifVC{
             print(error.localizedDescription)
         }
         let auth = userDef.value(forKey: "Auth_token") as! String
-        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYyMDY0MjI5MCwiZXhwIjoxNjgzNzE0MjkwfQ.oSDqsry8VS6Q0dXcasv5sqqgZ02rTCwvtAaYcy5I7CI", forHTTPHeaderField: "x-auth-token")
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("US", forHTTPHeaderField: "country")
-        request.addValue("776", forHTTPHeaderField: "version_code")
+        request.addValue("844", forHTTPHeaderField: "version_code")
 
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -155,7 +156,7 @@ extension FindNewSolutionGifVC{
 
                     let jsonString = BaseApi.showParam(json: json)
                     let param = BaseApi.showParam(json: parameters)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param)", message: "Response: \(jsonString)", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             
                             if let meta = json["meta"] as? [String:AnyObject]{

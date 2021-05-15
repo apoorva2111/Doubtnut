@@ -23,6 +23,8 @@ struct BoolValue {
     static var isFromSideMenuSetPin = false
     static var isLogout = false
     static var isFromCustomCameraDemoQues = false
+    static var isFromLogin = false
+
 }
 
 struct SettingValue {
