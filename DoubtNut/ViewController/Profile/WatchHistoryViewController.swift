@@ -57,9 +57,9 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = watchHistoryTableview.dequeueReusableCell(withIdentifier: "WatchHistoryTableViewCell", for: indexPath) as! WatchHistoryTableViewCell
-        //cell.thumbnailImage.image = #imageLiteral(resourceName: "download")
         let objList = arrWatchHistory[indexPath.row]
-
+        let ocrText = objList["ocr_text"] as? String
+        cell.lblQuest.text = ocrText?.html2String
         if let imgUrl = objList["question_image"]{
             cell.thumbnailImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
 
@@ -69,8 +69,6 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
         if let timestamp = objList["timestamp_formatted"]{
             cell.bottomRightLabel.text = timestamp as? String
         }
-//        cell.durationLabel.text = "10:54"
-//        cell.viewCountLabel.text = "10K"
         cell.onClickPlay = {
             //action to play video
             print("play button is tapped")
@@ -135,6 +133,7 @@ extension WatchHistoryViewController{
                                                     watchHistoryTableview.reloadData()
                                                 }
                                                
+                                                print(arrWatchHistory)
                                             }
                                         }else{
                                             BaseApi.hideActivirtIndicator()

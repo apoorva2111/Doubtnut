@@ -13,6 +13,7 @@ class ListTableViewCell: UITableViewCell {
    @IBOutlet weak var lblVideoTime: UILabel!
     @IBOutlet weak var lblVideoLike: UILabel!
     @IBOutlet weak var imgThumbnil: UIImageView!
+    @IBOutlet weak var lblQues: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

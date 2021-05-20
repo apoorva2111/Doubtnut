@@ -12,6 +12,9 @@
         <array key="Lato-Black.ttf">
             <string>Lato-Black</string>
         </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -34,8 +37,15 @@
                                 </constraints>
                                 <state key="normal" image="Menu"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-zB-v0z">
+                                <rect key="frame" x="12" y="14" width="382" height="101"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u7n-tJ-sS6">
                                 <rect key="frame" x="12" y="14" width="382" height="101"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="101" id="WUE-IN-i6J"/>
                                 </constraints>
@@ -81,16 +91,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="BXt-K5-bc5" secondAttribute="bottom" constant="14" id="8os-Ms-oRY"/>
+                            <constraint firstItem="E20-zB-v0z" firstAttribute="height" secondItem="u7n-tJ-sS6" secondAttribute="height" id="An6-OC-O43"/>
                             <constraint firstItem="kgF-EA-zsP" firstAttribute="top" secondItem="vaY-eZ-WOw" secondAttribute="top" constant="8" id="DNe-WM-H3y"/>
                             <constraint firstItem="u7n-tJ-sS6" firstAttribute="top" secondItem="vaY-eZ-WOw" secondAttribute="top" constant="14" id="L6P-yg-QPH"/>
                             <constraint firstItem="JOr-Yh-Pta" firstAttribute="centerY" secondItem="vaY-eZ-WOw" secondAttribute="centerY" id="Syx-qp-fVZ"/>
                             <constraint firstAttribute="trailing" secondItem="u7n-tJ-sS6" secondAttribute="trailing" constant="20" id="UTm-Of-Dag"/>
                             <constraint firstItem="h1W-Ri-hJC" firstAttribute="centerY" secondItem="BXt-K5-bc5" secondAttribute="centerY" id="Wp8-XJ-flz"/>
+                            <constraint firstItem="E20-zB-v0z" firstAttribute="top" secondItem="u7n-tJ-sS6" secondAttribute="top" id="bG7-zA-AYh"/>
                             <constraint firstItem="BXt-K5-bc5" firstAttribute="leading" secondItem="vaY-eZ-WOw" secondAttribute="leading" constant="12" id="fPi-0d-RDn"/>
                             <constraint firstItem="u7n-tJ-sS6" firstAttribute="leading" secondItem="vaY-eZ-WOw" secondAttribute="leading" constant="12" id="grc-pq-8Kd"/>
+                            <constraint firstItem="E20-zB-v0z" firstAttribute="leading" secondItem="u7n-tJ-sS6" secondAttribute="leading" id="nOF-E6-4JB"/>
                             <constraint firstItem="JOr-Yh-Pta" firstAttribute="centerX" secondItem="vaY-eZ-WOw" secondAttribute="centerX" id="rw5-9r-5JI"/>
                             <constraint firstAttribute="trailing" secondItem="h1W-Ri-hJC" secondAttribute="trailing" id="w7M-Nm-c2p"/>
                             <constraint firstItem="x8g-JQ-LXa" firstAttribute="trailing" secondItem="kgF-EA-zsP" secondAttribute="trailing" id="wnN-p5-oqz"/>
+                            <constraint firstItem="E20-zB-v0z" firstAttribute="trailing" secondItem="u7n-tJ-sS6" secondAttribute="trailing" id="yRU-V0-i1g"/>
                             <constraint firstItem="x8g-JQ-LXa" firstAttribute="centerY" secondItem="BXt-K5-bc5" secondAttribute="centerY" id="yuY-p0-HA9"/>
                             <constraint firstAttribute="trailing" secondItem="kgF-EA-zsP" secondAttribute="trailing" constant="12" id="zFD-7N-45z"/>
                         </constraints>
@@ -107,6 +121,7 @@
             <connections>
                 <outlet property="baseView" destination="vaY-eZ-WOw" id="ciy-TV-1UW"/>
                 <outlet property="bottomRightLabel" destination="BXt-K5-bc5" id="Xti-ki-woU"/>
+                <outlet property="lblQuest" destination="E20-zB-v0z" id="dT0-Ua-kJ3"/>
                 <outlet property="menuRefBtn" destination="kgF-EA-zsP" id="pTL-Le-kIy"/>
                 <outlet property="playBtnRef" destination="JOr-Yh-Pta" id="mEQ-FC-xHC"/>
                 <outlet property="thumbnailImage" destination="u7n-tJ-sS6" id="ZxZ-4H-7UV"/>
@@ -115,7 +130,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Menu" width="4" height="16"/>
+        <image name="Menu" width="16" height="16"/>
         <image name="Play" width="40" height="40"/>
         <image name="arrowRed" width="12" height="20"/>
         <systemColor name="systemBackgroundColor">

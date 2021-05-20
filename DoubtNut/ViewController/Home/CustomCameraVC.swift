@@ -723,6 +723,8 @@ extension CustomCameraVC{
                                                               }, completion: nil)
                                             let vc = FlowController().instantiateViewController(identifier: "VIdeoListVC", storyBoard: "Home") as! VIdeoListVC
                                             vc.arrAskQuestion = data
+                                            vc.questionstring = self.txtTypeText.text!
+
                                             self.navigationController?.pushViewController(vc, animated: true)
                                         }
                                     }

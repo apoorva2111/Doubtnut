@@ -18,6 +18,7 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var txtSetPinThree: RCustomTextField!
     @IBOutlet weak var txtSetPinFour: RCustomTextField!
 
+    @IBOutlet weak var txtSearchQues: UITextField!
     @IBOutlet weak var lblOtpLine1: UILabel!
     @IBOutlet weak var lblOtpLine2: UILabel!
     @IBOutlet weak var lblOtpLine3: UILabel!
@@ -43,9 +44,8 @@ class DashboardVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         viewFooterview.footerDelegate = self
-
+        txtSearchQues.delegate = self
         // Do any additional setup after loading the view.
         registerXib()
         viewFreeTrial.isHidden = true
@@ -78,7 +78,7 @@ class DashboardVC: UIViewController {
    setView()
 
         callWebserviceForItems()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.callWebserviceGetdata()
         }
       //
@@ -151,6 +151,8 @@ callWebserviceForStorePin(pin: strOTP)
 
     }
 }
+
+
 extension DashboardVC : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -179,6 +181,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblList.dequeueReusableCell(withIdentifier: "HomeTVCell", for: indexPath) as! HomeTVCell
         let objDict = arrFeedData[indexPath.row]
+        cell.homeVC = self
         cell.setData(feedDict: objDict)
 
         return cell
@@ -384,6 +387,96 @@ extension DashboardVC{
         
         task.resume()
     }
+    
+    func callWebserviceForAskQues() {
+        
+//
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        let parameters = [
+                          "question":"IOS",
+                          "limit":"20",
+                          "uploaded_image_question_id":"",
+                          "question_text":txtSearchQues.text!] as [String : Any]
+        
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.com/v10/questions/ask")! //change the url
+
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("US", forHTTPHeaderField: "country")
+        request.addValue("776", forHTTPHeaderField: "version_code")
+
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+                    let jsonString = BaseApi.showParam(json: json)
+                    let param = BaseApi.showParam(json: parameters)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    // create the alert
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                        
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            self.txtSearchQues.resignFirstResponder()
+                                            let vc = FlowController().instantiateViewController(identifier: "VIdeoListVC", storyBoard: "Home") as! VIdeoListVC
+                                            vc.arrAskQuestion = data
+                                            vc.questionstring = self.txtSearchQues.text!
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        }
+                                    }
+                                  //  }
+                                }else{
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                }
+                            }
+                        }else{
+                            BaseApi.hideActivirtIndicator()
+
+                        }
+                    }
+            
+                    // handle json..
+                        
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }
+    
 }
 extension DashboardVC : FooterviewDelegate{
     func didPressFooterButton(getType: String) {
@@ -442,22 +535,15 @@ extension DashboardVC : FreetrialViewDelegate{
 }
 //MARK:- Textfeild Delegate
 extension DashboardVC : UITextFieldDelegate{
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//            lblOtpLine1.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-//            lblOtpLine2.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-//            lblOtpLine3.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-//            lblOtpLine4.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-////
-////            txtSetPinOne.text = ""
-////            txtSetPinTwo.text = ""
-////            txtSetPinThree.text = ""
-////            txtSetPinFour.text = ""
-//
-////            btnOutletSubmit.layer.backgroundColor = #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.7960784314, alpha: 1)
-////            btnOutletSubmit.layer.masksToBounds = true
-//
-//    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if txtSearchQues.text == "" {
+            self.showToast(message: "Please Enter Text Doubt")
+        }else{
+            callWebserviceForAskQues()
+
+        }
+    }
     @objc func textFieldDidChange(textField: UITextField){
         
         let text = textField.text

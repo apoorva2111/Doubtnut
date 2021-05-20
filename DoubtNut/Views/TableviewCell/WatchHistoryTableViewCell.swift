@@ -14,6 +14,7 @@ class WatchHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var menuRefBtn: UIButton!
     
     @IBOutlet weak var thumbnailImage: UIImageView!
+    @IBOutlet weak var lblQuest: UILabel!
     
     @IBOutlet weak var bottomRightLabel: UILabel!
         

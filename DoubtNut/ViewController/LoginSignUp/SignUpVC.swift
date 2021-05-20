@@ -261,12 +261,13 @@ extension SignUpVC {
         BaseApi.showActivityIndicator(icon: nil, text: "")
         
         let params:[String: Any] = ["phone_number":tctEmailId.text!,"login_method":"email_id"]
+        print(params)
         
         var request = URLRequest(url: URL(string: "https://api.doubtnut.app/v4/student/login")!)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("847", forHTTPHeaderField: "version_code")
+        request.addValue("845", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
         
         let session = URLSession.shared
@@ -277,7 +278,7 @@ extension SignUpVC {
                 let param = BaseApi.showParam(json: params)
                 let jsonString = BaseApi.checkResponse(json: json)
                 OperationQueue.main.addOperation {
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code: 847", buttons: ["OK","DISSMISS"], viewobj: self) { (btnClick) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.app/v4/student/login", message: "Response: \(jsonString)     version_code: 845", buttons: ["OK","DISSMISS"], viewobj: self) { (btnClick) in
                         if btnClick == "OK"{
                             
                             if let meta = json["meta"] as? [String:AnyObject]{

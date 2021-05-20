@@ -16,7 +16,6 @@ class SATVC: UIViewController {
     var arrList = [NSDictionary]()
     var arrHeader = [NSDictionary]()
     var arrFilter = [NSDictionary]()
-    var isSelectedHeader = false
     
 
     @IBOutlet weak var collectionFilterHeightConstraint: NSLayoutConstraint!
@@ -72,8 +71,8 @@ class SATVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
-       
+        super.viewWillAppear(animated)
+           
     }
     
     
@@ -146,9 +145,7 @@ extension SATVC {
 
                                                     
                                                     if arrFilter.count>0{
-                                                        if arrFilter.count == 1 {
-                                                            isSelectedHeader = true
-                                                        }
+//
                                                         collectionFilterHeightConstraint.constant = 40
                                                         collectionFilter.reloadData()
                                                     }
@@ -178,8 +175,13 @@ extension SATVC {
                                                 for objDict in arr {
                                                     arrList.append(objDict as! NSDictionary)
                                                 }
-                                                satTableView.isHidden = false
-                                                satTableView.reloadData()
+                                                if arrList.count>0{
+                                                    satTableView.isHidden = false
+                                                    satTableView.reloadData()
+                                                }else{
+                                                    satTableView.isHidden = true
+                                                }
+                                                
                                                 BaseApi.hideActivirtIndicator()
 
                                             }else{
@@ -260,6 +262,13 @@ extension SATVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let obj = arrList[indexPath.row]
+        let vc   = FlowController().instantiateViewController(identifier: "ResultListVC", storyBoard: "Home") as! ResultListVC
+        vc.Id = obj["id"] as? Int ?? 0
+        vc.name = obj["name"] as? String ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 
@@ -287,25 +296,29 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
             cell.viewBG.backgroundColor = .white
 //            cell.lblSubjects.textColor = .systemRed
             cell.lblSelectedLine.backgroundColor = .clear
-            
-            if(indexArray.contains(indexPath.row)){
-                cell.viewBG.backgroundColor = .systemRed
+            if arrFilter.count == 1{
+                cell.viewBG.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
                 cell.viewBG.layer.cornerRadius = 5
+                cell.lblSubjects.textColor = .white
                 cell.viewBG.clipsToBounds = true
+            }else{
+                if(indexFilterArray.contains(indexPath.row)){
+                    cell.viewBG.backgroundColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+                    cell.viewBG.layer.cornerRadius = 5
+                    cell.lblSubjects.textColor = .white
+                    cell.viewBG.clipsToBounds = true
 
-            }
-            else{
-                cell.viewBG.backgroundColor = .gray
-                cell.viewBG.layer.cornerRadius = 5
-                cell.viewBG.clipsToBounds = true
+                }
+                else{
+                    cell.viewBG.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
+                    cell.viewBG.layer.cornerRadius = 5
+                    cell.lblSubjects.textColor = #colorLiteral(red: 0.9215686275, green: 0.3254901961, blue: 0.1725490196, alpha: 1)
+
+                    cell.viewBG.clipsToBounds = true
+                }
+              
             }
             
-           if isSelectedHeader{
-            isSelectedHeader = false
-            cell.viewBG.backgroundColor = .systemRed
-            cell.viewBG.layer.cornerRadius = 5
-            cell.viewBG.clipsToBounds = true
-            }
             
             
         }else{
@@ -336,13 +349,13 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
             let obj = arrFilter[indexPath.row]
             let headerId = obj["id"] as? Int ?? 0
             callWebserviceGetdata(id:String(headerId))
-            indexArray.removeAll()
-            if arrHeader.count>1{
+            indexFilterArray.removeAll()
+            if arrFilter.count>1{
                 indexSwipe = indexPath.row
-                indexArray.append(indexPath.row)
+                indexFilterArray.append(indexPath.row)
             }else{
                 indexSwipe = 0
-                indexArray.append(0)
+                indexFilterArray.append(0)
             }
             collectionFilter.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             collectionFilter.reloadData()
@@ -359,6 +372,9 @@ extension SATVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
                 indexArray.append(0)
             }
             
+            for i in 0..<arrFilter.count{
+                indexFilterArray.append(i)
+            }
             
             
             collFeatureCat.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)

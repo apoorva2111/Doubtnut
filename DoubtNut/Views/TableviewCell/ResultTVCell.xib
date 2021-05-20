@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ResultTVCell" rowHeight="150" id="Ksi-hj-2BK" customClass="ResultTVCell" customModule="DoubtNut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ksi-hj-2BK" id="yOy-di-gol">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6nH-ZQ-8Ea">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ChJ-sE-gfw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="VEn-Kd-EFV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUk-Yb-nPt">
+                                <rect key="frame" x="0.0" y="180" width="414" height="160"/>
+                                <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Al Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Al</mutableString>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbL-1O-wo4">
+                        <rect key="frame" x="0.0" y="350" width="414" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1859234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5u-un-bjS">
+                                <rect key="frame" x="10" y="18" width="120" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Cme-Iu-pYo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="410-Cr-OmV">
+                                <rect key="frame" x="254" y="0.0" width="160" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-ae-Skr">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="View" translatesAutoresizingMaskIntoConstraints="NO" id="Ava-0X-CYt">
+                                                <rect key="frame" x="5" y="15" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="QSb-Ln-SFt"/>
+                                                    <constraint firstAttribute="height" constant="20" id="bhf-FI-yW7"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.9 k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtG-n9-Yt8">
+                                                <rect key="frame" x="30" y="18" width="45" height="14.5"/>
+                                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                                <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="qtG-n9-Yt8" secondAttribute="trailing" constant="5" id="42k-Wc-mT8"/>
+                                            <constraint firstItem="Ava-0X-CYt" firstAttribute="leading" secondItem="vIi-ae-Skr" secondAttribute="leading" constant="5" id="KmO-jl-t5j"/>
+                                            <constraint firstItem="qtG-n9-Yt8" firstAttribute="leading" secondItem="Ava-0X-CYt" secondAttribute="trailing" constant="5" id="M1m-Fb-NRb"/>
+                                            <constraint firstItem="qtG-n9-Yt8" firstAttribute="centerY" secondItem="Ava-0X-CYt" secondAttribute="centerY" id="XA2-vT-S10"/>
+                                            <constraint firstItem="Ava-0X-CYt" firstAttribute="centerY" secondItem="vIi-ae-Skr" secondAttribute="centerY" id="oZi-HX-RMk"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJV-bV-csR">
+                                        <rect key="frame" x="80" y="0.0" width="80" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:05" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBq-k5-bga" customClass="RCustomLabel" customModule="DoubtNut" customModuleProvider="target">
+                                                <rect key="frame" x="22.5" y="18.5" width="35" height="13.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="P1A-0p-Twb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
+                                                <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="EBq-k5-bga" firstAttribute="centerY" secondItem="yJV-bV-csR" secondAttribute="centerY" id="7ZW-YC-QnB"/>
+                                            <constraint firstItem="EBq-k5-bga" firstAttribute="centerX" secondItem="yJV-bV-csR" secondAttribute="centerX" id="SN7-Aa-QMA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="eca-bm-54o"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="AX7-uz-k5N"/>
+                            <constraint firstAttribute="bottom" secondItem="410-Cr-OmV" secondAttribute="bottom" id="Oy4-pQ-rL6"/>
+                            <constraint firstAttribute="trailing" secondItem="410-Cr-OmV" secondAttribute="trailing" id="en5-mT-bQ2"/>
+                            <constraint firstItem="c5u-un-bjS" firstAttribute="leading" secondItem="AbL-1O-wo4" secondAttribute="leading" constant="10" id="ltd-jl-1eA"/>
+                            <constraint firstItem="410-Cr-OmV" firstAttribute="top" secondItem="AbL-1O-wo4" secondAttribute="top" id="wN5-LU-cnF"/>
+                            <constraint firstItem="c5u-un-bjS" firstAttribute="centerY" secondItem="AbL-1O-wo4" secondAttribute="centerY" id="zKd-SV-udc"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-SR-IcI">
+                        <rect key="frame" x="182" y="175" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="khi-UC-fBb"/>
+                            <constraint firstAttribute="height" constant="50" id="vXf-VJ-VHI"/>
+                        </constraints>
+                        <state key="normal" image="Play"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="AbL-1O-wo4" secondAttribute="trailing" id="3A0-2g-2FT"/>
+                    <constraint firstItem="6nH-ZQ-8Ea" firstAttribute="top" secondItem="yOy-di-gol" secondAttribute="top" id="94D-ZY-GX7"/>
+                    <constraint firstItem="CTf-SR-IcI" firstAttribute="centerY" secondItem="yOy-di-gol" secondAttribute="centerY" id="La8-WW-Q54"/>
+                    <constraint firstItem="6nH-ZQ-8Ea" firstAttribute="leading" secondItem="yOy-di-gol" secondAttribute="leading" id="Pzp-5f-ncE"/>
+                    <constraint firstItem="CTf-SR-IcI" firstAttribute="centerX" secondItem="yOy-di-gol" secondAttribute="centerX" id="Swb-Oh-BNg"/>
+                    <constraint firstItem="AbL-1O-wo4" firstAttribute="leading" secondItem="yOy-di-gol" secondAttribute="leading" id="cLG-eO-9Fh"/>
+                    <constraint firstAttribute="trailing" secondItem="6nH-ZQ-8Ea" secondAttribute="trailing" id="fMp-Gx-BfV"/>
+                    <constraint firstAttribute="bottom" secondItem="AbL-1O-wo4" secondAttribute="bottom" id="fwh-rl-jBM"/>
+                    <constraint firstAttribute="trailing" secondItem="AbL-1O-wo4" secondAttribute="trailing" id="n7a-Os-T15"/>
+                    <constraint firstItem="AbL-1O-wo4" firstAttribute="top" secondItem="6nH-ZQ-8Ea" secondAttribute="bottom" constant="10" id="tWN-NY-7qK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgThumbnil" destination="ChJ-sE-gfw" id="gCJ-R0-okY"/>
+                <outlet property="lblId" destination="c5u-un-bjS" id="IOi-gj-ogk"/>
+                <outlet property="lblText" destination="FUk-Yb-nPt" id="blq-2B-rgW"/>
+                <outlet property="lblTime" destination="EBq-k5-bga" id="t1r-ta-Vgm"/>
+                <outlet property="lblWatch" destination="qtG-n9-Yt8" id="JRo-OD-XJ9"/>
+            </connections>
+            <point key="canvasLocation" x="34.782608695652179" y="141.29464285714286"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="EBq-k5-bga">
+            <size key="intrinsicContentSize" width="28.5" height="13.5"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="Play" width="40" height="40"/>
+        <image name="View" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

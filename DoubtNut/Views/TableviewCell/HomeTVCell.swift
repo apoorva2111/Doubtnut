@@ -13,6 +13,7 @@ class HomeTVCell: UITableViewCell {
     @IBOutlet weak var btnOutletSeeAll: UIButton!
     @IBOutlet weak var itemsCollectionview: UICollectionView!
     var arrItem = [NSDictionary]()
+    var homeVC = DashboardVC()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,7 +72,11 @@ extension HomeTVCell : UICollectionViewDelegate,UICollectionViewDataSource, UICo
         return CGSize(width: itemsCollectionview.frame.width - 50, height: itemsCollectionview.frame.height)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        viewFreeTrial.isHidden = false
+        let obj = arrItem[indexPath.row]
+        let vc   = FlowController().instantiateViewController(identifier: "ResultListVC", storyBoard: "Home") as! ResultListVC
+        vc.Id = obj["id"] as? Int ?? 0
+        vc.name = obj["title"] as? String ?? ""
+        homeVC.self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -12,6 +12,7 @@ class VIdeoListVC: UIViewController {
 
     @IBOutlet weak var viewFooter: Footerview!
    
+    @IBOutlet weak var lblTextques: UILabel!
     @IBOutlet weak var imgGif: UIImageView!
     @IBOutlet weak var tblList: UITableView!
     @IBAction func btnBackAction(_ sender: UIButton) {
@@ -22,6 +23,7 @@ class VIdeoListVC: UIViewController {
     var arrList = [NSDictionary]()
     
     var imgUpload : UIImage!
+    var questionstring = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +37,22 @@ class VIdeoListVC: UIViewController {
         
     }
     func showVideoList(){
-        imgGif.image = imgUpload
+        if imgUpload != nil {
+            imgGif.image = imgUpload
+            lblTextques.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+
+        }else if questionstring != "" {
+            lblTextques.text = questionstring
+            lblTextques.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
+            
+        }
         let quesArr = arrAskQuestion["matched_questions"] as! NSArray
         for objQues in quesArr {
             let obj = objQues as! NSDictionary
             arrList.append(obj)
             
         }
+        print(arrList)
         tblList.reloadData()
     }
 
@@ -75,18 +86,29 @@ extension VIdeoListVC : UITableViewDelegate,UITableViewDataSource{
         let cell = tblList.dequeueReusableCell(withIdentifier: "ListTableViewCell", for: indexPath) as! ListTableViewCell
         let objList = arrList[indexPath.row]
         cell.lblVideoID.text = objList["_id"] as? String
+        var ocrText = ""
         if let objSource = objList["_source"] as? NSDictionary{
             let view = objSource["views"] as! Int
             cell.lblVideoView.text =  String(view)
            let like = objSource["likes"] as! Int
             cell.lblVideoLike.text = String(like)
+            ocrText = objSource["ocr_text"] as? String ?? ""
         }
+        //ocr_text
+        
         let imgUrl = objList["question_thumbnail"] as? String
         cell.imgThumbnil.sd_imageIndicator = SDWebImageActivityIndicator.gray
 
-            cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!), completed: nil)
+//        cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!), completed: nil)
+        cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!)) { (imgView, error, nil, url) in
+            if imgUrl == nil{
+                cell.lblQues.text = ocrText.html2String
+            }
+        }
+
         
         return cell
     }
+    
     
 }

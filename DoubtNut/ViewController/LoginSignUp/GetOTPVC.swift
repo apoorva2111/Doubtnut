@@ -138,7 +138,7 @@ extension GetOTPVC{
         
         BaseApi.showActivityIndicator(icon: nil, text: "")
        let parameters = ["otp":strOtp,"session_id":session_id]
-        
+        print(parameters)
         //create the url with URL
         let url = URL(string: "https://api.doubtnut.app/v4/student/verify")! //change the url
 

@@ -20,11 +20,11 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     
-    var imageArray = [[UIImage(named: "Vector")],[UIImage(named: "ChangeClass")],
+    var imageArray = [[UIImage(named: "Vector")],
                       [UIImage(named: "history"),UIImage(named: "QA"),UIImage(named: "playlist")],
                       [UIImage(named: "settings")]]
   
-    var titleArray = [["Login PIN"],["Change Grade"],
+    var titleArray = [["Login PIN"],
                       ["History","Question Asked History","Watch Later"],
                       ["Settings"]]
     
@@ -96,48 +96,50 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
             cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
 
-        }else if indexPath.section == 1{
-            if indexPath.row == 0 {
-                cell.sideMenuImage.isHidden = false
-              cell.sideMenuTitle.isHidden = false
-                cell.viewLoginPin.isHidden = true
-            cell.viewChangeClass.isHidden = false
-            cell.viewChangeLanguage.isHidden = true
-              
-                if SettingValue.chooseClass == ""{
-                    let chooseClass = userDef.string(forKey: UserDefaultKey.chooseClass)
-                   
-                    cell.lblLanguage.setTitle("(\(String(describing: chooseClass)))", for: .normal)
-                }else{
-                    cell.lblClass.setTitle("(\(SettingValue.chooseClass))", for: .normal)
-                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseClass)
-                }
-                
-            
-            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
-
-            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
-            }else{
-                cell.sideMenuImage.isHidden = false
-              cell.sideMenuTitle.isHidden = false
-                cell.viewLoginPin.isHidden = true
-            cell.viewChangeClass.isHidden = true
-            cell.viewChangeLanguage.isHidden = false
-                cell.changePinOutlt.addTarget(self, action: #selector(changePinAction(_:)), for: .touchUpInside)
-                if SettingValue.chooseLanguage == ""{
-                    let chooseLange = userDef.string(forKey: UserDefaultKey.chooseLang)
-                   
-                    cell.lblLanguage.setTitle("(\(String(describing: chooseLange)))", for: .normal)
-                }else{
-                    cell.lblLanguage.setTitle("(\(SettingValue.chooseLanguage))", for: .normal)
-                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseLang)
-                }
-
-            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
-
-            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
-            }
         }
+        
+//        else if indexPath.section == 1{
+//            if indexPath.row == 0 {
+//                cell.sideMenuImage.isHidden = false
+//              cell.sideMenuTitle.isHidden = false
+//                cell.viewLoginPin.isHidden = true
+//            cell.viewChangeClass.isHidden = false
+//            cell.viewChangeLanguage.isHidden = true
+//
+//                if SettingValue.chooseClass == ""{
+//                    let chooseClass = userDef.string(forKey: UserDefaultKey.chooseClass)
+//
+//                    cell.lblLanguage.setTitle("(\(String(describing: chooseClass)))", for: .normal)
+//                }else{
+//                    cell.lblClass.setTitle("(\(SettingValue.chooseClass))", for: .normal)
+//                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseClass)
+//                }
+//
+//
+//            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
+//
+//            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
+//            }else{
+//                cell.sideMenuImage.isHidden = false
+//              cell.sideMenuTitle.isHidden = false
+//                cell.viewLoginPin.isHidden = true
+//            cell.viewChangeClass.isHidden = true
+//            cell.viewChangeLanguage.isHidden = false
+//                cell.changePinOutlt.addTarget(self, action: #selector(changePinAction(_:)), for: .touchUpInside)
+//                if SettingValue.chooseLanguage == ""{
+//                    let chooseLange = userDef.string(forKey: UserDefaultKey.chooseLang)
+//
+//                    cell.lblLanguage.setTitle("(\(String(describing: chooseLange)))", for: .normal)
+//                }else{
+//                    cell.lblLanguage.setTitle("(\(SettingValue.chooseLanguage))", for: .normal)
+//                    userDef.setValue(SettingValue.chooseClass, forKey: UserDefaultKey.chooseLang)
+//                }
+//
+//            cell.sideMenuTitle.text = titleArray[indexPath.section][indexPath.row]
+//
+//            cell.sideMenuImage.image = imageArray[indexPath.section][indexPath.row]
+//            }
+//        }
             else {
                 cell.viewLoginPin.isHidden = true
                 cell.viewChangeClass.isHidden = true

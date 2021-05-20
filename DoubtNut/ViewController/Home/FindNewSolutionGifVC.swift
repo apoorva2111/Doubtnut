@@ -118,6 +118,7 @@ extension FindNewSolutionGifVC{
                           "uploaded_image_question_id":question_id] as [String : Any]
         
         //create the url with URL
+        print(parameters)
         let url = URL(string: "https://api.doubtnut.com/v10/questions/ask")! //change the url
 
         //create the session object
@@ -128,7 +129,7 @@ extension FindNewSolutionGifVC{
         request.httpMethod = "POST" //set http method as POST
 
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request/body
         } catch let error {
             print(error.localizedDescription)
         }
@@ -156,7 +157,7 @@ extension FindNewSolutionGifVC{
 
                     let jsonString = BaseApi.showParam(json: json)
                     let param = BaseApi.showParam(json: parameters)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 884", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                         if checkBtn == "OK"{
                             
                             if let meta = json["meta"] as? [String:AnyObject]{

