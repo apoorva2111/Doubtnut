@@ -29,7 +29,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaY-eZ-WOw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgF-EA-zsP">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgF-EA-zsP">
                                 <rect key="frame" x="398" y="8" width="4" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="4zu-8l-0uk"/>

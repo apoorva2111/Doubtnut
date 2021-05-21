@@ -22,7 +22,8 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
     
     var arrData = [NSDictionary]()
     
-    
+    var currentPage : Int = 1
+    var checkPagination = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,9 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
         questionAskedTableview.dataSource = self
         questionAskedTableview.register(WatchHistoryTableViewCell.nib(), forCellReuseIdentifier: "WatchHistoryTableViewCell")
         askQuestionRefBtn.layer.cornerRadius = 12
-        questionVideo(url: "https://api.doubtnut.com/v1/question/watch-history?page=1")
+        self.checkPagination = "get"
+
+        questionVideo(url: "https://api.doubtnut.app/v1/question/watch-history?page=\(currentPage)")
         // Do any additional setup after loading the view.
     }
     
@@ -70,24 +73,44 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
         cell.thumbnailImage.image = #imageLiteral(resourceName: "download")
         let arrObj = arrData[indexPath.row]
         let quesId = arrObj["question_id"] as! Int
-        let question_image = arrObj["question_image"] as? String
-        cell.thumbnailImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        if let question_image = arrObj["question_image"] as? String {
+            cell.thumbnailImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
 
-        cell.thumbnailImage.sd_setImage(with: URL(string: question_image ?? ""), completed: nil)
-
+            cell.thumbnailImage.sd_setImage(with: URL(string: question_image ), completed: nil)
+        }
+        let ocr = arrObj["ocr_text"] as! String
+        cell.lblQuest.text = ocr.html2String
         cell.bottomRightLabel.text = String(quesId)
 //        cell.durationLabel.text = "10:54"
 //        cell.viewCountLabel.text = "10K"
         cell.onClickPlay = {
             //action to play video
             print("play button is tapped")
+            //isFromSearch
+            let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home") as! FindNewSolutionGifVC
+            vc.isFromSearch = true
+            vc.imgUpload = cell.thumbnailImage.image
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154
     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                if indexPath.row == arrData.count-1{
+                    self.checkPagination = "pagination"
+                    currentPage += 1
+                    run(after: 2) {
+                        self.questionVideo(url: "https://api.doubtnut.com/v1/question/watch-history?page=\(self.currentPage)")
 
+                    }
+                }
+            }
+        }
+    }
 }
 
 //MARK - Call Webservice
@@ -104,7 +127,7 @@ extension QuestionAskedViewController{
         
         let auth = userDef.value(forKey: "Auth_token") as! String
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-         request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+         request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYxNzcxNjY2MCwiZXhwIjoxNjgwNzg4NjYwfQ.t-XYGLwUvy2lTbmBfN0D3Ybm_rVkXGyghrHy8EgosK8", forHTTPHeaderField: "x-auth-token")
         request.addValue("862", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
         
@@ -127,6 +150,9 @@ extension QuestionAskedViewController{
                                         if code == 200 {
                                             if let data = json["data"] as? NSDictionary{
                                                 let objData = data["list"] as!NSArray
+                                                if self.checkPagination == "get"{
+                                                    self.arrData.removeAll()
+                                                }
                                                 for objList in objData {
                                                     arrData.append(objList as! NSDictionary)
                                                 }

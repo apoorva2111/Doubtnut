@@ -26,7 +26,8 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var watchHistoryView: UIView!
     @IBOutlet weak var watchHistoryTableview: UITableView!
     var arrWatchHistory = [NSDictionary]()
-    
+    var currentPage : Int = 1
+    var checkPagination = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
         watchHistoryTableview.register(WatchHistoryTableViewCell.nib(), forCellReuseIdentifier: "WatchHistoryTableViewCell")
         watchHistoryTableview.delegate = self
         watchHistoryTableview.dataSource = self
+        self.checkPagination = "get"
         callWebserviceGetHistory()
 
         // Do any additional setup after loading the view.
@@ -78,13 +80,26 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154
     }
-
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                if indexPath.row == arrWatchHistory.count-1{
+                    self.checkPagination = "pagination"
+                    currentPage += 1
+                    run(after: 2) {
+                        self.callWebserviceGetHistory()
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension WatchHistoryViewController{
     func callWebserviceGetHistory(){
         BaseApi.showActivityIndicator(icon: nil, text: "")
-        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v1/question/watch-history?page=1")! as URL)
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v1/question/watch-history?page=\(currentPage)")! as URL)
         let session = URLSession.shared
         request.httpMethod = "GET"
         //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -92,7 +107,7 @@ extension WatchHistoryViewController{
         
         let auth = userDef.value(forKey: "Auth_token") as! String
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYxNzcxNjY2MCwiZXhwIjoxNjgwNzg4NjYwfQ.t-XYGLwUvy2lTbmBfN0D3Ybm_rVkXGyghrHy8EgosK8", forHTTPHeaderField: "x-auth-token")
         request.addValue("844", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
         
@@ -106,7 +121,7 @@ extension WatchHistoryViewController{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/question/watch-history?page=1", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/question/watch-history?page=\(self.currentPage)", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             
                             if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in
@@ -118,6 +133,9 @@ extension WatchHistoryViewController{
                                                 print(data)
                                                 let list = data["list"] as! NSArray
                                                 print(list)
+                                                if self.checkPagination == "get"{
+                                                    self.arrWatchHistory.removeAll()
+                                                }
                                                 for objList in list{
                                                     arrWatchHistory.append(objList as! NSDictionary)
                                                 }

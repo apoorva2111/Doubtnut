@@ -14,7 +14,9 @@ class ResultListVC: UIViewController {
     var Id = 0
     var name = ""
     var arrList = [NSDictionary]()
-    
+    var currentPage : Int = 1
+    var checkPagination = ""
+
     
     
     override func viewDidLoad() {
@@ -24,6 +26,7 @@ class ResultListVC: UIViewController {
         lblHeader.text = name
         tblResult.isHidden = true
         tblResult.register(UINib.init(nibName: "ResultTVCell", bundle: nil), forCellReuseIdentifier: "ResultTVCell")
+        self.checkPagination == "get"
         callResultList()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +42,7 @@ class ResultListVC: UIViewController {
     func callResultList() {
         BaseApi.showActivityIndicator(icon: nil, text: "")
 
-         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v8/library/getresource?page_no=1&id=\(Id)&auto_play_data=0&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE")! as URL)
+         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v8/library/getresource?page_no=\(currentPage)&id=\(Id)&auto_play_data=0&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE")! as URL)
          let session = URLSession.shared
          request.httpMethod = "GET"
          request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -61,7 +64,7 @@ class ResultListVC: UIViewController {
                      if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                          print(json)
                          let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v8/library/getresource?page_no=1&id=\(self.Id)&auto_play_data=0&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v8/library/getresource?page_no=\(self.currentPage)&id=\(self.Id)&auto_play_data=0&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                              
                              if checkBtn == "OK"{
                                  
@@ -72,6 +75,9 @@ class ResultListVC: UIViewController {
                                              if let dataJson = json["data"] as? NSDictionary{
                                                 if let dataPlay = dataJson["playlist"] as? NSArray{
                                                     print(dataPlay)
+                                                    if self.checkPagination == "get"{
+                                                        self.arrList.removeAll()
+                                                    }
                                                     for obj in dataPlay{
                                                        arrList.append(obj as! NSDictionary)
                                                     }
@@ -179,9 +185,22 @@ extension ResultListVC : UITableViewDelegate, UITableViewDataSource{
         return UITableView.automaticDimension
         
     }
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-      return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                if indexPath.row == arrList.count-1{
+                    self.checkPagination = "pagination"
+                    currentPage += 1
+                    run(after: 2) {
+                        self.callResultList()
+                    }
+                }
+            }
+        }
     }
+       
 }
 /*
  */

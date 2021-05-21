@@ -215,6 +215,10 @@ extension ProfileViewController{
                                             if let data = json["data"] as? [String:Any]{
                                                 userNameLabel.text = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
                                                 gradeLabel.text = data["display_class"] as? String
+                                                if let imgUrl = data["img_url"] as? String {
+                                                    profileImageView.contentMode = .scaleToFill
+                                                profileImageView.sd_setImage(with: URL.init(string: imgUrl), completed: nil)
+                                                }
                                                 
                                                 BaseApi.hideActivirtIndicator()
 

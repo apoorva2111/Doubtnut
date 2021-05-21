@@ -195,7 +195,10 @@ extension GetOTPVC{
                                             let token = data["token"] as! String
                                             userDef.set(token, forKey: "Auth_token")
                                             userDef.synchronize()
-                                            
+                                            if let studentId = data["student_id"] as? Int{
+                                                userDef.set(studentId, forKey: "student_id")
+                                                userDef.synchronize()
+                                            }
                                         }
                                         userDef.setValue(0, forKey: UserDefaultKey.cameraCount)
                                         userDef.synchronize()

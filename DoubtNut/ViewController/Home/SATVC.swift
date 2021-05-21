@@ -221,10 +221,10 @@ extension SATVC {
         
         task.resume()
     }
-    func run(after wait: TimeInterval, closure: @escaping () -> Void) {
-        let queue = DispatchQueue.main
-        queue.asyncAfter(deadline: DispatchTime.now() + wait, execute: closure)
-    }
+//    func run(after wait: TimeInterval, closure: @escaping () -> Void) {
+//        let queue = DispatchQueue.main
+//        queue.asyncAfter(deadline: DispatchTime.now() + wait, execute: closure)
+//    }
     
     @objc func onRefreshTbl() {
         

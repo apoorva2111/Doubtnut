@@ -36,7 +36,13 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         menuTableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SideMenuTableViewCell")
         menuTableView.dataSource = self
         menuTableView.delegate = self
+        if let img = userDef.value(forKey: "userProfile") as? String{
+            userProfileImage.sd_setImage(with: URL.init(string: img), completed: nil)
+        }
         
+        if let username = userDef.value(forKey: "userName") as? String{
+            userNamelbl.text = username
+        }
         
     }
     func makeRounded() {
@@ -173,21 +179,21 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
         }else if indexPath.section == 1{
-            if indexPath.row == 0{
-                
-//                /SettingValue.chooseClass
-                let story = UIStoryboard(name: "Home", bundle:nil)
-                let vc = story.instantiateViewController(withIdentifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
-                vc.strSelectType = "Class"
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            }
-//            else if indexPath.row == 1{
-//                let vc = storyboard?.instantiateViewController(identifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
-//                vc.strSelectType = "Language"
+//            if indexPath.row == 0{
+//                
+////                /SettingValue.chooseClass
+//                let story = UIStoryboard(name: "Home", bundle:nil)
+//                let vc = story.instantiateViewController(withIdentifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
+//                vc.strSelectType = "Class"
 //                self.navigationController?.pushViewController(vc, animated: true)
+//                
 //            }
-        }else if indexPath.section == 2{
+////            else if indexPath.row == 1{
+////                let vc = storyboard?.instantiateViewController(identifier: "GetLanguageOrClassVC") as! GetLanguageOrClassVC
+////                vc.strSelectType = "Language"
+////                self.navigationController?.pushViewController(vc, animated: true)
+////            }
+//        }else if indexPath.section == 2{
            
             if indexPath.row == 0 {
             let vc = FlowController().instantiateViewController(identifier:"WatchHistoryViewController", storyBoard: "Profile")

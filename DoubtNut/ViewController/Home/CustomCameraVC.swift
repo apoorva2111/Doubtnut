@@ -300,8 +300,8 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api,  URL:- https://api.doubtnut.app/v1/camera/get-animation", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
-                            if checkBtn == "OK" {
+//                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api,  URL:- https://api.doubtnut.app/v1/camera/get-animation", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+//                            if checkBtn == "OK" {
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
                                         let code = meta["code"] as! Int
@@ -329,11 +329,12 @@ extension CustomCameraVC{
                                         
                                     }
                                 }
-                            }else{
-                                BaseApi.hideActivirtIndicator()
-
-                            }
-                        }
+                          // }
+//                            else{
+//                                BaseApi.hideActivirtIndicator()
+//
+//                            }
+                    //    }
 
                         
                     }else{
@@ -484,7 +485,7 @@ extension CustomCameraVC{
     }
     
     func callawebServiewForGenerateUrl(imagevw : UIImage) {
-        
+        BaseApi.showActivityIndicator(icon: nil, text: "")
         let Udid = UIDevice.current.identifierForVendor?.uuidString
 
         print(Udid!)
@@ -535,7 +536,7 @@ extension CustomCameraVC{
                         if checkBtn == "OK" {
                             OperationQueue.main.addOperation {
                                 print(json)
-                                
+                                BaseApi.hideActivirtIndicator()
                                 if let meta = json["meta"] as? [String:AnyObject]{
                                     let code = meta["code"] as! Int
                                     if code == 200 {

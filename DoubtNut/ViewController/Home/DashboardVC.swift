@@ -18,6 +18,7 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var txtSetPinThree: RCustomTextField!
     @IBOutlet weak var txtSetPinFour: RCustomTextField!
 
+    @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtSearchQues: UITextField!
     @IBOutlet weak var lblOtpLine1: UILabel!
     @IBOutlet weak var lblOtpLine2: UILabel!
@@ -83,6 +84,10 @@ class DashboardVC: UIViewController {
         }
       //
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getProfileDetail()
     }
     func setView() {
         txtSetPinOne.delegate = self
@@ -476,7 +481,82 @@ extension DashboardVC{
         })
         task.resume()
     }
-    
+    func getProfileDetail(){
+       // BaseApi.showActivityIndicator(icon: nil, text: "")
+        let userId = userDef.value(forKey: "student_id") as! Int
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v1/tesla/profile/\(userId)")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+       // let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzY5NDQ5OTgsImlhdCI6MTYyMDkwMzY4MSwiZXhwIjoxNjgzOTc1NjgxfQ.KTRsKuo07iRgVEjiCuO8HwV4ZdDZzkVjZix2sMqZt00", forHTTPHeaderField: "x-auth-token")
+        request.addValue("845", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            let jsonString = BaseApi.showParam(json: json)
+                            UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/tesla/profile/\(userId)", message: "Response: \(jsonString)     version_code :- 845", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                                if checkBtn == "OK"{
+                                    
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            if let data = json["data"] as? [String:Any]{
+                                                
+                                                if let imgUrl = data["img_url"] as? String {
+                                                imgProfile.sd_setImage(with: URL.init(string: imgUrl), completed: nil)
+                                                    userDef.setValue(imgUrl, forKey: "userProfile")
+                                                    userDef.synchronize()
+                                                }
+                                                let userName = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
+                                               
+                                                userDef.setValue(userName, forKey: "userName")
+                                                userDef.synchronize()
+                                             //   BaseApi.hideActivirtIndicator()
+
+                                            }else{
+                                             //   BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                         //   BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    }
+                                }else{
+                                //    BaseApi.hideActivirtIndicator()
+//
+                                }
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    self.showToast(message: "Something Went Wrong")
+                    
+                   // BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        
+        task.resume()
+    }
 }
 extension DashboardVC : FooterviewDelegate{
     func didPressFooterButton(getType: String) {

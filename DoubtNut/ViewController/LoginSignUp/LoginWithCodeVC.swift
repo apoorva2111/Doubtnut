@@ -247,7 +247,15 @@ extension LoginWithCodeVC {
                                                self.session_id = data["session_id"]as! String
                                                
                                            }
-                                           
+                                        if let token = data["token"] as? String{
+                                        userDef.set(token, forKey: "Auth_token")
+                                        userDef.synchronize()
+                                        }
+                                            
+                                        if let studentId = data["student_id"] as? Int{
+                                            userDef.set(studentId, forKey: "student_id")
+                                            userDef.synchronize()
+                                        }
                                        }
 
                                        let vc = FlowController().instantiateViewController(identifier: "LoginGotOTPVC", storyBoard: "Main") as! LoginGotOTPVC

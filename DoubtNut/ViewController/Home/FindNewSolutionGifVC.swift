@@ -20,6 +20,7 @@ class FindNewSolutionGifVC: UIViewController {
     var file_name = ""
     var question_id = 0
     var imgUpload : UIImage!
+    var isFromSearch = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,6 @@ class FindNewSolutionGifVC: UIViewController {
             self.upload(image: self.imgUpload, urlString: self.imgUploadURL, mimeType: ".png") { (isTrue, error) in
                 print(isTrue)
                 if isTrue{
-                   // UtilesSwift.shared.showAlert(text: "Image Successfully Uploaded", icon: "")
                     self.callWebserviceForAskQues()
                 }else{
                     self.showToast(message: "Something Went Worng")
@@ -101,7 +101,104 @@ extension FindNewSolutionGifVC{
         })
         task.resume()
     }
+    
+    func callawebServiewForGenerateUrl(imagevw : UIImage) {
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        let Udid = UIDevice.current.identifierForVendor?.uuidString
+
+        print(Udid!)
+        let parameters :[String : Any] = ["class":12,
+                         "subject":"physics",
+                         "chapter":"magnetism",
+                         "doubt":"maths",
+                         "udid":Udid!,
+                         "locale":"en",
+                         "content_type":"image/png",
+                         "file_ext":".png"]
         
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.app/v1/question/generate-question-image-upload-url")! //change the url
+
+        //create the session object
+        let session = URLSession.shared
+
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("756", forHTTPHeaderField: "version_code")
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+
+            guard error == nil else {
+                return
+            }
+
+            guard let data = data else {
+                return
+            }
+
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    let jsonString = BaseApi.showParam(json: json)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/question/generate-question-image-upload-url", message: "Response: \(jsonString)     version_code:- 756", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK" {
+                            OperationQueue.main.addOperation {
+                                print(json)
+                                BaseApi.hideActivirtIndicator()
+                                if let meta = json["meta"] as? [String:AnyObject]{
+                                    let code = meta["code"] as! Int
+                                    if code == 200 {
+                                        if let data = json["data"] as? [String:AnyObject]{
+                                            print(data)
+                                            let strUrl = data["url"] as? String
+                                            let strfileName = data["file_name"] as? String
+                                            let question_id = data["question_id"] as? Int
+                                            let vc = FlowController().instantiateViewController(identifier: "FindNewSolutionGifVC", storyBoard: "Home") as! FindNewSolutionGifVC
+                                            vc.imgUpload = imagevw
+                                            vc.imgUploadURL = strUrl ?? ""
+                                            vc.file_name = strfileName ?? ""
+                                            vc.question_id = question_id ?? 0
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        }
+                                        
+                                    }else{
+                                        
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                }
+                            }
+                        }else{
+                            BaseApi.hideActivirtIndicator()
+
+                        }
+                    }
+
+                    /**/
+                    // handle json...
+                }
+            } catch let error {
+                OperationQueue.main.addOperation {
+
+                self.showToast(message: "Something Went Wrong")
+
+                BaseApi.hideActivirtIndicator()
+
+                print(error.localizedDescription)
+                }
+            }
+        })
+        task.resume()
+    }
     func upload(image: UIImage, urlString: String, mimeType: String, completion: @escaping (Bool, Error?) -> Void) {
         let data = image.jpegData(compressionQuality: 0.9)!
         upload(data: data, urlString: urlString, mimeType: mimeType, completion: completion)

@@ -104,13 +104,13 @@ class UpdateProfileViewController: UIViewController {
     @IBOutlet weak var schoolSeparatorLabel: UILabel!
     
     @IBOutlet weak var schoolTextField: UITextField!
-    @IBOutlet weak var btnsix: UIButton!
-    @IBOutlet weak var btnSeven: UIButton!
-    @IBOutlet weak var btnEight: UIButton!
-    @IBOutlet weak var btnNine: UIButton!
-    @IBOutlet weak var btnTen: UIButton!
-    @IBOutlet weak var btnElevan: UIButton!
-    @IBOutlet weak var btnTwelve: UIButton!
+    @IBOutlet weak var btnsix: RCustomButton!
+    @IBOutlet weak var btnSeven: RCustomButton!
+    @IBOutlet weak var btnEight: RCustomButton!
+    @IBOutlet weak var btnNine: RCustomButton!
+    @IBOutlet weak var btnTen: RCustomButton!
+    @IBOutlet weak var btnElevan: RCustomButton!
+    @IBOutlet weak var btnTwelve: RCustomButton!
 
     let locationManager = CLLocationManager()
 
@@ -517,6 +517,10 @@ extension UpdateProfileViewController{
                                                         maleCheckBoxButton.setImage(#imageLiteral(resourceName: "Unchecked_"), for: .normal)
 
                                                     }
+                                                }
+                                                if let imgUrl = data["img_url"] as? String {
+                                                    userProfileImage.contentMode = .scaleToFill
+                                                userProfileImage.sd_setImage(with: URL.init(string: imgUrl), completed: nil)
                                                 }
                                                 BaseApi.hideActivirtIndicator()
 
