@@ -55,9 +55,10 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func onClickViewProfile(_ sender: UIButton) {
-       // let vc = storyboard?.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController//
-      //  vc.modalPresentationStyle = .fullScreen
-       // self.navigationController?.pushViewController(vc, animated: true)
+        let vc = FlowController().instantiateViewController(identifier: "navProfile", storyBoard: "Profile") as! UINavigationController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false, completion: nil)
+        
     }
     
     
@@ -199,7 +200,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             let vc = FlowController().instantiateViewController(identifier:"WatchHistoryViewController", storyBoard: "Profile")
             self.navigationController?.pushViewController(vc, animated: true)
             }else if indexPath.row == 1{
-                
                 let vc = FlowController().instantiateViewController(identifier:"QuestionAskedViewController", storyBoard: "Profile")
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
@@ -208,13 +208,12 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
             }
             
-        }else if indexPath.section == 3{
-            if indexPath.row == 0{
+        }else if indexPath.section == 2{
             let mainVC = FlowController().instantiateViewController(identifier: "NavSetting", storyBoard:"Setting")
             let appDel = UIApplication.shared.delegate as! AppDelegate
             appDel.window?.rootViewController = mainVC
             appDel.window?.makeKeyAndVisible()
-            }
+           
         }
 
     }

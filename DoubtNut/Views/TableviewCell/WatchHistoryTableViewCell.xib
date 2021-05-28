@@ -121,6 +121,7 @@
             <connections>
                 <outlet property="baseView" destination="vaY-eZ-WOw" id="ciy-TV-1UW"/>
                 <outlet property="bottomRightLabel" destination="BXt-K5-bc5" id="Xti-ki-woU"/>
+                <outlet property="btnSearchnowOutlet" destination="h1W-Ri-hJC" id="BRn-UY-aUe"/>
                 <outlet property="lblQuest" destination="E20-zB-v0z" id="dT0-Ua-kJ3"/>
                 <outlet property="menuRefBtn" destination="kgF-EA-zsP" id="pTL-Le-kIy"/>
                 <outlet property="playBtnRef" destination="JOr-Yh-Pta" id="mEQ-FC-xHC"/>
@@ -130,7 +131,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Menu" width="16" height="16"/>
+        <image name="Menu" width="4" height="16"/>
         <image name="Play" width="40" height="40"/>
         <image name="arrowRed" width="12" height="20"/>
         <systemColor name="systemBackgroundColor">

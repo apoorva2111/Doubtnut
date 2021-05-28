@@ -18,6 +18,7 @@ class UpdateProfileViewController: UIViewController {
     @IBOutlet weak var cameraImageView: UIImageView!
     
     @IBOutlet weak var saveBtnRef: UIButton!
+    @IBOutlet weak var gradeCollection: UICollectionView!
     
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -104,15 +105,17 @@ class UpdateProfileViewController: UIViewController {
     @IBOutlet weak var schoolSeparatorLabel: UILabel!
     
     @IBOutlet weak var schoolTextField: UITextField!
-    @IBOutlet weak var btnsix: RCustomButton!
-    @IBOutlet weak var btnSeven: RCustomButton!
-    @IBOutlet weak var btnEight: RCustomButton!
-    @IBOutlet weak var btnNine: RCustomButton!
-    @IBOutlet weak var btnTen: RCustomButton!
-    @IBOutlet weak var btnElevan: RCustomButton!
-    @IBOutlet weak var btnTwelve: RCustomButton!
+    @IBOutlet weak var btnSATOutlet: UIButton!
+    @IBOutlet weak var btnACTOutlet: UIButton!
+    
 
     let locationManager = CLLocationManager()
+    var arrClass = [NSDictionary]()
+    var strGrade = ""
+    var gradeInt = 0
+    var strDisplayExam = ""
+    var imgBase64  = ""
+    var arrGetData = [NSDictionary]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +142,9 @@ class UpdateProfileViewController: UIViewController {
         profileView.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
         profileView.layer.shadowRadius = 5
         profileView.layer.shadowOpacity = 0.4
-        getProfileDetail()
+    getGradeList()
+
+        
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
 
@@ -152,22 +157,58 @@ class UpdateProfileViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
         
-        
-    
-    
+   
     }
     @IBAction func btnUploadImgAction(_ sender: UIButton) {
+        presentPhotoActionSheet()
     }
     
     @IBAction func btnActAction(_ sender: UIButton) {
-      
-            ActCheckBox.image = #imageLiteral(resourceName: "Checked")
-        SATcheckBox.image = #imageLiteral(resourceName: "Unchecked_")
+
+        if sender.isSelected{
+            sender.isSelected = false
+            ActCheckBox.image = #imageLiteral(resourceName: "Unchecked_")
+        }else{
+            sender.isSelected = true
+            ActCheckBox.image = #imageLiteral(resourceName: "Checked_")
+        }
 
     }
+    /*
+     (
+             {
+             "feature_type" = sat;
+             id = 825;
+             "is_show" = 1;
+             link = "https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/D2C7D785-60D4-B08B-9D00-3509A68EE522.webp";
+             "playlist_id" = 133468;
+             "playlist_title" = "SAT prep";
+             position = 1;
+             time = "2021-01-11T16:37:54.000Z";
+             title = "SAT Prep";
+         },
+             {
+             "feature_type" = act;
+             id = 818;
+             "is_show" = 1;
+             link = "https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/67A8C41E-FDCA-B552-E88A-3EA8F251210E.webp";
+             "playlist_id" = 133467;
+             "playlist_title" = ACT;
+             position = 2;
+             time = "2021-01-11T16:37:54.000Z";
+             title = "ACT Prep";
+         }
+     )
+     */
     @IBAction func btnSatAction(_ sender: UIButton) {
-        SATcheckBox.image = #imageLiteral(resourceName: "Checked")
-        ActCheckBox.image = #imageLiteral(resourceName: "Unchecked_")
+     
+        if sender.isSelected{
+            sender.isSelected = false
+            SATcheckBox.image = #imageLiteral(resourceName: "Unchecked_")
+        }else{
+            sender.isSelected = true
+            SATcheckBox.image = #imageLiteral(resourceName: "Checked_")
+        }
     }
     @IBAction func onClickBackButton(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -201,6 +242,7 @@ class UpdateProfileViewController: UIViewController {
     }
     
     @IBAction func onClickUpdateProfile(_ sender: UIButton) {
+        uploadProfile(coaching: "", date_of_birth: "", gender: 0, exam: [], imgBase64: imgBase64, name: nameTextField.text!, classGrade: String(gradeInt), geoDict: [:], school: "")
     }
     
     @IBAction func onClickMaleCheckBox(_ sender: UIButton) {
@@ -212,216 +254,6 @@ class UpdateProfileViewController: UIViewController {
     @IBAction func onClickFemaleCheckBoxButton(_ sender: UIButton) {
         maleCheckBoxButton.setImage(#imageLiteral(resourceName: "Unchecked_"), for: .normal)
         femaleCheckBoxButton.setImage(#imageLiteral(resourceName: "Checked_"), for: .normal)
-    }
-    
-    
-    @IBAction func onClickgradeButton(_ sender: UIButton) {
-        
-        if sender.tag == 6{
-            btnsix.layer.borderWidth = 1
-            btnsix.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnsix.layer.masksToBounds = true
-            
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else if sender.tag == 7{
-            btnSeven.layer.borderWidth = 1
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else if sender.tag == 8{
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 1
-            btnEight.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else if sender.tag == 9{
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 1
-            btnNine.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else if sender.tag == 10{
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 1
-            btnTen.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else if sender.tag == 11{
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 1
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 0
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTwelve.layer.masksToBounds = true
-            
-        }else{
-            btnSeven.layer.borderWidth = 0
-            btnSeven.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnSeven.layer.masksToBounds = true
-            
-            btnsix.layer.borderWidth = 0
-            btnsix.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnsix.layer.masksToBounds = true
-            
-            btnEight.layer.borderWidth = 0
-            btnEight.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnEight.layer.masksToBounds = true
-            
-            btnNine.layer.borderWidth = 0
-            btnNine.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnNine.layer.masksToBounds = true
-            
-            btnTen.layer.borderWidth = 0
-            btnTen.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnTen.layer.masksToBounds = true
-            
-            btnElevan.layer.borderWidth = 0
-            btnElevan.layer.borderColor = #colorLiteral(red: 0.9450980392, green: 0.4156862745, blue: 0.2235294118, alpha: 0)
-            btnElevan.layer.masksToBounds = true
-            
-            btnTwelve.layer.borderWidth = 1
-            btnTwelve.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-            btnTwelve.layer.masksToBounds = true
-            
-        }
-        
     }
 
 }
@@ -452,8 +284,10 @@ extension UpdateProfileViewController{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
+                        
                         OperationQueue.main.addOperation { [self] in
                             let jsonString = BaseApi.showParam(json: json)
+                            BaseApi.hideActivirtIndicator()
                             UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/tesla/profile/\(userId)", message: "Response: \(jsonString)     version_code :- 845", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                                 if checkBtn == "OK"{
                                     
@@ -463,44 +297,30 @@ extension UpdateProfileViewController{
                                             if let data = json["data"] as? [String:Any]{
                                                 nameTextField.text = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
                                                 if let grade = data["display_class"] as? String{
-                                                    if grade == "Grade 6"{
-                                                        btnsix.layer.borderWidth = 1
-                                                        btnsix.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnsix.layer.masksToBounds = true
-                                                    }else if grade == "Grade 7"{
-                                                        btnSeven.layer.borderWidth = 1
-                                                        btnSeven.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnSeven.layer.masksToBounds = true
-                                                    }else if grade == "Grade 8"{
-                                                        btnEight.layer.borderWidth = 1
-                                                        btnEight.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnEight.layer.masksToBounds = true
-                                                    }else if grade == "Grade 9"{
-                                                        btnNine.layer.borderWidth = 1
-                                                        btnNine.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnNine.layer.masksToBounds = true
-                                                    }else if grade == "Grade 10"{
-                                                        btnTen.layer.borderWidth = 1
-                                                        btnTen.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnTen.layer.masksToBounds = true
-                                                    }else if grade == "Grade 11"{
-                                                        btnElevan.layer.borderWidth = 1
-                                                        btnElevan.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnElevan.layer.masksToBounds = true
-                                                    }else{
-                                                        btnTwelve.layer.borderWidth = 1
-                                                        btnTwelve.layer.borderColor = #colorLiteral(red: 0.946038425, green: 0.4153085351, blue: 0.2230136693, alpha: 1)
-                                                        btnTwelve.layer.masksToBounds = true
-                                                    }
+                                                    strGrade = grade
                                                 }
                                                 if let displayExam = data["display_exam"] as? String{
                                                     if displayExam == "SAT"{
+                                                        strDisplayExam = displayExam
+                                                        btnSATOutlet.isSelected = true
                                                         SATcheckBox.image = #imageLiteral(resourceName: "Checked_")
                                                         ActCheckBox.image = #imageLiteral(resourceName: "Unchecked_")
-                                                    }else{
+                                                    }else if displayExam == "ACT"{
+                                                        strDisplayExam = displayExam
+                                                        btnACTOutlet.isSelected = true
                                                         ActCheckBox.image = #imageLiteral(resourceName: "Checked_")
                                                         SATcheckBox.image = #imageLiteral(resourceName: "Unchecked_")
 
+                                                    }else{
+                                                        strDisplayExam = displayExam
+                                                        btnSATOutlet.isSelected = true
+                                                        SATcheckBox.image = #imageLiteral(resourceName: "Checked_")
+                                                        ActCheckBox.image = #imageLiteral(resourceName: "Unchecked_")
+                                                        
+                                                        strDisplayExam = displayExam
+                                                        btnACTOutlet.isSelected = true
+                                                        ActCheckBox.image = #imageLiteral(resourceName: "Checked_")
+                                                        SATcheckBox.image = #imageLiteral(resourceName: "Unchecked_")
                                                     }
                                                 }
                                                 if let schoolName = data["school_name"] as? String{
@@ -522,21 +342,29 @@ extension UpdateProfileViewController{
                                                     userProfileImage.contentMode = .scaleToFill
                                                 userProfileImage.sd_setImage(with: URL.init(string: imgUrl), completed: nil)
                                                 }
+                                                gradeCollection.reloadData()
                                                 BaseApi.hideActivirtIndicator()
+                                                webservideForSAt()
 
                                             }else{
                                                 BaseApi.hideActivirtIndicator()
+                                                webservideForSAt()
+
                                             }
                                             
                                             //
                                         }else{
                                             BaseApi.hideActivirtIndicator()
+                                            webservideForSAt()
+
                                             
                                         }
                                         
                                     }
                                 }else{
                                     BaseApi.hideActivirtIndicator()
+                                    webservideForSAt()
+
 
                                 }
                             }
@@ -555,8 +383,266 @@ extension UpdateProfileViewController{
         
         task.resume()
     }
+    func webservideForSAt() {
+        // BaseApi.showActivityIndicator(icon: nil, text: "")
+
+          let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.com/v5/icons/getdata/27")! as URL)
+          let session = URLSession.shared
+          request.httpMethod = "GET"
+          request.addValue("application/json", forHTTPHeaderField: "Accept")
+          
+          if let auth = userDef.value(forKey: "Auth_token") as? String{
+              request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+          }
+          request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+          request.addValue("US", forHTTPHeaderField: "country")
+          request.addValue("844", forHTTPHeaderField: "version_code")
+
+          let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+              if error != nil {
+                  print("Error: \(String(describing: error))")
+              } else {
+                  print("Response: \(String(describing: response))")
+                  do {
+                      //create json object from data
+                      if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                          print(json)
+
+                          let jsonString = BaseApi.showParam(json: json)
+                          UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v5/icons/getdata/27", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                              
+                              if checkBtn == "OK"{
+                                  
+                                  OperationQueue.main.addOperation { [self] in
+                                      BaseApi.hideActivirtIndicator()
+                                      if let meta = json["meta"] as? [String:AnyObject]{
+                                          let code = meta["code"] as! Int
+                                          if code == 200 {
+                                              if let dataJson = json["data"] as? NSArray{
+                                                  print(dataJson)
+                                                  for obj in dataJson{
+                                                      arrGetData.append(obj as! NSDictionary)
+                                                  }
+                                                  
+                                                  BaseApi.hideActivirtIndicator()
+                                                  
+                                              }else{
+                                                  BaseApi.hideActivirtIndicator()
+                                              }
+                                          }else{
+                                              BaseApi.hideActivirtIndicator()
+                                          }
+                                          
+                                      }
+                                  }
+                              }else{
+                                  BaseApi.hideActivirtIndicator()
+
+                              }
+                          }
+                          
+                      }
+                  } catch let error {
+                      self.showToast(message: "Something Went Wrong")
+                      
+                      BaseApi.hideActivirtIndicator()
+                      
+                      print(error.localizedDescription)
+                  }
+              }
+          })
+          
+          task.resume()
+      }
+    
+    func getGradeList()  {
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v4/class/get-list/en")! as URL)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
+        //        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+       // let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzY5NDQ5OTgsImlhdCI6MTYyMDkwMzY4MSwiZXhwIjoxNjgzOTc1NjgxfQ.KTRsKuo07iRgVEjiCuO8HwV4ZdDZzkVjZix2sMqZt00", forHTTPHeaderField: "x-auth-token")
+        request.addValue("845", forHTTPHeaderField: "version_code")
+        request.addValue("US", forHTTPHeaderField: "country")
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            if error != nil {
+                print("Error: \(String(describing: error))")
+            } else {
+                print("Response: \(String(describing: response))")
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                        print(json)
+                        OperationQueue.main.addOperation { [self] in
+                            let jsonString = BaseApi.showParam(json: json)
+                            UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v4/class/get-list/en", message: "Response: \(jsonString)     version_code :- 845", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                                if checkBtn == "OK"{
+                                    
+                                    if let meta = json["meta"] as? [String:AnyObject]{
+                                        let code = meta["code"] as! Int
+                                        if code == 200 {
+                                            BaseApi.hideActivirtIndicator()
+
+                                            if let classData = json["data"] as? NSArray{
+                                                if arrClass.count>0{
+                                                    arrClass.removeAll()
+                                                }
+                                                var arrClassDict = [NSDictionary]()
+                                                for objCLass in classData {
+                                                    arrClassDict.append(objCLass as! NSDictionary)
+                                                }
+                                                if arrClassDict.count>0{
+                                                //arrClass.sorted{$1["class"] as! Int > $0["class"] as! Int}
+                                                    arrClass = arrClassDict.sorted { $0["class"] as? Int ?? .zero < $1["class"] as? Int ?? .zero }
+
+                                                }
+                                                gradeCollection.reloadData()
+                                                self.getProfileDetail()
+
+                                            }
+
+                                            }else{
+                                                self.getProfileDetail()
+                                                BaseApi.hideActivirtIndicator()
+                                            }
+                                            
+                                            //
+                                        }else{
+                                            self.getProfileDetail()
+
+                                            BaseApi.hideActivirtIndicator()
+                                            
+                                        }
+                                        
+                                    
+                            }else{
+                                self.getProfileDetail()
+
+                                    BaseApi.hideActivirtIndicator()
+
+                                }
+                            }
+                        }
+                        
+                    }
+                } catch let error {
+                    OperationQueue.main.addOperation {
+                    self.showToast(message: "Something Went Wrong")
+                    self.getProfileDetail()
+
+                    BaseApi.hideActivirtIndicator()
+                    
+                    print(error.localizedDescription)
+                    }
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    func uploadProfile(coaching:String, date_of_birth: String, gender : Int, exam:[Int], imgBase64:String,name:String,classGrade: String,geoDict:NSDictionary,school:String)  {
+        
+        BaseApi.showActivityIndicator(icon: nil, text: "")
+        let parameters = [
+            "coaching":coaching,
+            "date_of_birth":date_of_birth,
+            "gender":gender,
+            "exam":exam,
+            "img_url":imgBase64,
+            "name":name,
+            "class":classGrade,
+            "geo":geoDict,
+            "school":school] as [String : Any]
+     print(parameters)
+        let userId = userDef.value(forKey: "student_id") as! Int
+
+        //create the url with URL
+        let url = URL(string: "https://api.doubtnut.app/v2/student/\(userId))/profile")! //change the url
+        
+        //create the session object
+        let session = URLSession.shared
+        
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let auth = userDef.value(forKey: "Auth_token") as! String
+        request.addValue(auth, forHTTPHeaderField: "x-auth-token")
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("US", forHTTPHeaderField: "country")
+        request.addValue("845", forHTTPHeaderField: "version_code")
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            
+            guard error == nil else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+                    let jsonString = BaseApi.showParam(json: json)
+                    let param = BaseApi.showParam(json: parameters)
+                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+                        if checkBtn == "OK"{
+                            
+                            if let meta = json["meta"] as? [String:AnyObject]{
+                                let code = meta["code"] as! Int
+                                if code == 200 {
+                                    // create the alert
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                        
+                                    }
+                                    //  }
+                                }else{
+                                    OperationQueue.main.addOperation {
+                                        BaseApi.hideActivirtIndicator()
+                                    }
+                                }
+                            }
+                        }else{
+                            BaseApi.hideActivirtIndicator()
+                            
+                        }
+                    }
+                    
+                    // handle json..
+                    
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }
+    
 }
 
+extension NSMutableData {
+    func appendString(string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
+    }
+}
 extension UpdateProfileViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -584,37 +670,42 @@ extension UpdateProfileViewController : CLLocationManagerDelegate{
                     {
                         print("reverse geodcode fail: \(error!.localizedDescription)")
                     }
-                    let pm = placemarks! as [CLPlacemark]
+                    if placemarks == nil{
+                        return
+                    }
+                     let pm = placemarks! as [CLPlacemark]
+                        
+                        if pm.count > 0 {
+                            let pm = placemarks![0]
+    //                        print(pm.country)
+    //                        print(pm.locality)
+    //                        print(pm.subLocality)
+    //                        print(pm.thoroughfare)
+    //                        print(pm.postalCode)
+    //                        print(pm.subThoroughfare)
+                            var addressString : String = ""
+                            if pm.subLocality != nil {
+                                addressString = addressString + pm.subLocality! + ", "
+                            }
+                            if pm.thoroughfare != nil {
+                                addressString = addressString + pm.thoroughfare! + ", "
+                            }
+                            if pm.locality != nil {
+                                addressString = addressString + pm.locality! + ", "
+                            }
+                            if pm.country != nil {
+                                addressString = addressString + pm.country! + ", "
+                            }
+    //                        if pm.postalCode != nil {
+    //                            addressString = addressString + pm.postalCode! + " "
+    //                        }
 
-                    if pm.count > 0 {
-                        let pm = placemarks![0]
-//                        print(pm.country)
-//                        print(pm.locality)
-//                        print(pm.subLocality)
-//                        print(pm.thoroughfare)
-//                        print(pm.postalCode)
-//                        print(pm.subThoroughfare)
-                        var addressString : String = ""
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-                        }
-                        if pm.locality != nil {
-                            addressString = addressString + pm.locality! + ", "
-                        }
-                        if pm.country != nil {
-                            addressString = addressString + pm.country! + ", "
-                        }
-//                        if pm.postalCode != nil {
-//                            addressString = addressString + pm.postalCode! + " "
-//                        }
 
+                            print(addressString)
+                            self.locationTextField.text = addressString
+                      }
+                    
 
-                        print(addressString)
-                        self.locationTextField.text = addressString
-                  }
             })
 
         }
@@ -683,8 +774,45 @@ extension UpdateProfileViewController :  UIImagePickerControllerDelegate, UINavi
         if let selectedImage = selectedImageFromPicker {
             userProfileImage.image = selectedImage
         }
+        //convert the image to NSData first
+        let imageData:NSData = userProfileImage.image!.jpegData(compressionQuality: 0.9)! as NSData
+//userProfileImage.image!.pngData(0.5)! as NSData
+        // convert the NSData to base64 encoding
+        imgBase64 =  imageData.base64EncodedString(options: .lineLength64Characters) //imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         
         dismiss(animated: true, completion: nil)
 
     }
+}
+
+extension UpdateProfileViewController : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arrClass.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = gradeCollection.dequeueReusableCell(withReuseIdentifier: "GradeCVCell", for: indexPath) as! GradeCVCell
+        let objClass = arrClass[indexPath.row]
+        let gradeText = objClass["class_display"] as? String
+        let components = gradeText?.components(separatedBy: " ")
+        if let classStr = components?[1]{
+            cell.lblGrade.text = classStr + "th"
+        }
+        if strGrade == objClass["class_display"] as? String{
+            cell.viewMain.layer.borderWidth = 2
+        }else{
+            cell.viewMain.layer.borderWidth = 0
+        }
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let objClass = arrClass[indexPath.row]
+        strGrade = objClass["class_display"] as! String
+        gradeInt = objClass["class"] as! Int
+        gradeCollection.reloadData()
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 65 , height: 40)
+    }
+   
 }

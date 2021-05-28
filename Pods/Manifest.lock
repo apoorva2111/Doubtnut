@@ -20,6 +20,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - AudioPlayerManager (1.2.3)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookLogin (0.9.0):
@@ -136,6 +137,21 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
+  - PINRemoteImage (3.0.3):
+    - PINRemoteImage/PINCache (= 3.0.3)
+  - PINRemoteImage/Core (3.0.3):
+    - PINOperation
+  - PINRemoteImage/PINCache (3.0.3):
+    - PINCache (~> 3.0.3)
+    - PINRemoteImage/Core
   - PromisesObjC (1.2.12)
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
@@ -146,6 +162,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 4.0)
   - AKImageCropperView
+  - AudioPlayerManager
   - FacebookCore
   - FacebookLogin
   - FBSDKShareKit
@@ -156,6 +173,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - lottie-ios
   - NVActivityIndicatorView
+  - PINRemoteImage
   - SDWebImage (~> 5.0)
   - SideMenu
   - SwiftKeychainWrapper
@@ -165,6 +183,7 @@ SPEC REPOS:
     - AFNetworking
     - AKImageCropperView
     - AppAuth
+    - AudioPlayerManager
     - FacebookCore
     - FacebookLogin
     - FBSDKCoreKit
@@ -187,6 +206,9 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - NVActivityIndicatorView
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - PromisesObjC
     - SDWebImage
     - SideMenu
@@ -196,6 +218,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   AKImageCropperView: 9c80fd45512daa69426161ad51c248655c1b5182
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  AudioPlayerManager: 02601ac29abb8efc0043c851ee5f5c79e69d77fa
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
@@ -218,11 +241,14 @@ SPEC CHECKSUMS:
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
+  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: c549f53f4c7a76ad5afa134a58ae588030e81452
+PODFILE CHECKSUM: 452622353511047c89debacb8b438dbaf9f13ece
 
 COCOAPODS: 1.10.1

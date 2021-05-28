@@ -95,28 +95,16 @@ var demoQuesCount = 0
     }
     @objc private func batteryLevelChanged(notification: NSNotification){
         //do stuff using the userInfo property of the notification object
+
         viewWillAppear(true)
-        viewDidAppear(true)
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkCameraAccess()
+        
         toggleTorch(on: false)
-
-        if BoolValue.isFromDoyouhaveQues{
-            BoolValue.isFromDoyouhaveQues = false
-            callWebserviceGetDemo()
-        }
-            var count = userDef.integer(forKey: UserDefaultKey.cameraCount)
-                count += 1
-            userDef.setValue(count, forKey: UserDefaultKey.cameraCount)
-            userDef.synchronize()
-        callWebserviceGetSetting()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // Setup your camera here...
+        
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .high
         
@@ -143,6 +131,47 @@ var demoQuesCount = 0
         }
         
         
+
+        if BoolValue.isFromDoyouhaveQues{
+            BoolValue.isFromDoyouhaveQues = false
+            callWebserviceGetDemo()
+        }
+            var count = userDef.integer(forKey: UserDefaultKey.cameraCount)
+                count += 1
+            userDef.setValue(count, forKey: UserDefaultKey.cameraCount)
+            userDef.synchronize()
+        callWebserviceGetSetting()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Setup your camera here...
+//        captureSession = AVCaptureSession()
+//        captureSession.sessionPreset = .high
+//
+//        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
+//        else {
+//            print("Unable to access back camera!")
+//            return
+//        }
+//        do {
+//            let input = try AVCaptureDeviceInput(device: backCamera)
+//            //Step 9
+//
+//            stillImageOutput = AVCapturePhotoOutput()
+//
+//            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
+//                captureSession.addInput(input)
+//                captureSession.addOutput(stillImageOutput)
+//                setupLivePreview()
+//            }
+//        }
+//
+//        catch let error  {
+//            print("Error Unable to initialize back camera:  \(error.localizedDescription)")
+//        }
+//
+//
         
     }
     
@@ -376,8 +405,8 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/config/demo", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
-                            if checkBtn == "OK"{
+//                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api URL:- https://api.doubtnut.app/v1/config/demo", message: "Response: \(jsonString)     version_code:- 850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+//                            if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation {
                                     if let meta = json["meta"] as? [String:AnyObject]{
@@ -449,10 +478,11 @@ extension CustomCameraVC{
                                     
                                     
                                 }
-                            }else{
-                                BaseApi.hideActivirtIndicator()
-                            }
-                        }
+                         //   }
+//                            else{
+//                                BaseApi.hideActivirtIndicator()
+//                            }
+//                        }
                         
                     }
                 } catch let error {
@@ -532,8 +562,8 @@ extension CustomCameraVC{
                 //create json object from data
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     let jsonString = BaseApi.showParam(json: json)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/question/generate-question-image-upload-url", message: "Response: \(jsonString)     version_code:- 756", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
-                        if checkBtn == "OK" {
+//                    UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v1/question/generate-question-image-upload-url", message: "Response: \(jsonString)     version_code:- 756", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+//                        if checkBtn == "OK" {
                             OperationQueue.main.addOperation {
                                 print(json)
                                 BaseApi.hideActivirtIndicator()
@@ -559,11 +589,12 @@ extension CustomCameraVC{
                                     }
                                 }
                             }
-                        }else{
-                            BaseApi.hideActivirtIndicator()
-
-                        }
-                    }
+                     //   }
+//                        else{
+//                            BaseApi.hideActivirtIndicator()
+//
+//                        }
+//                    }
 
                     /**/
                     // handle json...
@@ -606,8 +637,8 @@ extension CustomCameraVC{
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
                         let jsonString = BaseApi.showParam(json: json)
-                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v2/camera/get-settings?openCount=\(count)&studentClass=12", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
-                            if checkBtn == "OK"{
+//                        UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.app/v2/camera/get-settings?openCount=\(count)&studentClass=12", message: "Response: \(jsonString)     version_code:-850", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+//                            if checkBtn == "OK"{
                                 OperationQueue.main.addOperation { [self] in
                                     if let meta = json["meta"] as? [String:AnyObject]{
                                         let code = meta["code"] as! Int
@@ -631,11 +662,12 @@ extension CustomCameraVC{
                                         
                                     }
                                 }
-                            }else{
-                                BaseApi.hideActivirtIndicator()
-
-                            }
-                        }
+                   //         }
+//                            else{
+//                                BaseApi.hideActivirtIndicator()
+//
+//                            }
+//                        }
 
                         
                     }
@@ -703,9 +735,9 @@ extension CustomCameraVC{
                     print(json)
                     let jsonString = BaseApi.showParam(json: json)
                     let param = BaseApi.showParam(json: parameters)
-                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
-                        if checkBtn == "OK"{
-                            
+//                    UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param),  URL:- https://api.doubtnut.com/v10/questions/ask", message: "Response: \(jsonString)     version_code:- 776", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
+//                        if checkBtn == "OK"{
+//
                             if let meta = json["meta"] as? [String:AnyObject]{
                                 let code = meta["code"] as! Int
                                 if code == 200 {
@@ -736,11 +768,11 @@ extension CustomCameraVC{
                                     }
                                 }
                             }
-                        }else{
-                            BaseApi.hideActivirtIndicator()
-
-                        }
-                    }
+//                        }else{
+//                            BaseApi.hideActivirtIndicator()
+//
+//                        }
+//                    }
             
                     // handle json..
                         

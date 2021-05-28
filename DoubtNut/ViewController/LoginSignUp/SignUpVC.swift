@@ -655,6 +655,10 @@ extension SignUpVC : ASAuthorizationControllerDelegate {
     {
         //need to save details in firsttime
         if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            print(appleIDCredential.identityToken)
+            print(appleIDCredential.realUserStatus)
+            print(appleIDCredential.authorizedScopes)
+            print(appleIDCredential.state)
             let _ = appleIDCredential.user
 
             if let email = appleIDCredential.email {

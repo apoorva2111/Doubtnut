@@ -99,16 +99,21 @@ extension VIdeoListVC : UITableViewDelegate,UITableViewDataSource{
         let imgUrl = objList["question_thumbnail"] as? String
         cell.imgThumbnil.sd_imageIndicator = SDWebImageActivityIndicator.gray
 
-//        cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!), completed: nil)
-        cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!)) { (imgView, error, nil, url) in
-            if imgUrl == nil{
-                cell.lblQues.text = ocrText.html2String
-            }
+   cell.imgThumbnil.sd_setImage(with: URL(string: imgUrl!), completed: nil)
+       
+        if cell.imgThumbnil.image == nil{
+            cell.lblQues.text = ocrText.html2String
         }
-
         
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let objList = arrList[indexPath.row]
+        print(objList)
+        let vc = FlowController().instantiateViewController(identifier: "PlayVideoVC", storyBoard: "PlayVideo") as! PlayVideoVC
+        vc.videDictionary = objList as! NSMutableDictionary
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }

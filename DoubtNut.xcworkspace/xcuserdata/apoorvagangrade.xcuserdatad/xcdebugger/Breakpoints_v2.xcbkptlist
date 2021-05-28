@@ -7,48 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "82F2C529-02B9-4D54-949D-D7A1CFE53871"
-            shouldBeEnabled = "Yes"
+            uuid = "DC41B15F-8163-4589-90C4-5856295FA925"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/SideMenu/SideMenuViewController.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
+            landmarkName = "webserviceforUpdatedAnserView(viewID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A52EBE5D-293B-4B73-A0DD-00B3E012012E"
+            uuid = "13E9D37E-7613-4B46-BD36-DA49AEC071FE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/AppDelegate.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "displayStatusChangedCallback"
-            landmarkType = "24">
+            startingLineNumber = "793"
+            endingLineNumber = "793"
+            landmarkName = "webserviceCallForLike(feedback:answer_video:view_id:rating:question_id:answer_id:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D6CC6DB7-3FC4-4F2C-9C94-41E77E4103C7"
+            uuid = "5528F09B-D588-4569-8B8B-79B563F0AC83"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/CustomCameraVC.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "batteryLevelChanged(notification:)"
+            startingLineNumber = "1001"
+            endingLineNumber = "1001"
+            landmarkName = "callWebserviceForPlaylistWrapper()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEEEFE36-CDA3-4592-9029-B557D76A101E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "btnShareAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "912268C2-2FD5-44CF-8B3A-745940A80F36"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "btnShareAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

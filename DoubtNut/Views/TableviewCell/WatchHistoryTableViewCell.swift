@@ -10,6 +10,7 @@ import UIKit
 class WatchHistoryTableViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var btnSearchnowOutlet: UIButton!
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var menuRefBtn: UIButton!
     
@@ -38,5 +39,5 @@ class WatchHistoryTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: "WatchHistoryTableViewCell", bundle: nil)
     }
- 
+    
 }

@@ -77,6 +77,13 @@ class WatchHistoryViewController: UIViewController, UITableViewDelegate, UITable
         }
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let objList = arrWatchHistory[indexPath.row]
+        let vc = FlowController().instantiateViewController(identifier: "PlayVideoVC", storyBoard: "PlayVideo") as! PlayVideoVC
+        /**/
+        vc.videDictionary = objList as! NSMutableDictionary
+        
+        self.navigationController?.pushViewController(vc, animated: true)    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154
     }

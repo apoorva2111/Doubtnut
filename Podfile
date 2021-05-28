@@ -22,6 +22,8 @@ target 'DoubtNut' do
   pod 'AFNetworking', '~> 4.0'
   pod 'Firebase/Crashlytics'
   pod 'SwiftKeychainWrapper'
+  pod "AudioPlayerManager"
+  pod 'PINRemoteImage'
   # Pods for DoubtNut
 
   target 'DoubtNutTests' do

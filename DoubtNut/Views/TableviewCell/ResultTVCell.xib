@@ -56,7 +56,7 @@
                                 <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="410-Cr-OmV">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="410-Cr-OmV">
                                 <rect key="frame" x="254" y="0.0" width="160" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-ae-Skr">
@@ -70,7 +70,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.9 k" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtG-n9-Yt8">
-                                                <rect key="frame" x="30" y="18" width="45" height="14.5"/>
+                                                <rect key="frame" x="30" y="18" width="45" height="14"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                 <color key="textColor" red="0.6588235294" green="0.70196078429999997" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -82,6 +82,7 @@
                                             <constraint firstItem="Ava-0X-CYt" firstAttribute="leading" secondItem="vIi-ae-Skr" secondAttribute="leading" constant="5" id="KmO-jl-t5j"/>
                                             <constraint firstItem="qtG-n9-Yt8" firstAttribute="leading" secondItem="Ava-0X-CYt" secondAttribute="trailing" constant="5" id="M1m-Fb-NRb"/>
                                             <constraint firstItem="qtG-n9-Yt8" firstAttribute="centerY" secondItem="Ava-0X-CYt" secondAttribute="centerY" id="XA2-vT-S10"/>
+                                            <constraint firstAttribute="width" constant="80" id="dwH-Zi-rkZ"/>
                                             <constraint firstItem="Ava-0X-CYt" firstAttribute="centerY" secondItem="vIi-ae-Skr" secondAttribute="centerY" id="oZi-HX-RMk"/>
                                         </constraints>
                                     </view>
@@ -89,7 +90,7 @@
                                         <rect key="frame" x="80" y="0.0" width="80" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:05" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBq-k5-bga" customClass="RCustomLabel" customModule="DoubtNut" customModuleProvider="target">
-                                                <rect key="frame" x="22.5" y="18.5" width="35" height="13.5"/>
+                                                <rect key="frame" x="22.5" y="18.5" width="35" height="13"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="P1A-0p-Twb"/>
@@ -112,7 +113,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="eca-bm-54o"/>
+                                    <constraint firstAttribute="width" priority="750" constant="160" id="eca-bm-54o"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -154,13 +155,14 @@
                 <outlet property="lblText" destination="FUk-Yb-nPt" id="blq-2B-rgW"/>
                 <outlet property="lblTime" destination="EBq-k5-bga" id="t1r-ta-Vgm"/>
                 <outlet property="lblWatch" destination="qtG-n9-Yt8" id="JRo-OD-XJ9"/>
+                <outlet property="viewTime" destination="yJV-bV-csR" id="ZOJ-N6-1D5"/>
             </connections>
             <point key="canvasLocation" x="34.782608695652179" y="141.29464285714286"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="EBq-k5-bga">
-            <size key="intrinsicContentSize" width="28.5" height="13.5"/>
+            <size key="intrinsicContentSize" width="28" height="13"/>
         </designable>
     </designables>
     <resources>

