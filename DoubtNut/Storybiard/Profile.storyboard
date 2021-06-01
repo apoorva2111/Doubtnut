@@ -101,8 +101,8 @@
                                                             <constraint firstAttribute="width" constant="16" id="jkI-KY-2uX"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDG-Ke-4Ue">
-                                                        <rect key="frame" x="109" y="94" width="121" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDG-Ke-4Ue">
+                                                        <rect key="frame" x="109" y="94" width="295" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="19" id="exR-q5-aS6"/>
                                                         </constraints>
@@ -118,7 +118,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bev-iZ-61A">
-                                                        <rect key="frame" x="109" y="120" width="89" height="19"/>
+                                                        <rect key="frame" x="109" y="120" width="20.5" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="19" id="SJZ-hT-4y8"/>
                                                         </constraints>
@@ -458,11 +458,10 @@
                                                     <constraint firstItem="2h3-9m-fgi" firstAttribute="leading" secondItem="spU-L7-dBC" secondAttribute="leading" constant="16" id="WLK-RS-cnS"/>
                                                     <constraint firstItem="1Jr-d9-18X" firstAttribute="top" secondItem="2h3-9m-fgi" secondAttribute="bottom" constant="12" id="Wij-gS-FEM"/>
                                                     <constraint firstItem="n6t-gd-99i" firstAttribute="top" secondItem="spU-L7-dBC" secondAttribute="top" constant="147.5" id="Y6K-EN-SZC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bev-iZ-61A" secondAttribute="trailing" constant="216" id="YUi-ct-bIY"/>
                                                     <constraint firstItem="k1m-2W-b6U" firstAttribute="top" secondItem="tYk-az-fnV" secondAttribute="bottom" constant="16" id="bM6-cH-Fhp"/>
                                                     <constraint firstItem="4LG-dc-xkR" firstAttribute="top" secondItem="spU-L7-dBC" secondAttribute="top" constant="24" id="bar-kP-tDy"/>
                                                     <constraint firstAttribute="trailing" secondItem="tYk-az-fnV" secondAttribute="trailing" constant="19" id="brL-3v-x48"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nDG-Ke-4Ue" secondAttribute="trailing" constant="184" id="cI9-Yb-Ml8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nDG-Ke-4Ue" secondAttribute="trailing" constant="10" id="cI9-Yb-Ml8"/>
                                                     <constraint firstAttribute="trailing" secondItem="feV-KX-Miv" secondAttribute="trailing" constant="100" id="cNC-so-ehC"/>
                                                     <constraint firstItem="eHJ-2m-tub" firstAttribute="top" secondItem="YR5-wO-cNv" secondAttribute="bottom" constant="40" id="dxd-gH-8lH"/>
                                                     <constraint firstItem="YR5-wO-cNv" firstAttribute="top" secondItem="zBX-WD-74F" secondAttribute="bottom" constant="8" id="e54-w6-5Uf"/>
@@ -554,8 +553,9 @@
                         <outlet property="customView" destination="spU-L7-dBC" id="MQa-oO-9Ow"/>
                         <outlet property="editBioRefBtn" destination="ZC3-UT-rqP" id="3EG-sk-r5J"/>
                         <outlet property="gradeImageView" destination="BW0-qZ-6Ne" id="fKN-MS-Mtb"/>
-                        <outlet property="gradeLabel" destination="nDG-Ke-4Ue" id="gcf-N1-yJj"/>
+                        <outlet property="gradeLabel" destination="bev-iZ-61A" id="Xrw-Y2-nRZ"/>
                         <outlet property="headerView" destination="dCP-IO-Qwm" id="bOe-wa-5Do"/>
+                        <outlet property="lblUserName" destination="nDG-Ke-4Ue" id="mM6-nN-L0j"/>
                         <outlet property="membershipBaseView" destination="pnX-o7-HL9" id="HPZ-5g-rym"/>
                         <outlet property="membershipInsideView" destination="QA2-BP-F6K" id="lqW-IK-98g"/>
                         <outlet property="membershipLabel" destination="eHJ-2m-tub" id="Eke-Ga-u0J"/>
@@ -1865,7 +1865,7 @@
         <image name="Icon Top Icons" width="24" height="24"/>
         <image name="Icon Top Icons-1" width="29" height="24"/>
         <image name="Location" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="Menu" width="16" height="16"/>
+        <image name="Menu" width="4" height="16"/>
         <image name="Notify Me" width="24" height="24"/>
         <image name="Profile" width="24" height="24"/>
         <image name="SAT" width="16" height="16"/>

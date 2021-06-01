@@ -113,6 +113,7 @@ extension VIdeoListVC : UITableViewDelegate,UITableViewDataSource{
         print(objList)
         let vc = FlowController().instantiateViewController(identifier: "PlayVideoVC", storyBoard: "PlayVideo") as! PlayVideoVC
         vc.videDictionary = objList as! NSMutableDictionary
+        vc.isFromFindSolution = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

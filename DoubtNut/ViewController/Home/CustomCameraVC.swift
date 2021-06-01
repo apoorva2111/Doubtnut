@@ -30,6 +30,7 @@ class CustomCameraVC: UIViewController, AVCapturePhotoCaptureDelegate  {
     @IBOutlet weak var viewTypeTxt: UIView!
     @IBOutlet weak var viewTypeTextTopConstraint: NSLayoutConstraint!
     
+  
     @IBOutlet weak var txtTypeText: UITextView!
     
     //  MARK: - Properties
@@ -254,6 +255,7 @@ var demoQuesCount = 0
             print("Torch is not available")
         }
     }
+  
 }
 //  MARK: - AKImageCropperViewDelegate
 
@@ -943,7 +945,11 @@ extension CustomCameraVC{
 
     }
     
-    
+    @IBAction func btnHideCropViewAction(_ sender: UIButton) {
+        self.viewImgCrop.isHidden = true
+        self.viewCropOneQues.isHidden = true
+        self.viewDidAppear(true)
+    }
     @IBAction func btnRetakeAction(_ sender: UIButton) {
         toggleTorch(on: false)
         guard !cropView.isEdited else {

@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var stateImageView: UIImageView!
     
-    @IBOutlet weak var SATLabel: UILabel!
+    @IBOutlet weak var lblUserName: UILabel!
     
     @IBOutlet weak var SATImageView: UIImageView!
     
@@ -78,6 +78,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var cancelMemberShipBtnRef: UIButton!
     @IBOutlet weak var viewFooter: Footerview!
     
+    var strFirstName = ""
+    var strLastName = ""
     
     
     
@@ -213,8 +215,20 @@ extension ProfileViewController{
                                         let code = meta["code"] as! Int
                                         if code == 200 {
                                             if let data = json["data"] as? [String:Any]{
-                                                userNameLabel.text = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
-                                                gradeLabel.text = data["display_class"] as? String
+                                                
+                                                
+                                               // userNameLabel.text = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
+                                                if let firstName = data["student_fname"] as? String{
+                                                    strFirstName = firstName
+                                                }
+                                                if let lastName = data["student_lname"] as? String{
+                                                    strLastName = lastName
+                                                }
+                                                lblUserName.text = strLastName
+                                                if let displayClass = data["display_class"] as? String{
+                                                    gradeLabel.text = displayClass
+                                                }
+                                                
                                                 if let imgUrl = data["img_url"] as? String {
                                                     profileImageView.contentMode = .scaleToFill
                                                 profileImageView.sd_setImage(with: URL.init(string: imgUrl), completed: nil)

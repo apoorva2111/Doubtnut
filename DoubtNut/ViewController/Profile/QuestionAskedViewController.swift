@@ -97,6 +97,12 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let arrObj = arrData[indexPath.row]
+        let vc = FlowController().instantiateViewController(identifier: "PlayVideoVC", storyBoard: "PlayVideo") as! PlayVideoVC
+        vc.videDictionary = arrObj as! NSMutableDictionary
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
             if indexPath == lastVisibleIndexPath {
@@ -105,7 +111,6 @@ class QuestionAskedViewController: UIViewController, UITableViewDelegate, UITabl
                     currentPage += 1
                     run(after: 2) {
                         self.questionVideo(url: "https://api.doubtnut.com/v1/question/watch-history?page=\(self.currentPage)")
-
                     }
                 }
             }

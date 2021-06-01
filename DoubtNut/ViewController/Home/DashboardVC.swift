@@ -33,7 +33,9 @@ class DashboardVC: UIViewController {
     
     var arrFeedData = [NSDictionary]()
     var arrGetData = [NSDictionary]()
-    
+    var strFirstName = ""
+    var strLastName = ""
+
     
     @IBAction func btnSetPinAction(_ sender: UIButton) {
         if sender.tag == 10 {
@@ -433,6 +435,7 @@ extension DashboardVC{
         request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.addValue("US", forHTTPHeaderField: "country")
         request.addValue("776", forHTTPHeaderField: "version_code")
+    
 
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
@@ -505,7 +508,7 @@ extension DashboardVC{
         request.addValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzY5NDQ5OTgsImlhdCI6MTYyMDkwMzY4MSwiZXhwIjoxNjgzOTc1NjgxfQ.KTRsKuo07iRgVEjiCuO8HwV4ZdDZzkVjZix2sMqZt00", forHTTPHeaderField: "x-auth-token")
         request.addValue("845", forHTTPHeaderField: "version_code")
         request.addValue("US", forHTTPHeaderField: "country")
-        
+        request.addValue("ios", forHTTPHeaderField: "os")
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             if error != nil {
                 print("Error: \(String(describing: error))")
@@ -530,11 +533,16 @@ extension DashboardVC{
                                                     userDef.setValue(imgUrl, forKey: "userProfile")
                                                     userDef.synchronize()
                                                 }
-                                                let userName = (data["student_fname"] as! String) + " " + (data["student_lname"]as! String)
+                                                if let firstName = data["student_fname"] as? String{
+                                                    strFirstName = firstName
+                                                }
+                                                if let lastName = data["student_lname"] as? String{
+                                                    strLastName = lastName
+                                                }
+                                                let userName = strFirstName + " " + strLastName
                                                
                                                 userDef.setValue(userName, forKey: "userName")
                                                 userDef.synchronize()
-                                             //   BaseApi.hideActivirtIndicator()
                                                 callWebserviceForItems()
 
                                             }else{
@@ -782,10 +790,3 @@ extension DashboardVC{
     }
 }
 
-/*
- "GET:  https://api.doubtnut.app/v3/tesla/feed?page=1&source=home&with_video_type=1&offsetCursor=&supported_media_type=DASH%2CHLS%2CRTMP%2CBLOB%2CYOUTUBE
-
- x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk5NTkzNTIsImlhdCI6MTYyMDY0MjI5MCwiZXhwIjoxNjgzNzE0MjkwfQ.oSDqsry8VS6Q0dXcasv5sqqgZ02rTCwvtAaYcy5I7CI
- version_code: 844
- country: US"
- */

@@ -10,7 +10,15 @@ import AVKit
 
 class PlayVideoVC: UIViewController {
     @IBAction func btnBackAction(_ sender: Any) {
+        isTabBack = true
+
+        if String(self.view_id) != "0" {
+            self.webserviceforUpdatedAnserView(viewID: String(self.view_id))
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
         self.navigationController?.popViewController(animated: true)
+
     }
     
     @IBOutlet weak var tblView: UITableView!
@@ -45,7 +53,10 @@ class PlayVideoVC: UIViewController {
     var likeCount = 0
     var dislikeCount = 0
     var shareCount = 0
-
+    var share_message = ""
+    var isFromFindSolution = false
+    var isTabBack = false
+    
     
     
     override func viewDidLoad() {
@@ -54,10 +65,19 @@ class PlayVideoVC: UIViewController {
         tblView.register(UINib.init(nibName: "ResultTVCell", bundle: nil), forCellReuseIdentifier: "ResultTVCell")
         tblView.delegate = self
         tblView.dataSource = self
-        
-        if let id  = videDictionary["question_id"] as? Int{
-            callWebserviceForQuestionPlay(quesID: String(id))
+        if isFromFindSolution{
+            isFromFindSolution = false
+            if let id  = videDictionary["_id"] as? String{
+                callWebserviceForQuestionPlay(quesID: String(id))
+            }
+        }else{
+            if let id  = videDictionary["question_id"] as? Int{
+                callWebserviceForQuestionPlay(quesID: String(id))
+            }
         }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 }
 //MARK:- UIButton Action
@@ -94,21 +114,34 @@ extension PlayVideoVC{
         callWebserviceForGetDislikeContant()
     }
     @IBAction func btnCommentAction(_ sender: UIButton) {
+        let vc = FlowController().instantiateViewController(identifier: "CommentsVC", storyBoard: "PlayVideo") as! CommentsVC
+        
+            vc.quesID = self.question_id
+       
+        self.present(vc, animated: true, completion: nil)
     }
     @IBAction func btnShareAction(_ sender: UIButton) {
-        let url  = NSURL(string: "whatsapp://send?text=Hello%20Friends%2C%20Sharing%20some%20data%20here...%20!")
+        let originalString = " https://doubtnutnam.app.link/EZkWNqrzCgb"
+        let urlWhats = "whatsapp://send?text=\(share_message)\(originalString)"
+               if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                   if let whatsappURL = NSURL(string: urlString) {
+                       if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                           UIApplication.shared.openURL(whatsappURL as URL)
+                       } else {
 
-        //Text which will be shared on WhatsApp is: "Hello Friends, Sharing some data here... !"
+                           let alert = UIAlertController(title: NSLocalizedString("Whatsapp not found", comment: "Error message"),
+                                                         message: NSLocalizedString("Could not found a installed app 'Whatsapp' to proceed with sharing.", comment: "Error description"),
+                                                         preferredStyle: UIAlertController.Style.alert)
 
-        if UIApplication.shared.canOpenURL(url! as URL) {
-            UIApplication.shared.open(url! as URL, options: [:]) { (success) in
-                        if success {
-                            print("WhatsApp accessed successfully")
-                        } else {
-                            print("Error accessing WhatsApp")
-                        }
-                    }
-            }
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Alert button"), style: UIAlertAction.Style.default, handler:{ (UIAlertAction)in
+                           }))
+
+                           self.present(alert, animated: true, completion:nil)
+                           // Cannot open whatsapp
+                       }
+                   }
+               }
+        
     }
     
     @IBAction func btnWatchLaterAction(_ sender: UIButton) {
@@ -221,14 +254,17 @@ extension PlayVideoVC {
                                         BaseApi.hideActivirtIndicator()
                                         if let data = json["data"] as? [String:AnyObject]{
                                             
-                                            if let answer_video = data["answer_video"] {
-                                                self.answer_video = answer_video as! String
+                                        if let answer_video = data["video_name"] as? String {
+                                                self.answer_video = answer_video
                                             }
                                             if let view_id = data["view_id"] as? Int{
                                                 self.view_id = String(view_id)
                                             }
                                             if let question_id = data["question_id"] as? Int{
                                                 self.question_id = String(question_id)
+                                            }
+                                            if let share_message = data["share_message"] as? String{
+                                                self.share_message = share_message
                                             }
                                             
                                             if let answer_id = data["answer_id"] as? Int{
@@ -336,6 +372,8 @@ extension PlayVideoVC {
                                         
                                         BaseApi.hideActivirtIndicator()
                                     }else{
+
+                                        
                                         if let id  = self.videDictionary["question_id"] as? Int{
                                             self.webserviceforSimilarQuestion(quesID: String(id), view_id: 0)
                                         }
@@ -587,9 +625,12 @@ extension PlayVideoVC {
                                                     self.tblView.isHidden = true
                                                 }
                                             }
-                                            if view_id != 0{
-                                                self.webserviceforUpdatedAnserView(viewID: String(view_id))
+                                            if self.isTabBack == false{
+                                                if view_id != 0 {
+                                                    self.webserviceforUpdatedAnserView(viewID: String(self.view_id))
+                                                 }
                                             }
+                                           
                                         }
                                         
                                     }else if code == 401{
@@ -672,7 +713,7 @@ extension PlayVideoVC {
                     let jsonString = BaseApi.showParam(json: json)
                     OperationQueue.main.addOperation {
                         BaseApi.hideActivirtIndicator()
-                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.com/v13/answers/view-answer-by-question-id", message: "Response: \(jsonString)     version_code:- 845", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
+                        UtilesSwift.shared.displayAlertWithHandler(with: "Parameter: \(param), URL:- https://api.doubtnut.app/v10/answers/update-answer-view", message: "Response: \(jsonString)     version_code:- 845", buttons: ["OK","DISSMISS"], viewobj: self) { (clickButton) in
                             
                             if clickButton == "OK" {
                                 BaseApi.hideActivirtIndicator()
@@ -685,23 +726,48 @@ extension PlayVideoVC {
                                         if let data = json["data"] as? [String:AnyObject]{
                                             print(data)
                                         }
+                                        if self.isTabBack{
+                                            self.navigationController?.popViewController(animated: true)
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                        }
                                         
                                     }else if code == 401{
                                         BaseApi.hideActivirtIndicator()
                                         if let msg = meta["message"] as? String{
                                             self.showToast(message: msg)
+                                            if self.isTabBack{
+                                                self.navigationController?.popViewController(animated: true)
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
                                         }
                                     }else if code == 500 {
                                         if let msg = meta["message"] as? String{
                                             self.showToast(message: msg)
+                                            if self.isTabBack{
+                                                self.navigationController?.popViewController(animated: true)
+                                            }else{
+                                                BaseApi.hideActivirtIndicator()
+                                            }
                                         }
                                         
                                         BaseApi.hideActivirtIndicator()
                                     }else{
+                                        if self.isTabBack{
+                                            self.navigationController?.popViewController(animated: true)
+                                        }else{
+                                            BaseApi.hideActivirtIndicator()
+                                        }
                                         BaseApi.hideActivirtIndicator()
                                     }
                                 }
                             }else{
+                                if self.isTabBack{
+                                    self.navigationController?.popViewController(animated: true)
+                                }else{
+                                    BaseApi.hideActivirtIndicator()
+                                }
                                 BaseApi.hideActivirtIndicator()
                                 
                             }
@@ -791,15 +857,15 @@ extension PlayVideoVC {
                                             
                                         }else{
                                             if rating == "3"{
-                                                self.likeCount -= 1
+                                                self.dislikeCount -= 1
                                                 self.lblDislike.text = String(self.dislikeCount)
                                                 self.imgDislike.image = #imageLiteral(resourceName: "Dislike")
                                                 self.btnDislikeOutlet.isSelected = false
                                             }else{
                                                 
-                                                self.likeCount += 1
-                                                self.lblLike.text = String(self.dislikeCount)
-                                                self.imgLike.image = #imageLiteral(resourceName: "Like_Active")
+                                                self.dislikeCount += 1
+                                                self.lblDislike.text = String(self.dislikeCount)
+                                                self.imgDislike.image = #imageLiteral(resourceName: "Dislike_Active")
                                                 self.btnDislikeOutlet.isSelected = true
                                                 
                                                 
@@ -1068,3 +1134,22 @@ extension PlayVideoVC {
 }
 
 
+class OptionalTextActivityItemSource: NSObject, UIActivityItemSource {
+    let text: String
+    
+    init(text: String) {
+        self.text = text
+    }
+    
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return text
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        if activityType?.rawValue == "whatsapp://send?text=Hello%20Friends%2C%20Sharing%20some%20data%20here...%20!" {
+            return nil
+        } else {
+            return text
+        }
+    }
+}

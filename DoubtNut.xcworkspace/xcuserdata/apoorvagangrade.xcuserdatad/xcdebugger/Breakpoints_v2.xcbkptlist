@@ -7,81 +7,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DC41B15F-8163-4589-90C4-5856295FA925"
+            uuid = "E6757222-49A0-4F69-8D7C-27809806903B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "670"
-            endingLineNumber = "670"
-            landmarkName = "webserviceforUpdatedAnserView(viewID:)"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
+            landmarkName = "getProfileDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "13E9D37E-7613-4B46-BD36-DA49AEC071FE"
-            shouldBeEnabled = "Yes"
+            uuid = "1EED4048-21CB-4DB5-A575-457F6438871D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
-            landmarkName = "webserviceCallForLike(feedback:answer_video:view_id:rating:question_id:answer_id:)"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "getProfileDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5528F09B-D588-4569-8B8B-79B563F0AC83"
+            uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
+            landmarkName = "getProfileDetail()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - f9001ed79a62f0e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
+                  moduleName = "DoubtNut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "521"
+                  endingLineNumber = "521"
+                  offsetFromSymbolStart = "1832">
+               </Location>
+               <Location
+                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - f9001ed79a62f0e9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
+                  moduleName = "DoubtNut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "521"
+                  endingLineNumber = "521"
+                  offsetFromSymbolStart = "1872">
+               </Location>
+               <Location
+                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - 5951eb407c821b40"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
+                  moduleName = "DoubtNut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "522"
+                  endingLineNumber = "522"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D297793D-22B6-48E7-AD10-CBBE97340E8B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1001"
-            endingLineNumber = "1001"
-            landmarkName = "callWebserviceForPlaylistWrapper()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "callWebserviceForGetComment()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AEEEFE36-CDA3-4592-9029-B557D76A101E"
+            uuid = "8DE714C2-2157-4F31-AD20-779918A169A3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
+            filePath = "DoubtNut/Views/CollectionviewCell/Comment/CommentTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "btnShareAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "912268C2-2FD5-44CF-8B3A-745940A80F36"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/PlayVideoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "btnShareAction(_:)"
-            landmarkType = "7">
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

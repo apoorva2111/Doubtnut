@@ -106,7 +106,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASK DOUBT?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8N-bZ-eht">
-                                                                <rect key="frame" x="176" y="127.5" width="62" height="12"/>
+                                                                <rect key="frame" x="176" y="127.5" width="62.5" height="12"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="10"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -150,13 +150,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Instant Math Video Solutions!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFp-Y8-zHf">
-                                                                <rect key="frame" x="125.5" y="241.5" width="163.5" height="13.5"/>
+                                                                <rect key="frame" x="124.5" y="241.5" width="165" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-p5-wTy" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="271" width="382" height="38"/>
+                                                                <rect key="frame" x="16" y="270.5" width="382" height="38"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search" translatesAutoresizingMaskIntoConstraints="NO" id="V3B-aT-D2S">
                                                                         <rect key="frame" x="24" y="11" width="16" height="16"/>
@@ -232,7 +232,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAT Prep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUF-X6-dGy">
-                                                                                <rect key="frame" x="0.0" y="56" width="206" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="56" width="206" height="15.5"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -271,7 +271,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACT Prep" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUj-j0-0qP">
-                                                                                <rect key="frame" x="0.0" y="56" width="207" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="56" width="207" height="15.5"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -323,7 +323,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math SAT Solutions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4F-wy-TYo">
-                                                                        <rect key="frame" x="15" y="0.0" width="131.5" height="40"/>
+                                                                        <rect key="frame" x="15" y="0.0" width="132" height="40"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -762,7 +762,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JK-Sb-pxY">
-                                                <rect key="frame" x="66" y="60" width="338" height="19.5"/>
+                                                <rect key="frame" x="66" y="60" width="338" height="19"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -874,7 +874,7 @@
                                                     <constraint firstAttribute="height" constant="46" id="q2O-2Y-Tlz"/>
                                                 </constraints>
                                                 <color key="tintColor" red="0.92156862750000001" green="0.32549019610000002" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" image="Back"/>
+                                                <state key="normal" image="back_white"/>
                                                 <connections>
                                                     <action selector="btnBackAction:" destination="jvs-M6-CAQ" eventType="touchUpInside" id="M4E-N2-5Ve"/>
                                                 </connections>
@@ -1216,6 +1216,17 @@ Try with a Demo question</string>
                                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUu-cd-tuO">
+                                                <rect key="frame" x="10" y="30" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="eVw-DP-fQT"/>
+                                                    <constraint firstAttribute="width" constant="50" id="r7U-r7-IfW"/>
+                                                </constraints>
+                                                <state key="normal" image="back_white"/>
+                                                <connections>
+                                                    <action selector="btnHideCropViewAction:" destination="jvs-M6-CAQ" eventType="touchUpInside" id="iyA-R9-53Q"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1227,7 +1238,9 @@ Try with a Demo question</string>
                                             <constraint firstItem="8Ep-2d-QDk" firstAttribute="top" secondItem="cg5-xF-ZHP" secondAttribute="top" constant="50" id="TZV-na-fdv"/>
                                             <constraint firstItem="vli-gA-I5B" firstAttribute="leading" secondItem="cg5-xF-ZHP" secondAttribute="leading" id="ZqV-dc-8xl"/>
                                             <constraint firstAttribute="trailing" secondItem="vli-gA-I5B" secondAttribute="trailing" id="bUH-3F-1mQ"/>
+                                            <constraint firstItem="GUu-cd-tuO" firstAttribute="leading" secondItem="cg5-xF-ZHP" secondAttribute="leading" constant="10" id="f2v-vI-jv4"/>
                                             <constraint firstItem="pf3-MC-2hy" firstAttribute="top" secondItem="8Ep-2d-QDk" secondAttribute="bottom" constant="10" id="olr-Ag-2bb"/>
+                                            <constraint firstItem="GUu-cd-tuO" firstAttribute="top" secondItem="cg5-xF-ZHP" secondAttribute="top" constant="30" id="w8D-L2-Orb"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oB6-Bd-un1" customClass="RCustomView" customModule="DoubtNut" customModuleProvider="target">
@@ -1427,7 +1440,7 @@ Get Solution.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGM-Pm-0y0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="66"/>
+            <point key="canvasLocation" x="332" y="66"/>
         </scene>
         <!--Do You Have QuestVC-->
         <scene sceneID="WAV-Nd-d8m">
@@ -2191,7 +2204,7 @@ Get Solution.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to get the right video solutions?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1W-7W-7Nr">
-                                                <rect key="frame" x="76" y="60" width="262.5" height="19"/>
+                                                <rect key="frame" x="75.5" y="60" width="263.5" height="19"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -2551,6 +2564,7 @@ Get Solution.</string>
         <image name="Rotate" width="20" height="20"/>
         <image name="Search" width="16" height="16"/>
         <image name="View" width="16" height="16"/>
+        <image name="back_white" width="32" height="32"/>
         <image name="imog" width="64" height="32"/>
         <image name="paper" width="383" height="116"/>
         <image name="password_pin" width="27" height="27"/>
