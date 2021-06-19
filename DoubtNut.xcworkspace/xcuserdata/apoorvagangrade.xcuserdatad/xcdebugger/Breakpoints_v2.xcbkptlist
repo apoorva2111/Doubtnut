@@ -7,94 +7,255 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6757222-49A0-4F69-8D7C-27809806903B"
-            shouldBeEnabled = "No"
+            uuid = "A7209CAD-7564-453C-8A10-0E7CEF3C14F6"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
-            landmarkName = "getProfileDetail()"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "btnCommentLikeAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1EED4048-21CB-4DB5-A575-457F6438871D"
-            shouldBeEnabled = "No"
+            uuid = "0EEA0E7C-8809-4B2B-BE6A-2E014C137265"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
-            landmarkName = "getProfileDetail()"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "callWebserviceForLikeDislikeComment(commentID:isLike:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780"
+            uuid = "1D699DF4-CD65-481F-9198-155040C3B2F8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/Home/DashboardVC.swift"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
-            landmarkName = "getProfileDetail()"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "btnCommentReplyCation(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E08091BB-74CA-4663-A2DB-87AC66F0F61C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "callWebserviceForGetReplyComment(commentId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2694514B-0C74-4212-A55D-CBEC93FC960D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "callWebserviceForGetReplyComment(commentId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9CDA2A96-1569-40A1-918A-1C1AA125D94D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "callWebserviceForGetReplyComment(commentId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F7C702F-EDCA-4B4B-A3BE-66E897611A87"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/Views/CollectionviewCell/Comment/CommentTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "setCell(dict:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "283BA953-5018-48FD-8205-8DF38A359C41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "btnDeleteCommnetAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1604ACA-42B4-4735-A9BC-4CF09BF7C589"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/Views/TableviewCell/Comment/CommentTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "setCell(dict:arrReply:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "752E42A4-015D-4BFA-B0B8-2A60B02F5D8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/Views/TableviewCell/Comment/CommentTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A823196-7908-46B7-BAD9-6C0631A694F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "callWebserviceGetHistory()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9324526E-561B-4E6D-8789-F6364BFB22B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "callWebserviceForAskQues(chapter:doubt:subject:student_id:locale:ocr_text:classs:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3C2F629-97CA-406A-AF66-86491F3ED1EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "callWebserviceForAskQues(chapter:doubt:subject:student_id:locale:ocr_text:classs:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "648AA959-A974-40C2-A785-C18416D7E730"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "callWebserviceForAskQues(chapter:doubt:subject:student_id:locale:ocr_text:classs:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - f9001ed79a62f0e9"
+                  uuid = "648AA959-A974-40C2-A785-C18416D7E730 - e230b32520042ce3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.WatchHistoryViewController.callWebserviceForAskQues(chapter: Swift.String, doubt: Swift.String, subject: Swift.String, student_id: Swift.String, locale: Swift.String, ocr_text: Swift.String, classs: Swift.String) -&gt; ()"
                   moduleName = "DoubtNut"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
+                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "521"
-                  endingLineNumber = "521"
-                  offsetFromSymbolStart = "1832">
+                  startingLineNumber = "314"
+                  endingLineNumber = "314"
+                  offsetFromSymbolStart = "1084">
                </Location>
                <Location
-                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - f9001ed79a62f0e9"
+                  uuid = "648AA959-A974-40C2-A785-C18416D7E730 - 8f40e2d17c0548f9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
+                  symbolName = "closure #2 () -&gt; () in closure #1 (Swift.String) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.WatchHistoryViewController.callWebserviceForAskQues(chapter: Swift.String, doubt: Swift.String, subject: Swift.String, student_id: Swift.String, locale: Swift.String, ocr_text: Swift.String, classs: Swift.String) -&gt; ()"
                   moduleName = "DoubtNut"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
+                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "521"
-                  endingLineNumber = "521"
-                  offsetFromSymbolStart = "1872">
-               </Location>
-               <Location
-                  uuid = "8CE00022-675E-492D-BA47-C38D4ED1F780 - 5951eb407c821b40"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DoubtNut.DashboardVC.getProfileDetail() -&gt; ()"
-                  moduleName = "DoubtNut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apoorvagangrade/Documents/WebConvoy/Doubtnut/Doubtnut_github/Doubtnut/DoubtNut/ViewController/Home/DashboardVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "522"
-                  endingLineNumber = "522"
-                  offsetFromSymbolStart = "96">
+                  startingLineNumber = "315"
+                  endingLineNumber = "315"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -102,33 +263,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D297793D-22B6-48E7-AD10-CBBE97340E8B"
+            uuid = "6698D504-1978-434A-A63B-9786C6D28DA4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/ViewController/VideoPlay/CommentsVC.swift"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "callWebserviceForGetComment()"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "callWebserviceForAskQues(chapter:doubt:subject:student_id:locale:ocr_text:classs:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8DE714C2-2157-4F31-AD20-779918A169A3"
+            uuid = "506679FD-4970-4FD7-9BB9-FB7C63A56C34"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoubtNut/Views/CollectionviewCell/Comment/CommentTVCell.swift"
+            filePath = "DoubtNut/ViewController/Profile/WatchHistoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "callWebserviceForAskQues(chapter:doubt:subject:student_id:locale:ocr_text:classs:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

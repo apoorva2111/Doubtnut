@@ -1,0 +1,6 @@
+framework module APXRTAPlugin {
+  umbrella header "APXRTAPlugin.h"
+
+  export *
+  module * { export * }
+}

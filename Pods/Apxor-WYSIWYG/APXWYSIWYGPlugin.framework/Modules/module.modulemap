@@ -1,0 +1,6 @@
+framework module APXWYSIWYGPlugin {
+  umbrella header "APXWYSIWYGPlugin.h"
+
+  export *
+  module * { export * }
+}

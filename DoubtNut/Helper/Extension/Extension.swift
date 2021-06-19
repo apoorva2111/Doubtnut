@@ -49,6 +49,28 @@ extension UIView {
     }
 }
 
+extension NSString {
+
+class func convertFormatOfDate(date: String, originalFormat: String, destinationFormat: String) -> String! {
+
+    // Orginal format :
+    let dateOriginalFormat = DateFormatter()
+    dateOriginalFormat.dateFormat = originalFormat      // in the example it'll take "yy MM dd" (from our call)
+
+    // Destination format :
+    let dateDestinationFormat = DateFormatter()
+    dateDestinationFormat.dateFormat = destinationFormat // in the example it'll take "EEEE dd MMMM yyyy" (from our call)
+
+    // Convert current String Date to NSDate
+    let dateFromString = dateOriginalFormat.date(from: date)
+
+    // Convert new NSDate created above to String with the good format
+    let dateFormated = dateDestinationFormat.string(from: dateFromString!)
+
+    return dateFormated
+
+}
+}
 extension UIViewController {
     func run(after wait: TimeInterval, closure: @escaping () -> Void) {
         let queue = DispatchQueue.main
@@ -87,6 +109,24 @@ func showToast(message : String) {
 }
     
 }
+extension Date {
+    
+    func daysBetween(date: Date) -> Int {
+        return Date.daysBetween(start: self, end: date)
+    }
+    
+    static func daysBetween(start: Date, end: Date) -> Int {
+        let calendar = Calendar.current
+        
+        // Replace the hour (time) of both dates with 00:00
+        let date1 = calendar.startOfDay(for: start)
+        let date2 = calendar.startOfDay(for: end)
+        
+        let a = calendar.dateComponents([.day], from: date1, to: date2)
+        return a.value(for: .day)!
+    }
+}
+
 extension Bundle {
 
     var appName: String {

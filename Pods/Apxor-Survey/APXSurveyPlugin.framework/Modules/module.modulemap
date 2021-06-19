@@ -1,0 +1,6 @@
+framework module APXSurveyPlugin {
+  umbrella header "APXSurveyPlugin.h"
+
+  export *
+  module * { export * }
+}

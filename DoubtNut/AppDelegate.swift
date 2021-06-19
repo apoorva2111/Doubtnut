@@ -10,6 +10,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import GoogleSignIn
 import FBSDKCoreKit
+import UXCam
 var userDef = UserDefaults.standard
 
 
@@ -42,6 +43,9 @@ print(lockState)
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         registerforDeviceLockNotification()
         self.callRootView()
+        UXCam.optIntoSchematicRecordings()
+        UXCam.start(withKey:"App-key from UXCam")
+
         return true
     }
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])

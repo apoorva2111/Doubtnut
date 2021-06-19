@@ -1,0 +1,6 @@
+framework module APXContextEvaluator {
+  umbrella header "APXContextEvaluator.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,17 @@
+framework module ApxorSDK {
+    umbrella header "ApxorSDK.h"
+    header "APXEvent.h"
+    header "APXChunk.h"
+    header "APXSession.h"
+    header "APXUser.h"
+    header "APXChunkMetaInfo.h"
+    header "APXAppInfo.h"
+    header "APXDeviceInfo.h"
+    header "APXObservationEvent.h"
+    header "APXLogger.h"
+    header "APXUtilities.h"
+    header "APXController.h"
+    header "ApxorPlugin.h"
+    export *
+    module * { export * }
+}

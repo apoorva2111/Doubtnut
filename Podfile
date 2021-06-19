@@ -24,6 +24,12 @@ target 'DoubtNut' do
   pod 'SwiftKeychainWrapper'
   pod "AudioPlayerManager"
   pod 'PINRemoteImage'
+  pod 'UXCam'
+  pod 'Apxor-Core', '2.6.3'
+  pod 'Apxor-CE', '1.2.84'
+  pod 'Apxor-RTA', '1.5.82'
+  pod 'Apxor-Survey', '1.1.82'
+  pod 'Apxor-WYSIWYG', '1.0.81'   #Remove this pod for non-debug builds
   # Pods for DoubtNut
 
   target 'DoubtNutTests' do

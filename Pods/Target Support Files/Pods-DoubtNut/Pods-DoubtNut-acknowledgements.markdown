@@ -252,6 +252,111 @@ SOFTWARE.
    limitations under the License.
 
 
+## Apxor-CE
+
+Copyright (c) 2013, Apxor Technology Solutions Pvt Ltd. Apxor
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Neither the name of Apxor Technology Solutions Pvt Ltd, Apxor nor the names of its 
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You may not copy, distribute, display, execute publicly, make available to the public, reduce to human readable form, resale, lease, decompile, disassemble, adapt, sublicense, make any commercial use, sell, rent, lend, process, compile, reverse engineer, combine with other software, translate, modify or create derivative works of any material that is subject to Apxor Technology Solutions 's proprietary rights, including Apxor Technology Solutions 's Intellectual Property, either by Yourself or by anyone on Your behalf, in any way or by any means, unless expressly permitted in the Terms. 
+
+Apxor Technology Solutions Pvt Ltd has no obligation to provide support, maintenance, upgrades, modifications, or new releases of the Apxor SDK under this Agreement, unless agreed in writing otherwise between You and us.
+
+## Apxor-Core
+
+Copyright (c) 2013, Apxor Technology Solutions Pvt Ltd. Apxor
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Neither the name of Apxor Technology Solutions Pvt Ltd, Apxor nor the names of its 
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You may not copy, distribute, display, execute publicly, make available to the public, reduce to human readable form, resale, lease, decompile, disassemble, adapt, sublicense, make any commercial use, sell, rent, lend, process, compile, reverse engineer, combine with other software, translate, modify or create derivative works of any material that is subject to Apxor Technology Solutions 's proprietary rights, including Apxor Technology Solutions 's Intellectual Property, either by Yourself or by anyone on Your behalf, in any way or by any means, unless expressly permitted in the Terms. 
+
+Apxor Technology Solutions Pvt Ltd has no obligation to provide support, maintenance, upgrades, modifications, or new releases of the Apxor SDK under this Agreement, unless agreed in writing otherwise between You and us.
+
+## Apxor-RTA
+
+Copyright (c) 2013, Apxor Technology Solutions Pvt Ltd. Apxor
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Neither the name of Apxor Technology Solutions Pvt Ltd, Apxor nor the names of its 
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You may not copy, distribute, display, execute publicly, make available to the public, reduce to human readable form, resale, lease, decompile, disassemble, adapt, sublicense, make any commercial use, sell, rent, lend, process, compile, reverse engineer, combine with other software, translate, modify or create derivative works of any material that is subject to Apxor Technology Solutions 's proprietary rights, including Apxor Technology Solutions 's Intellectual Property, either by Yourself or by anyone on Your behalf, in any way or by any means, unless expressly permitted in the Terms. 
+
+Apxor Technology Solutions Pvt Ltd has no obligation to provide support, maintenance, upgrades, modifications, or new releases of the Apxor SDK under this Agreement, unless agreed in writing otherwise between You and us.
+
+## Apxor-Survey
+
+Copyright (c) 2013, Apxor Technology Solutions Pvt Ltd. Apxor
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Neither the name of Apxor Technology Solutions Pvt Ltd, Apxor nor the names of its 
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You may not copy, distribute, display, execute publicly, make available to the public, reduce to human readable form, resale, lease, decompile, disassemble, adapt, sublicense, make any commercial use, sell, rent, lend, process, compile, reverse engineer, combine with other software, translate, modify or create derivative works of any material that is subject to Apxor Technology Solutions 's proprietary rights, including Apxor Technology Solutions 's Intellectual Property, either by Yourself or by anyone on Your behalf, in any way or by any means, unless expressly permitted in the Terms. 
+
+Apxor Technology Solutions Pvt Ltd has no obligation to provide support, maintenance, upgrades, modifications, or new releases of the Apxor SDK under this Agreement, unless agreed in writing otherwise between You and us.
+
+## Apxor-WYSIWYG
+
+Copyright (c) 2013, Apxor Technology Solutions Pvt Ltd. Apxor
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Neither the name of Apxor Technology Solutions Pvt Ltd, Apxor nor the names of its 
+contributors may be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+You may not copy, distribute, display, execute publicly, make available to the public, reduce to human readable form, resale, lease, decompile, disassemble, adapt, sublicense, make any commercial use, sell, rent, lend, process, compile, reverse engineer, combine with other software, translate, modify or create derivative works of any material that is subject to Apxor Technology Solutions 's proprietary rights, including Apxor Technology Solutions 's Intellectual Property, either by Yourself or by anyone on Your behalf, in any way or by any means, unless expressly permitted in the Terms. 
+
+Apxor Technology Solutions Pvt Ltd has no obligation to provide support, maintenance, upgrades, modifications, or new releases of the Apxor SDK under this Agreement, unless agreed in writing otherwise between You and us.
+
 ## AudioPlayerManager
 
 MIT License
@@ -3424,6 +3529,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+
+## UXCam
+
+Copyright (c) 2013-2021, UXCam Inc. All rights reserved.
 
 ## lottie-ios
 

@@ -627,7 +627,7 @@ extension PlayVideoVC {
                                             }
                                             if self.isTabBack == false{
                                                 if view_id != 0 {
-                                                    self.webserviceforUpdatedAnserView(viewID: String(self.view_id))
+                                                //    self.webserviceforUpdatedAnserView(viewID: String(self.view_id))
                                                  }
                                             }
                                            
